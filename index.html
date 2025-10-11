@@ -6,7 +6,6 @@
   <title>Amr Mousa — Data Analyst Portfolio</title>
   <meta name="description" content="Amr Mousa — Data Analyst | Power BI | SQL | Python — Portfolio" />
   <style>
-    /* -------------------- Root + Theme variables -------------------- */
     :root{
       --bg: #ffffff;
       --card: #ffffff;
@@ -18,7 +17,6 @@
       --radius: 12px;
       --transition: 300ms cubic-bezier(.2,.9,.3,1);
     }
-    /* Dark theme variables (applied with .dark on <html>) */
     html.dark{
       --bg: #0b1020;
       --card: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
@@ -29,78 +27,73 @@
       --shadow: 0 8px 30px rgba(2,6,23,0.6);
     }
 
-    /* -------------------- Reset / Base -------------------- */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
       background: radial-gradient(circle at 10% 10%, rgba(14,165,233,0.03), transparent), var(--bg);
-      color:var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      line-height:1.5; transition: background var(--transition), color var(--transition);
+      color:var(--text); line-height:1.5;
+      transition: background var(--transition), color var(--transition);
     }
-
     a{color:var(--accent); text-decoration:none}
     img{max-width:100%; display:block}
-
     .container{max-width:1100px; margin:48px auto; padding:0 20px}
-
-    /* -------------------- Header -------------------- */
     header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}
     .brand{display:flex;align-items:center;gap:12px}
     .avatar{width:64px;height:64px;border-radius:12px;overflow:hidden;flex-shrink:0;box-shadow:var(--shadow)}
     .brand h1{font-size:20px;margin:0}
     .brand p{margin:0;color:var(--muted);font-size:13px}
-
     .controls{display:flex;gap:12px;align-items:center}
     .btn{background:var(--card);border:1px solid rgba(0,0,0,0.04);padding:8px 12px;border-radius:10px;box-shadow:var(--shadow);cursor:pointer;transition:all var(--transition)}
     .btn:active{transform:translateY(1px)}
-
-    /* Theme toggle */
-    .theme-toggle{display:flex;align-items:center;gap:8px}
     .theme-toggle button{display:inline-flex;align-items:center;gap:8px}
-
-    /* -------------------- Intro Section -------------------- */
     .intro{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center;margin-bottom:36px}
     .intro-card{background:var(--card);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
     .intro-card h2{margin:0 0 8px}
     .intro-card p{color:var(--muted);margin:0 0 16px}
     .hero-actions{display:flex;gap:12px}
-
-    /* CTA styles */
     .cta-primary{background:linear-gradient(90deg,var(--accent),#06b6d4);color:white;border:none}
     .cta-ghost{background:transparent;border:1px solid rgba(0,0,0,0.06)}
-
-    /* -------------------- Projects Grid -------------------- */
     .projects{margin-bottom:36px}
     .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-    .card{background:var(--card);border-radius:12px;padding:14px;box-shadow:var(--shadow);transition:transform .25s ease, box-shadow .25s ease}
+    .card{background:var(--card);border-radius:12px;padding:14px;box-shadow:var(--shadow);transition:transform .25s ease}
     .card:hover{transform:translateY(-6px)}
     .card img{border-radius:8px;height:160px;object-fit:cover}
     .card h3{margin:12px 0 6px}
     .card p{margin:0;color:var(--muted);font-size:14px}
-    .card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+    .meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
     .chip{padding:6px 8px;border-radius:999px;font-size:12px;background:var(--glass);color:var(--muted);}
-
-    /* Live/embed styles */
     .live-link{display:inline-block;padding:8px 10px;border-radius:8px;background:rgba(0,0,0,0.04)}
-
-    /* -------------------- Footer -------------------- */
     footer{padding:18px 0;color:var(--muted);border-top:1px solid rgba(0,0,0,0.04);display:flex;justify-content:space-between;align-items:center}
     .socials{display:flex;gap:12px}
-
-    /* -------------------- Responsive -------------------- */
-    @media (max-width:900px){
-      .intro{grid-template-columns:1fr;}
-      .intro-card{order:2}
-    }
-
-    /* subtle entrance animation */
+    @media (max-width:900px){.intro{grid-template-columns:1fr;}.intro-card{order:2}}
     .fade-up{opacity:0;transform:translateY(8px);animation:fadeUp .6s forwards}
     @keyframes fadeUp{to{opacity:1;transform:none}}
+
+    /* mute button */
+    #muteToggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform .2s;
+    }
+    #muteToggle:hover { transform: scale(1.05); }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- HEADER -->
     <header>
       <div class="brand">
         <div class="avatar"><img src="images/avatar-placeholder.png" alt="Amr Mousa"></div>
@@ -111,32 +104,24 @@
       </div>
 
       <div class="controls">
-        <div class="theme-toggle">
-          <button class="btn" id="themeBtn" title="Toggle theme">🌞 / 🌙</button>
-        </div>
+        <div class="theme-toggle"><button class="btn" id="themeBtn">🌞 / 🌙</button></div>
         <a class="btn" href="#projects">View My Work</a>
         <a class="btn" href="files/Amr-Mousa-CV.pdf" download>Download CV</a>
       </div>
     </header>
 
-    <!-- Intro -->
+    <!-- INTRO -->
     <section class="intro">
       <div class="intro-card fade-up">
         <h2>Hello — I'm Amr Mousa</h2>
         <p>A data analyst who turns messy data into clear decisions. I build dashboards, clean datasets, and create predictive models that help businesses act faster.</p>
-
         <div class="hero-actions">
           <a class="btn cta-primary" href="#projects">See Projects</a>
           <a class="btn cta-ghost" href="#contact">Contact Me</a>
         </div>
-
-        <hr style="margin:18px 0; border:none; border-top:1px solid rgba(0,0,0,0.04)">
-
+        <hr style="margin:18px 0;border:none;border-top:1px solid rgba(0,0,0,0.04)">
         <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <div class="chip">Power BI</div>
-          <div class="chip">SQL</div>
-          <div class="chip">Python</div>
-          <div class="chip">Excel</div>
+          <div class="chip">Power BI</div><div class="chip">SQL</div><div class="chip">Python</div><div class="chip">Excel</div>
         </div>
       </div>
 
@@ -146,14 +131,11 @@
       </aside>
     </section>
 
-    <!-- Projects -->
+    <!-- PROJECTS -->
     <section id="projects" class="projects">
       <h2>Projects</h2>
       <p style="color:var(--muted)">A selection of data cleaning, analysis and dashboard projects. Click a project to view details or the live dashboard.</p>
-
       <div class="projects-grid" style="margin-top:16px">
-
-        <!-- Project card example -->
         <article class="card fade-up">
           <img src="images/data-cleaning.png" alt="Data cleaning preview">
           <h3>Data Cleaning & Analysis (10,000+ rows)</h3>
@@ -161,14 +143,12 @@
           <div class="meta">
             <span class="chip">Power BI • SQL • Python</span>
             <span>
-              <a class="live-link" href="https://github.com/amr-mousa/amr-mousa-portfolio/tree/main/Data-Cleaning-and-Analysis" target="_blank">View on GitHub</a>
-              <!-- live dashboard link (optional) -->
+              <a class="live-link" href="#" target="_blank">View on GitHub</a>
               <a class="live-link" style="margin-left:6px" href="https://app.powerbi.com/view?r=YOUR_REPORT_LINK_HERE" target="_blank">Live Dashboard</a>
             </span>
           </div>
         </article>
 
-        <!-- Duplicate cards as needed -->
         <article class="card fade-up">
           <img src="images/coffee-sales.png" alt="Coffee sales preview">
           <h3>Coffee Shop Sales Dashboard</h3>
@@ -176,7 +156,7 @@
           <div class="meta">
             <span class="chip">Power BI • Excel</span>
             <span>
-              <a class="live-link" href="https://github.com/amr-mousa/amr-mousa-portfolio/tree/main/PowerBI-Coffee-Sales" target="_blank">View on GitHub</a>
+              <a class="live-link" href="#" target="_blank">View on GitHub</a>
               <a class="live-link" style="margin-left:6px" href="#" target="_blank">Live Dashboard</a>
             </span>
           </div>
@@ -188,82 +168,70 @@
           <p>Time series model to predict monthly revenue using Pandas & scikit-learn.</p>
           <div class="meta">
             <span class="chip">Python • ML</span>
-            <span>
-              <a class="live-link" href="https://github.com/amr-mousa/amr-mousa-portfolio/tree/main/Sales-Forecast-Python" target="_blank">View on GitHub</a>
-            </span>
+            <span><a class="live-link" href="#" target="_blank">View on GitHub</a></span>
           </div>
         </article>
-
       </div>
     </section>
 
-    <!-- Contact / Footer -->
+    <!-- FOOTER -->
     <footer id="contact">
-      <div>
-        <strong>Contact</strong>
-        <div style="color:var(--muted)">amr.mousa@email.com</div>
-      </div>
+      <div><strong>Contact</strong><div style="color:var(--muted)">amr.mousa@email.com</div></div>
       <div class="socials">
-        <a href="https://github.com/amr-mousa" target="_blank">GitHub</a>
+        <a href="#" target="_blank">GitHub</a>
         <a href="#" target="_blank">LinkedIn</a>
         <a href="#" target="_blank">Power BI</a>
       </div>
     </footer>
   </div>
 
+  <!-- 🔊 Sounds -->
+  <audio id="introSound" src="sounds/intro.mp3"></audio>
+  <audio id="clickSound" src="sounds/click.mp3"></audio>
+  <button id="muteToggle">🔊</button>
+
   <script>
-    // -------------------- Theme toggle & persistence --------------------
-    const themeBtn = document.getElementById('themeBtn');
-    const rootEl = document.documentElement;
-    const stored = localStorage.getItem('amr_theme');
-    if(stored){
-      if(stored === 'dark') rootEl.classList.add('dark');
-    } else {
-      // prefer system dark
-      if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
-        rootEl.classList.add('dark');
-      }
-    }
-
-    themeBtn.addEventListener('click', ()=>{
+    // Theme toggle
+    const themeBtn=document.getElementById('themeBtn'),rootEl=document.documentElement;
+    const stored=localStorage.getItem('amr_theme');
+    if(stored){if(stored==='dark')rootEl.classList.add('dark');}
+    else if(window.matchMedia('(prefers-color-scheme: dark)').matches){rootEl.classList.add('dark');}
+    themeBtn.addEventListener('click',()=>{
       rootEl.classList.toggle('dark');
-      const isDark = rootEl.classList.contains('dark');
-      localStorage.setItem('amr_theme', isDark ? 'dark' : 'light');
-      // small ripple feedback
-      themeBtn.animate([{transform:'scale(0.98)'},{transform:'none'}],{duration:180});
+      const isDark=rootEl.classList.contains('dark');
+      localStorage.setItem('amr_theme',isDark?'dark':'light');
     });
 
-    // -------------------- Simple entrance animation trigger --------------------
-    document.addEventListener('DOMContentLoaded', ()=>{
-      document.querySelectorAll('.fade-up').forEach((el, i)=>{
-        el.style.animationDelay = (i*80)+'ms';
-      });
+    // Animation delay
+    document.addEventListener('DOMContentLoaded',()=>{
+      document.querySelectorAll('.fade-up').forEach((el,i)=>{el.style.animationDelay=(i*80)+'ms';});
     });
 
-    // -------------------- Smooth internal links --------------------
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const href = a.getAttribute('href');
-        if(href.startsWith('#')){
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
-        }
+      a.addEventListener('click',e=>{
+        const href=a.getAttribute('href');
+        if(href.startsWith('#')){e.preventDefault();document.querySelector(href)?.scrollIntoView({behavior:'smooth'});}
       });
+    });
+
+    // 🔊 Sounds + mute toggle
+    const intro=document.getElementById('introSound');
+    const clickSound=document.getElementById('clickSound');
+    const muteBtn=document.getElementById('muteToggle');
+    let isMuted=false;
+    document.addEventListener('click',()=>{
+      if(!intro.played.length && !isMuted){intro.play().catch(()=>{});}
+    },{once:true});
+    document.querySelectorAll('a,button').forEach(el=>{
+      el.addEventListener('click',()=>{
+        if(!isMuted){clickSound.currentTime=0;clickSound.play().catch(()=>{});}
+      });
+    });
+    muteBtn.addEventListener('click',()=>{
+      isMuted=!isMuted;
+      muteBtn.textContent=isMuted?'🔇':'🔊';
     });
   </script>
-
-  <!--
-    -------------------- HOW TO USE / WHERE TO PUT FILES --------------------
-    - Put this file at the repo root as index.html.
-    - Create folders: /images  (place screenshots: dashboard-overview.png, data-cleaning.png, coffee-sales.png, python-project.png, avatar-placeholder.png)
-    - Create folder: /files  (put your CV as Amr-Mousa-CV.pdf)
-    - For each project, link the GitHub path in the cards to the project's folder in this repo.
-    - For live Power BI dashboards: publish to Power BI Service -> File -> Publish to web (or Share -> Embed) and paste the URL into the "Live Dashboard" links.
-    - To publish site: create a repo named exactly: amrmousa.github.io, push this index.html + folders, then Settings -> Pages -> deploy from main branch (or it auto-deploys). The site will be live at https://amrmousa.github.io
-
-    NOTE on Power BI Live links: "Publish to web" makes the report public. If you need restricted access, use Power BI embed options (requires Pro / organization settings).
-  -->
 </body>
 </html>
-
