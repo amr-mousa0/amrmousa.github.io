@@ -3,336 +3,429 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Amr Mousa — Data Analyst Portfolio</title>
+  <title>Amr Mousa — Portfolio</title>
   <meta name="description" content="Amr Mousa — Data Analyst | Power BI | SQL | Python — Portfolio" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ================== Variables & Theme Palettes ================== */
     :root{
-      /* Light theme palette (white + blue) */
-      --bg-light: #f6f8fb;
-      --card-light: #ffffff;
-      --text-light: #0b1220;
-      --accent-blue: #0b3b66;
-      --accent-blue-2: #0b84ff;
-
-      /* Dark theme palette (black + purple) */
-      --bg-dark: #07060a;
-      --card-dark: rgba(255,255,255,0.03);
-      --text-dark: #e6eef8;
-      --accent-purple: #7c3aed;
-      --accent-purple-2: #6d28d9;
-
-      --muted: rgba(230,238,248,0.8);
       --radius: 14px;
       --transition: 350ms cubic-bezier(.2,.9,.3,1);
+      --glass: rgba(255,255,255,0.06);
+      /* Light theme palette */
+      --light-bg: #f6f8fb;
+      --light-surface: #ffffff;
+      --light-text: #071026;         /* dark navy for strong contrast */
+      --light-muted: #455569;
+      --light-accent-1: #0b84ff;    /* bright blue */
+      --light-accent-2: #0b3b66;    /* deep blue */
+      /* Dark theme palette */
+      --dark-bg: #08060a;
+      --dark-surface: rgba(255,255,255,0.03);
+      --dark-text: #e6eef8;         /* soft white */
+      --dark-muted: #9aa4b2;
+      --dark-accent-1: #7c3aed;     /* purple */
+      --dark-accent-2: #3b82f6;     /* electric blue */
+      /* base (will be set depending on body class) */
+      --page-bg: var(--dark-bg);
+      --surface: var(--dark-surface);
+      --text-color: var(--dark-text);
+      --muted: var(--dark-muted);
+      --accent-1: var(--dark-accent-1);
+      --accent-2: var(--dark-accent-2);
     }
 
-    /* base reset */
+    /* Light theme active when body.light */
+    body.light {
+      --page-bg: var(--light-bg);
+      --surface: var(--light-surface);
+      --text-color: var(--light-text);
+      --muted: var(--light-muted);
+      --accent-1: var(--light-accent-1);
+      --accent-2: var(--light-accent-2);
+      --glass: rgba(11,59,102,0.06);
+    }
+
+    /* ================== Base Reset ================== */
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:'Poppins',sans-serif;background:var(--bg-dark);color:var(--text-dark);transition:background var(--transition),color var(--transition)}
+    html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text-color);background:var(--page-bg);transition:background var(--transition), color var(--transition)}
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
-    .container{max-width:1100px;margin:30px auto;padding:0 20px}
+    button{font-family:inherit}
+    /* container keeps centered */
+    .container{max-width:1200px;margin:0 auto;padding:24px}
 
-    /* top controls */
-    .controls{position:fixed;top:16px;right:16px;display:flex;gap:10px;z-index:60}
-    .icon-btn{width:46px;height:46px;border-radius:12px;border:none;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(6px);transition:transform .18s ease,background .2s}
-    .icon-btn:hover{transform:scale(1.06)}
-
-    /* nav/header */
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;position:relative;z-index:20}
-    .brand{display:flex;align-items:center;gap:12px}
-    .avatar{width:56px;height:56px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.04)}
-    .brand h1{margin:0;font-size:18px}
-    .brand p{margin:0;font-size:12px;color:var(--muted)}
-
-    .nav-links{display:flex;gap:10px;align-items:center}
-    .nav-links a{padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.02)}
-
-    /* hero */
-    .hero{min-height:68vh;border-radius:18px;padding:36px;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center;z-index:10}
-    .card{background:var(--card-dark);padding:26px;border-radius:var(--radius);backdrop-filter: blur(8px);box-shadow:0 12px 30px rgba(2,6,23,0.6);transition:transform .25s ease}
-    .intro h2{margin:0;font-size:32px;line-height:1.05}
-    .intro p{color:var(--muted);margin:12px 0 18px;font-weight:300}
-    .btn-row{display:flex;gap:12px;flex-wrap:wrap}
-    .btn-primary{background:linear-gradient(90deg,var(--accent-purple-2, var(--accent-blue-2)), var(--accent-purple));padding:10px 18px;border-radius:999px;border:none;color:#fff;cursor:pointer}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:10px 16px;border-radius:999px}
-
-    /* preview */
-    .preview{display:flex;flex-direction:column;gap:14px;align-items:center}
-    .preview img{width:100%;height:260px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
-
-    /* who am i */
-    .who {display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:center;margin-top:28px;padding:24px;border-radius:14px;background:transparent}
-    .who .text h3{margin:0;font-size:22px}
-    .separator{height:6px;border-radius:999px;background:linear-gradient(90deg,var(--accent-purple), var(--accent-blue));margin:14px 0;box-shadow:0 6px 20px rgba(11,59,102,0.08)}
-    .who .text p{color:var(--muted);margin:8px 0 0;font-weight:300}
-    .who .logo{display:flex;align-items:center;justify-content:center}
-
-    /* projects */
-    .projects{margin-top:28px}
-    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:16px}
-    .proj{background:var(--card-dark);padding:14px;border-radius:12px;transition:transform .2s ease}
-    .proj:hover{transform:translateY(-8px)}
-    .proj img{height:150px;border-radius:10px;object-fit:cover}
-
-    footer{margin-top:30px;padding:18px 0;border-top:1px solid rgba(255,255,255,0.03);display:flex;justify-content:space-between;align-items:center;color:var(--muted)}
-
-    /* blobs & wave shapes (decorative) */
-    .blob{position:absolute;border-radius:50%;filter:blur(48px);opacity:0.18;transform:translate3d(0,0,0);transition:opacity .6s;pointer-events:none}
-    .blob.b1{width:420px;height:420px;left:-120px;top:-140px;background:radial-gradient(circle at 30% 30%, var(--accent-purple), transparent 40%);}
-    .blob.b2{width:340px;height:340px;right:-80px;bottom:-80px;background:radial-gradient(circle at 60% 40%, var(--accent-blue-2), transparent 40%);}
-    .wave-bottom{position:absolute;left:0;right:0;height:120px;bottom:-40px;background:radial-gradient(circle at 10% 20%, rgba(11,132,255,0.06), transparent 30%), radial-gradient(circle at 90% 80%, rgba(124,58,237,0.05), transparent 30%);opacity:0.95;pointer-events:none}
-
-    /* light overrides */
-    body.light{background:var(--bg-light);color:var(--text-light)}
-    body.light .card{background:var(--card-light);box-shadow:0 8px 30px rgba(11,59,102,0.06);color:var(--text-light)}
-    body.light .blob.b1{background:radial-gradient(circle at 30% 30%, var(--accent-blue), transparent 40%)}
-    body.light .blob.b2{background:radial-gradient(circle at 60% 40%, #88bfff, transparent 40%)}
-    body.light .btn-primary{background:linear-gradient(90deg,var(--accent-blue-2),var(--accent-blue));}
-
-    /* responsive */
-    @media(max-width:900px){
-      .hero{grid-template-columns:1fr; padding:22px}
-      .who{grid-template-columns:1fr; text-align:left}
-      .controls{top:10px;right:10px}
-      .preview img{height:200px}
+    /* ================== Side Controls (Top-right) ================== */
+    .top-controls{position:fixed;top:18px;right:18px;display:flex;gap:10px;z-index:120}
+    .icon-btn{
+      width:48px;height:48px;border-radius:12px;border:none;background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;
+      box-shadow:0 10px 30px rgba(2,6,23,0.5);
+      transition:transform .16s ease, background var(--transition), color var(--transition);
     }
-    /* small animation helpers */
-    .fade-up{opacity:0;transform:translateY(8px);animation:fadeUp .6s forwards}
+    .icon-btn:active{transform:translateY(1px)}
+    .icon-btn:hover{transform:scale(1.05)}
+    .icon-btn svg{width:20px;height:20px;display:block}
+
+    /* ================== Side Navigation (Drawer) ================== */
+    .side-nav-toggle{position:fixed;right:18px;top:86px;z-index:110}
+    .side-nav-btn{width:46px;height:46px;border-radius:12px;border:none;background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 18px rgba(2,6,23,0.45)}
+    .drawer{
+      position:fixed;right:12px;top:12px;height:calc(100vh - 24px);width:62px;display:flex;flex-direction:column;align-items:center;gap:12px;padding:12px;border-radius:16px;background:var(--surface);box-shadow:0 20px 60px rgba(2,6,23,0.6);transform:translateX(8px);
+      transition:width .32s ease, opacity .28s ease;overflow:hidden;z-index:105;
+    }
+    .drawer.expanded{width:300px;padding:18px 16px}
+    .drawer .menu-item{display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;cursor:pointer;color:var(--text-color);transition:background .18s}
+    .drawer .menu-item:hover{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.03))}
+    .drawer .label{font-weight:600}
+
+    /* ================== Page Sections (full screen blocks) ================== */
+    main{scroll-behavior:smooth}
+    section{min-height:100vh;padding:72px 24px;display:flex;align-items:center;justify-content:center;position:relative}
+    /* stack content centered inside */
+    .section-inner{width:100%;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center}
+    /* card surface */
+    .card{background:var(--surface);border-radius:var(--radius);padding:28px;backdrop-filter: blur(6px);box-shadow:0 18px 40px rgba(2,6,23,0.6);transition:transform .25s ease, background var(--transition)}
+    /* make text clear per theme */
+    h1,h2,h3{margin:0}
+    p{margin:0;color:var(--muted)}
+
+    /* ===== Intro (Hero) ===== */
+    .hero{display:flex;align-items:center;justify-content:center}
+    .hero .hero-left{display:flex;flex-direction:column;gap:18px}
+    .hero h1{font-size:44px;line-height:1.02;font-weight:700;color:var(--accent-1)}
+    .hero .tagline{font-size:18px;color:var(--text-color);font-weight:400}
+    .cta-row{display:flex;gap:12px;margin-top:8px}
+    .btn-primary{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:white;border:none;padding:12px 18px;border-radius:999px;cursor:pointer;font-weight:600;box-shadow:0 8px 30px rgba(11,59,102,0.18)}
+    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text-color);padding:10px 16px;border-radius:999px}
+
+    .hero .hero-right{display:flex;align-items:center;justify-content:center}
+    .hero .preview{width:380px;border-radius:12px;overflow:hidden}
+
+    /* ===== Who am I section ===== */
+    .who{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+    .separator{height:6px;border-radius:999px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));margin:18px 0;box-shadow:0 10px 30px rgba(11,59,102,0.06)}
+
+    /* The modern logo/shape box (right) */
+    .modern-logo{display:flex;align-items:center;justify-content:center;height:320px;border-radius:12px}
+
+    /* ===== Projects section (can scroll inside) ===== */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:18px}
+    .project-card{background:var(--surface);border-radius:12px;padding:12px;transition:transform .18s ease}
+    .project-card:hover{transform:translateY(-8px)}
+    .project-card img{height:160px;border-radius:8px;object-fit:cover}
+
+    /* ===== Contact ===== */
+    .contact-card{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+
+    /* ===== Decorative blobs & wave ===== */
+    .blob{position:absolute;border-radius:50%;filter:blur(48px);opacity:0.18;pointer-events:none;transition:opacity .3s linear, transform 1s ease}
+    .blob.b1{width:420px;height:420px;left:-120px;top:-140px;background:radial-gradient(circle at 30% 30%, var(--accent-1), transparent 40%)}
+    .blob.b2{width:340px;height:340px;right:-80px;bottom:-80px;background:radial-gradient(circle at 60% 40%, var(--accent-2), transparent 40%)}
+    .wave-top{position:absolute;left:0;right:0;height:120px;top:0;transform:translateY(-70%);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);pointer-events:none}
+
+    /* ===== Responsive ===== */
+    @media (max-width:980px){
+      .section-inner{grid-template-columns:1fr;padding:8px}
+      .hero h1{font-size:34px}
+      .hero .preview{width:100%}
+      .drawer.expanded{width:86%;right:8px;left:8px}
+    }
+    @media (max-width:640px){
+      .top-controls{right:10px;top:10px}
+      .icon-btn{width:42px;height:42px}
+      .section-inner{gap:18px}
+    }
+
+    /* small entrance animation */
+    .fade-up{opacity:0;transform:translateY(12px);animation:fadeUp .7s forwards}
     @keyframes fadeUp{to{opacity:1;transform:none}}
   </style>
 </head>
 <body>
-  <!-- controls -->
-  <div class="controls" role="toolbar" aria-label="controls">
-    <button id="themeBtn" class="icon-btn" title="Toggle theme">🌙</button>
-    <button id="muteBtn" class="icon-btn" title="Mute sounds">🔊</button>
+  <!-- top-controls -->
+  <div class="top-controls" aria-hidden="false">
+    <button id="themeBtn" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+    <button id="muteBtn" class="icon-btn" aria-label="Mute sounds" title="Mute sounds">🔊</button>
+    <button id="openDrawerBtn" class="icon-btn" aria-label="Open menu" title="Menu">☰</button>
   </div>
 
-  <!-- decorative blobs -->
+  <!-- Side drawer (collapsed -> expand) -->
+  <div id="drawer" class="drawer" role="navigation" aria-label="sections navigation">
+    <!-- When collapsed only icons show; when expanded, labels appear -->
+    <div id="drawerContent" style="width:100%;">
+      <div class="menu-item" data-target="#hero" role="button" tabindex="0"><div style="width:36px;height:36;border-radius:8px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));"></div><div class="label" style="margin-left:12px;display:inline-block">Home</div></div>
+      <div class="menu-item" data-target="#who" role="button" tabindex="0"><div style="width:36px;height:36;border-radius:8px;background:linear-gradient(90deg,var(--accent-2),var(--accent-1));"></div><div class="label" style="margin-left:12px;display:inline-block">Who am I</div></div>
+      <div class="menu-item" data-target="#projects" role="button" tabindex="0"><div style="width:36px;height:36;border-radius:8px;background:linear-gradient(90deg,var(--accent-1),#6ee7b7);"></div><div class="label" style="margin-left:12px;display:inline-block">Projects</div></div>
+      <div class="menu-item" data-target="#contact" role="button" tabindex="0"><div style="width:36px;height:36;border-radius:8px;background:linear-gradient(90deg,#f97316,#fb7185);"></div><div class="label" style="margin-left:12px;display:inline-block">Contact</div></div>
+    </div>
+  </div>
+
+  <!-- decorative shapes -->
   <div class="blob b1" aria-hidden="true"></div>
   <div class="blob b2" aria-hidden="true"></div>
+  <div class="wave-top" aria-hidden="true"></div>
 
   <div class="container">
     <!-- header -->
-    <header>
-      <div class="brand">
-        <div class="avatar"><img src="images/avatar-placeholder.png" alt="Amr Mousa" width="56" height="56"></div>
+    <header style="position:relative;z-index:6;">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:56px;height:56px;border-radius:12px;overflow:hidden;background:var(--surface);display:flex;align-items:center;justify-content:center">
+          <img src="images/avatar-placeholder.png" alt="Amr" width="56" height="56">
+        </div>
         <div>
-          <h1>Amr Mousa</h1>
-          <p style="margin:0;color:var(--muted);font-size:12px">Data Analyst • Power BI | SQL | Python</p>
+          <h4 style="margin:0">Amr Mousa</h4>
+          <div style="font-size:12px;color:var(--muted)">Data Analyst • Power BI | SQL | Python</div>
         </div>
       </div>
-      <nav class="nav-links" aria-label="main nav">
-        <a href="#projects">Projects</a>
-        <a href="#who">Who am I</a>
+      <nav style="position:absolute;right:0;top:0">
+        <!-- optional top nav -->
       </nav>
     </header>
 
-    <!-- hero -->
+    <!-- MAIN: Full screen sections -->
     <main>
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="intro card fade-up">
-          <h2 id="hero-title">Hello — I'm <strong>Amr Mousa</strong></h2>
-          <p>Turning messy data into elegant and actionable insights. I build dashboards, clean datasets and create data-driven stories that help businesses decide faster.</p>
-          <div class="btn-row">
-            <button class="btn-primary" onclick="goTo('#projects')">View Projects</button>
-            <button class="btn-ghost" onclick="window.open('files/Amr-Mousa-CV.pdf')">Download CV</button>
+
+      <!-- HERO / Intro -->
+      <section id="hero" class="hero" aria-labelledby="hero-title">
+        <div class="section-inner">
+          <div class="hero-left fade-up">
+            <div style="display:flex;gap:10px;align-items:center">
+              <div style="width:10px;height:10px;border-radius:3px;background:var(--accent-1)"></div>
+              <div style="color:var(--muted);font-size:13px">Portfolio — Data & Dashboards</div>
+            </div>
+
+            <h1 id="hero-title">Amr Mousa</h1>
+            <div class="tagline">Turning messy data into elegant, actionable insights.</div>
+
+            <div class="cta-row" style="margin-top:18px">
+              <button class="btn-primary" onclick="goToSection('#who')">Who am I</button>
+              <button class="btn-outline" onclick="window.open('files/Amr-Mousa-CV.pdf')">Download CV</button>
+            </div>
+
+            <div style="margin-top:18px;color:var(--muted);font-size:14px">Available for freelance & contract roles — open to new challenges.</div>
+          </div>
+
+          <div class="hero-right">
+            <div class="card preview fade-up" style="width:100%;max-width:420px">
+              <img src="images/dashboard-overview.png" alt="dashboard preview" style="height:320px;object-fit:cover">
+              <div style="margin-top:10px;color:var(--muted);font-size:13px">Dashboard preview — click to open live</div>
+            </div>
           </div>
         </div>
-
-        <aside class="preview fade-up">
-          <div class="card">
-            <img src="images/dashboard-overview.png" alt="dashboard preview">
-            <div style="margin-top:10px;color:var(--muted);font-size:13px">Dashboard preview — click to open live</div>
-          </div>
-        </aside>
       </section>
 
       <!-- WHO AM I -->
       <section id="who" class="who" aria-labelledby="who-title">
-        <div class="text card fade-up">
-          <h3 id="who-title">Who am I</h3>
-          <div class="separator" aria-hidden="true"></div>
-          <p>I’m a Data Analyst focused on transforming messy transactional data into actionable business insights. I specialize in Power BI, SQL, Python and Excel — cleaning data, building star schemas, and creating dashboards stakeholders can use to act.</p>
-          <p style="margin-top:10px;color:var(--muted);font-size:14px"><strong>Core Skills:</strong> Power BI • SQL (Joins, CTEs, Window) • Python (Pandas) • DAX • Data Modeling</p>
-        </div>
+        <div class="section-inner">
+          <div class="text card fade-up">
+            <h3 id="who-title">Who am I</h3>
+            <div class="separator" aria-hidden="true"></div>
+            <p>I’m a Data Analyst focused on transforming messy transactional data into actionable business insights. I specialize in Power BI, SQL, Python and Excel — cleaning data, building star schemas, and creating dashboards stakeholders can use to act quickly.</p>
+            <p style="margin-top:12px;color:var(--muted);font-size:14px"><strong>Core Skills:</strong> Power BI • SQL (Joins, CTEs, Window) • Python (Pandas) • DAX • Data Modeling</p>
+          </div>
 
-        <div class="logo card fade-up" style="display:flex;align-items:center;justify-content:center">
-          <!-- modern abstract SVG logo/shape -->
-          <svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <linearGradient id="g1" x1="0" x2="1">
-                <stop offset="0" stop-color="#7c3aed" stop-opacity="0.95"/>
-                <stop offset="1" stop-color="#0b84ff" stop-opacity="0.95"/>
-              </linearGradient>
-            </defs>
-            <g filter="url(#f1)">
-              <path d="M40 20 C100 0 140 10 180 40 C200 60 210 110 170 150 C130 190 80 200 40 170 C10 140 10 70 40 20 Z" fill="url(#g1)" opacity="0.95"/>
-            </g>
-            <defs>
-              <filter id="f1" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="8" result="blur"/>
-                <feBlend mode="normal" in="SourceGraphic" in2="blur"/>
-              </filter>
-            </defs>
-          </svg>
+          <div class="modern-logo card fade-up" aria-hidden="true">
+            <!-- Modern abstract SVG as "logo / shape" -->
+            <svg width="280" height="280" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="gA" x1="0" x2="1">
+                  <stop offset="0" stop-color="var(--accent-1)" stop-opacity="0.95"/>
+                  <stop offset="1" stop-color="var(--accent-2)" stop-opacity="0.95"/>
+                </linearGradient>
+              </defs>
+              <path d="M40 20 C110 0 170 12 220 60 C250 92 270 140 230 200 C190 260 120 270 60 230 C20 200 10 100 40 20 Z" fill="url(#gA)" opacity="0.95" />
+            </svg>
+          </div>
         </div>
       </section>
 
-      <!-- projects -->
+      <!-- PROJECTS -->
       <section id="projects" class="projects" aria-labelledby="projects-title">
-        <h3 id="projects-title" style="margin:0;color:var(--muted)">Projects</h3>
-        <p style="margin:6px 0 0;color:var(--muted);font-size:13px">A selection of data cleaning, dashboards and Python projects.</p>
-        <div class="projects-grid">
-          <article class="proj card fade-up">
-            <img src="images/data-cleaning.png" alt="data cleaning">
-            <h4 style="margin:10px 0 6px">Data Cleaning & Analysis</h4>
-            <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Cleaned 10k rows, built star schema and visualized insights in Power BI.</p>
-            <div style="display:flex;gap:10px;align-items:center">
-              <a href="https://github.com/amr-mousa/amr-mousa-portfolio/tree/main/Data-Cleaning-and-Analysis" target="_blank" onclick="openWithSound(event)">View on GitHub</a>
-              <a href="https://app.powerbi.com/view?r=YOUR_REPORT_LINK_HERE" target="_blank" onclick="openWithSound(event)">Live Dashboard</a>
-            </div>
-          </article>
+        <div class="section-inner" style="grid-template-columns:1fr;">
+          <div>
+            <h3 id="projects-title">Projects</h3>
+            <p style="margin:6px 0 12px;color:var(--muted)">A selection of data cleaning, dashboards and Python projects.</p>
+            <div class="projects-grid">
+              <article class="project-card card fade-up">
+                <img src="images/data-cleaning.png" alt="data cleaning">
+                <h4 style="margin:10px 0 6px">Data Cleaning & Analysis</h4>
+                <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Cleaned 10k rows, built star schema and visualized insights in Power BI.</p>
+                <div style="display:flex;gap:10px;align-items:center">
+                  <a href="https://github.com/amr-mousa/amr-mousa-portfolio/tree/main/Data-Cleaning-and-Analysis" target="_blank">View on GitHub</a>
+                  <a href="https://app.powerbi.com/view?r=YOUR_REPORT_LINK_HERE" target="_blank">Live Dashboard</a>
+                </div>
+              </article>
 
-          <article class="proj card fade-up">
-            <img src="images/coffee-sales.png" alt="coffee sales">
-            <h4 style="margin:10px 0 6px">Coffee Shop Sales Dashboard</h4>
-            <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Sales KPIs, peak hours and offers performance.</p>
-            <div style="display:flex;gap:10px;align-items:center">
-              <a href="#" onclick="openWithSound(event)">View on GitHub</a>
-              <a href="#" onclick="openWithSound(event)">Live Dashboard</a>
-            </div>
-          </article>
+              <article class="project-card card fade-up">
+                <img src="images/coffee-sales.png" alt="coffee sales">
+                <h4 style="margin:10px 0 6px">Coffee Shop Sales Dashboard</h4>
+                <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Sales KPIs, peak hours and offers performance.</p>
+                <div style="display:flex;gap:10px;align-items:center">
+                  <a href="#" onclick="openWithSound(event)">View on GitHub</a>
+                  <a href="#" onclick="openWithSound(event)">Live Dashboard</a>
+                </div>
+              </article>
 
-          <article class="proj card fade-up">
-            <img src="images/python-project.png" alt="python project">
-            <h4 style="margin:10px 0 6px">Sales Forecast (Python)</h4>
-            <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Time-series model using Pandas & scikit-learn.</p>
-            <div style="display:flex;gap:10px;align-items:center">
-              <a href="#" onclick="openWithSound(event)">View on GitHub</a>
+              <article class="project-card card fade-up">
+                <img src="images/python-project.png" alt="python">
+                <h4 style="margin:10px 0 6px">Sales Forecast (Python)</h4>
+                <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Time-series model using Pandas & scikit-learn.</p>
+                <div style="display:flex;gap:10px;align-items:center">
+                  <a href="#" onclick="openWithSound(event)">View on GitHub</a>
+                </div>
+              </article>
             </div>
-          </article>
+          </div>
         </div>
       </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="contact" aria-labelledby="contact-title">
+        <div class="section-inner" style="grid-template-columns:1fr;">
+          <div class="card contact-card fade-up">
+            <h3 id="contact-title">Contact</h3>
+            <p style="margin-top:6px;color:var(--muted)">Email: <a href="mailto:amr.mousa@email.com">amr.mousa@email.com</a></p>
+            <p style="margin-top:12px;color:var(--muted)">GitHub: <a href="https://github.com/amr-mousa" target="_blank">github.com/amr-mousa</a></p>
+            <div style="margin-top:16px">
+              <button class="btn-primary" onclick="goToSection('#hero')">Back to Top</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
 
-    <footer>
-      <div style="font-size:13px">Contact — <a href="mailto:amr.mousa@email.com">amr.mousa@email.com</a></div>
-      <div style="display:flex;gap:12px">
-        <a href="https://github.com/amr-mousa" target="_blank" onclick="openWithSound(event)">GitHub</a>
-        <a href="#" target="_blank" onclick="openWithSound(event)">LinkedIn</a>
-      </div>
-    </footer>
+    <footer style="padding:28px 0;text-align:center;color:var(--muted)">© Amr Mousa — Data Analyst</footer>
   </div>
 
-  <div class="wave-bottom" aria-hidden="true"></div>
-
-  <!-- sounds: use .wav as requested -->
-  <!-- Put your files at: /sounds/intro.wav and /sounds/click.wav -->
+  <!-- AUDIO FILES (you said you already have .wav) -->
   <audio id="introAudio" src="sounds/intro.wav" preload="auto"></audio>
   <audio id="clickAudio" src="sounds/click.wav" preload="auto"></audio>
 
   <script>
-    // Elements & state
+    /* ================== State & Elements ================== */
     const themeBtn = document.getElementById('themeBtn');
     const muteBtn = document.getElementById('muteBtn');
+    const openDrawerBtn = document.getElementById('openDrawerBtn');
+    const drawer = document.getElementById('drawer');
+    const menuItems = drawer.querySelectorAll('.menu-item');
     const introAudio = document.getElementById('introAudio');
     const clickAudio = document.getElementById('clickAudio');
 
-    // restore preferences
-    const savedTheme = localStorage.getItem('amr_theme') || 'dark'; // default dark
-    const savedMute = localStorage.getItem('amr_muted') === '1';
+    /* ================== Restore saved preferences ================== */
+    const savedTheme = localStorage.getItem('amr_theme') || 'dark';
+    const savedMuted = localStorage.getItem('amr_muted') === '1';
+    let isMuted = savedMuted;
 
-    let muted = savedMute;
-    setMuted(muted);
-    applyTheme(savedTheme);
-
-    // apply theme function
-    function applyTheme(t){
-      if(t === 'light'){
+    function applyTheme(name){
+      if(name === 'light'){
         document.body.classList.add('light');
-        // change CSS variables for light if needed handled via body.light overrides
         themeBtn.textContent = '🌞';
-        document.querySelectorAll('.blob').forEach(b => b.style.opacity = 0.18);
       } else {
         document.body.classList.remove('light');
         themeBtn.textContent = '🌙';
-        document.querySelectorAll('.blob').forEach(b => b.style.opacity = 0.25);
       }
-      localStorage.setItem('amr_theme', t);
+      localStorage.setItem('amr_theme', name);
     }
+    applyTheme(savedTheme);
 
-    // theme toggle
-    themeBtn.addEventListener('click', () => {
-      const now = document.body.classList.contains('light') ? 'dark' : 'light';
-      applyTheme(now);
-      if(!muted) playClick();
+    function setMuted(v){
+      isMuted = !!v;
+      localStorage.setItem('amr_muted', isMuted ? '1' : '0');
+      muteBtn.textContent = isMuted ? '🔇' : '🔊';
+      introAudio.muted = isMuted;
+      clickAudio.muted = isMuted;
+    }
+    setMuted(isMuted);
+
+    /* ================== Drawer toggle (expand / collapse) ================== */
+    let drawerExpanded = false;
+    function setDrawer(expanded){
+      drawerExpanded = expanded;
+      if(expanded){
+        drawer.classList.add('expanded');
+      } else {
+        drawer.classList.remove('expanded');
+      }
+    }
+    setDrawer(false);
+
+    openDrawerBtn.addEventListener('click', ()=>{
+      setDrawer(!drawerExpanded);
+      if(!isMuted) playClick();
     });
 
-    // mute toggle
-    function setMuted(v){
-      muted = v;
-      localStorage.setItem('amr_muted', v ? '1' : '0');
-      muteBtn.textContent = muted ? '🔇' : '🔊';
-      introAudio.muted = muted;
-      clickAudio.muted = muted;
+    /* ================== Menu navigation -> scroll to sections ================== */
+    function goToSection(selector){
+      const el = document.querySelector(selector);
+      if(!el) return;
+      el.scrollIntoView({behavior:'smooth', block:'start'});
     }
-    function toggleMute(){ setMuted(!muted); }
-    muteBtn.addEventListener('click', ()=> { toggleMute(); if(!muted) playClick(); });
 
-    // play intro on first user gesture (bypass autoplay)
+    menuItems.forEach(item=>{
+      item.addEventListener('click', ()=> {
+        const target = item.getAttribute('data-target');
+        setDrawer(false);
+        goToSection(target);
+        if(!isMuted) playClick();
+      });
+      // keyboard accessibility
+      item.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' ') { item.click(); }
+      });
+    });
+
+    /* ================== Sounds handling ================== */
+    // Play intro after first user gesture (to avoid autoplay block)
     let introPlayed = false;
-    function handleFirstInteraction(e){
-      if(!introPlayed && !muted){
+    function firstUserGesture(){
+      if(!introPlayed && !isMuted){
         introAudio.play().catch(()=>{});
         introPlayed = true;
       }
-      window.removeEventListener('pointerdown', handleFirstInteraction);
+      window.removeEventListener('pointerdown', firstUserGesture);
     }
-    window.addEventListener('pointerdown', handleFirstInteraction, {passive:true});
+    window.addEventListener('pointerdown', firstUserGesture, {passive:true});
 
-    // click sound helper
     function playClick(){
-      if(!muted){
-        try{ clickAudio.currentTime = 0; clickAudio.play(); }catch(e){}
-      }
+      if(isMuted) return;
+      try{ clickAudio.currentTime = 0; clickAudio.play(); }catch(e){}
     }
-
-    // attach click sound to interactive elements
+    // attach click sound to interactive controls
     document.querySelectorAll('button, a').forEach(el=>{
-      el.addEventListener('click', ()=>{ playClick(); });
+      el.addEventListener('click', ()=> { playClick(); });
     });
 
-    // helper for external links (prevent double-sound spam)
-    function openWithSound(e){
-      // allow normal navigation but trigger click sound (already triggered)
-      // added to ensure on anchors opened via JS also play sound
-      if(e) { /* no-op */ }
-    }
+    // mute toggle
+    muteBtn.addEventListener('click', ()=> { setMuted(!isMuted); });
 
-    // small floating animation for blobs
+    // theme toggle
+    themeBtn.addEventListener('click', ()=>{
+      const now = document.body.classList.contains('light') ? 'dark' : 'light';
+      applyTheme(now);
+      if(!isMuted) playClick();
+    });
+
+    /* ================== Blobs gentle float animation ================== */
     (function animateBlobs(){
       const b1 = document.querySelector('.blob.b1');
       const b2 = document.querySelector('.blob.b2');
       let t = 0;
       function frame(){
-        t += 0.005;
-        if(b1) b1.style.transform = `translateY(${Math.sin(t)*10}px)`;
-        if(b2) b2.style.transform = `translateY(${Math.cos(t)*8}px)`;
+        t += 0.0065;
+        if(b1) b1.style.transform = `translateY(${Math.sin(t)*10}px) translateX(${Math.cos(t/1.2)*6}px)`;
+        if(b2) b2.style.transform = `translateY(${Math.cos(t)*9}px) translateX(${Math.sin(t/1.3)*6}px)`;
         requestAnimationFrame(frame);
       }
       frame();
     })();
 
-    // smooth "goTo"
-    function goTo(sel){
-      document.querySelector(sel).scrollIntoView({behavior:'smooth', block:'start'});
-    }
+    /* ================== Small helpers ================== */
+    function openWithSound(e){ if(!isMuted) playClick(); } // used in anchors
+    function goTo(sel){ goToSection(sel); if(!isMuted) playClick(); }
 
-    // ensure initial theme and muted UI updated
-    setMuted(savedMute);
+    // make sure saved UI matches
+    setMuted(isMuted);
     applyTheme(savedTheme);
   </script>
 </body>
