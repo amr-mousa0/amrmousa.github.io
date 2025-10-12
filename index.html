@@ -283,9 +283,13 @@ section#hero.split-hero {
   width: 360px; /* <<<--- كبرنا الصورة */
   height: 360px; /* <<<--- كبرنا الصورة */
   border-radius: 50%;
-  border: 10px solid var(--bg);
+ border: 10px solid var(--accent-b);
   box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+}
+    /* بنرجع لون الإطار للونه الأصلي في الثيم الفاتح بس */
+body.light .hero-image-container {
+  border-color: var(--bg);
 }
 
 .hero-photo {
