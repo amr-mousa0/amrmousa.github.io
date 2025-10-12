@@ -71,23 +71,63 @@
     .sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px}
 
     /* ---------------- Drawer (left) ---------------- */
-    .drawer {
-  position:fixed;left:12px;top:12px;height:calc(100vh - 24px);width:72px;border-radius:16px;background:transparent;box-shadow:0 30px 80px rgba(2,6,23,0.6);overflow:hidden;z-index:190;
+   .drawer {
+  position:fixed;left:12px;top:12px;height:calc(100vh - 24px);width:72px;border-radius:16px;
+  /* الخلفية هتكون شفافة وهي مقفولة عشان الـ transform */
+  background: transparent;
+  /* الظل ده عشان يبان إن فيه حاجة موجودة بره الشاشة لما نفتح */
+  box-shadow:0 30px 80px rgba(2,6,23,0.6);
+  overflow:hidden;z-index:190;
   display:flex;flex-direction:column;align-items:center;padding:12px;backdrop-filter: blur(6px);
-  /* التعديل هنا: أضفنا transform وحذفنا width من الـ transition */
-  transform: translateX(-120%); /* <-- حرك القائمة بالكامل خارج الشاشة */
-  transition: transform .28s var(--ease), background .28s var(--ease);
+  transform: translateX(-120%); /* زي ما اتفقنا عشان تكون مخفية */
+  transition: transform .38s var(--ease), background .38s var(--ease), box-shadow .38s var(--ease); /* زودنا الوقت عشان يكون أنعم */
 }
       .drawer.expanded{
-      width: 320px; /* <-- نحدد العرض هنا فقط */
-      transform: translateX(0); /* <-- رجّع القائمة لمكانها الطبيعي */
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.03));}
-    .mini-dot{width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,var(--accent-b),var(--accent-a));box-shadow:0 10px 30px rgba(0,0,0,0.25)}
+  width: 300px; /* خلينا العرض أنسب شوية بدل 320px */
+  transform: translateX(0); /* رجوع للمكان الطبيعي */
+  /* الخلفية الجديدة مع تدرج لوني أنيق */
+  background: linear-gradient(180deg, var(--accent-b), var(--accent-a)); /* تدرج من ألوان الثيم */
+  box-shadow: 0 40px 100px rgba(2,6,23,0.7), 0 0 0 4px rgba(255,255,255,0.06); /* ظل أقوى مع إطار خفيف */
+}
+    .mini-dot{
+  display: none; /* إخفاء الـ mini-dot */
+}
     .menu{width:100%;display:flex;flex-direction:column;gap:10px;margin-top:18px;align-items:stretch;justify-content:center;height:100%}
-    .menu-item{display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;cursor:pointer;transition:background .18s}
-    .menu-item:hover{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.03));transform:translateX(4px)}
-    .menu-item .icon-box{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff}
-    .menu-item .label{font-weight:700;font-size:16px;color:var(--text);opacity:0;transition:opacity .22s}
+   .menu-item{
+  display:flex;gap:12px;align-items:center;padding:12px 16px; /* زودنا البادينج الأفقي */
+  border-radius:12px;cursor:pointer;
+  transition: background .22s ease-out, transform .18s ease-out, box-shadow .22s ease-out; /* سموث أكتر */
+  border: 1px solid rgba(255,255,255,0.1); /* إطار خفيف */
+  margin-bottom: 8px; /* مسافة بين العناصر */
+}
+.menu-item:hover{
+  background: rgba(255,255,255,0.15); /* خلفية فاتحة عند التحويم */
+  transform: translateY(-2px); /* حركة خفيفة لأعلى */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* ظل خفيف */
+  border-color: rgba(255,255,255,0.3); /* إطار أوضح */
+}
+    .menu-item .icon-box{
+  width:44px;height:44px;border-radius:10px; /* صغرناها شوية */
+  display:flex;align-items:center;justify-content:center;
+  color:white; /* خلي الأيقونات بيضا دايما */
+  font-size: 22px; /* كبر حجم الأيقونة */
+  background: rgba(0,0,0,0.1); /* خلفية شفافة للأيقونة */
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2); /* إطار داخلي خفيف */
+}
+    .menu-item .label{
+  font-weight:600; /* أتقل شوية */
+  font-size:16px;
+  color:white; /* لون أبيض واضح */
+  opacity:0;transition:opacity .22s;
+  flex-grow: 1; /* عشان ياخد المساحة المتبقية */
+  white-space: nowrap; /* عشان النص ميكسرش سطر */
+}
+.drawer.expanded .label{ opacity:1; animation: fadeInRight .3s forwards; } /* زودنا أنيميشن بسيط */
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
     .drawer.expanded .label{opacity:1}
 
     /* center menu items vertically */
