@@ -72,11 +72,16 @@
 
     /* ---------------- Drawer (left) ---------------- */
     .drawer {
-      position:fixed;left:12px;top:12px;height:calc(100vh - 24px);width:72px;border-radius:16px;background:transparent;box-shadow:0 30px 80px rgba(2,6,23,0.6);overflow:hidden;z-index:190;
-      display:flex;flex-direction:column;align-items:center;padding:12px;backdrop-filter: blur(6px);transition:width .28s var(--ease), transform .28s var(--ease), background .28s var(--ease);
-    }
-    .drawer.collapsed{ width:72px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); }
-    .drawer.expanded{ width:320px; background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.03)); }
+  position:fixed;left:12px;top:12px;height:calc(100vh - 24px);width:72px;border-radius:16px;background:transparent;box-shadow:0 30px 80px rgba(2,6,23,0.6);overflow:hidden;z-index:190;
+  display:flex;flex-direction:column;align-items:center;padding:12px;backdrop-filter: blur(6px);
+  /* التعديل هنا: أضفنا transform وحذفنا width من الـ transition */
+  transform: translateX(-120%); /* <-- حرك القائمة بالكامل خارج الشاشة */
+  transition: transform .28s var(--ease), background .28s var(--ease);
+}
+      .drawer.expanded{
+      width: 320px; /* <-- نحدد العرض هنا فقط */
+      transform: translateX(0); /* <-- رجّع القائمة لمكانها الطبيعي */
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.03));}
     .mini-dot{width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,var(--accent-b),var(--accent-a));box-shadow:0 10px 30px rgba(0,0,0,0.25)}
     .menu{width:100%;display:flex;flex-direction:column;gap:10px;margin-top:18px;align-items:stretch;justify-content:center;height:100%}
     .menu-item{display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;cursor:pointer;transition:background .18s}
