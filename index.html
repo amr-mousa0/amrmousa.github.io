@@ -58,6 +58,7 @@
     /* smooth scroll-snap for full sections */
     main{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
     section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px;scroll-snap-align:start;position:relative}
+    section#hero.split-hero{justify-content:flex-start;align-items:flex-start;padding:0;display:grid} /* إزالة التوسيط اليدوي */
     .container{max-width:1200px;width:100%;margin:0 auto;padding:24px}
 
     /* ---------------- Top controls ---------------- */
@@ -129,6 +130,134 @@
     /* small entrance animation */
     .fade-up{opacity:0;transform:translateY(12px);animation:fadeUp .66s forwards}
     @keyframes fadeUp{to{opacity:1;transform:none}}
+
+    /* New Split Hero Design */
+    .split-hero{
+      display: grid;
+      grid-template-columns: 40% 60%; /* تقسيم الشاشة */
+      padding: 0; /* إزالة البادينغ القياسي للسكشن */
+      min-height: 100vh;
+      align-items: stretch;
+      position: relative;
+    }
+    .split-left{
+      background: var(--accent-a); /* استخدام لون الـ accent-a كخلفية لليسار */
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 20px;
+    }
+    .logo-name{
+      font-size: 26px;
+      font-weight: 300;
+      align-self: flex-start;
+      margin-bottom: 20px;
+    }
+    .hero-image-container{
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 0 0 10px rgba(255,255,255,0.1), 0 0 0 20px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto 0; /* توسيط عمودي */
+    }
+    .hero-photo{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .social-links{
+      display: flex;
+      gap: 18px;
+      margin-top: 30px;
+    }
+    .social-links a{
+      font-size: 22px;
+      color: rgba(255,255,255,0.75);
+      transition: color .2s;
+    }
+    .social-links a:hover{
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .split-right{
+      background: var(--dark-bg); /* استخدام الخلفية الداكنة لليمين */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .hero-text-content{
+      max-width: 500px;
+    }
+    .sub-heading{
+      font-size: 16px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .hero-main-name{
+      font-size: 68px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 16px 0;
+      line-height: 1;
+    }
+    .hero-intro-text{
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 420px;
+      margin-bottom: 24px;
+    }
+    
+    /* Responsive adjustments for the new Hero section */
+    @media (max-width:980px){
+      .split-hero{
+        grid-template-columns: 1fr; /* عمود واحد على الشاشات الصغيرة */
+      }
+      .split-left{
+        min-height: 500px;
+        padding: 40px 20px;
+      }
+      .hero-image-container{
+        width: 200px;
+        height: 200px;
+      }
+      .logo-name{ align-self: center; } /* توسيط الشعار */
+      .social-links{ margin-top: 20px; }
+      .split-right{
+        text-align: center;
+        padding: 60px 20px;
+      }
+      .hero-text-content{
+        max-width: none;
+      }
+      .hero-main-name{
+        font-size: 52px;
+      }
+    }
+    @media (max-width:640px){
+      .hero-main-name{ font-size: 40px; }
+      .hero-intro-text{ font-size: 16px; }
+      .cta{ justify-content: center; }
+    }
+    /* Hero button overrides for white background */
+    .split-left .cta .btn-primary {
+        background: white;
+        color: var(--accent-a); /* لون النص يصبح لون الخلفية */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    .split-left .cta .btn-ghost {
+        color: white;
+        border-color: rgba(255, 255, 255, 0.3);
+    }
   </style>
 </head>
 <body>
@@ -173,29 +302,35 @@
 
   <main id="main" tabindex="0" aria-label="Main content">
     <!-- HERO -->
-   <!-- داخل الـ <section id="hero"> -->
-<section id="hero" aria-labelledby="hero-title">
-  <div class="container">
-    <div class="section-inner" style="justify-content:center;grid-template-columns:1fr;">
-      <div class="card fade-up" style="max-width:600px;text-align:center;margin:0 auto;">
-        <div style="display:flex;gap:10px;align-items:center;justify-content:center;margin-bottom:14px">
-          <div style="width:10px;height:10px;border-radius:3px;background:var(--accent-a)"></div>
-          <div style="color:var(--muted);font-size:13px">Portfolio — Data & Dashboards</div>
-        </div>
+  <section id="hero" aria-labelledby="hero-title" class="split-hero">
+      <div class="split-left fade-up">
+        <h1 class="logo-name">Amr Mousa</h1>
+        <div class="hero-image-container">
+          <img src="images/amr-mousa-photo.jpg" alt="Amr Mousa" class="hero-photo">
+        </div>
+        <div class="social-links">
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Twitter">🐦</a>
+          <a href="#" aria-label="GitHub">🐙</a>
+          <a href="#" aria-label="YouTube">▶️</a>
+          <a href="#" aria-label="Email">📧</a>
+        </div>
+      </div>
 
-        <h1 id="hero-title" class="hero-title">Amr Mousa</h1>
-        <div class="hero-sub">Turning messy data into elegant, actionable insights.</div>
-
-        <div class="cta" style="justify-content:center">
-          <button class="btn-primary" onclick="goToSection('#who')">Who am I</button>
-          <button class="btn-ghost" onclick="window.open('files/Amr-Mousa-CV.pdf')">Download CV</button>
-        </div>
-
-        <div style="margin-top:14px;color:var(--muted);font-size:14px">Available for freelance & contract roles — open to new challenges.</div>
-      </div>
-    </div>
-  </div>
-</section>
+      <div class="split-right fade-up" style="animation-delay:0.2s">
+        <div class="hero-text-content">
+          <div class="sub-heading">Data Analyst | Power BI | SQL</div>
+          <h2 id="hero-title" class="hero-main-name">Amr Mousa</h2>
+          <p class="hero-intro-text">Turning messy transactional data into elegant, actionable insights for quick business action. Specializing in Power BI, SQL, Python, and data modeling.</p>
+          <div class="cta">
+            <button class="btn-primary" onclick="window.open('files/Amr-Mousa-CV.pdf')">Download CV</button>
+            <button class="btn-ghost" onclick="goToSection('#contact')">Contact</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mobile-note" style="display:none;position:absolute;bottom:20px;left:20px;color:var(--muted)">Scroll down for details.</div>
+    </section>
 
 
     <!-- WHO -->
