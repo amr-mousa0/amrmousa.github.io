@@ -232,6 +232,7 @@ section#hero.split-hero {
   font-size: 32px; /* <<<--- كبرنا حجم الخط عشان يليق بستايل التوقيع */
   align-self: flex-start;
   color: rgba(255, 255, 255, 0.95); /* ممكن نخليه أفتح شوية */
+   margin-left: 20px;
 }
 
 /* أيقونات السوشيال ميديا (كبرناها) */
@@ -272,19 +273,30 @@ section#hero.split-hero {
   justify-content: flex-start;
   background: var(--bg);
   /* زودنا البادينج من الشمال عشان نبعد عن الصورة أكتر */
-  padding: 40px 100px 40px 360px; /* <<<--- زودنا القيمة من 240px إلى 280px */
+  padding: 40px 100px 40px 500px; /* <<<--- زودنا القيمة من 240px إلى 280px */
 }
 
 /* كبرنا حجم النصوص */
 .hero-main-name {
-  font-size: 58px !important; /* <<<--- كبرنا الاسم جدًا */
+  font-size: 58px !important;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 12px 0; /* <<<--- قللنا المسافة اللي تحت الاسم من 16px إلى 12px */
+  line-height: 1;
 }
 .hero-intro-text {
-  font-size: 20px !important; /* <<<--- كبرنا النص التعريفي */
-  line-height: 1.7; /* زودنا المسافة بين السطور عشان يبقى مريح للعين */
+  font-size: 20px !important;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 420px;
+  margin-top: 0; /* <<<--- أهم تعديل: لغينا المسافة اللي فوق الفقرة تمامًا */
+  margin-bottom: 32px; /* زودنا المسافة قبل الأزرار شوية عشان التوازن */
 }
 .sub-heading {
-  font-size: 18px !important; /* <<<--- كبرنا العنوان الفرعي */
+  font-size: 18px !important;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 4px; /* <<<--- قللنا المسافة من 8px إلى 4px */
 }
 
 /* 5. الزرارين (كبرناهم) */
