@@ -203,13 +203,13 @@
     @keyframes fadeUp{to{opacity:1;transform:none}}
 
 /* ============================================== */
-/* === تصميم الانترو (النسخة المعدلة والمحسنة) === */
+/* === تصميم الانترو (النسخة النهائية والمحسنة) === */
 /* ============================================== */
 
-/* 1. القاعدة الأساسية اللي بتعمل كل الشغل */
+/* 1. القاعدة الأساسية */
 section#hero.split-hero {
   display: grid !important;
-  grid-template-columns: 40% 60%; /* التقسيم الأساسي */
+  grid-template-columns: 40% 60%;
   padding: 0 !important;
   align-items: stretch;
   height: 100vh;
@@ -223,7 +223,7 @@ section#hero.split-hero {
   padding: 40px;
   background: linear-gradient(145deg, var(--accent-a), var(--accent-b));
   color: white;
-  position: relative; /* مهم جدًا عشان الصورة تتحرك بالنسبة له */
+  position: relative;
 }
 
 .split-left .logo-name {
@@ -231,22 +231,25 @@ section#hero.split-hero {
   font-size: 28px;
 }
 
+/* أيقونات السوشيال ميديا (كبرناها) */
 .split-left .social-links {
   margin-top: auto;
   display: flex;
-  gap: 20px;
+  gap: 28px; /* <<<--- زودنا المسافة */
+}
+.split-left .social-links a {
+  font-size: 26px; /* <<<--- كبرنا حجم الأيقونات */
 }
 
-/* 3. حاوية الصورة (هنا كل السحر - كبرناها أكتر) */
+/* 3. حاوية الصورة (كبرناها أكتر) */
 .hero-image-container {
   position: absolute;
   top: 50%;
   right: 0; 
   transform: translate(50%, -50%); 
-  
   z-index: 10;
-  width: 320px; /* <<<--- كبرنا الصورة */
-  height: 320px; /* <<<--- كبرنا الصورة */
+  width: 360px; /* <<<--- كبرنا الصورة */
+  height: 360px; /* <<<--- كبرنا الصورة */
   border-radius: 50%;
   border: 10px solid var(--bg);
   box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
@@ -265,23 +268,30 @@ section#hero.split-hero {
   align-items: center;
   justify-content: flex-start;
   background: var(--bg);
-  /* بادينج أكبر من الشمال واليمين عشان المساحة */
-  padding: 40px 100px 40px 220px; /* <<<--- عدّلنا البادينج */
+  /* بادينج أكبر عشان يبعد أكتر عن الصورة */
+  padding: 40px 100px 40px 240px; /* <<<--- زودنا البادينج من الشمال */
 }
 
-/* عشان المحتوى النصي يكون أوسع */
-.split-right .hero-text-content {
-  max-width: 550px; /* <<<--- زودنا أقصى عرض */
+/* كبرنا حجم النصوص */
+.hero-main-name {
+  font-size: 76px !important; /* <<<--- كبرنا الاسم جدًا */
+}
+.hero-intro-text {
+  font-size: 20px !important; /* <<<--- كبرنا النص التعريفي */
+  line-height: 1.7; /* زودنا المسافة بين السطور عشان يبقى مريح للعين */
+}
+.sub-heading {
+  font-size: 18px !important; /* <<<--- كبرنا العنوان الفرعي */
 }
 
 /* 5. الزرارين (كبرناهم) */
 .split-right .cta .btn-primary,
 .split-right .cta .btn-ghost {
-  padding: 14px 24px; /* <<<--- زودنا البادينج عشان يكبروا */
-  font-size: 16px; /* <<<--- ممكن تكبر الخط شوية لو حبيت */
+  padding: 16px 32px; /* <<<--- زودنا البادينج عشان يكبروا */
+  font-size: 16px;
 }
 
-/* 6. تعديلات الموبايل (عشان نرجع كل حاجة مكانها) */
+/* 6. تعديلات الموبايل (عشان تتناسب مع الأحجام الجديدة) */
 @media (max-width: 980px) {
   section#hero.split-hero {
     grid-template-columns: 1fr;
@@ -295,20 +305,24 @@ section#hero.split-hero {
   .hero-image-container {
     position: relative;
     transform: translate(0, 0);
-    margin: -160px auto 0; /* <<<--- عدّلنا الـ margin عشان الصورة تطلع أكتر */
-    width: 240px; /* <<<--- كبرنا الصورة في الموبايل كمان */
-    height: 240px; /* <<<--- كبرنا الصورة في الموبايل كمان */
+    margin: -180px auto 0; /* <<<--- عدّلنا الـ margin عشان الصورة الأكبر تطلع */
+    width: 260px; /* <<<--- كبرنا الصورة في الموبايل */
+    height: 260px; /* <<<--- كبرنا الصورة في الموبايل */
     border-width: 8px;
   }
   
   .split-right {
-    padding: 160px 20px 60px; /* <<<--- بادينج أكبر من فوق عشان الصورة */
+    padding: 180px 20px 60px; /* <<<--- بادينج أكبر من فوق عشان الصورة */
     justify-content: center;
     text-align: center;
   }
-  /* عشان الزرارين يكونوا جنب بعض في الموبايل لو المساحة سمحت */
-  .split-right .cta {
-    justify-content: center;
+  
+  .hero-main-name {
+    font-size: 52px !important;
+  }
+  
+  .hero-intro-text {
+    font-size: 16px !important;
   }
 }
     /* Hero button overrides for white background */
