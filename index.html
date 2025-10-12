@@ -23,13 +23,15 @@
       --light-accent-a: #0b84ff;  /* bright */
       --light-accent-b: #0b3b66;  /* deep */
 
-      /* Dark palette */
-      --dark-bg: #08060a;
-      --dark-surface: rgba(255,255,255,0.03);
-      --dark-text: #e6eef8;
-      --dark-muted: #9aa4b2;
-      --dark-accent-a: #7c3aed;   /* purple */
-      --dark-accent-b: #3b82f6;   /* electric blue */
+      /* Dark palette - Slate & Gold Theme */
+    --dark-bg: #111827;         /* رمادي داكن جداً مائل للكحلي (Slate 900) */
+    --dark-surface: #1f2937;    /* درجة أفتح قليلاً للأسطح (Slate 800) */
+    --dark-text: #f3f4f6;       /* أبيض هادئ (مش ناصع عشان يكون مريح للعين) */
+    --dark-muted: #9ca3af;      /* رمادي متوسط للكلام الباهت (Slate 400) */
+
+    /* ألوان التأكيد (Accent Colors) */
+    --dark-accent-a: #7c3aed;    /* البنفسجي بتاعك هيفضل للأزرار الأساسية */
+    --dark-accent-b: #f59e0b;    /* <<<--- اللون الجديد: الذهبي/الكهرماني */
 
       /* runtime tokens (default dark) */
       --bg: var(--dark-bg);
@@ -178,7 +180,7 @@
 
     /* Who section */
     .who-grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
-    .separator{height:6px;border-radius:999px;background:linear-gradient(90deg,var(--accent-a),var(--accent-b));margin:14px 0;box-shadow:0 10px 30px rgba(11,59,102,0.06)}
+    background: var(--dark-accent-b);margin:14px 0;box-shadow:0 10px 30px rgba(11,59,102,0.06)}
 
     /* Projects grid */
     .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
@@ -221,7 +223,7 @@ section#hero.split-hero {
   display: flex;
   flex-direction: column;
   padding:0px 40px 40px 40px;
-  background: linear-gradient(145deg, var(--accent-a), var(--accent-b));
+  background: linear-gradient(145deg, #1f2937, #111827);
   color: white;
   position: relative;
 }
