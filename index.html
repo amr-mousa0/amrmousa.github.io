@@ -280,23 +280,16 @@ section#hero.split-hero {
   right: 0; 
   transform: translate(50%, -50%); 
   z-index: 10;
-  width: 360px;
-  height: 360px;
+  width: 360px; /* <<<--- كبرنا الصورة */
+  height: 360px; /* <<<--- كبرنا الصورة */
   border-radius: 50%;
+  border: 10px solid var(--accent-a); 
   box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-
-  /* <<<--- هنا التعديل السحري ---<<< */
-  /* 1. بنحدد عرض الإطار ونخليه شفاف */
-  border: 10px solid transparent;
-  /* 2. بنقوله استخدم التدرج اللوني كصورة للإطار */
-  border-image: linear-gradient(145deg, var(--accent-a), var(--accent-b)) 1;
 }
-   
-/* بنرجع لون الإطار للونه الأصلي في الثيم الفاتح بس */
+    /* بنرجع لون الإطار للونه الأصلي في الثيم الفاتح بس */
 body.light .hero-image-container {
-  border-image: none; /* <<<--- بنلغي صورة التدرج اللوني */
-  border-color: var(--bg); /* <<<--- بنرجع لونه لون الخلفية */
+    border-color: var(--bg);
 }
 
 .hero-photo {
