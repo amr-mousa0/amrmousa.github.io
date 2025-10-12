@@ -202,16 +202,7 @@
     .fade-up{opacity:0;transform:translateY(12px);animation:fadeUp .66s forwards}
     @keyframes fadeUp{to{opacity:1;transform:none}}
 
-    /* === الحل النهائي والأكيد لمشكلة الانترو === */
-section#hero.split-hero {
-  display: grid !important;         /* استخدم grid وألغي أي flex أو block */
-  grid-template-columns: 40% 60%;  /* قسّم الشاشة لعمودين */
-  align-items: stretch;            /* خلّي العمودين ياخدوا الطول كامل */
-  justify-content: stretch;        /* ألغي أي توسيط أفقي للمحتوى */
-  padding: 0 !important;           /* ألغي أي padding ممكن يكون موروث */
-  min-height: 100vh;
-  position: relative;
-}
+   
    .split-left {
   /* === التعديل هنا === */
   background: linear-gradient(145deg, var(--accent-a), var(--accent-b));
@@ -291,37 +282,90 @@ section#hero.split-hero {
       margin-bottom: 24px;
     }
     
-    /* Responsive adjustments for the new Hero section */
-    @media (max-width:980px){
-      .split-hero{
-        grid-template-columns: 1fr; /* عمود واحد على الشاشات الصغيرة */
-      }
-      .split-left{
-        min-height: 500px;
-        padding: 40px 20px;
-      }
-      .hero-image-container{
-        width: 200px;
-        height: 200px;
-      }
-      .logo-name{ align-self: center; } /* توسيط الشعار */
-      .social-links{ margin-top: 20px; }
-      .split-right{
-        text-align: center;
-        padding: 60px 20px;
-      }
-      .hero-text-content{
-        max-width: none;
-      }
-      .hero-main-name{
-        font-size: 52px;
-      }
-    }
-    @media (max-width:640px){
-      .hero-main-name{ font-size: 40px; }
-      .hero-intro-text{ font-size: 16px; }
-      .cta{ justify-content: center; }
-    }
+  /* ============================================== */
+/* === تصميم الانترو (النسخة النهائية والمعدلة) === */
+/* ============================================== */
+
+/* 1. تصميم شاشات الكمبيوتر (Desktop First) */
+section#hero.split-hero {
+  display: grid !important;
+  grid-template-columns: 40% 60%; /* <-- التقسيم الأساسي بنسبة 40% و 60% */
+  align-items: stretch;
+  padding: 0 !important;
+  min-height: 100vh;
+}
+
+/* الجزء الشمال من الانترو */
+.split-left {
+  background: linear-gradient(145deg, var(--accent-a), var(--accent-b));
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 20px;
+}
+
+/* الجزء اليمين من الانترو */
+.split-right {
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* 2. تعديلات الشاشات الصغيرة (الموبايل والتابلت) */
+@media (max-width: 980px) {
+  section#hero.split-hero {
+    grid-template-columns: 1fr; /* <-- نرجعها عمود واحد هنا بس للشاشات الصغيرة */
+  }
+
+  .split-left {
+    min-height: 500px;
+    padding: 40px 20px;
+    justify-content: center; /* توسيط المحتوى عشان الشكل يبقى أحسن في الموبايل */
+  }
+
+  .hero-image-container {
+    width: 200px;
+    height: 200px;
+  }
+
+  .logo-name { 
+    align-self: center; 
+  }
+
+  .social-links { 
+    margin-top: 20px; 
+  }
+
+  .split-right {
+    text-align: center;
+    padding: 60px 20px;
+  }
+
+  .hero-text-content {
+    max-width: none;
+  }
+
+  .hero-main-name {
+    font-size: 52px;
+  }
+
+  .cta {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-main-name { 
+    font-size: 40px; 
+  }
+  .hero-intro-text { 
+    font-size: 16px; 
+  }
+}
     /* Hero button overrides for white background */
     .split-left .cta .btn-primary {
         background: white;
