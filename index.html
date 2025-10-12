@@ -51,12 +51,6 @@
       --glass: rgba(11,59,102,0.06);
     }
 
-    .centered-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
     /* ---------------- Reset / Base ---------------- */
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);background:var(--bg);transition:background var(--trans), color var(--trans)}
@@ -65,7 +59,7 @@
     button{font-family:inherit;cursor:pointer;border:0;background:none}
     /* smooth scroll-snap for full sections */
     main{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
-    section {min-height:100vh;padding:28px;scroll-snap-align:start;position:relative;}
+    section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px;scroll-snap-align:start;position:relative}
     .container{max-width:1200px;width:100%;margin:0 auto;padding:24px}
 
     /* ---------------- Top controls ---------------- */
@@ -209,15 +203,27 @@
     @keyframes fadeUp{to{opacity:1;transform:none}}
 
 /* ============================================== */
-/* === تصميم الانترو (النسخة النهائية والنظيفة) === */
+/* === تصميم الانترو (النسخة النهائية والمضمونة) === */
 /* ============================================== */
 
+/* الخطوة 1: بنلغي أي ستايل عام ممكن يبوظ الانترو */
 section#hero.split-hero {
+  display: grid !important;
+  grid-template-columns: 40% 60%;
+  padding: 0 !important;
+  align-items: stretch;
+  justify-content: stretch;
+}
+/* الخطوة 2: الـ container الجديد هو اللي هيعمل التقسيم بالـ grid */
+.hero-container {
+  width: 100%;
+  height: 100%; /* ياخد طول الشاشة بالكامل */
   display: grid;
   grid-template-columns: 40% 60%;
-  padding: 0;
+  align-items: stretch;
 }
 
+/* الجزء الشمال */
 .split-left {
   display: flex;
   flex-direction: column;
@@ -255,12 +261,35 @@ section#hero.split-hero {
   gap: 24px;
 }
 
+
 .split-right {
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--bg);
   padding: 40px;
+}
+
+/* الخطوة 3: تعديل الـ Responsive عشان يستهدف الـ container الجديد */
+@media (max-width: 980px) {
+  .hero-container {
+    grid-template-columns: 1fr; /* عمود واحد فقط */
+    height: auto;
+  }
+  .split-left {
+    padding: 60px 20px;
+    justify-content: center;
+  }
+  .split-left .logo-name {
+    align-self: center;
+    margin-bottom: 30px;
+  }
+  .hero-image-container {
+    width: 220px;
+    height: 220px;
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
 }
     /* Hero button overrides for white background */
     .split-left .cta .btn-primary {
@@ -394,7 +423,7 @@ body.drawer-open .top-left {
 
 
     <!-- WHO -->
-    <section id="who" class="centered-content" aria-labelledby="who-title">
+    <section id="who" aria-labelledby="who-title">
       <div class="container">
         <div class="section-inner who-grid">
           <div class="card fade-up">
@@ -421,7 +450,7 @@ body.drawer-open .top-left {
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects" class="centered-content" aria-labelledby="projects-title">
+    <section id="projects" aria-labelledby="projects-title">
       <div class="container">
         <div style="max-width:1100px;margin:0 auto">
           <h2 id="projects-title">Projects</h2>
@@ -461,7 +490,7 @@ body.drawer-open .top-left {
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="centered-content" aria-labelledby="contact-title">
+    <section id="contact" aria-labelledby="contact-title">
       <div class="container">
         <div class="card contact-card fade-up" style="max-width:720px;margin:0 auto">
           <h3 id="contact-title">Contact</h3>
