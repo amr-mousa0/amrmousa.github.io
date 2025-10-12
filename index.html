@@ -23,15 +23,13 @@
       --light-accent-a: #0b84ff;  /* bright */
       --light-accent-b: #0b3b66;  /* deep */
 
-      /* Dark palette - Slate & Gold Theme */
-    --dark-bg: #111827;         /* رمادي داكن جداً مائل للكحلي (Slate 900) */
-    --dark-surface: #1f2937;    /* درجة أفتح قليلاً للأسطح (Slate 800) */
-    --dark-text: #f3f4f6;       /* أبيض هادئ (مش ناصع عشان يكون مريح للعين) */
-    --dark-muted: #9ca3af;      /* رمادي متوسط للكلام الباهت (Slate 400) */
-
-    /* ألوان التأكيد (Accent Colors) */
-    --dark-accent-a: #7c3aed;    /* البنفسجي بتاعك هيفضل للأزرار الأساسية */
-    --dark-accent-b: #f59e0b;    /* <<<--- اللون الجديد: الذهبي/الكهرماني */
+     /* Dark palette - The Final Deep Glow Theme */
+--dark-bg: #0b0f19;         /* أسود مائل للكحلي الداكن جداً */
+--dark-surface: rgba(30, 41, 59, 0.5); /* سطح شبه شفاف للكروت */
+--dark-text: #f9fafb;
+--dark-muted: #9ca3af;
+--dark-accent-a: #8b5cf6;    /* بنفسجي ساطع للتأكيد */
+--dark-accent-b: #3b82f6;    /* أزرق كهربي للتأكيد */
 
       /* runtime tokens (default dark) */
       --bg: var(--dark-bg);
@@ -149,14 +147,30 @@
     .menu-centered{display:flex;flex-direction:column;justify-content:center;height:100%;gap:14px;padding:12px}
 
     /* ---------------- Blobs / Wave decoration ---------------- */
-    .blob{position:fixed;border-radius:50%;filter:blur(40px);opacity:0.12;pointer-events:none;transition:transform 1s linear;z-index:30}
+    .blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  pointer-events: none;
+  transition: transform 1s linear;
+  z-index: -1; /* مهم عشان يفضل ورا الكروت */
+}
     .b1{width:520px;height:520px;left:-160px;top:-160px;background:radial-gradient(circle at 30% 30%, var(--accent-a), transparent 40%)}
     .b2{width:360px;height:360px;right:-120px;bottom:-100px;background:radial-gradient(circle at 60% 40%, var(--accent-b), transparent 40%)}
     .wave-top{position:fixed;left:0;right:0;height:120px;top:0;transform:translateY(-60%);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);pointer-events:none;z-index:29}
 
     /* ---------------- Section inner layout ---------------- */
     .section-inner{width:100%;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center}
-    .card{background:var(--surface);border-radius:var(--radius);padding:26px;backdrop-filter:blur(6px);box-shadow:0 18px 40px rgba(2,6,23,0.6);transition:transform .25s,var(--trans)}
+   .card {
+  background: var(--dark-surface); /* هيستخدم السطح الشفاف اللي عرفناه فوق */
+  border-radius: var(--radius);
+  padding: 26px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.6);
+  transition: transform .25s, var(--trans);
+}
 
     /* Intro / Hero */
     .hero-title{font-size:44px;line-height:1.02;margin:0;color:var(--accent-a);font-weight:700}
@@ -222,10 +236,22 @@ section#hero.split-hero {
 .split-left {
   display: flex;
   flex-direction: column;
-  padding:0px 40px 40px 40px;
-  background: linear-gradient(145deg, #1f2937, #111827);
+  padding: 40px;
   color: white;
   position: relative;
+  overflow: hidden; /* عشان نضمن إن التوهج مبيطلعش بره حدوده */
+
+  /* === هنا كل الشغل === */
+  /* بنعمل طبقتين: طبقة التوهج فوق، وطبقة اللون الأساسي تحت */
+  background: 
+    /* الطبقة الأولى: التوهج (radial-gradient) */
+    radial-gradient(
+      circle at 10% 20%, /* مكان مصدر الضوء (فوق على الشمال) */
+      rgba(139, 92, 246, 0.3), /* لون التوهج (بنفسجي شفاف) */
+      transparent 40% /* بينتهي بشفافية بعد 40% */
+    ),
+    /* الطبقة الثانية: اللون الأساسي (تدرج رمادي داكن) */
+    linear-gradient(145deg, #1f2937, #111827);
 }
 
 .split-left .logo-name {
