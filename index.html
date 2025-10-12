@@ -206,7 +206,8 @@
 /* === تصميم الانترو (النسخة النهائية والصحيحة) === */
 /* ============================================== */
 
-/* القاعدة دي بتلغي الـ display:flex بتاع الـ section العام وبتفرض الـ grid */
+/* القاعدة دي هي اللي بتحل كل حاجة */
+/* بتلغي الـ display:flex بتاع الـ section العام وبتفرض الـ grid بالقوة */
 section#hero.split-hero {
   display: grid !important;
   grid-template-columns: 40% 60%;
@@ -215,6 +216,7 @@ section#hero.split-hero {
   justify-content: stretch;
 }
 
+/* باقي الكود بسيط ومباشر من غير أي تعقيدات */
 .split-left {
   display: flex;
   flex-direction: column;
@@ -258,27 +260,6 @@ section#hero.split-hero {
   justify-content: center;
   background: var(--bg);
   padding: 40px;
-}
-/* الخطوة 3: تعديل الـ Responsive عشان يستهدف الـ container الجديد */
-@media (max-width: 980px) {
-  .hero-container {
-    grid-template-columns: 1fr; /* عمود واحد فقط */
-    height: auto;
-  }
-  .split-left {
-    padding: 60px 20px;
-    justify-content: center;
-  }
-  .split-left .logo-name {
-    align-self: center;
-    margin-bottom: 30px;
-  }
-  .hero-image-container {
-    width: 220px;
-    height: 220px;
-    margin-top: 0;
-    margin-bottom: 30px;
-  }
 }
     /* Hero button overrides for white background */
     .split-left .cta .btn-primary {
@@ -378,37 +359,35 @@ body.drawer-open .top-left {
 
   <main id="main" tabindex="0" aria-label="Main content">
     <!-- HERO -->
- <section id="hero" aria-labelledby="hero-title" class="split-hero">
-  
-  <div class="hero-container">
+<section id="hero" aria-labelledby="hero-title" class="split-hero">
     
-    <div class="split-left fade-up">
-      <h1 class="logo-name">Amr Mousa</h1>
-      <div class="hero-image-container">
-        <img src="images/amr-mousa-photo.jpg" alt="Amr Mousa" class="hero-photo">
-      </div>
-      <div class="social-links">
-        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-        <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#" aria-label="Email"><i class="fa-solid fa-at"></i></a>
+  <div class="split-left fade-up">
+    <h1 class="logo-name">Amr Mousa</h1>
+    <div class="hero-image-container">
+      <img src="images/amr-mousa-photo.jpg" alt="Amr Mousa" class="hero-photo">
+    </div>
+    <div class="social-links">
+      <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="#" aria-label="Email"><i class="fa-solid fa-at"></i></a>
+    </div>
+  </div>
+
+  <div class="split-right fade-up" style="animation-delay:0.2s">
+    <div class="hero-text-content">
+      <div class="sub-heading">Data Analyst | Power BI | SQL</div>
+      <h2 id="hero-title" class="hero-main-name">Amr Mousa</h2>
+      <p class="hero-intro-text">Turning messy transactional data into elegant, actionable insights for quick business action. Specializing in Power BI, SQL, Python, and data modeling.</p>
+      <div class="cta">
+        <button class="btn-primary" onclick="window.open('files/Amr-Mousa-CV.pdf')">Download CV</button>
+        <button class="btn-ghost" onclick="goToSection('#contact')">Contact</button>
       </div>
     </div>
+  </div>
 
-    <div class="split-right fade-up" style="animation-delay:0.2s">
-      <div class="hero-text-content">
-        <div class="sub-heading">Data Analyst | Power BI | SQL</div>
-        <h2 id="hero-title" class="hero-main-name">Amr Mousa</h2>
-        <p class="hero-intro-text">Turning messy transactional data into elegant, actionable insights for quick business action. Specializing in Power BI, SQL, Python, and data modeling.</p>
-        <div class="cta">
-          <button class="btn-primary" onclick="window.open('files/Amr-Mousa-CV.pdf')">Download CV</button>
-          <button class="btn-ghost" onclick="goToSection('#contact')">Contact</button>
-        </div>
-      </div>
-    </div>
-
-  </div> </section>
+</section>
 
 
     <!-- WHO -->
