@@ -203,16 +203,24 @@
     @keyframes fadeUp{to{opacity:1;transform:none}}
 
 /* ============================================== */
-/* === تصميم الانترو (النسخة النهائية والمضبوطة) === */
+/* === تصميم الانترو (النسخة النهائية والمضمونة) === */
 /* ============================================== */
 
-/* 1. تصميم شاشات الكمبيوتر (Desktop First) */
+/* الخطوة 1: بنلغي أي ستايل عام ممكن يبوظ الانترو */
 section#hero.split-hero {
-  display: grid !important;
+  display: block !important; /* بنجبره يكون block عادي عشان نتحكم فيه */
+  padding: 0 !important;
+  height: 100vh;
+  overflow: hidden; /* عشان نمنع أي مشاكل في الـ scroll */
+}
+
+/* الخطوة 2: الـ container الجديد هو اللي هيعمل التقسيم بالـ grid */
+.hero-container {
+  width: 100%;
+  height: 100%; /* ياخد طول الشاشة بالكامل */
+  display: grid;
   grid-template-columns: 40% 60%;
   align-items: stretch;
-  padding: 0 !important;
-  min-height: 100vh;
 }
 
 /* الجزء الشمال */
@@ -254,17 +262,6 @@ section#hero.split-hero {
   gap: 24px;
 }
 
-.split-left .social-links a {
-  font-size: 22px;
-  color: rgba(255, 255, 255, 0.8);
-  transition: all 0.2s ease;
-}
-
-.split-left .social-links a:hover {
-  transform: scale(1.2) translateY(-3px);
-  color: white;
-}
-
 /* الجزء اليمين */
 .split-right {
   background: var(--bg);
@@ -274,79 +271,25 @@ section#hero.split-hero {
   padding: 40px;
 }
 
-.hero-text-content {
-  max-width: 500px;
-}
-
-.hero-main-name {
-  font-size: 68px;
-  font-weight: 700;
-  color: var(--text);
-  margin: 0 0 16px 0;
-  line-height: 1;
-}
-
-.hero-intro-text {
-  font-size: 18px;
-  line-height: 1.6;
-  color: var(--muted);
-  max-width: 420px;
-  margin-bottom: 24px;
-}
-
-/* 2. تعديلات الشاشات الصغيرة (الموبايل والتابلت) */
+/* الخطوة 3: تعديل الـ Responsive عشان يستهدف الـ container الجديد */
 @media (max-width: 980px) {
-  section#hero.split-hero {
+  .hero-container {
     grid-template-columns: 1fr; /* عمود واحد فقط */
+    height: auto;
   }
-
   .split-left {
-    min-height: auto;
     padding: 60px 20px;
     justify-content: center;
   }
-
   .split-left .logo-name {
     align-self: center;
     margin-bottom: 30px;
   }
-
   .hero-image-container {
     width: 220px;
     height: 220px;
-    margin-top: 0;      /* إلغاء الـ margin auto */
-    margin-bottom: 30px; 
-  }
-
-  .social-links {
     margin-top: 0;
-  }
-
-  .split-right {
-    text-align: center;
-    padding: 60px 20px;
-  }
-
-  .hero-text-content {
-    max-width: none;
-  }
-
-  .hero-main-name {
-    font-size: 52px;
-  }
-
-  .cta {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 640px) {
-  .hero-main-name {
-    font-size: 40px;
-  }
-
-  .hero-intro-text {
-    font-size: 16px;
+    margin-bottom: 30px;
   }
 }
     /* Hero button overrides for white background */
@@ -447,35 +390,37 @@ body.drawer-open .top-left {
 
   <main id="main" tabindex="0" aria-label="Main content">
     <!-- HERO -->
-  <section id="hero" aria-labelledby="hero-title" class="split-hero">
-      <div class="split-left fade-up">
-        <h1 class="logo-name">Amr Mousa</h1>
-        <div class="hero-image-container">
-          <img src="images/amr-mousa-photo.jpg" alt="Amr Mousa" class="hero-photo">
-        </div>
-       <div class="social-links">
-  <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-  <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-  <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-  <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-  <a href="#" aria-label="Email"><i class="fa-solid fa-at"></i></a>
-</div>
-      </div>
+ <section id="hero" aria-labelledby="hero-title" class="split-hero">
+  
+  <div class="hero-container">
+    
+    <div class="split-left fade-up">
+      <h1 class="logo-name">Amr Mousa</h1>
+      <div class="hero-image-container">
+        <img src="images/amr-mousa-photo.jpg" alt="Amr Mousa" class="hero-photo">
+      </div>
+      <div class="social-links">
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" aria-label="Email"><i class="fa-solid fa-at"></i></a>
+      </div>
+    </div>
 
-      <div class="split-right fade-up" style="animation-delay:0.2s">
-        <div class="hero-text-content">
-          <div class="sub-heading">Data Analyst | Power BI | SQL</div>
-          <h2 id="hero-title" class="hero-main-name">Amr Mousa</h2>
-          <p class="hero-intro-text">Turning messy transactional data into elegant, actionable insights for quick business action. Specializing in Power BI, SQL, Python, and data modeling.</p>
-          <div class="cta">
-            <button class="btn-primary" onclick="window.open('files/Amr-Mousa-CV.pdf')">Download CV</button>
-            <button class="btn-ghost" onclick="goToSection('#contact')">Contact</button>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mobile-note" style="display:none;position:absolute;bottom:20px;left:20px;color:var(--muted)">Scroll down for details.</div>
-    </section>
+    <div class="split-right fade-up" style="animation-delay:0.2s">
+      <div class="hero-text-content">
+        <div class="sub-heading">Data Analyst | Power BI | SQL</div>
+        <h2 id="hero-title" class="hero-main-name">Amr Mousa</h2>
+        <p class="hero-intro-text">Turning messy transactional data into elegant, actionable insights for quick business action. Specializing in Power BI, SQL, Python, and data modeling.</p>
+        <div class="cta">
+          <button class="btn-primary" onclick="window.open('files/Amr-Mousa-CV.pdf')">Download CV</button>
+          <button class="btn-ghost" onclick="goToSection('#contact')">Contact</button>
+        </div>
+      </div>
+    </div>
+
+  </div> </section>
 
 
     <!-- WHO -->
