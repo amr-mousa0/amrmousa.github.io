@@ -203,7 +203,7 @@
     @keyframes fadeUp{to{opacity:1;transform:none}}
 
 /* ============================================== */
-/* === تصميم الانترو (النسخة النهائية والصحيحة) === */
+/* === تصميم الانترو (النسخة المعدلة والمحسنة) === */
 /* ============================================== */
 
 /* 1. القاعدة الأساسية اللي بتعمل كل الشغل */
@@ -212,8 +212,8 @@ section#hero.split-hero {
   grid-template-columns: 40% 60%; /* التقسيم الأساسي */
   padding: 0 !important;
   align-items: stretch;
-  height: 100vh; /* <<<--- مهم عشان ياخد ارتفاع الشاشة بالكامل */
-  overflow: hidden; /* <<<--- مهم عشان مفيش حاجة تخرج بره */
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* 2. الجزء الشمال */
@@ -223,7 +223,7 @@ section#hero.split-hero {
   padding: 40px;
   background: linear-gradient(145deg, var(--accent-a), var(--accent-b));
   color: white;
-  position: relative; /* <<<--- مهم جدًا عشان الصورة تتحرك بالنسبة له */
+  position: relative; /* مهم جدًا عشان الصورة تتحرك بالنسبة له */
 }
 
 .split-left .logo-name {
@@ -232,28 +232,23 @@ section#hero.split-hero {
 }
 
 .split-left .social-links {
-  margin-top: auto; /* <<<--- بينزل أيقونات السوشيال لآخر الجزء الشمال */
+  margin-top: auto;
   display: flex;
   gap: 20px;
 }
 
-/* 3. حاوية الصورة (هنا كل السحر) */
+/* 3. حاوية الصورة (هنا كل السحر - كبرناها أكتر) */
 .hero-image-container {
-  /* بنخليها في النص بالظبط رأسيًا */
   position: absolute;
   top: 50%;
-  
-  /* بنخليها على الحافة اليمين للجزء الشمال بالظبط */
   right: 0; 
-  
-  /* بنحركها نص عرضها لليمين ونص طولها لفوق عشان تتمركز على الخط الفاصل */
   transform: translate(50%, -50%); 
   
   z-index: 10;
-  width: 280px;
-  height: 280px;
+  width: 320px; /* <<<--- كبرنا الصورة */
+  height: 320px; /* <<<--- كبرنا الصورة */
   border-radius: 50%;
-  border: 10px solid var(--bg); /* <<<--- إطار بلون الخلفية اليمين */
+  border: 10px solid var(--bg);
   box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
@@ -264,41 +259,56 @@ section#hero.split-hero {
   object-fit: cover;
 }
 
-/* 4. الجزء اليمين */
+/* 4. الجزء اليمين (حركناه وكبرناه أكتر) */
 .split-right {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* <<<--- بنخلي الكلام يبدأ من الشمال */
+  justify-content: flex-start;
   background: var(--bg);
-  /* بادينج كبير جدًا من الشمال عشان الكلام يبدأ بعد الصورة */
-  padding: 40px 60px 40px 180px; 
+  /* بادينج أكبر من الشمال واليمين عشان المساحة */
+  padding: 40px 100px 40px 220px; /* <<<--- عدّلنا البادينج */
 }
 
-/* 5. تعديلات الموبايل (عشان نرجع كل حاجة مكانها) */
+/* عشان المحتوى النصي يكون أوسع */
+.split-right .hero-text-content {
+  max-width: 550px; /* <<<--- زودنا أقصى عرض */
+}
+
+/* 5. الزرارين (كبرناهم) */
+.split-right .cta .btn-primary,
+.split-right .cta .btn-ghost {
+  padding: 14px 24px; /* <<<--- زودنا البادينج عشان يكبروا */
+  font-size: 16px; /* <<<--- ممكن تكبر الخط شوية لو حبيت */
+}
+
+/* 6. تعديلات الموبايل (عشان نرجع كل حاجة مكانها) */
 @media (max-width: 980px) {
   section#hero.split-hero {
-    grid-template-columns: 1fr; /* عمود واحد */
-    height: auto; /* <<<--- في الموبايل، الارتفاع يكون تلقائي */
+    grid-template-columns: 1fr;
+    height: auto;
   }
   .split-left {
-    min-height: 250px; /* بنصغر ارتفاعه */
+    min-height: 250px;
     justify-content: space-between;
   }
   
-  /* بنرجع الصورة لمكانها الطبيعي */
   .hero-image-container {
-    position: relative; /* بنرجعها لمكانها الأصلي */
-    transform: translate(0, 0); /* بنلغي التحريك */
-    margin: -140px auto 0; /* خدعة عشان تطلع فوق شوية بين السكاشن */
-    width: 200px;
-    height: 200px;
+    position: relative;
+    transform: translate(0, 0);
+    margin: -160px auto 0; /* <<<--- عدّلنا الـ margin عشان الصورة تطلع أكتر */
+    width: 240px; /* <<<--- كبرنا الصورة في الموبايل كمان */
+    height: 240px; /* <<<--- كبرنا الصورة في الموبايل كمان */
     border-width: 8px;
   }
   
   .split-right {
-    padding: 140px 20px 60px; /* بادينج كبير من فوق عشان الصورة */
+    padding: 160px 20px 60px; /* <<<--- بادينج أكبر من فوق عشان الصورة */
     justify-content: center;
     text-align: center;
+  }
+  /* عشان الزرارين يكونوا جنب بعض في الموبايل لو المساحة سمحت */
+  .split-right .cta {
+    justify-content: center;
   }
 }
     /* Hero button overrides for white background */
