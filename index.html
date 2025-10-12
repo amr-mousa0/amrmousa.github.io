@@ -30,8 +30,7 @@
   --dark-muted: #999999;      /* نص باهت متناسق */
   --dark-accent-a: #004D61;    /* Accent 1: Dark Teal */
   --dark-accent-b: #822659;    /* Accent 2: Deep Ruby */
-  --dark-cta-color: #3E5641;  /* Button/CTA: Forest Green */
-
+  
   /* runtime tokens (default dark) */
   --bg: var(--dark-bg);
   --surface: var(--dark-surface);
@@ -158,34 +157,51 @@ body.light {
     .hero-title{font-size:44px;line-height:1.02;margin:0;color:var(--accent-a);font-weight:700}
     .hero-sub{margin-top:8px;font-size:18px;color:var(--text);font-weight:400}
     .cta{display:flex;gap:12px;margin-top:16px}
-   .btn-primary {
-  background: var(--dark-cta-color); /* <<<--- هنا استخدمنا اللون الأخضر */
+  .btn-primary {
+  /* <<<--- هنا التعديل الأساسي ---<<< */
+  background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+  
   color: white;
   padding: 12px 18px;
   border-radius: 999px;
   border: 0;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   font-weight: 700;
-  transition: all .2s ease;
+  transition: all .3s ease;
+  background-size: 200% 100%; /* عشان تأثير التحويم يشتغل صح */
 }
 
-/* هنخلي لونه يتغير مع الثيم الفاتح كمان */
+/* تأثير تحويم أنيق (اختياري لكنه بيضيف لمسة احترافية) */
+.btn-primary:hover {
+  background-position: right center; /* بيحرك التدرج اللوني */
+  transform: scale(1.03);
+}
+
+/* هنرجع لونه الأصلي في الثيم الفاتح */
 body.light .btn-primary {
   background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+  background-position: left center;
 }
-   .btn-ghost {
+ .btn-ghost {
   background: transparent;
-  border: 1px solid var(--surface); /* <-- هيتغير مع الثيم */
+  border: 2px solid var(--surface); /* هنخلي الإطار أسمك شوية عشان يبان */
   color: var(--text);
   padding: 10px 16px;
   border-radius: 999px;
-  transition: all .2s ease; /* عشان التأثير يكون أنعم */
+  transition: all .2s ease;
 }
 
-/* ممكن نضيف تأثير hover لطيف كمان (اختياري) */
 .btn-ghost:hover {
+  background: var(--accent-a); /* <<<--- لما الماوس يجي عليه، خلفيته هتبقى باللون الأول */
+  border-color: var(--accent-a); /* ولون الإطار كمان */
+  color: white; /* والنص يبقى أبيض عشان يظهر */
+}
+
+/* هنرجع لونه الأصلي في الثيم الفاتح */
+body.light .btn-ghost:hover {
   background: var(--surface);
   color: var(--accent-a);
+  border-color: var(--surface);
 }
 
     /* Who section */
@@ -236,7 +252,6 @@ section#hero.split-hero {
    background: linear-gradient(145deg, var(--accent-a), var(--accent-b));
   color: white;
   position: relative;
-  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
 }
 
 .split-left .logo-name {
