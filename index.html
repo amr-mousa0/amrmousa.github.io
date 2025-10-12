@@ -9,47 +9,50 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
   <style>
-/* ---------------- Variables & Themes ---------------- */
-:root {
-  --radius: 14px;
-  --ease: cubic-bezier(.2, .9, .3, 1);
-  --trans: 360ms var(--ease);
+    /* ---------------- Variables & Themes ---------------- */
+    :root{
+      --radius:14px;
+      --ease: cubic-bezier(.2,.9,.3,1);
+      --trans: 360ms var(--ease);
 
-  /* === الثيم الفاتح (الأزرق) === */
-  --light-bg: #f6f8fb;
-  --light-surface: #ffffff;
-  --light-text: #071026;
-  --light-muted: #475569;
-  --light-accent-a: #0b84ff;
-  --light-accent-b: #0b3b66;
+      /* Light palette */
+      --light-bg: #f6f8fb;
+      --light-surface: #ffffff;
+      --light-text: #071026;      /* strong navy */
+      --light-muted: #475569;
+      --light-accent-a: #0b84ff;  /* bright */
+      --light-accent-b: #0b3b66;  /* deep */
 
-  /* === الثيم الداكن الجديد (الأبيض والأسود الاحترافي) === */
-  --dark-bg: #0a0a0a;         /* أسود شبه كامل للفخامة */
-  --dark-surface: #1a1a1a;    /* سطح رمادي غامق جداً للكروت */
-  --dark-text: #f1f1f1;       /* أبيض هادئ (مش ناصع) */
-  --dark-muted: #a1a1a1;      /* رمادي متوسط للكلام الباهت */
-  --dark-accent-a: #7c3aed;    /* البنفسجي بتاعك هيفضل زي ما هو كلون تأكيد */
-  --dark-accent-b: #3b82f6;    /* والأزرق الكهربي كمان */
+      /* Dark palette - Slate & Gold Theme */
+    --dark-bg: #111827;         /* رمادي داكن جداً مائل للكحلي (Slate 900) */
+    --dark-surface: #1f2937;    /* درجة أفتح قليلاً للأسطح (Slate 800) */
+    --dark-text: #f3f4f6;       /* أبيض هادئ (مش ناصع عشان يكون مريح للعين) */
+    --dark-muted: #9ca3af;      /* رمادي متوسط للكلام الباهت (Slate 400) */
 
-  /* runtime tokens (default dark) */
-  --bg: var(--dark-bg);
-  --surface: var(--dark-surface);
-  --text: var(--dark-text);
-  --muted: var(--dark-muted);
-  --accent-a: var(--dark-accent-a);
-  --accent-b: var(--dark-accent-b);
-  --glass: rgba(255, 255, 255, 0.04);
-}
+    /* ألوان التأكيد (Accent Colors) */
+    --dark-accent-a: #7c3aed;    /* البنفسجي بتاعك هيفضل للأزرار الأساسية */
+    --dark-accent-b: #f59e0b;    /* <<<--- اللون الجديد: الذهبي/الكهرماني */
 
-body.light {
-  --bg: var(--light-bg);
-  --surface: var(--light-surface);
-  --text: var(--light-text);
-  --muted: var(--light-muted);
-  --accent-a: var(--light-accent-a);
-  --accent-b: var(--light-accent-b);
-  --glass: rgba(11, 59, 102, 0.06);
-}
+      /* runtime tokens (default dark) */
+      --bg: var(--dark-bg);
+      --surface: var(--dark-surface);
+      --text: var(--dark-text);
+      --muted: var(--dark-muted);
+      --accent-a: var(--dark-accent-a);
+      --accent-b: var(--dark-accent-b);
+      --glass: rgba(255,255,255,0.04);
+    }
+
+    body.light{
+      --bg: var(--light-bg);
+      --surface: var(--light-surface);
+      --text: var(--light-text);
+      --muted: var(--light-muted);
+      --accent-a: var(--light-accent-a);
+      --accent-b: var(--light-accent-b);
+      --glass: rgba(11,59,102,0.06);
+    }
+
     /* ---------------- Reset / Base ---------------- */
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);background:var(--bg);transition:background var(--trans), color var(--trans)}
@@ -220,7 +223,7 @@ section#hero.split-hero {
   display: flex;
   flex-direction: column;
   padding:0px 40px 40px 40px;
-  background: linear-gradient(145deg, #1f1f1f, #0a0a0a);
+  background: linear-gradient(145deg, #1f2937, #111827);
   color: white;
   position: relative;
 }
