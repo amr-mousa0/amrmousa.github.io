@@ -202,15 +202,16 @@
     .fade-up{opacity:0;transform:translateY(12px);animation:fadeUp .66s forwards}
     @keyframes fadeUp{to{opacity:1;transform:none}}
 
-    /* New Split Hero Design */
-    .split-hero{
-      display: grid;
-      grid-template-columns: 40% 60%; /* تقسيم الشاشة */
-      padding: 0; /* إزالة البادينغ القياسي للسكشن */
-      min-height: 100vh;
-      align-items: stretch;
-      position: relative;
-    }
+    /* === الحل النهائي والأكيد لمشكلة الانترو === */
+section#hero.split-hero {
+  display: grid !important;         /* استخدم grid وألغي أي flex أو block */
+  grid-template-columns: 40% 60%;  /* قسّم الشاشة لعمودين */
+  align-items: stretch;            /* خلّي العمودين ياخدوا الطول كامل */
+  justify-content: stretch;        /* ألغي أي توسيط أفقي للمحتوى */
+  padding: 0 !important;           /* ألغي أي padding ممكن يكون موروث */
+  min-height: 100vh;
+  position: relative;
+}
    .split-left {
   /* === التعديل هنا === */
   background: linear-gradient(145deg, var(--accent-a), var(--accent-b));
