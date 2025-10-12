@@ -15,49 +15,38 @@
   --ease: cubic-bezier(.2, .9, .3, 1);
   --trans: 360ms var(--ease);
 
-  /* === الوضع الافتراضي (الثيم الأزرق) === */
-  /* الألوان الأساسية (للجزء اليمين اللي هيفضل ثابت) */
-  --base-bg: #f6f8fb;
-  --base-surface: #ffffff;
-  --base-text: #071026;
-  --base-muted: #475569;
+  /* === الثيم الفاتح (الأزرق الاحترافي بتاعك) === */
+  --light-bg: #f6f8fb;
+  --light-surface: #ffffff;
+  --light-text: #071026;
+  --light-muted: #475569;
+  --light-accent-a: #0b84ff;
+  --light-accent-b: #0b3b66;
 
-  /* ألوان الوضع الأزرق */
-  --blue-accent-a: #0b84ff;
-  --blue-accent-b: #0b3b66;
+  /* === الثيم الداكن الجديد (النيون السيبراني) === */
+  --dark-bg: #0D0D1A;         /* كحلي داكن جداً (Almost Black) */
+  --dark-surface: #1A1A2E;    /* سطح أغمق بنفس الروح */
+  --dark-text: #E0E0E0;       /* أبيض هادئ */
+  --dark-muted: #8F8F9E;      /* رمادي مائل للبنفسجي */
+  --dark-accent-a: #00F5D4;    /* <<<--- اللون الأساسي: أزرق سماوي كهربي */
+  --dark-accent-b: #DB00FF;    /* <<<--- اللون الثانوي: أرجواني فاقع */
 
-  /* ألوان الوضع الكهرماني (للتبديل) */
-  --gold-accent-a: #f59e0b; /* كهرماني */
-  --gold-accent-b: #e65100; /* برتقالي محروق */
-  --hero-grad-dark-start: #1f1f1f;
-  --hero-grad-dark-end: #0a0a0a;
-
-  /* runtime tokens (default blue) */
-  --bg: var(--base-bg);
-  --surface: var(--base-surface);
-  --text: var(--base-text);
-  --muted: var(--base-muted);
-  --accent-a: var(--blue-accent-a);
-  --accent-b: var(--blue-accent-b);
-
-  /* متغيرات خلفية الانترو (الافتراضي هو الأزرق) */
-  --hero-grad-start: var(--blue-accent-a);
-  --hero-grad-end: var(--blue-accent-b);
+  /* runtime tokens (default dark - النيون هو الأساسي) */
+  --bg: var(--dark-bg);
+  --surface: var(--dark-surface);
+  --text: var(--dark-text);
+  --muted: var(--dark-muted);
+  --accent-a: var(--dark-accent-a);
+  --accent-b: var(--dark-accent-b);
 }
 
-/* لما نضغط على الزرار، بنطبق كلاس .light (هنعتبره هو الوضع الكهرماني) */
 body.light {
-  /* الألوان الأساسية مش هتتغير */
-  --bg: var(--base-bg);
-  --surface: var(--base-surface);
-  --text: var(--base-text);
-  --muted: var(--base-muted);
-  
-  /* هنغير بس ألوان التأكيد والخلفية الشمال */
-  --accent-a: var(--gold-accent-a);
-  --accent-b: var(--gold-accent-b);
-  --hero-grad-start: var(--hero-grad-dark-start);
-  --hero-grad-end: var(--hero-grad-dark-end);
+  --bg: var(--light-bg);
+  --surface: var(--light-surface);
+  --text: var(--light-text);
+  --muted: var(--light-muted);
+  --accent-a: var(--light-accent-a);
+  --accent-b: var(--light-accent-b);
 }
     /* ---------------- Reset / Base ---------------- */
     *{box-sizing:border-box}
@@ -229,7 +218,7 @@ section#hero.split-hero {
   display: flex;
   flex-direction: column;
   padding:0px 40px 40px 40px;
-   background: linear-gradient(145deg, var(--hero-grad-start), var(--hero-grad-end));
+    background: linear-gradient(145deg, var(--accent-a), var(--accent-b));
   color: white;
   position: relative;
 }
