@@ -203,19 +203,27 @@
     @keyframes fadeUp{to{opacity:1;transform:none}}
 
 /* ============================================== */
-/* === تصميم الانترو (النسخة المستقرة) === */
+/* === تصميم الانترو (النسخة النهائية والمضمونة) === */
 /* ============================================== */
 
-/* 1. الحاوية الرئيسية للانترو */
+/* الخطوة 1: بنلغي أي ستايل عام ممكن يبوظ الانترو */
 section#hero.split-hero {
-  display: grid !important;
-  grid-template-columns: 40% 60%;
-  align-items: stretch;
+  display: block !important; /* بنجبره يكون block عادي عشان نتحكم فيه */
   padding: 0 !important;
   height: 100vh;
+  overflow: hidden; /* عشان نمنع أي مشاكل في الـ scroll */
 }
 
-/* 2. الجزء الشمال */
+/* الخطوة 2: الـ container الجديد هو اللي هيعمل التقسيم بالـ grid */
+.hero-container {
+  width: 100%;
+  height: 100%; /* ياخد طول الشاشة بالكامل */
+  display: grid;
+  grid-template-columns: 40% 60%;
+  align-items: stretch;
+}
+
+/* الجزء الشمال */
 .split-left {
   display: flex;
   flex-direction: column;
@@ -241,10 +249,6 @@ section#hero.split-hero {
   overflow: hidden;
   margin-top: auto;
   margin-bottom: auto;
-  
-  /* <<<--- هنا الحل الجديد والآمن ---<<< */
-  position: relative; /* بنخليه قابل للحركة من مكانه الأصلي */
-  transform: translateX(50%); /* بنحركه لليمين بنسبة 50% من عرضه هو */
 }
 
 .hero-photo {
@@ -258,25 +262,22 @@ section#hero.split-hero {
   gap: 24px;
 }
 
-/* 3. الجزء اليمين */
+/* الجزء اليمين */
 .split-right {
   background: var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px;
-  
-  /* <<<--- ضيف السطر ده ---<<< */
-  padding-left: 100px; /* نزود مسافة من الشمال */
 }
 
-/* 4. كود الموبايل (زي ما هو) */
+/* الخطوة 3: تعديل الـ Responsive عشان يستهدف الـ container الجديد */
 @media (max-width: 980px) {
-  section#hero.split-hero {
-    grid-template-columns: 1fr;
+  .hero-container {
+    grid-template-columns: 1fr; /* عمود واحد فقط */
+    height: auto;
   }
   .split-left {
-    min-height: auto;
     padding: 60px 20px;
     justify-content: center;
   }
