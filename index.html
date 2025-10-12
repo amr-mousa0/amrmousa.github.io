@@ -84,23 +84,31 @@
   transform: translateX(-120%); /* زي ما اتفقنا عشان تكون مخفية */
   transition: transform .38s var(--ease), background .38s var(--ease), box-shadow .38s var(--ease); /* زودنا الوقت عشان يكون أنعم */
 }
-      .drawer.expanded{
-  width: 300px; /* خلينا العرض أنسب شوية بدل 320px */
-  transform: translateX(0); /* رجوع للمكان الطبيعي */
-  /* الخلفية الجديدة مع تدرج لوني أنيق */
-  background: linear-gradient(180deg, var(--accent-b), var(--accent-a)); /* تدرج من ألوان الثيم */
-  box-shadow: 0 40px 100px rgba(2,6,23,0.7), 0 0 0 4px rgba(255,255,255,0.06); /* ظل أقوى مع إطار خفيف */
+     .drawer.expanded {
+  width: 300px;
+  transform: translateX(0);
+  
+  /* -- التعديلات الجديدة هنا -- */
+  background: rgba(30, 41, 59, 0.3); /* خلفية زجاجية أغمق وأشيك */
+  backdrop-filter: blur(16px); /* زيادة قوة التأثير الزجاجي */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* إطار خفيف للتحديد */
+  border-radius: 24px; /* <-- حواف أنعم للقائمة نفسها */
+  box-shadow: 0 40px 100px rgba(2,6,23,0.7);
 }
     .mini-dot{
   display: none; /* إخفاء الـ mini-dot */
 }
     .menu{width:100%;display:flex;flex-direction:column;gap:10px;margin-top:18px;align-items:stretch;justify-content:center;height:100%}
-   .menu-item{
-  display:flex;gap:12px;align-items:center;padding:12px 16px; /* زودنا البادينج الأفقي */
-  border-radius:12px;cursor:pointer;
-  transition: background .22s ease-out, transform .18s ease-out, box-shadow .22s ease-out; /* سموث أكتر */
-  border: 1px solid rgba(255,255,255,0.1); /* إطار خفيف */
-  margin-bottom: 8px; /* مسافة بين العناصر */
+  .menu-item {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding:12px 16px;
+  border-radius: 16px; /* <-- حواف أنعم للعناصر */
+  cursor:pointer;
+  transition: background .22s ease-out, transform .18s ease-out, box-shadow .22s ease-out;
+  border: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 8px;
 }
 .menu-item:hover{
   background: rgba(255,255,255,0.15); /* خلفية فاتحة عند التحويم */
@@ -309,6 +317,42 @@
         color: white;
         border-color: rgba(255, 255, 255, 0.3);
     }
+    /* ---- أضف هذه الأكواد الجديدة للـ CSS ---- */
+
+/* 1. تعديل لون زرار المنيو الأصلي */
+#menuBtn {
+  background: var(--accent-a); /* اللون البنفسجي */
+  color: white; /* لون الأيقونة أبيض */
+  transition: all .3s var(--ease);
+}
+
+/* 2. إخفاء الزرار الأصلي لما القائمة تتفتح */
+body.drawer-open .top-left {
+  opacity: 0;
+  pointer-events: none; /* عشان ميستقبلش أي كليكات وهو مختفي */
+  transform: scale(0.9);
+}
+
+/* 3. ستايل زرار الإغلاق الجديد */
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255,255,255,0.15); /* خلفية شفافة مميزة */
+  color: white;
+  opacity: 0; /* مخفي في العادي */
+  pointer-events: none;
+  transform: scale(0.8);
+  transition: all .3s var(--ease);
+  z-index: 210; /* عشان يكون فوق كل حاجة في القائمة */
+}
+
+/* 4. إظهار زرار الإغلاق لما القائمة تتفتح */
+.drawer.expanded .close-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
 
   </style>
 </head>
@@ -326,6 +370,9 @@
 
   <!-- drawer (left) -->
   <nav id="drawer" class="drawer collapsed" aria-label="Site sections" aria-hidden="true">
+     <button id="closeBtn" class="icon-btn close-btn" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
     <div class="mini-dot" aria-hidden="true"></div>
     <div class="menu menu-centered" role="menu" aria-orientation="vertical">
      <div class="menu-item" data-target="#hero" role="menuitem" tabindex="0">
@@ -478,6 +525,7 @@
   <script>
     /* ===== Elements & state ===== */
     const menuBtn = document.getElementById('menuBtn');
+    const closeBtn = document.getElementById('closeBtn'); // <-- هات الزرار الجديد
     const drawer = document.getElementById('drawer');
     const menuItems = drawer.querySelectorAll('.menu-item');
     const themeBtn = document.getElementById('themeBtn');
@@ -529,23 +577,25 @@
     }
 
     // menu open/close
-    function setDrawer(open){
-      drawerOpen = !!open;
-      if(drawerOpen){
-        drawer.classList.add('expanded');
-        drawer.classList.remove('collapsed');
-        drawer.setAttribute('aria-hidden','false');
-        // focus first menu item for accessibility
-        setTimeout(()=> { const it = drawer.querySelector('.menu-item'); if(it) it.focus(); }, 220);
-      } else {
-        drawer.classList.remove('expanded');
-        drawer.classList.add('collapsed');
-        drawer.setAttribute('aria-hidden','true');
-      }
-    }
-    setDrawer(false);
+   function setDrawer(open){
+  drawerOpen = !!open;
+  if(drawerOpen){
+    drawer.classList.add('expanded');
+    document.body.classList.add('drawer-open'); // <-- ضيف كلاس للـ body
+    drawer.setAttribute('aria-hidden','false');
+    setTimeout(()=> { drawer.querySelector('.menu-item')?.focus(); }, 220);
+  } else {
+    drawer.classList.remove('expanded');
+    document.body.classList.remove('drawer-open'); // <-- شيل الكلاس من الـ body
+    drawer.setAttribute('aria-hidden','true');
+  }
+}
+setDrawer(false);
 
     menuBtn.addEventListener('click', ()=> { setDrawer(!drawerOpen); playClick(); });
+
+    // === ضيف الجزء ده عشان زرار الإغلاق يشتغل ===
+    closeBtn.addEventListener('click', ()=> { setDrawer(false); playClick(); }); 
 
     // menu item clicks -> go to section, close drawer
     menuItems.forEach(item=>{
