@@ -204,28 +204,75 @@ body.light .btn-ghost:hover {
   border-color: var(--surface);
 }
 
-    /* Who section */
-    .who-grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
-    background: var(--dark-accent-b);margin:14px 0;box-shadow:0 10px 30px rgba(11,59,102,0.06)}
+   /* --- Who section (New Layout & Styling) --- */
+.who-grid {
+  display: grid;
+  grid-template-columns: 1fr 400px; /* الجزء الأيمن 400px ثابت زي الصورة */
+  gap: 60px; /* مسافة أكبر بين الجزأين */
+  align-items: center;
+  margin-top: 40px; /* عشان يبدأ تحت شوية */
+}
 
-    /* Projects grid */
-    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.who-content {
+  max-width: 600px; /* عرض النص محدود زي الصورة */
+  color: var(--text);
+}
 
-    /* Contact */
-    .contact-card{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.who-content h2 {
+  font-size: 44px; /* حجم عنوان أكبر */
+  margin-bottom: 8px; /* مسافة تحت العنوان */
+  color: var(--text); /* لون العنوان نص عادي */
+}
 
-    /* responsive */
-    @media (max-width:980px){
-      .section-inner{grid-template-columns:1fr;padding:8px}
-      .drawer.expanded{width:calc(100% - 32px);left:16px;right:16px}
-    }
-    @media (max-width:640px){
-      .top-left{left:8px}
-      .top-right{right:8px}
-      .icon-btn{width:42px;height:42px}
-      .hero-title{font-size:34px}
-    }
+.who-separator {
+  width: 100px; /* عرض السيباراتور */
+  height: 4px; /* سمك السيباراتور */
+  background: var(--accent-a); /* لون السيباراتور من ألوان الثيم */
+  margin-bottom: 24px; /* مسافة تحت السيباراتور */
+}
 
+.who-content p {
+  font-size: 16px; /* حجم الخط العادي */
+  line-height: 1.6; /* تباعد الأسطر */
+  margin-bottom: 16px; /* مسافة بين الفقرات */
+  color: var(--muted); /* لون النصوص muted عشان يبان زي الصورة */
+}
+
+/* تلوين الـ SVG بتاع الـ illustration */
+.who-illustration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.who-illustration svg {
+  max-width: 100%;
+  height: auto;
+  /* لو الـ SVG بتاعك معقد، ممكن تحتاج تعدل الألوان دي جواه مباشرة */
+  /* هنا بنحاول نغير الألوان اللي ليها علاقة بالـ fill أو stroke */
+}
+
+/* responsive */
+@media (max-width: 980px) {
+  .who-grid {
+    grid-template-columns: 1fr; /* عمود واحد في الموبايل */
+    gap: 40px;
+    text-align: center; /* النصوص في النص */
+  }
+  .who-content {
+    max-width: none;
+  }
+  .who-content h2 {
+    font-size: 38px;
+  }
+  .who-separator {
+    margin-left: auto; /* عشان السيباراتور يجي في النص */
+    margin-right: auto;
+  }
+}
+
+  
     /* small entrance animation */
     .fade-up{opacity:0;transform:translateY(12px);animation:fadeUp .66s forwards}
     @keyframes fadeUp{to{opacity:1;transform:none}}
@@ -504,24 +551,15 @@ body.drawer-open .top-left {
     <section id="who" aria-labelledby="who-title">
       <div class="container">
         <div class="section-inner who-grid">
-          <div class="card fade-up">
+          <div class="who-content fade-up">
             <h2 id="who-title">Who am I</h2>
-            <div class="separator" aria-hidden="true"></div>
-            <p>I’m a Data Analyst focused on transforming messy transactional data into actionable business insights. I specialize in Power BI, SQL, Python and Excel — cleaning data, building star schemas and creating dashboards stakeholders can use to act quickly.</p>
-            <p style="margin-top:12px;color:var(--muted);font-size:14px"><strong>Core Skills:</strong> Power BI • SQL (Joins, CTEs, Window) • Python (Pandas) • DAX • Data Modeling</p>
+            <div class="who-separator"></div> <p>My name's Amr. I'm a Data Analyst focused on transforming messy transactional data into actionable business insights. I specialize in Power BI, SQL, Python and Excel — cleaning data, building star schemas and creating dashboards stakeholders can use to act quickly.</p>
+            <p style="margin-top:12px;">During the day I work as a Lead Data Analyst at a local agency and in the evening I work on freelance projects and utilize the time to built my own products. I spent my leisure hours writing articles and poetry. Right now I'm also trying a hand at machine learning and AI. I love to learn and explore new arenas.</p>
           </div>
 
-          <div class="card modern-logo fade-up" aria-hidden="true" style="display:flex;align-items:center;justify-content:center">
-            <!-- decorative modern SVG -->
-            <svg width="260" height="260" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <defs>
-                <linearGradient id="G" x1="0" x2="1">
-                  <stop offset="0" stop-color="var(--accent-a)"/>
-                  <stop offset="1" stop-color="var(--accent-b)"/>
-                </linearGradient>
-              </defs>
-              <path d="M40 20 C110 0 170 12 220 60 C250 92 270 140 230 200 C190 260 120 270 60 230 C20 200 10 100 40 20 Z" fill="url(#G)" opacity="0.95"/>
-            </svg>
+          <div class="who-illustration fade-up" aria-hidden="true">
+            <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M190 100C190 116.569 176.569 130 160 130C143.431 130 130 116.569 130 100C130 83.4315 143.431 70 160 70C176.569 70 190 83.4315 190 100Z" fill="var(--dark-text)"/> <path d="M160 130V250H150L130 290H140L160 250H180L200 290H210L190 250H180V130H160Z" fill="var(--dark-text)"/> <path d="M220 160C220 160 210 170 200 180C190 190 180 200 180 200C180 200 180 210 190 220C200 230 210 240 220 240C230 240 240 230 250 220C260 210 270 200 270 200C270 200 260 190 250 180C240 170 230 160 220 160Z" fill="var(--dark-accent-a)"/> <path d="M100 160C100 160 110 170 120 180C130 190 140 200 140 200C140 200 140 210 130 220C120 230 110 240 100 240C90 240 80 230 70 220C60 210 50 200 50 200C50 200 60 190 70 180C80 170 90 160 100 160Z" fill="var(--dark-accent-b)"/> <path d="M160 300C160 300 150 310 140 320C130 330 120 340 120 340C120 340 120 350 130 360C140 370 150 380 160 380C170 380 180 370 190 360C200 350 210 340 210 340C210 340 200 330 190 320C180 310 170 300 160 300Z" fill="var(--dark-text)"/> <circle cx="280" cy="80" r="25" fill="var(--dark-text)"/> <path d="M280 80L300 60L320 80L300 100L280 80Z" fill="var(--dark-accent-a)"/> </svg>
           </div>
         </div>
       </div>
