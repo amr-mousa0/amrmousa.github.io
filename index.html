@@ -209,17 +209,20 @@ body.light .btn-ghost:hover {
 /* === تصميم Who am I (النسخة النهائية الصحيحة) === */
 /* ============================================== */
 
+/* الحاوية الرئيسية للقسم */
 .who-grid {
   display: flex;
   justify-content: space-between; /* واحد أقصى الشمال وواحد أقصى اليمين */
   align-items: center;
   width: 100%;
-  gap: 60px; /* مسافة بينهم */
-  padding: 0 40px; /* مسافة من أطراف الشاشة عشان الكلام ميلزقش */
+  max-width: 1400px; /* بنحدد عرض أقصى عشان ميسرحش أوي على الشاشات الكبيرة */
+  margin: 0 auto; /* بنوسطه في نص الصفحة */
+  padding: 0 40px; /* مسافة أمان من أطراف الشاشة */
 }
 
+/* الجزء الشمال (الكلام) */
 .who-content {
-  flex-basis: 50%; /* ياخد حوالي 50% من المساحة */
+  flex: 1 1 50%; /* ياخد حوالي 50% من المساحة */
   max-width: 600px;
 }
 
@@ -243,16 +246,17 @@ body.light .btn-ghost:hover {
   color: var(--muted);
 }
 
+/* الجزء اليمين (الرسمة) */
 .who-illustration {
-  flex-shrink: 0;
+  flex-shrink: 0; /* عشان الرسمة متصغرش */
 }
 
 .who-illustration .illustration-svg {
-  width: 100%;
-  max-width: 500px; /* حجم مناسب للرسمة */
+  width: 500px; /* حجم كبير وواضح للرسمة */
   height: auto;
 }
 
+/* تعديلات الموبايل */
 @media (max-width: 980px) {
   .who-grid {
     flex-direction: column;
@@ -262,7 +266,7 @@ body.light .btn-ghost:hover {
   .who-content {
     order: 2;
     text-align: center;
-    max-width: 600px; /* عشان النص ميفردش أوي في الموبايل */
+    max-width: 600px;
   }
   .who-illustration {
     order: 1;
@@ -334,7 +338,7 @@ section#hero.split-hero {
   height: 360px; /* <<<--- كبرنا الصورة */
   border-radius: 50%;
   /* ممكن امسحها */ 
-  border: 10px solid var(--text);
+  border: 10px solid var(--text)
   box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
@@ -553,22 +557,23 @@ body.drawer-open .top-left {
 
     <!-- WHO -->
     <section id="who" aria-labelledby="who-title">
-      <div class="container">
-        <div class="who-grid">
-          <div class="who-content fade-up">
-            <h2 id="who-title">Who am I</h2>
-            <svg class="section-decorator-svg" width="100%" height="8" preserveAspectRatio="none">
+  <div class="who-grid">
+    <div class="who-content fade-up">
+      <h2 id="who-title">Who am I</h2>
+      <svg class="section-decorator-svg" width="100%" height="8" preserveAspectRatio="none">
   <line x1="0" y1="4" x2="100%" y2="4" stroke="var(--muted)" stroke-opacity="0.3" stroke-width="2"/>
   <line x1="5%" y1="4" x2="100%" y2="4" stroke="var(--accent-a)" stroke-width="4"/>
   <circle cx="1.5%" cy="4" r="4" fill="var(--accent-a)"/>
   <circle cx="3%" cy="4" r="2" fill="var(--accent-a)"/>
-</svg>
-            <p>My name's Amr. I'm a Data Analyst focused on transforming messy transactional data into actionable business insights. I specialize in Power BI, SQL, Python and Excel — cleaning data, building star schemas and creating dashboards stakeholders can use to act quickly.</p>
-            <p style="margin-top:12px;">During the day I work as a Lead Data Analyst at a local agency and in the evening I work on freelance projects and utilize the time to built my own products. I spent my leisure hours writing articles and poetry. Right now I'm also trying a hand at machine learning and AI. I love to learn and explore new arenas.</p>
-          </div>
-
-          <div class="who-illustration fade-up" aria-hidden="true">
-       <svg class="illustration-svg" viewBox="0 0 642 839" fill="none" xmlns="http://www.w3.org/2000/svg">
+  </svg>
+      
+     <p>My name's Amr. I'm a Data Analyst focused on transforming messy transactional data into actionable business insights. I specialize in Power BI, SQL, Python and Excel — cleaning data, building star schemas and creating dashboards stakeholders can use to act quickly.</p>
+     <p style="margin-top:12px;">During the day I work as a Lead Data Analyst at a local agency and in the evening I work on freelance projects and utilize the time to built my own products. I spent my leisure hours writing articles and poetry. Right now I'm also trying a hand at machine learning and AI. I love to learn and explore new arenas.</p>
+      </div>
+    </div>
+  
+    <div class="who-illustration fade-up" aria-hidden="true">
+    <svg class="illustration-svg" viewBox="0 0 642 839" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M625.105 210.172L565.965 349.775L582.269 356.682L641.409 217.079L625.105 210.172Z" fill="var(--muted)"/>
     <path d="M625.105 210.172L565.965 349.775L582.269 356.682L641.409 217.079L625.105 210.172Z" fill="var(--accent-a)"/>
     <path d="M375.595 184.387L358.941 231.774L396.867 235.625L395.638 180.998L375.595 184.387Z" fill="var(--muted)"/>
