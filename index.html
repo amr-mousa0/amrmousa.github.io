@@ -211,11 +211,10 @@ body.light .btn-ghost:hover {
 
 .who-grid {
   display: grid;
-  grid-template-columns: 1fr 450px; /* <<<--- زودنا مساحة الـ SVG */
-  gap: 80px; /* <<<--- زودنا المسافة بين النص والصورة */
+  grid-template-columns: 1fr 450px;
+  gap: 80px;
   align-items: center;
 }
-
 .who-content h2 {
   font-size: 52px; /* <<<--- كبرنا حجم العنوان */
   font-weight: 700;
@@ -225,12 +224,12 @@ body.light .btn-ghost:hover {
 
 
 
+/* الشريط الزخرفي بعد التعديل */
 .section-decorator-svg {
-  position: absolute;
-  top: 40px; /* المسافة من أعلى السكشن */
-  left: 0;
-  width: 100%;
-  height: 8px; /* ارتفاع مناسب للخط والنقط */
+  width: 100%; /* هيخليه ياخد عرض الـ container بالكامل */
+  height: 8px;
+  display: block; /* عشان نضمن إنه ياخد مساحة صح */
+  margin-bottom: 60px; /* مسافة بينه وبين عنوان "Who am I" */
 }
 
 
@@ -555,13 +554,13 @@ body.drawer-open .top-left {
 
     <!-- WHO -->
     <section id="who" aria-labelledby="who-title">
-     <svg class="section-decorator-svg" width="100%" height="8" preserveAspectRatio="none">
+      <div class="container">
+         <svg class="section-decorator-svg" width="100%" height="8" preserveAspectRatio="none">
   <line x1="0" y1="4" x2="100%" y2="4" stroke="var(--muted)" stroke-opacity="0.3" stroke-width="2"/>
   <line x1="5%" y1="4" x2="100%" y2="4" stroke="var(--accent-a)" stroke-width="4"/>
   <circle cx="1.5%" cy="4" r="4" fill="var(--accent-a)"/>
   <circle cx="3%" cy="4" r="2" fill="var(--accent-a)"/>
 </svg>
-      <div class="container">
         <div class="section-inner who-grid">
           <div class="who-content fade-up">
             <h2 id="who-title">Who am I</h2>
