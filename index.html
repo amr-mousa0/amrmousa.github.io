@@ -277,9 +277,11 @@ body.light .btn-ghost:hover {
 }
 
 .who-illustration .illustration-svg {
-  width: 80%; /* بنخليها تاخد 80% من المساحة المتاحة ليها */
-  max-width: 350px; /* بنحدد أقصى عرض عشان متكبرش زيادة عن اللزوم */
-  height: auto;
+  width: 100%; /* اجعل الـ SVG يملأ العرض المتاح له */
+  max-width: 350px; /* حدد أقصى عرض لضمان عدم تمدده بشكل مبالغ فيه */
+  height: auto; /* حافظ على نسبة الطول إلى العرض */
+  display: block; /* لضمان عرض صحيح كـ block element */
+  margin: 0 auto; /* لوسيطته في الموبايل إذا كان العرض أقل من max-width */
 }
 
 /* تعديلات الموبايل */
@@ -588,21 +590,22 @@ body.drawer-open .top-left {
           </div>
 
           <div class="who-illustration fade-up" aria-hidden="true">
-          <svg class="illustration-svg" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M159 130L159 250L135 315H145L159 250H191L205 315H215L191 250V130H159Z" fill="var(--text)"/>
-    <circle cx="175" cy="110" r="20" fill="var(--text)"/>
-    <path d="M195 110C195 121.046 186.046 130 175 130C163.954 130 155 121.046 155 110" stroke="var(--muted)" stroke-width="4"/>
-    <rect x="192" y="105" width="6" height="10" rx="3" fill="var(--accent-b)"/>
-    <rect x="152" y="105" width="6" height="10" rx="3" fill="var(--accent-b)"/>
-    <path d="M150 140H200V160H205V210H145V160H150V140Z" fill="var(--accent-a)"/>
-    <rect x="160" y="185" width="30" height="15" rx="3" fill="var(--surface)"/>
-    <circle cx="220" cy="90" r="10" fill="var(--surface)"/>
-    <circle cx="245" cy="75" r="15" fill="var(--surface)"/>
-    <circle cx="245" cy="75" r="12" fill="var(--accent-b)"/>
-    <path d="M240 70C242 67, 248 67, 250 70" stroke="var(--surface)" stroke-width="1.5" stroke-linecap="round"/>
-    <path d="M238 75H252" stroke="var(--surface)" stroke-width="1.5" stroke-linecap="round"/>
-    <path d="M240 80C242 83, 248 83, 250 80" stroke="var(--surface)" stroke-width="1.5" stroke-linecap="round"/>
-    <ellipse cx="245" cy="75" rx="4" ry="11" stroke="var(--surface)" stroke-width="1.5" stroke-linecap="round"/>
+         <svg class="illustration-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M200 130C200 119.5 190.5 110 180 110C169.5 110 160 119.5 160 130V250L140 310H150L165 250H195L210 310H220L200 250V130H160Z" fill="var(--text)"/>
+    
+    <path d="M210 115C210 125.5 201.5 134 191 134C180.5 134 172 125.5 172 115" stroke="var(--accent-a)" stroke-width="8" stroke-linecap="round"/>
+    <rect x="210" y="110" width="10" height="10" rx="5" fill="var(--accent-a)"/>
+    <rect x="150" y="110" width="10" height="10" rx="5" fill="var(--accent-a)"/>
+
+    <path d="M140 140H210V180H220V230H130V180H140V140Z" fill="var(--accent-a)"/>
+    <path d="M145 200H205V215H145V200Z" fill="var(--surface)"/>
+    
+    <circle cx="280" cy="80" r="5" fill="var(--accent-a)"/>
+    <path d="M285 85L290 80L285 75L280 80Z" fill="var(--accent-a)"/>
+    <circle cx="260" cy="110" r="3" fill="var(--accent-a)"/>
+    <path d="M263 113L266 110L263 107L260 110Z" fill="var(--accent-a)"/>
+    <circle cx="290" cy="140" r="4" fill="var(--accent-a)"/>
+    <path d="M294 144L298 140L294 136L290 140Z" fill="var(--accent-a)"/>
 </svg>
           </div>
         </div>
