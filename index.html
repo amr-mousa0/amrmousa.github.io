@@ -211,8 +211,8 @@ body.light .btn-ghost:hover {
 
 .who-grid {
   display: grid;
-  grid-template-columns: 1fr 450px;
-  gap: 80px;
+  grid-template-columns: 1fr 400px; /* <<<--- قللنا مساحة الـ SVG عشان النص يكبر */
+  gap: 120px; /* <<<--- زودنا المسافة بينهم جدًا */
   align-items: center;
 }
 .who-content h2 {
@@ -224,12 +224,12 @@ body.light .btn-ghost:hover {
 
 
 
-/* الشريط الزخرفي بعد التعديل */
 .section-decorator-svg {
-  width: 100%; /* هيخليه ياخد عرض الـ container بالكامل */
+  width: 100%;
   height: 8px;
-  display: block; /* عشان نضمن إنه ياخد مساحة صح */
-  margin-bottom: 60px; /* مسافة بينه وبين عنوان "Who am I" */
+  display: block;
+  margin-bottom: 80px; /* <<<--- زودنا المسافة تحته */
+  transform: scaleX(1.1); /* <<<--- كبرنا حجمه بالعرض شوية */
 }
 
 
