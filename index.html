@@ -276,9 +276,9 @@ body.light .btn-ghost:hover {
   max-width: 550px; /* خلينا ياخد مساحة أوسع */
 }
 
-/* هنا الحل بتاع حجم الـ SVG */
-.who-illustration svg {
-  width: 100%; /* <<<--- بيخليه يملأ المساحة المتاحة له (450px) */
+.who-illustration .illustration-svg {
+  width: 80%; /* بنخليها تاخد 80% من المساحة المتاحة ليها */
+  max-width: 350px; /* بنحدد أقصى عرض عشان متكبرش زيادة عن اللزوم */
   height: auto;
 }
 
@@ -588,31 +588,21 @@ body.drawer-open .top-left {
           </div>
 
           <div class="who-illustration fade-up" aria-hidden="true">
-            <svg class="illustration-svg" viewBox="0 0 300 350" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M136.25 106.25V243.75L118.75 306.25H127.5L141.25 243.75H163.75L177.5 306.25H186.25L168.75 243.75V106.25H136.25Z" fill="var(--text)"/>
-    <path d="M136.25 106.25L168.75 106.25L159.375 137.5L145.625 137.5L136.25 106.25Z" fill="var(--accent-a)"/>
-    <path d="M136.25 106.25H168.75V125H136.25V106.25Z" fill="var(--muted)"/>
-    <path d="M193.75 193.75V181.25L181.25 162.5V125H131.25V162.5L118.75 181.25V193.75H193.75Z" fill="var(--accent-a)"/>
-    <path d="M125 106.25H181.25V125H125V106.25Z" fill="var(--surface)"/>
-    <path d="M181.25 125C181.25 138.807 170.057 150 156.25 150C142.443 150 131.25 138.807 131.25 125H181.25Z" fill="var(--surface)"/>
-    <path d="M206.25 162.5H231.25V193.75H206.25V162.5Z" stroke="var(--accent-a)" stroke-width="2"/>
-    <path d="M210 168.75H227.5V171.875H210V168.75ZM210 176.562H227.5V179.688H210V176.562ZM210 184.375H227.5V187.5H210V184.375Z" fill="var(--surface)"/>
-    <path d="M207.5 160L211.25 155L213.75 160" stroke="var(--text)" stroke-width="2"/>
-    <path d="M213.75 152.5L217.5 147.5L220 152.5" stroke="var(--text)" stroke-width="2"/>
-    <path d="M143.75 75C143.75 66.7157 150.466 60 158.75 60C167.034 60 173.75 66.7157 173.75 75C173.75 83.2843 167.034 90 158.75 90C150.466 90 143.75 83.2843 143.75 75Z" fill="var(--surface)"/>
-    <rect x="25" y="18.75" width="100" height="62.5" rx="6.25" fill="var(--surface)"/>
-    <circle cx="131.25" cy="87.5" r="6.25" fill="var(--surface)"/>
-    <circle cx="143.75" cy="93.75" r="3.125" fill="var(--surface)"/>
-    <path d="M43.75 43.75L62.5 31.25L75 50L62.5 68.75L43.75 56.25" stroke="var(--accent-a)" stroke-width="1.25"/>
-    <circle cx="43.75" cy="43.75" r="1.875" fill="var(--accent-a)"/>
-    <circle cx="62.5" cy="31.25" r="1.875" fill="var(--accent-a)"/>
-    <circle cx="75" cy="50" r="1.875" fill="var(--accent-a)"/>
-    <circle cx="62.5" cy="68.75" r="1.875" fill="var(--accent-a)"/>
-    <circle cx="43.75" cy="56.25" r="1.875" fill="var(--accent-a)"/>
-    <path d="M87.5 62.5H90.625V75H87.5V62.5ZM93.75 56.25H96.875V75H93.75V56.25ZM100 50H103.125V75H100V50Z" fill="var(--accent-a)"/>
-    <path d="M81.25 37.5H84.375V43.75H81.25V37.5ZM87.5 34.375H90.625V43.75H87.5V34.375Z" fill="var(--accent-a)"/>
-    <rect x="100" y="31.25" width="12.5" height="12.5" fill="var(--accent-b)"/>
-    <text x="103.125" y="42.1875" font-family="monospace" font-size="8.75" fill="var(--text)">83</text>
+          <svg class="illustration-svg" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M159 130L159 250L135 315H145L159 250H191L205 315H215L191 250V130H159Z" fill="var(--text)"/>
+    <circle cx="175" cy="110" r="20" fill="var(--text)"/>
+    <path d="M195 110C195 121.046 186.046 130 175 130C163.954 130 155 121.046 155 110" stroke="var(--muted)" stroke-width="4"/>
+    <rect x="192" y="105" width="6" height="10" rx="3" fill="var(--accent-b)"/>
+    <rect x="152" y="105" width="6" height="10" rx="3" fill="var(--accent-b)"/>
+    <path d="M150 140H200V160H205V210H145V160H150V140Z" fill="var(--accent-a)"/>
+    <rect x="160" y="185" width="30" height="15" rx="3" fill="var(--surface)"/>
+    <circle cx="220" cy="90" r="10" fill="var(--surface)"/>
+    <circle cx="245" cy="75" r="15" fill="var(--surface)"/>
+    <circle cx="245" cy="75" r="12" fill="var(--accent-b)"/>
+    <path d="M240 70C242 67, 248 67, 250 70" stroke="var(--surface)" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M238 75H252" stroke="var(--surface)" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M240 80C242 83, 248 83, 250 80" stroke="var(--surface)" stroke-width="1.5" stroke-linecap="round"/>
+    <ellipse cx="245" cy="75" rx="4" ry="11" stroke="var(--surface)" stroke-width="1.5" stroke-linecap="round"/>
 </svg>
           </div>
         </div>
