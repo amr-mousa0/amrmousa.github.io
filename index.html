@@ -223,13 +223,12 @@ body.light .btn-ghost:hover {
   color: var(--accent-a); /* <<<--- خلينا العنوان ياخد لون التأكيد زي الصورة */
 }
 
-/* هنا الحل بتاع السيباراتور */
-.who-separator {
-  width: 80px; /* <<<--- صغرنا عرضه */
-  height: 4px; /* <<<--- قللنا سمكه */
-  background: var(--accent-a); /* خلينا لونه هو لون التأكيد */
-  margin-bottom: 30px; /* زودنا المسافة تحته */
-  border-radius: 0; /* <<<--- شيلنا الحواف الدائرية */
+
+/* السيباراتور الجديد (SVG) */
+.who-separator-svg {
+  width: 100px;
+  height: 4px;
+  margin-bottom: 24px;
 }
 
 /* هنا الحل بتاع حجم النص */
@@ -547,21 +546,40 @@ body.drawer-open .top-left {
         <div class="section-inner who-grid">
           <div class="who-content fade-up">
             <h2 id="who-title">Who am I</h2>
-            <div class="who-separator"></div> <p>My name's Amr. I'm a Data Analyst focused on transforming messy transactional data into actionable business insights. I specialize in Power BI, SQL, Python and Excel — cleaning data, building star schemas and creating dashboards stakeholders can use to act quickly.</p>
+            <svg class="who-separator-svg" width="100" height="4" viewBox="0 0 100 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <line y1="2" x2="100" y2="2" stroke="var(--accent-a)" stroke-width="4"/>
+  <circle cx="2" cy="2" r="2" fill="var(--accent-a)"/>
+  <circle cx="8" cy="2" r="1" fill="var(--accent-a)"/>
+</svg> <p>My name's Amr. I'm a Data Analyst focused on transforming messy transactional data into actionable business insights. I specialize in Power BI, SQL, Python and Excel — cleaning data, building star schemas and creating dashboards stakeholders can use to act quickly.</p>
             <p style="margin-top:12px;">During the day I work as a Lead Data Analyst at a local agency and in the evening I work on freelance projects and utilize the time to built my own products. I spent my leisure hours writing articles and poetry. Right now I'm also trying a hand at machine learning and AI. I love to learn and explore new arenas.</p>
           </div>
 
           <div class="who-illustration fade-up" aria-hidden="true">
-            <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M190 100C190 116.569 176.569 130 160 130C143.431 130 130 116.569 130 100C130 83.4315 143.431 70 160 70C176.569 70 190 83.4315 190 100Z" fill="var(--text)"/>
-    <path d="M160 130V250H150L130 290H140L160 250H180L200 290H210L190 250H180V130H160Z" fill="var(--text)"/>
-    <path d="M160 300C160 300 150 310 140 320C130 330 120 340 120 340C120 340 120 350 130 360C140 370 150 380 160 380C170 380 180 370 190 360C200 350 210 340 210 340C210 340 200 330 190 320C180 310 170 300 160 300Z" fill="var(--text)"/>
-    <circle cx="280" cy="80" r="25" fill="var(--text)"/>
-
-    <path d="M220 160C220 160 210 170 200 180C190 190 180 200 180 200C180 200 180 210 190 220C200 230 210 240 220 240C230 240 240 230 250 220C260 210 270 200 270 200C270 200 260 190 250 180C240 170 230 160 220 160Z" fill="var(--accent-a)"/>
-    <path d="M280 80L300 60L320 80L300 100L280 80Z" fill="var(--accent-a)"/>
-
-    <path d="M100 160C100 160 110 170 120 180C130 190 140 200 140 200C140 200 140 210 130 220C120 230 110 240 100 240C90 240 80 230 70 220C60 210 50 200 50 200C50 200 60 190 70 180C80 170 90 160 100 160Z" fill="var(--accent-b)"/>
+            <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w.org/2000/svg">
+  <g id="Man walking with backpack and phone">
+    <path id="Backpack" d="M180 160H220V180H230V240H170V180H180V160Z" fill="var(--muted)"/>
+    <path id="Backpack Pocket" d="M185 210H215V225H185V210Z" fill="var(--accent-a)"/>
+    <path id="Body" d="M180 160V280L160 340H170L185 280H215L230 340H240L220 280V160H180Z" fill="var(--text)"/>
+    <path id="Shirt" d="M180 160L220 160L210 200L190 200L180 160Z" fill="var(--accent-a)"/>
+    <path id="Headphones" d="M220 110C220 121.046 211.046 130 200 130C188.954 130 180 121.046 180 110C180 98.9543 188.954 90 200 90C211.046 90 220 98.9543 220 110Z" fill="var(--muted)"/>
+    <path id="Phone" d="M240 180H260V220H240V180Z" fill="var(--accent-a)"/>
+    <path id="Phone Details" d="M245 185H255V190H245V185ZM245 195H255V200H245V195ZM245 205H255V210H245V205Z" fill="var(--text)"/>
+  </g>
+  <g id="Thought Bubble">
+    <rect x="20" y="40" width="160" height="100" rx="10" fill="var(--surface)"/>
+    <circle cx="190" cy="140" r="10" fill="var(--surface)"/>
+    <circle cx="210" cy="150" r="5" fill="var(--surface)"/>
+    <path id="Bubble Content - Network" d="M40 70L70 50L100 80L70 110L40 90" stroke="var(--accent-a)" stroke-width="2"/>
+    <circle cx="40" cy="70" r="3" fill="var(--accent-a)"/>
+    <circle cx="70" cy="50" r="3" fill="var(--accent-a)"/>
+    <circle cx="100" cy="80" r="3" fill="var(--accent-a)"/>
+    <circle cx="70" cy="110" r="3" fill="var(--accent-a)"/>
+    <circle cx="40" cy="90" r="3" fill="var(--accent-a)"/>
+    <path id="Bubble Content - Bars" d="M120 100H125V120H120V100ZM130 90H135V120H130V90ZM140 80H145V120H140V80Z" fill="var(--accent-a)"/>
+    <path id="Bubble Content - Signal" d="M110 60H115V70H110V60ZM120 55H125V70H120V55Z" fill="var(--accent-a)"/>
+    <rect x="140" y="50" width="20" height="20" fill="var(--accent-b)"/>
+    <text x="145" y="65" font-family="monospace" font-size="14" fill="var(--text)">83</text>
+  </g>
 </svg>
           </div>
         </div>
