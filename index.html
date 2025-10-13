@@ -223,41 +223,14 @@ body.light .btn-ghost:hover {
   color: var(--accent-a); /* <<<--- خلينا العنوان ياخد لون التأكيد زي الصورة */
 }
 
-.section-top-decorator {
+
+
+.section-decorator-svg {
   position: absolute;
-  top: 40px; /* المسافة من أعلى الصفحة */
+  top: 40px; /* المسافة من أعلى السكشن */
   left: 0;
   width: 100%;
-  height: 4px; /* سمك الخط */
-  background: var(--accent-a); /* لون الخط الرئيسي */
-}
-
-/* النقطة الكبيرة */
-.section-top-decorator::before {
-  content: '';
-  display: block;
-  width: 8px;
-  height: 8px;
-  background: var(--accent-a);
-  border-radius: 50%;
-  position: absolute;
-  left: 40px; /* بعدها عن بداية الصفحة */
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* النقطة الصغيرة */
-.section-top-decorator::after {
-  content: '';
-  display: block;
-  width: 4px;
-  height: 4px;
-  background: var(--accent-a);
-  border-radius: 50%;
-  position: absolute;
-  left: 55px; /* بعدها عن بداية الصفحة */
-  top: 50%;
-  transform: translateY(-50%);
+  height: 8px; /* ارتفاع مناسب للخط والنقط */
 }
 
 
@@ -582,7 +555,12 @@ body.drawer-open .top-left {
 
     <!-- WHO -->
     <section id="who" aria-labelledby="who-title">
-      <div class="section-top-decorator"></div>
+     <svg class="section-decorator-svg" width="100%" height="8" preserveAspectRatio="none">
+  <line x1="0" y1="4" x2="100%" y2="4" stroke="var(--muted)" stroke-opacity="0.3" stroke-width="2"/>
+  <line x1="5%" y1="4" x2="100%" y2="4" stroke="var(--accent-a)" stroke-width="4"/>
+  <circle cx="1.5%" cy="4" r="4" fill="var(--accent-a)"/>
+  <circle cx="3%" cy="4" r="2" fill="var(--accent-a)"/>
+</svg>
       <div class="container">
         <div class="section-inner who-grid">
           <div class="who-content fade-up">
