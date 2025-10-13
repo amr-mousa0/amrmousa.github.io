@@ -206,87 +206,80 @@ body.light .btn-ghost:hover {
 
    /* --- Who section (New Layout & Styling) --- */
 /* ============================================== */
-/* === تصميم Who am I (النسخة المطابقة للصور) === */
+/* === تصميم Who am I (النسخة النهائية والمضبوطة) === */
 /* ============================================== */
+
+/* الشريط الزخرفي الجديد (فوق خالص ومحاذي للمحتوى) */
+.who-separator-svg {
+  position: absolute;
+  top: 80px; /* <<<--- المسافة من أعلى السكشن */
+  
+  /* هنا الحل السحري للمحاذاة */
+  width: 100%;
+  max-width: 1100px; /* <<<--- نفس عرض المحتوى الرئيسي */
+  left: 50%;
+  transform: translateX(-50%); /* <<<--- بنوسطه في الصفحة بالضبط */
+
+  height: 8px;
+}
 
 /* الحاوية الرئيسية للقسم */
 .who-grid {
   display: flex;
-  justify-content: space-between; /* المحتوى على الأطراف */
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1200px; /* <<<--- نفس العرض الأقصى اللي في الصورة */
-  margin: 0 auto; /* بيوسط السكشن في الصفحة */
-  padding: 80px 40px; /* <<<--- مسافات علوية وسفلية وجانبية مطابقة للصور */
+  max-width: 1100px; /* <<<--- نفس عرض السيباراتور */
+  margin: 0 auto;
+  margin-top: 120px; /* بننزل المحتوى لتحت عشان السيباراتور */
+  gap: 80px; /* <<<--- المسافة بين النص والرسمة */
 }
 
 /* الجزء الشمال (الكلام) */
 .who-content {
-  flex: 0 0 55%; /* <<<--- هنا الضبطة اللي بتدي مساحة الكلام */
-  max-width: 650px; /* عشان الكلام ميكبرش عن حد معين */
+  flex-basis: 55%;
 }
 .who-content h2 {
-  font-size: 56px; /* حجم الخط قريب من الصور */
+  font-size: 52px;
   font-weight: 700;
   color: var(--accent-a);
-  margin-bottom: 20px; /* مسافة تحت العنوان */
+  margin-bottom: 30px;
 }
-
-/* السيباراتور اللي تحت العنوان */
-.who-separator-svg {
-  width: 120px; /* نفس عرض السيباراتور في الصورة */
-  height: 8px;
-  margin-top: 0;
-  margin-bottom: 30px; /* مسافة تحت السيباراتور عشان الكلام يبدأ */
-  display: block; /* عشان ياخد مساحته كاملة */
-}
-
 .who-content p {
-  font-size: 18px; /* حجم خط البراجراف في الصور */
+  font-size: 17px;
   line-height: 1.8;
   color: var(--muted);
-  margin-bottom: 20px; /* مسافة بين البراجرافات */
+  max-width: 650px; /* <<<--- زودنا العرض عشان ميبقاش مضغوط */
 }
-.who-content p:last-child {
-  margin-bottom: 0; /* آخر براجراف ملوش مسافة تحتيه */
-}
-
 
 /* الجزء اليمين (الرسمة) */
 .who-illustration {
-  flex: 0 0 40%; /* <<<--- هنا الضبطة اللي بتدي مساحة للرسمة */
-  display: flex; /* عشان لو عايز تتحكم في توسيط الرسمة نفسها */
-  justify-content: center; /* بيوسط الرسمة داخل مساحتها */
-  align-items: center;
+  flex-shrink: 0;
 }
 .who-illustration .illustration-svg {
-  width: 480px; /* <<<--- حجم الرسمة اللي في الصور */
+  width: 420px; /* <<<--- صغرنا الرسمة شوية */
   height: auto;
 }
 
-/* تعديلات الموبايل (زي ما اتفقنا قبل كده) */
+/* تعديلات الموبايل */
 @media (max-width: 980px) {
+  .who-separator-svg {
+    display: none;
+  }
   .who-grid {
     flex-direction: column;
     gap: 50px;
-    padding: 50px 20px; /* مسافات الموبايل */
+    padding: 0 20px;
+    margin-top: 0;
   }
   .who-content {
     order: 2;
     text-align: center;
-    max-width: 100%; /* عشان ياخد عرض الشاشة في الموبايل */
-  }
-  .who-separator-svg {
-    margin-left: auto;
-    margin-right: auto;
   }
   .who-illustration {
     order: 1;
     width: 100%;
     max-width: 350px;
-  }
-  .who-illustration .illustration-svg {
-    width: 100%;
   }
 }
   
@@ -567,20 +560,19 @@ body.drawer-open .top-left {
 
     <!-- WHO -->
     <section id="who" aria-labelledby="who-title">
-  <div class="who-grid">
-    <div class="who-content fade-up">
-      <h2 id="who-title">Who am I</h2>
-      <svg class="section-decorator-svg" width="100%" height="8" preserveAspectRatio="none">
+       <svg class="section-decorator-svg" width="100%" height="8" preserveAspectRatio="none">
   <line x1="0" y1="4" x2="100%" y2="4" stroke="var(--muted)" stroke-opacity="0.3" stroke-width="2"/>
   <line x1="5%" y1="4" x2="100%" y2="4" stroke="var(--accent-a)" stroke-width="4"/>
   <circle cx="1.5%" cy="4" r="4" fill="var(--accent-a)"/>
   <circle cx="3%" cy="4" r="2" fill="var(--accent-a)"/>
   </svg>
+  <div class="who-grid">
+    <div class="who-content fade-up">
+      <h2 id="who-title">Who am I</h2>
      <p>My name's Amr. I'm a Data Analyst focused on transforming messy transactional data into actionable business insights. I specialize in Power BI, SQL, Python and Excel — cleaning data, building star schemas and creating dashboards stakeholders can use to act quickly.</p>
      <p style="margin-top:12px;">During the day I work as a Lead Data Analyst at a local agency and in the evening I work on freelance projects and utilize the time to built my own products. I spent my leisure hours writing articles and poetry. Right now I'm also trying a hand at machine learning and AI. I love to learn and explore new arenas.</p>
       </div>
     </div>
-  
     <div class="who-illustration fade-up" aria-hidden="true">
     <svg class="illustration-svg" viewBox="0 0 642 839" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M625.105 210.172L565.965 349.775L582.269 356.682L641.409 217.079L625.105 210.172Z" fill="var(--muted)"/>
