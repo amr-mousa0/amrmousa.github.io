@@ -206,22 +206,21 @@ body.light .btn-ghost:hover {
 
    /* --- Who section (New Layout & Styling) --- */
 /* ============================================== */
-/* === تصميم Who am I (النسخة النهائية المبسطة) === */
+/* === تصميم Who am I (النسخة النهائية الصحيحة) === */
 /* ============================================== */
 
-/* الحاوية الرئيسية للقسم */
 .who-grid {
-  display: flex; /* <<<--- هنستخدم Flexbox */
-  justify-content: space-between; /* <<<--- أهم سطر: واحد أقصى الشمال وواحد أقصى اليمين */
-  align-items: center; /* توسيطهم رأسيًا */
-  width: 100%; /* عشان ياخد عرض الكونتينر كله */
-  gap: 50px; /* مسافة أمان بينهم */
+  display: flex;
+  justify-content: space-between; /* واحد أقصى الشمال وواحد أقصى اليمين */
+  align-items: center;
+  width: 100%;
+  gap: 60px; /* مسافة بينهم */
+  padding: 0 40px; /* مسافة من أطراف الشاشة عشان الكلام ميلزقش */
 }
 
-/* الجزء الشمال (الكلام) */
 .who-content {
-  flex: 1; /* ياخد المساحة المتاحة */
-  max-width: 550px; /* تحديد عرض أقصى للنص عشان ميسرحش أوي */
+  flex-basis: 50%; /* ياخد حوالي 50% من المساحة */
+  max-width: 600px;
 }
 
 .who-content h2 {
@@ -244,32 +243,35 @@ body.light .btn-ghost:hover {
   color: var(--muted);
 }
 
-/* الجزء اليمين (الرسمة) */
 .who-illustration {
-  flex-shrink: 0; /* عشان الرسمة متصغرش لو المساحة ضاقت */
+  flex-shrink: 0;
 }
 
 .who-illustration .illustration-svg {
-  width: 450px; /* حجم ثابت وواضح للرسمة */
+  width: 100%;
+  max-width: 500px; /* حجم مناسب للرسمة */
   height: auto;
 }
 
-/* تعديلات الموبايل */
 @media (max-width: 980px) {
   .who-grid {
-    flex-direction: column; /* <<<--- بنخليهم فوق بعض */
+    flex-direction: column;
     gap: 50px;
+    padding: 0 20px;
   }
   .who-content {
-    order: 2; /* بنخلي النص تحت الصورة في الموبايل */
+    order: 2;
     text-align: center;
+    max-width: 600px; /* عشان النص ميفردش أوي في الموبايل */
   }
   .who-illustration {
-    order: 1; /* الصورة فوق */
+    order: 1;
+    width: 100%;
+    max-width: 400px;
   }
   .who-separator-svg {
     margin-left: auto;
-    margin-right: auto; /* عشان يتوسط في الموبايل */
+    margin-right: auto;
   }
 }
 
@@ -331,7 +333,8 @@ section#hero.split-hero {
   width: 360px; /* <<<--- كبرنا الصورة */
   height: 360px; /* <<<--- كبرنا الصورة */
   border-radius: 50%;
-  border: 10px solid var(--text) 
+  /* ممكن امسحها */ 
+  border: 10px solid var(--text);
   box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
@@ -551,7 +554,7 @@ body.drawer-open .top-left {
     <!-- WHO -->
     <section id="who" aria-labelledby="who-title">
       <div class="container">
-        <div class="section-inner who-grid">
+        <div class="who-grid">
           <div class="who-content fade-up">
             <h2 id="who-title">Who am I</h2>
             <svg class="section-decorator-svg" width="100%" height="8" preserveAspectRatio="none">
