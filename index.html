@@ -223,13 +223,48 @@ body.light .btn-ghost:hover {
   color: var(--accent-a); /* <<<--- خلينا العنوان ياخد لون التأكيد زي الصورة */
 }
 
+.separator-dots {
+  width: 100px; /* عرض الخط */
+  height: 4px;  /* سمك الخط */
+  background: var(--accent-a); /* لون الخط */
+  position: relative; /* عشان النقط تكون مرتبطة بيه */
+  margin-bottom: 30px;
+}
 
-/* السيباراتور الجديد (SVG) */
-/* السيباراتور الجديد (SVG) */
-.who-separator-svg {
-  width: 100px;
+/* النقطة الكبيرة */
+.separator-dots::before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-a);
+  border-radius: 50%;
+  position: absolute;
+  left: -20px; /* بعدها عن بداية الخط */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* النقطة الصغيرة */
+.separator-dots::after {
+  content: '';
+  display: block;
+  width: 4px;
   height: 4px;
-  margin-bottom: 24px;
+  background: var(--accent-a);
+  border-radius: 50%;
+  position: absolute;
+  left: -10px; /* بعدها عن بداية الخط */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* عشان يتوسط في الموبايل */
+@media (max-width: 980px) {
+  .separator-dots {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* هنا الحل بتاع حجم النص */
@@ -547,11 +582,7 @@ body.drawer-open .top-left {
         <div class="section-inner who-grid">
           <div class="who-content fade-up">
             <h2 id="who-title">Who am I</h2>
-           <svg class="who-separator-svg" width="100" height="4" viewBox="0 0 100 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line y1="2" x2="100" y2="2" stroke="var(--accent-a)" stroke-width="4"/>
-            <circle cx="2" cy="2" r="2" fill="var(--accent-a)"/>
-            <circle cx="8" cy="2" r="1" fill="var(--accent-a)"/>
-          </svg>
+          <div class="separator-dots"></div>
             <p>My name's Amr. I'm a Data Analyst focused on transforming messy transactional data into actionable business insights. I specialize in Power BI, SQL, Python and Excel — cleaning data, building star schemas and creating dashboards stakeholders can use to act quickly.</p>
             <p style="margin-top:12px;">During the day I work as a Lead Data Analyst at a local agency and in the evening I work on freelance projects and utilize the time to built my own products. I spent my leisure hours writing articles and poetry. Right now I'm also trying a hand at machine learning and AI. I love to learn and explore new arenas.</p>
           </div>
