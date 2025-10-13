@@ -205,69 +205,63 @@ body.light .btn-ghost:hover {
 }
 
    /* --- Who section (New Layout & Styling) --- */
+/* ============================================== */
+/* === تصميم Who am I (النسخة النهائية والمعدلة) === */
+/* ============================================== */
+
 .who-grid {
   display: grid;
-  grid-template-columns: 1fr 400px; /* الجزء الأيمن 400px ثابت زي الصورة */
-  gap: 60px; /* مسافة أكبر بين الجزأين */
+  grid-template-columns: 1fr 450px; /* <<<--- زودنا مساحة الـ SVG */
+  gap: 80px; /* <<<--- زودنا المسافة بين النص والصورة */
   align-items: center;
-  margin-top: 40px; /* عشان يبدأ تحت شوية */
-}
-
-.who-content {
-  max-width: 600px; /* عرض النص محدود زي الصورة */
-  color: var(--text);
 }
 
 .who-content h2 {
-  font-size: 44px; /* حجم عنوان أكبر */
-  margin-bottom: 8px; /* مسافة تحت العنوان */
-  color: var(--text); /* لون العنوان نص عادي */
+  font-size: 52px; /* <<<--- كبرنا حجم العنوان */
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--accent-a); /* <<<--- خلينا العنوان ياخد لون التأكيد زي الصورة */
 }
 
+/* هنا الحل بتاع السيباراتور */
 .who-separator {
-  width: 100px; /* عرض السيباراتور */
-  height: 4px; /* سمك السيباراتور */
-  background: var(--accent-a); /* لون السيباراتور من ألوان الثيم */
-  margin-bottom: 24px; /* مسافة تحت السيباراتور */
+  width: 80px; /* <<<--- صغرنا عرضه */
+  height: 4px; /* <<<--- قللنا سمكه */
+  background: var(--accent-a); /* خلينا لونه هو لون التأكيد */
+  margin-bottom: 30px; /* زودنا المسافة تحته */
+  border-radius: 0; /* <<<--- شيلنا الحواف الدائرية */
 }
 
+/* هنا الحل بتاع حجم النص */
 .who-content p {
-  font-size: 16px; /* حجم الخط العادي */
-  line-height: 1.6; /* تباعد الأسطر */
-  margin-bottom: 16px; /* مسافة بين الفقرات */
-  color: var(--muted); /* لون النصوص muted عشان يبان زي الصورة */
+  font-size: 18px; /* <<<--- كبرنا حجم الخط */
+  font-weight: 400; /* خليناه أخف عشان يبقى مريح للعين */
+  line-height: 1.7; /* زودنا المسافة بين السطور */
+  color: var(--muted);
+  max-width: 550px; /* خلينا ياخد مساحة أوسع */
 }
 
-/* تلوين الـ SVG بتاع الـ illustration */
-.who-illustration {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
+/* هنا الحل بتاع حجم الـ SVG */
 .who-illustration svg {
-  max-width: 100%;
+  width: 100%; /* <<<--- بيخليه يملأ المساحة المتاحة له (450px) */
   height: auto;
-  /* لو الـ SVG بتاعك معقد، ممكن تحتاج تعدل الألوان دي جواه مباشرة */
-  /* هنا بنحاول نغير الألوان اللي ليها علاقة بالـ fill أو stroke */
 }
 
-/* responsive */
+/* تعديلات الموبايل */
 @media (max-width: 980px) {
   .who-grid {
-    grid-template-columns: 1fr; /* عمود واحد في الموبايل */
+    grid-template-columns: 1fr;
     gap: 40px;
-    text-align: center; /* النصوص في النص */
+    text-align: center;
   }
   .who-content {
-    max-width: none;
+    order: 2; /* بنخلي النص تحت الصورة في الموبايل */
   }
-  .who-content h2 {
-    font-size: 38px;
+  .who-illustration {
+    order: 1; /* الصورة فوق */
   }
   .who-separator {
-    margin-left: auto; /* عشان السيباراتور يجي في النص */
+    margin-left: auto;
     margin-right: auto;
   }
 }
