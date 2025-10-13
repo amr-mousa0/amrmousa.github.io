@@ -206,50 +206,48 @@ body.light .btn-ghost:hover {
 
    /* --- Who section (New Layout & Styling) --- */
 /* ============================================== */
-/* === تصميم Who am I (النسخة النهائية والمضبوطة) === */
+/* === تصميم Who am I (النسخة النهائية الصحيحة) === */
 /* ============================================== */
 
-/* الشريط الزخرفي الجديد (فوق خالص ومحاذي للمحتوى) */
-.who-separator-svg {
-  position: absolute;
-  top: 80px; /* <<<--- المسافة من أعلى السكشن */
-  
-  /* هنا الحل السحري للمحاذاة */
-  width: 100%;
-  max-width: 1100px; /* <<<--- نفس عرض المحتوى الرئيسي */
-  left: 50%;
-  transform: translateX(-50%); /* <<<--- بنوسطه في الصفحة بالضبط */
+/* القاعدة السحرية اللي بتحل كل حاجة */
+/* بتلغي الـ display:flex بتاع الـ section العام وبتفرض إن السكشن ده يكون block عادي */
+section#who {
+  display: block !important;
+  padding: 80px 100px !important; /* مسافات من فوق وتحت ومن الجوانب */
+}
 
+/* الشريط الزخرفي (فوق خالص) */
+.who-separator-svg {
+  width: 100%;
   height: 8px;
+  display: block;
+  margin-bottom: 80px; /* مسافة بينه وبين المحتوى */
 }
 
 /* الحاوية الرئيسية للقسم */
 .who-grid {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* واحد أقصى الشمال وواحد أقصى اليمين */
   align-items: center;
   width: 100%;
-  max-width: 1100px; /* <<<--- نفس عرض السيباراتور */
-  margin: 0 auto;
-  margin-top: 120px; /* بننزل المحتوى لتحت عشان السيباراتور */
-  gap: 80px; /* <<<--- المسافة بين النص والرسمة */
+  gap: 100px;
 }
 
 /* الجزء الشمال (الكلام) */
 .who-content {
-  flex-basis: 55%;
+  flex-basis: 50%;
+  max-width: 550px;
 }
 .who-content h2 {
-  font-size: 52px;
+  font-size: 56px;
   font-weight: 700;
   color: var(--accent-a);
   margin-bottom: 30px;
 }
 .who-content p {
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.8;
   color: var(--muted);
-  max-width: 650px; /* <<<--- زودنا العرض عشان ميبقاش مضغوط */
 }
 
 /* الجزء اليمين (الرسمة) */
@@ -257,29 +255,31 @@ body.light .btn-ghost:hover {
   flex-shrink: 0;
 }
 .who-illustration .illustration-svg {
-  width: 420px; /* <<<--- صغرنا الرسمة شوية */
+  width: 480px;
   height: auto;
 }
 
 /* تعديلات الموبايل */
 @media (max-width: 980px) {
+  section#who {
+    padding: 60px 20px !important;
+  }
   .who-separator-svg {
-    display: none;
+    margin-bottom: 50px;
   }
   .who-grid {
     flex-direction: column;
     gap: 50px;
-    padding: 0 20px;
-    margin-top: 0;
   }
   .who-content {
     order: 2;
     text-align: center;
+    max-width: 600px;
   }
   .who-illustration {
     order: 1;
     width: 100%;
-    max-width: 350px;
+    max-width: 400px;
   }
 }
   
