@@ -315,20 +315,18 @@ section#who {
   color: var(--accent-a);
 }
 
-.education-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr; /* أفضل نسبة بين الكروت والصورة */
-  width: 100%;
-  gap: 100px; /* مسافة مناسبة بينهم */
-  align-items: center;
+.education-container {
+  width: clamp(90%, 100vw, 1900px); 
+  margin: 60px auto 0 auto;
+  padding: 0 clamp(20px, 4vw, 40px);
 }
 
-/* الكلاس الجديد اللي هيتحكم في العرض الأقصى والتوسيط */
-.education-container {
-    width: 100%;
-    max-width: 1900px; /* <<<--- هنا كبرنا المساحة الكلية زي ما اتفقنا */
-    margin: 60px auto 0 auto; /* هام: margin-top عشان المسافة من العنوان */
-    padding: 0 40px; /* عشان المحتوى ميبقاش لازق في أطراف الشاشة */
+.education-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  width: 100%;
+  gap: clamp(50px, 6vw, 100px);
+  align-items: center;
 }
 
 /* --- تصميم كروت التعليم --- */
