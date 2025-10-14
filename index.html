@@ -334,12 +334,26 @@ section#who {
   transition: all 0.3s var(--ease);
   outline: none; /* لإزالة الـ outline الأزرق الافتراضي عند الفوكس */
 }
-/* تأثير التحويم (Hover) */
-.education-card:hover,
-.education-card:focus-visible { /* <<<--- هنا أضفنا حالة الفوكس */
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-  border-color: var(--accent-a);
+/* --== تأثير الفوكس التفاعلي الجديد ==-- */
+
+/* 1. أضف سلاسة في الحركة لكل الكروت بشكل عام */
+.education-card {
+    /* ... باقي الأكواد الموجودة عندك ... */
+    transition: all 0.35s var(--ease); /* تأكد من وجود هذا السطر أو عدّله */
+}
+
+/* 2. عندما يدخل الماوس إلى منطقة الكروت، قم بتعتيمها جميعًا قليلاً */
+.education-content:hover .education-card {
+    opacity: 0.5;
+    transform: scale(0.98); /* نصغرهم قليلاً لإعطاء إحساس بالعمق */
+}
+
+/* 3. الآن، الكارت المحدد الذي يقف عليه الماوس، أعده إلى قوته الكاملة مع تأثيرات إضافية */
+.education-content .education-card:hover {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.02); /* نرفعه للأعلى ونكبره أكثر */
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3); /* نزيد قوة الظل */
+    border-color: var(--accent-a);
 }
 
 .edu-icon {
@@ -358,7 +372,7 @@ section#who {
 
 .edu-date {
   font-size: 14px;
-  color: var(--accent-a); /* <<<--- هنا التعديل: غيرنا اللون للون التأكيد */
+  color: var(--accent-b); /* <<<--- هنا التعديل: غيرنا اللون للون التأكيد */
   font-weight: 600;
 }
 
@@ -657,7 +671,7 @@ body.drawer-open .top-left {
   </div>
 
   <div class="split-right"> 
-    <div class="hero-text-content fade-up" style="animation-delay:0.2s">
+    <div class="hero-text-content " style="animation-delay:0.2s">
       <div class="sub-heading">Data Analyst| Excel | Power BI | SQL</div>
       <h2 id="hero-title" class="hero-main-name">Amr Mousa</h2>
      <p class="hero-intro-text">There was no path, only fog. But I've always preferred a challenge over a clear road. I stepped into the void, and that first step lit up like a compass. Now, the only thing left to do is prepare for what's next.</p>
@@ -681,12 +695,12 @@ body.drawer-open .top-left {
 </svg>
     
   <div class="who-grid">
-    <div class="who-content fade-up">
+    <div class="who-content ">
       <h2 id="who-title">Who am I</h2>
      <p>My name's Amr. I'm a Data Analyst focused on transforming messy transactional data into actionable business insights. I specialize in Power BI, SQL, Python and Excel — cleaning data, building star schemas and creating dashboards stakeholders can use to act quickly.</p>
      <p style="margin-top:12px;">During the day I work as a Lead Data Analyst at a local agency and in the evening I work on freelance projects and utilize the time to built my own products. I spent my leisure hours writing articles and poetry. Right now I'm also trying a hand at machine learning and AI. I love to learn and explore new arenas.</p>
       </div>
-    <div class="who-illustration fade-up" aria-hidden="true">
+    <div class="who-illustration " aria-hidden="true">
     <svg class="illustration-svg" viewBox="0 0 642 839" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M625.105 210.172L565.965 349.775L582.269 356.682L641.409 217.079L625.105 210.172Z" fill="var(--muted)"/>
     <path d="M625.105 210.172L565.965 349.775L582.269 356.682L641.409 217.079L625.105 210.172Z" fill="var(--accent-a)"/>
@@ -752,9 +766,9 @@ body.drawer-open .top-left {
     <div class="education-grid">
 
 <div class="education-content">
-        <h2 id="education-title" class="section-title left-aligned fade-up">Education</h2>
+        <h2 id="education-title" class="section-title left-aligned ">Education</h2>
         
-       <div class="education-card fade-up" style="animation-delay: 0.2s;" tabindex="0">
+       <div class="education-card " style="animation-delay: 0.2s;" tabindex="0">
           <div class="edu-icon">
             <i class="fa-solid fa-school"></i>
          </div>
@@ -765,7 +779,7 @@ body.drawer-open .top-left {
           </div>
         </div>
 
-         <div class="education-card fade-up" style="animation-delay: 0.4s;" tabindex="0">
+         <div class="education-card " style="animation-delay: 0.4s;" tabindex="0">
           <div class="edu-icon">
             <i class="fa-solid fa-flask-vial"></i>
           </div>
@@ -777,7 +791,7 @@ body.drawer-open .top-left {
         </div>
       </div>
 
-     <div class="education-illustration fade-up" style="animation-delay: 0.3s;">
+     <div class="education-illustration " style="animation-delay: 0.3s;">
        <svg class="illustration-svg" width="572" height="572" viewBox="0 0 572 572" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M325.007 242.86L332.262 240.508L314.072 184.408L306.817 186.76L325.007 242.86Z" fill="var(--accent-b)"/>
     <path d="M325.006 242.86L332.261 240.507L331.789 251.414L325.006 242.86Z" fill="var(--text)"/>
@@ -822,7 +836,7 @@ body.drawer-open .top-left {
           <h2 id="projects-title">Projects</h2>
           <p style="margin:6px 0 12px;color:var(--muted)">A selection of data-cleaning, dashboards and Python projects.</p>
           <div class="projects-grid">
-            <article class="project-card card fade-up">
+            <article class="project-card card ">
               <img src="images/data-cleaning.png" alt="data cleaning">
               <h4 style="margin:10px 0 6px">Data Cleaning & Analysis</h4>
               <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Cleaned 10k rows, built star schema and visualized insights in Power BI.</p>
@@ -832,7 +846,7 @@ body.drawer-open .top-left {
               </div>
             </article>
 
-            <article class="project-card card fade-up">
+            <article class="project-card card ">
               <img src="images/coffee-sales.png" alt="coffee sales">
               <h4 style="margin:10px 0 6px">Coffee Shop Sales Dashboard</h4>
               <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Sales KPIs & offers performance.</p>
@@ -842,7 +856,7 @@ body.drawer-open .top-left {
               </div>
             </article>
 
-            <article class="project-card card fade-up">
+            <article class="project-card card ">
               <img src="images/python-project.png" alt="python">
               <h4 style="margin:10px 0 6px">Sales Forecast (Python)</h4>
               <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Time-series model using Pandas & scikit-learn.</p>
@@ -858,7 +872,7 @@ body.drawer-open .top-left {
     <!-- CONTACT -->
     <section id="contact" aria-labelledby="contact-title">
       <div class="container">
-        <div class="card contact-card fade-up" style="max-width:720px;margin:0 auto">
+        <div class="card contact-card " style="max-width:720px;margin:0 auto">
           <h3 id="contact-title">Contact</h3>
           <p style="margin-top:8px;color:var(--muted)">Email: <a href="mailto:amr.mousa@email.com">amr.mousa@email.com</a></p>
           <p style="margin-top:12px;color:var(--muted)">GitHub: <a href="https://github.com/amr-mousa" target="_blank">github.com/amr-mousa</a></p>
@@ -1001,6 +1015,36 @@ setDrawer(false);
     // ensure saved UI applied
     setMuted(isMuted);
     applyTheme(savedTheme);
+
+    // ===== بداية كود تشغيل الأنيميشن عند السكرول =====
+
+// 1. استهداف جميع العناصر التي نريد تحريكها
+// يمكنك إضافة أي selectors أخرى هنا مفصولة بفاصلة
+const animatedElements = document.querySelectorAll(
+  '.who-content, .who-illustration, .education-card, .project-card, .contact-card, .section-title'
+);
+
+// 2. إعداد الـ Observer
+const animationObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    // 3. إذا ظهر العنصر على الشاشة
+    if (entry.isIntersecting) {
+      // أضف كلاس الأنيميشن
+      entry.target.classList.add('fade-up');
+      // 4. أوقف المراقبة عن هذا العنصر لمنع تكرار الأنيميشن
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.1 // متى يتم تشغيل الأنيميشن؟ (عند ظهور 10% من العنصر)
+});
+
+// 5. بدء مراقبة كل عنصر من العناصر المستهدفة
+animatedElements.forEach(el => {
+  animationObserver.observe(el);
+});
+
+// ===== نهاية كود تشغيل الأنيميشن عند السكرول =====
   </script>
 </body>
 </html>
