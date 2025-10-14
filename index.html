@@ -289,132 +289,102 @@ section#who {
     @keyframes fadeUp{to{opacity:1;transform:none}}
 
 
-    /* ============================================== */
-/* === تصميم سكشن التعليم والمهارات (Education & Skills) === */
+ /* ============================================== */
+/* === تصميم سكشن التعليم (Education) - النسخة الجديدة === */
 /* ============================================== */
 
-.section-title {
-  text-align: center;
-  font-size: 48px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 60px;
+/* تعديل بسيط على العنوان عشان يبقى على الشمال */
+.section-title.left-aligned {
+  text-align: left;
+  font-size: 56px;
+  margin-bottom: 40px;
+  color: var(--accent-a);
 }
 
-.education-skills-grid {
+.education-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  gap: 100px;
+  align-items: center;
 }
 
-.column-title {
-  font-size: 28px;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 30px;
-  position: relative;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--surface);
-}
-
-/* --- تصميم التايم لاين (Education) --- */
-.timeline {
-  position: relative;
-  padding-left: 30px;
-}
-
-/* الخط الرأسي للتايم لاين */
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 10px;
-  bottom: 10px;
-  width: 2px;
+/* --- تصميم كروت التعليم --- */
+.education-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
   background: var(--surface);
+  padding: 25px;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  transition: all 0.3s var(--ease);
 }
 
-.timeline-item {
-  position: relative;
-  margin-bottom: 40px;
+/* تأثير التحويم (Hover) */
+.education-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  border-color: var(--accent-a);
 }
 
-/* النقطة على التايم لاين */
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -37px;
-  top: 8px;
-  width: 14px;
-  height: 14px;
+.edu-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: var(--accent-a);
-  border: 3px solid var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
 }
 
-.timeline-title {
+.edu-date {
+  font-size: 14px;
+  color: var(--accent-a);
+  font-weight: 600;
+}
+
+.edu-title {
   font-size: 20px;
   font-weight: 600;
   color: var(--text);
-  margin: 0 0 4px 0;
+  margin: 4px 0;
 }
 
-.timeline-meta {
-  font-size: 14px;
-  color: var(--muted);
-  margin: 0 0 8px 0;
-}
-
-.timeline-desc {
-  font-size: 15px;
-  line-height: 1.6;
+.edu-location {
+  font-size: 16px;
   color: var(--muted);
   margin: 0;
 }
 
-/* --- تصميم المهارات (Skills) --- */
-.skill-item {
-  margin-bottom: 25px;
-}
-
-.skill-info {
+/* --- تصميم الرسمة --- */
+.education-illustration {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
+  justify-content: center;
+  align-items: center;
 }
-
-.skill-name {
-  font-weight: 600;
-  color: var(--text);
-}
-
-.skill-level {
-  font-size: 14px;
-  color: var(--muted);
-}
-
-.skill-bar-container {
-  height: 8px;
+.education-illustration .illustration-svg {
   width: 100%;
-  background-color: var(--surface);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.skill-bar {
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+  max-width: 450px;
+  height: auto;
 }
 
 /* تعديلات الموبايل */
 @media (max-width: 980px) {
-  .education-skills-grid {
+  .section-title.left-aligned {
+    text-align: center;
+  }
+  .education-grid {
     grid-template-columns: 1fr;
     gap: 60px;
   }
+  .education-illustration {
+    display: none; /* بنخفي الرسمة في الموبايل عشان نوفر مساحة */
+  }
 }
-
 /* ============================================== */
 /* === تصميم الانترو (النسخة النهائية والمحسنة) === */
 /* ============================================== */
@@ -761,74 +731,73 @@ body.drawer-open .top-left {
     </section>
 
     
-    <section id="background" aria-labelledby="background-title">
+   <section id="education" aria-labelledby="education-title">
   <div class="container">
-    <h2 id="background-title" class="section-title">Background & Skills</h2>
-    <div class="education-skills-grid">
+    <div class="education-grid">
 
-      <div class="education-column fade-up">
-        <h3 class="column-title">Education</h3>
-        <div class="timeline">
-          <div class="timeline-item">
-            <h4 class="timeline-title">B.Sc. in Computer Science</h4>
-            <p class="timeline-meta">Ain Shams University | 2018 - 2022</p>
-            <p class="timeline-desc">Graduated with honors, focusing on data structures, algorithms, and database management systems.</p>
+      <div class="education-content">
+        <h2 id="education-title" class="section-title left-aligned">Education</h2>
+        
+        <div class="education-card fade-up">
+          <div class="edu-icon">
+            <i class="fa-solid fa-graduation-cap"></i>
           </div>
-          <div class="timeline-item">
-            <h4 class="timeline-title">Data Analysis Professional Certificate</h4>
-            <p class="timeline-meta">Coursera (Google) | 2023</p>
-            <p class="timeline-desc">Completed an 8-course program covering the entire data analysis lifecycle, from data collection to visualization.</p>
+          <div class="edu-info">
+            <span class="edu-date">2018 - 2022</span>
+            <h4 class="edu-title">B.Sc. in Computer Science</h4>
+            <p class="edu-location">Ain Shams University</p>
           </div>
-          <div class="timeline-item">
-            <h4 class="timeline-title">Microsoft Power BI Data Analyst</h4>
-            <p class="timeline-meta">Microsoft Certified | 2024</p>
-            <p class="timeline-desc">Demonstrated expertise in preparing, modeling, visualizing, and analyzing data using Power BI.</p>
+        </div>
+
+        <div class="education-card fade-up" style="animation-delay: 0.2s;">
+          <div class="edu-icon">
+            <i class="fa-solid fa-award"></i>
+          </div>
+          <div class="edu-info">
+            <span class="edu-date">2023</span>
+            <h4 class="edu-title">Data Analysis Professional Certificate</h4>
+            <p class="edu-location">Coursera (Google)</p>
+          </div>
+        </div>
+
+        <div class="education-card fade-up" style="animation-delay: 0.4s;">
+          <div class="edu-icon">
+            <i class="fa-solid fa-microchip"></i>
+          </div>
+          <div class="edu-info">
+            <span class="edu-date">2024</span>
+            <h4 class="edu-title">Microsoft Power BI Data Analyst</h4>
+            <p class="edu-location">Microsoft Certified</p>
           </div>
         </div>
       </div>
 
-      <div class="skills-column fade-up" style="animation-delay: 0.2s;">
-        <h3 class="column-title">Core Skills</h3>
-        <div class="skills-list">
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">Power BI & DAX</span>
-              <span class="skill-level">95%</span>
-            </div>
-            <div class="skill-bar-container">
-              <div class="skill-bar" style="width: 95%;"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">SQL (Advanced)</span>
-              <span class="skill-level">90%</span>
-            </div>
-            <div class="skill-bar-container">
-              <div class="skill-bar" style="width: 90%;"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">Python (Pandas & Matplotlib)</span>
-              <span class="skill-level">85%</span>
-            </div>
-            <div class="skill-bar-container">
-              <div class="skill-bar" style="width: 85%;"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">Excel (Power Query & Pivot Tables)</span>
-              <span class="skill-level">90%</span>
-            </div>
-            <div class="skill-bar-container">
-              <div class="skill-bar" style="width: 90%;"></div>
-            </div>
-          </div>
-        </div>
+      <div class="education-illustration fade-up">
+        <svg class="illustration-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M400 400H100V150H400V400Z" fill="var(--surface)"/>
+            <path d="M120 150V130H380V150" stroke="var(--text)" stroke-width="4"/>
+            <path d="M100 400L80 440" stroke="var(--text)" stroke-width="4"/>
+            <path d="M400 400L420 440" stroke="var(--text)" stroke-width="4"/>
+            <path d="M180 200H160V220H150V280H210V220H200V200H180Z" fill="var(--text)"/>
+            <path d="M150 280C150 291.046 158.954 300 170 300H190C201.046 300 210 291.046 210 280V280H150V280Z" fill="var(--accent-b)"/>
+            <path d="M300 280H350V290H300V280Z" fill="var(--muted)"/>
+            <path d="M300 260H350V270H300V260Z" fill="var(--muted)"/>
+            <path d="M300 240H350V250H300V240Z" fill="var(--muted)"/>
+            <rect x="290" y="220" width="70" height="10" rx="5" fill="var(--surface)"/>
+            <path d="M280 200L310 170H370L340 200H280Z" fill="var(--accent-a)"/>
+            <path d="M310 170V160" stroke="var(--text)" stroke-width="4"/>
+            <path d="M350 140C350 128.954 341.046 120 330 120C318.954 120 310 128.954 310 140V160" stroke="var(--accent-b)" stroke-width="4"/>
+            <circle cx="330" cy="115" r="10" fill="var(--accent-a)"/>
+            <g>
+                <path d="M230 190H260V200H230V190Z" fill="var(--surface)"/>
+                <path d="M230 205H260V215H230V205Z" fill="var(--surface)"/>
+            </g>
+            <g>
+                <rect x="250" y="80" width="20" height="20" fill="var(--surface)" rx="5"/>
+                <path d="M255 85L265 95M265 85L255 95" stroke="var(--accent-a)" stroke-width="2"/>
+            </g>
+        </svg>
       </div>
-
     </div>
   </div>
 </section>
