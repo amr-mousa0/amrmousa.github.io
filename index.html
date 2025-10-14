@@ -336,11 +336,16 @@ section#who {
   border-radius: var(--radius);
   margin-bottom: 20px;
   border: 1px solid transparent;
-  transition: all 0.3s var(--ease);
-  outline: none; 
-   transition: all 0.35s var(--ease);
+  outline: none;  
+  
+  /* --- التعديل الرئيسي هنا --- */
+  /* حددنا الخصائص التي تتغير عند الهوفر بشكل صريح، وأعطيناها زمنها السريع الخاص بها */
+  transition: transform 0.3s var(--ease),
+              opacity 0.3s var(--ease),
+              box-shadow 0.35s var(--ease),
+              border-color 0.3s var(--ease),
+              background 0.3s var(--ease);
 }
-
 .education-content:hover .education-card {
     opacity: 0.5;
     transform: scale(0.98); 
@@ -798,7 +803,7 @@ body.drawer-open .top-left {
       </div>
 
      <div class="education-illustration anim-child" style="transition-delay: 0.25s;">
-       <svg class="illustration-svg" width="900" height="800" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+       <svg class="illustration-svg" width="572" height="572" viewBox="0 0 572 572" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M325.007 242.86L332.262 240.508L314.072 184.408L306.817 186.76L325.007 242.86Z" fill="var(--accent-b)"/>
     <path d="M325.006 242.86L332.261 240.507L331.789 251.414L325.006 242.86Z" fill="var(--text)"/>
     <path d="M331.788 251.414L332.01 246.29L328.602 247.395L331.788 251.414Z" fill="var(--muted)"/>
