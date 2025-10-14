@@ -287,8 +287,8 @@ section#who {
   /* small entrance animation */
 .fade-up {
   opacity: 0;
-  transform: translateY(12px);
-  animation: fadeUp 1.2s cubic-bezier(.2, .9, .3, 1) forwards; 
+  transform: translateY(30px); /* <<<--- زدنا المسافة من 12px إلى 30px */
+  animation: fadeUp 1.2s cubic-bezier(.2, .9, .3, 1) forwards;
 }
 @keyframes fadeUp {
   to {
@@ -355,10 +355,7 @@ section#who {
     box-shadow: 0 25px 50px rgba(0,0,0,0.3); /* نزيد قوة الظل */
     border-color: var(--accent-a);
 }
-    /* --- تحسين إضافي: تغيير لون خلفية الكارت في الثيم الداكن فقط --- */
-body:not(.light) .education-content .education-card:hover {
-    background: #353535; /* لون أفتح قليلاً من السطح الأصلي (#292929) */
-}
+
 
 .edu-icon {
   flex-shrink: 0;
@@ -1022,11 +1019,9 @@ setDrawer(false);
 
     // ===== بداية كود تشغيل الأنيميشن عند السكرول =====
 
-// 1. استهداف جميع العناصر التي نريد تحريكها
-// يمكنك إضافة أي selectors أخرى هنا مفصولة بفاصلة
-const animatedElements = document.querySelectorAll(
-  '.who-content, .who-illustration, .education-card, .project-card, .contact-card, .section-title'
-);
+
+// استهداف الأقسام الرئيسية فقط (ما عدا قسم البداية Hero)
+const animatedElements = document.querySelectorAll('section:not(#hero)');
 
 // 2. إعداد الـ Observer
 const animationObserver = new IntersectionObserver((entries, observer) => {
