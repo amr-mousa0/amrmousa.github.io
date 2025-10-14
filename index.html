@@ -311,32 +311,22 @@ section#who {
 .section-title.left-aligned {
   text-align: left;
   font-size: 56px;
-  margin-bottom: 40px;
+  margin-bottom: 30px; /* <<<--- التعديل الأول: قللنا المسافة الفاضية */
   color: var(--accent-a);
 }
 
 .education-container {
-  /* 1. هنلغي العرض الأقصى الثابت، وهندي هوامش ذكية من على الأجناب */
   width: 100%;
-  
-  /* أهم سطر: الهامش هيكون 80px على الشاشات الكبيرة وهيصغر بسلاسة للموبايل */
-  padding: 0 clamp(30px, 6vw, 80px);
-  
-  margin: 60px auto 0 auto; /* ده زي ما هو عشان المسافة من فوق والتوسيط */
+  padding: 0 clamp(30px, 6vw, 80px); /* هوامش ذكية من على الأجناب */
+  margin: 0 auto; /* <<<--- التعديل الثاني: لغينا المسافة الزيادة اللي كانت هنا */
 }
 
 .education-grid {
   display: grid;
-
-  /* 2. هنحافظ على نفس النسبة الممتازة اللي أنت عايزها */
-  grid-template-columns: 1.5fr 1fr; 
-  
+  grid-template-columns: 1.5fr 1fr;
   width: 100%;
-
-  /* 3. هندي مسافة ذكية بينهم برضه عشان التجاوب */
   gap: clamp(50px, 6vw, 100px);
-
-  align-items: center;
+  align-items: start; /* <<<--- التعديل الثالث والأهم: حل مشكلة المحاذاة */
 }
 
 /* --- تصميم كروت التعليم --- */
@@ -416,7 +406,7 @@ body:not(.light) .education-content .education-card:hover {
 .education-illustration {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start; /* <<<--- التعديل الرابع: عشان يفضل متناسق مع الجريد */
 }
 .education-illustration .illustration-svg {
   width: 100%;
