@@ -315,19 +315,28 @@ section#who {
   color: var(--accent-a);
 }
 
-.education-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr; 
+.education-container {
+  /* 1. هنلغي العرض الأقصى الثابت، وهندي هوامش ذكية من على الأجناب */
   width: 100%;
-  gap: 100px; 
-  align-items: center;
+  
+  /* أهم سطر: الهامش هيكون 80px على الشاشات الكبيرة وهيصغر بسلاسة للموبايل */
+  padding: 0 clamp(30px, 6vw, 80px);
+  
+  margin: 60px auto 0 auto; /* ده زي ما هو عشان المسافة من فوق والتوسيط */
 }
 
-.education-container {
-    width: 100%;
-    max-width: 1500px; 
-    margin: 60px auto 0 auto; 
-    padding: 0 0px; 
+.education-grid {
+  display: grid;
+
+  /* 2. هنحافظ على نفس النسبة الممتازة اللي أنت عايزها */
+  grid-template-columns: 1.5fr 1fr; 
+  
+  width: 100%;
+
+  /* 3. هندي مسافة ذكية بينهم برضه عشان التجاوب */
+  gap: clamp(50px, 6vw, 100px);
+
+  align-items: center;
 }
 
 /* --- تصميم كروت التعليم --- */
