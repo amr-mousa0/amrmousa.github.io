@@ -56,8 +56,8 @@ body.light {
     button{font-family:inherit;cursor:pointer;border:0;background:none}
     /* smooth scroll-snap for full sections */
     main{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
-    section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px;scroll-snap-align:start;position:relative}
-    .container{max-width:1200px;width:100%;margin:0 auto;padding:24px}
+   section {min-height:100vh;padding:80px 40px; /* <<<--- هنحط بادينج عام كويس لكل السكاشن */scroll-snap-align:start;position:relative;}
+    .container {width: 100%;max-width: 1500px; /* <<<--- ده العرض الأقصى للمحتوى اللي في النص */margin: 0 auto; /* عشان يتوسط */}
 
     /* ---------------- Top controls ---------------- */
     .top-left, .top-right {position:fixed;z-index:200;display:flex;gap:10px;align-items:center}
