@@ -287,14 +287,14 @@ section#who {
   /* small entrance animation */
 .fade-up {
   opacity: 0;
-  transform: translateY(30px); /* <<<--- زدنا المسافة من 12px إلى 30px */
+  transform: translateY(30px);
   animation: fadeUp 1.2s cubic-bezier(.2, .9, .3, 1) forwards;
 }
 @keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: none;
-  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 
@@ -332,28 +332,26 @@ section#who {
   margin-bottom: 20px;
   border: 1px solid transparent;
   transition: all 0.3s var(--ease);
-  outline: none; /* لإزالة الـ outline الأزرق الافتراضي عند الفوكس */
-}
-/* --== تأثير الفوكس التفاعلي الجديد ==-- */
-
-/* 1. أضف سلاسة في الحركة لكل الكروت بشكل عام */
-.education-card {
-    /* ... باقي الأكواد الموجودة عندك ... */
-    transition: all 0.35s var(--ease); /* تأكد من وجود هذا السطر أو عدّله */
+  outline: none; 
+   transition: all 0.35s var(--ease);
 }
 
-/* 2. عندما يدخل الماوس إلى منطقة الكروت، قم بتعتيمها جميعًا قليلاً */
 .education-content:hover .education-card {
     opacity: 0.5;
-    transform: scale(0.98); /* نصغرهم قليلاً لإعطاء إحساس بالعمق */
+    transform: scale(0.98); 
 }
 
-/* 3. الآن، الكارت المحدد الذي يقف عليه الماوس، أعده إلى قوته الكاملة مع تأثيرات إضافية */
 .education-content .education-card:hover {
     opacity: 1;
-    transform: translateY(-8px) scale(1.02); /* نرفعه للأعلى ونكبره أكثر */
-    box-shadow: 0 25px 50px rgba(0,0,0,0.3); /* نزيد قوة الظل */
+    transform: translateY(-8px) scale(1.02); 
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3); 
     border-color: var(--accent-a);
+}
+
+body:not(.light) .education-content .education-card:hover {
+
+    background: #353535; 
+
 }
 
 
@@ -373,7 +371,7 @@ section#who {
 
 .edu-date {
   font-size: 14px;
-  color: var(--accent-b); /* <<<--- هنا التعديل: غيرنا اللون للون التأكيد */
+  color: var(--accent-a); 
   font-weight: 600;
 }
 
@@ -399,7 +397,7 @@ section#who {
 }
 .education-illustration .illustration-svg {
   width: 100%;
-  max-width: 450px; /* دي قيمة كويسة هتخلي الرسمة متجاوبة */
+  max-width: 8000px; /* دي قيمة كويسة هتخلي الرسمة متجاوبة */
   height: auto;
 }
 
@@ -686,8 +684,9 @@ body.drawer-open .top-left {
 </section>
 
     <!-- WHO -->
-  <section id="who" aria-labelledby="who-title">
-  <div class="who-container">
+ <section id="who" aria-labelledby="who-title">
+    <div class="section-anim-container">
+        <div class="who-container">
    <svg class="who-separator-svg" width="100%" height="12" preserveAspectRatio="none">
   <line x1="0" y1="6" x2="100%" y2="6" stroke="var(--muted)" stroke-opacity="0.3" stroke-width="3"/>
   <line x1="5%" y1="6" x2="100%" y2="6" stroke="var(--accent-a)" stroke-width="6"/>
@@ -762,8 +761,9 @@ body.drawer-open .top-left {
     </section>
 
     
-   <section id="education" aria-labelledby="education-title">
-  <div class="container">
+  <section id="education" aria-labelledby="education-title">
+    <div class="section-anim-container">
+        <div class="container">
     <div class="education-grid">
 
 <div class="education-content">
@@ -832,7 +832,8 @@ body.drawer-open .top-left {
 
     <!-- PROJECTS -->
     <section id="projects" aria-labelledby="projects-title">
-      <div class="container">
+    <div class="section-anim-container">
+        <div class="container">
         <div style="max-width:1100px;margin:0 auto">
           <h2 id="projects-title">Projects</h2>
           <p style="margin:6px 0 12px;color:var(--muted)">A selection of data-cleaning, dashboards and Python projects.</p>
@@ -872,7 +873,8 @@ body.drawer-open .top-left {
 
     <!-- CONTACT -->
     <section id="contact" aria-labelledby="contact-title">
-      <div class="container">
+    <div class="section-anim-container">
+        <div class="container">
         <div class="card contact-card " style="max-width:720px;margin:0 auto">
           <h3 id="contact-title">Contact</h3>
           <p style="margin-top:8px;color:var(--muted)">Email: <a href="mailto:amr.mousa@email.com">amr.mousa@email.com</a></p>
@@ -1021,7 +1023,7 @@ setDrawer(false);
 
 
 // استهداف الأقسام الرئيسية فقط (ما عدا قسم البداية Hero)
-const animatedElements = document.querySelectorAll('section:not(#hero)');
+const animatedElements = document.querySelectorAll('.section-anim-container');
 
 // 2. إعداد الـ Observer
 const animationObserver = new IntersectionObserver((entries, observer) => {
