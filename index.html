@@ -286,9 +286,9 @@ section#who {
   
   /* small entrance animation */
 .fade-up {
-  opacity: 0;
-  transform: translateY(12px);
-  animation: fadeUp .66s forwards;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 1.2s cubic-bezier(.2, .9, .3, 1) forwards; 
 }
 @keyframes fadeUp {
   to {
@@ -354,6 +354,10 @@ section#who {
     transform: translateY(-8px) scale(1.02); /* نرفعه للأعلى ونكبره أكثر */
     box-shadow: 0 25px 50px rgba(0,0,0,0.3); /* نزيد قوة الظل */
     border-color: var(--accent-a);
+}
+    /* --- تحسين إضافي: تغيير لون خلفية الكارت في الثيم الداكن فقط --- */
+body:not(.light) .education-content .education-card:hover {
+    background: #353535; /* لون أفتح قليلاً من السطح الأصلي (#292929) */
 }
 
 .edu-icon {
