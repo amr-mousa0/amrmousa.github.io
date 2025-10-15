@@ -56,8 +56,8 @@ body.light {
     button{font-family:inherit;cursor:pointer;border:0;background:none}
     /* smooth scroll-snap for full sections */
     main{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
-   section {min-height:100vh;padding:80px 40px; /* <<<--- هنحط بادينج عام كويس لكل السكاشن */scroll-snap-align:start;position:relative;}
-    .container {width: 100%;max-width: 1500px; /* <<<--- ده العرض الأقصى للمحتوى اللي في النص */margin: 0 auto; /* عشان يتوسط */}
+   section {min-height:100vh;padding:80px 40px; scroll-snap-align:start;position:relative;}
+    .container {width: 100%;max-width: 1500px; margin: 0 auto; 
 
     /* ---------------- Top controls ---------------- */
     .top-left, .top-right {position:fixed;z-index:200;display:flex;gap:10px;align-items:center}
@@ -71,24 +71,21 @@ body.light {
     /* ---------------- Drawer (left) ---------------- */
    .drawer {
   position:fixed;left:12px;top:12px;height:calc(100vh - 24px);width:72px;border-radius:16px;
-  /* الخلفية هتكون شفافة وهي مقفولة عشان الـ transform */
   background: transparent;
-  /* الظل ده عشان يبان إن فيه حاجة موجودة بره الشاشة لما نفتح */
   box-shadow:0 30px 80px rgba(2,6,23,0.6);
   overflow:hidden;z-index:190;
   display:flex;flex-direction:column;align-items:center;padding:12px;backdrop-filter: blur(6px);
-  transform: translateX(-120%); /* زي ما اتفقنا عشان تكون مخفية */
-  transition: transform .38s var(--ease), background .38s var(--ease), box-shadow .38s var(--ease); /* زودنا الوقت عشان يكون أنعم */
+  transform: translateX(-120%);
+  transition: transform .38s var(--ease), background .38s var(--ease), box-shadow .38s var(--ease); 
 }
      .drawer.expanded {
   width: 300px;
   transform: translateX(0);
   
-  /* -- التعديلات الجديدة هنا -- */
-  background: rgba(30, 41, 59, 0.3); /* خلفية زجاجية أغمق وأشيك */
-  backdrop-filter: blur(16px); /* زيادة قوة التأثير الزجاجي */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* إطار خفيف للتحديد */
-  border-radius: 24px; /* <-- حواف أنعم للقائمة نفسها */
+  background: rgba(30, 41, 59, 0.3); 
+  backdrop-filter: blur(16px); 
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px; 
   box-shadow: 0 40px 100px rgba(2,6,23,0.7);
 }
     .mini-dot{
@@ -150,7 +147,7 @@ body.light {
     .wave-top{position:fixed;left:0;right:0;height:120px;top:0;transform:translateY(-60%);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);pointer-events:none;z-index:29}
 
     /* ---------------- Section inner layout ---------------- */
-    .section-inner{width:100%;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center}
+    .section-inner{width:100%;max-width:1500px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center}
     .card{background:var(--surface);border-radius:var(--radius);padding:26px;backdrop-filter:blur(6px);box-shadow:0 18px 40px rgba(2,6,23,0.6);transition:transform .25s,var(--trans)}
 
     /* Intro / Hero */
@@ -304,11 +301,11 @@ section#who {
 
 
 /* ============================================== */
-/* === سكشن التعليم (Education) - النسخة النهائية === */
+/* === سكشن التعليم (Education) - نسخة معزولة ومُعززة الأولوية === */
 /* ============================================== */
 
 /* عنوان القسم */
-.section-title.left-aligned {
+#education .section-title.left-aligned {
   text-align: left;
   font-size: 56px;
   margin-bottom: 40px;
@@ -316,9 +313,9 @@ section#who {
 }
 
 /* الشبكة العامة */
-.education-grid {
+#education .education-grid {
   display: grid;
-  grid-template-columns: 1.8fr 1fr; 
+  grid-template-columns: 1.8fr 1fr;  
   width: 100%;
   max-width: 1900px;
   margin: 0 auto;
@@ -328,13 +325,13 @@ section#who {
 }
 
 /* المحتوى (الكروت) */
-.education-content {
+#education .education-content {
   display: flex;
   flex-direction: column;
 }
 
 /* --- تصميم كروت التعليم --- */
-.education-card {
+#education .education-card {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -353,13 +350,13 @@ section#who {
 }
 
 /* تأثير hover */
-.education-content:hover .education-card {
+#education .education-content:hover .education-card {
   opacity: 0.5;
   transform: scale(0.98);
 }
 
-.education-content .education-card:hover,
-.education-content .education-card:focus {
+#education .education-content .education-card:hover,
+#education .education-content .education-card:focus {
   opacity: 1;
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 25px 50px rgba(0,0,0,0.3);
@@ -367,13 +364,13 @@ section#who {
 }
 
 /* للأوضاع الداكنة */
-body:not(.light) .education-content .education-card:hover,
-body:not(.light) .education-content .education-card:focus {
+body:not(.light) #education .education-content .education-card:hover,
+body:not(.light) #education .education-content .education-card:focus {
   background: #353535;
 }
 
 /* أيقونة كل بطاقة */
-.edu-icon {
+#education .edu-icon {
   flex-shrink: 0;
   width: 60px;
   height: 60px;
@@ -387,66 +384,66 @@ body:not(.light) .education-content .education-card:focus {
 }
 
 /* النصوص داخل البطاقة */
-.edu-date {
+#education .edu-date {
   font-size: 14px;
   color: var(--accent-a);
   font-weight: 600;
 }
 
-.edu-title {
+#education .edu-title {
   font-size: 20px;
   font-weight: 600;
   color: var(--text);
   margin: 4px 0;
 }
 
-.edu-location {
+#education .edu-location {
   font-size: 16px;
   color: var(--muted);
   margin: 0;
 }
 
 /* الصورة (الجانب الأيمن) */
-.education-illustration {
+#education .education-illustration {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.education-illustration .illustration-svg {
+#education .education-illustration .illustration-svg {
   width: 100%;
   max-width: 700px;
   height: auto;
 }
 
 /* --- تعديل الموبايل --- */
+/* لا داعي لتغيير شيء هنا لأنك بالفعل تستخدم ID */
 @media (max-width: 980px) {
   section#education {
     padding-top: 100px !important;
     padding-bottom: 100px !important;
   }
 
-  .section-title.left-aligned {
+  #education .section-title.left-aligned {
     text-align: center;
   }
 
-  .education-grid {
-    display: flex; /* لازم */
+  #education .education-grid {
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 60px;
   }
 
-  .education-content {
+  #education .education-content {
     width: 100%;
     max-width: 600px;
   }
 
-  .education-illustration {
+  #education .education-illustration {
     display: none;
   }
 }
-
 /* ============================================== */
 /* === تصميم الانترو (النسخة النهائية والمحسنة) === */
 /* ============================================== */
