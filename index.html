@@ -304,58 +304,49 @@ section#who {
 
 
 /* ============================================== */
-/* === تصميم سكشن التعليم (Education) - النسخة النهائية الصحيحة === */
-/* ============================================== */
+/* === تصميم سكشن التعليم (Education) - الحل النهائي بـ Flexbox === */
+/* ============================================== *
 
-/* 1. القاعدة الأساسية للسكشن (الأهم لحل المشكلة) */
-/* هذه القاعدة تجعل السكشن يتصرف كحاوية مرنة لتوسيط المحتوى الذي بداخله */
-section#education {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  padding: 80px clamp(30px, 6vw, 80px) !important; /* هوامش متجاوبة للسكشن كله */
-}
-
-/* 2. الحاوية الداخلية للمحتوى */
-.education-container {
-  width: 100%;
-  max-width: 1900px;
-  margin: 0 auto; /* نلغي أي هوامش خارجية قديمة */
-}
-
-/* 3. عنوان السكشن */
+/* تعديل بسيط على العنوان عشان يبقى على الشمال */
 .section-title.left-aligned {
   text-align: left;
   font-size: 56px;
-  margin-bottom: 40px; /* مسافة كافية قبل الكروت */
+  margin-bottom: 30px;
   color: var(--accent-a);
 }
 
-/* 4. الشبكة التي تحتوي النص والرسمة (هنا يتم ضمان المحاذاة العلوية) */
+.education-container {
+  width: 100%;
+  max-width: 1900px; 
+  padding: 0 clamp(30px, 6vw, 80px); 
+  margin: 60px auto 0 auto; 
+  box-sizing: border-box; 
+}
+
+
 .education-grid {
   display: flex;
   width: 100%;
   gap: clamp(50px, 6vw, 100px);
-  align-items: flex-start; /* <<<--- هذه هي القاعدة التي تضمن أن كل شيء يبدأ من الأعلى */
+  align-items: flex-start;  /* <<<--- هذه هي القاعدة الصحيحة للمحاذاة الداخلية */
 }
 
-/* 5. تحديد مساحة كل عمود */
+
 .education-content {
-  flex: 1.5;
-  min-width: 0;
+    flex: 1.5; 
+    min-width: 0; 
 }
 
 .education-illustration {
-  flex: 1;
-  min-width: 0;
-  display: flex; /* لضمان محاذاة الرسمة داخل عمودها */
-  align-items: flex-start;
+    flex: 1; 
+    min-width: 0;
 }
 
-/* --- تصميم كروت التعليم (بدون تغيير) --- */
+
+/* --- تصميم كروت التعليم --- */
 .education-card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
   background: var(--surface);
   padding: 25px;
@@ -363,25 +354,31 @@ section#education {
   margin-bottom: 20px;
   border: 1px solid transparent;
   outline: none;  
-  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease), box-shadow 0.35s var(--ease), border-color 0.3s var(--ease), background 0.3s var(--ease);
+
+  /* تحديد الخصائص التي تتغير عند الهوفر بشكل صريح، لتحسين الأداء */
+  transition: transform 0.3s var(--ease),
+              opacity 0.3s var(--ease),
+              box-shadow 0.35s var(--ease),
+              border-color 0.3s var(--ease),
+              background 0.3s var(--ease);
 }
 
 .education-content:hover .education-card {
-  opacity: 0.5;
-  transform: scale(0.98);  
+    opacity: 0.5;
+    transform: scale(0.98);  
 }
 
 .education-content .education-card:hover,
 .education-content .education-card:focus {
-  opacity: 1;
-  transform: translateY(-8px) scale(1.02);  
-  box-shadow: 0 25px 50px rgba(0,0,0,0.3);  
-  border-color: var(--accent-a);
+    opacity: 1;
+    transform: translateY(-8px) scale(1.02);  
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);  
+    border-color: var(--accent-a);
 }
 
 body:not(.light) .education-content .education-card:hover,
 body:not(.light) .education-content .education-card:focus {
-  background: #353535;  
+    background: #353535;  
 }
 
 .edu-icon {
@@ -416,27 +413,31 @@ body:not(.light) .education-content .education-card:focus {
   margin: 0;
 }
 
+/* --- تصميم الرسمة --- */
+.education-illustration {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+}
+
 .education-illustration .illustration-svg {
   width: 100%;
   max-width: 900px;
   height: auto;
 }
 
-/* --- تعديلات الموبايل (بدون تغيير) --- */
+/* --- تعديلات الموبايل --- */
 @media (max-width: 980px) {
-  section#education {
-    padding-top: 100px !important; /* مسافة أكبر من فوق في الموبايل */
-    padding-bottom: 100px !important;
-  }
   .section-title.left-aligned {
     text-align: center;
   }
   .education-grid {
+    /* في الشاشات الصغيرة، نعود إلى التخطيط العمودي */
     flex-direction: column;
     gap: 60px;
   }
   .education-illustration {
-    display: none;
+    display: none; /* بنخفي الرسمة في الموبايل عشان نوفر مساحة */
   }
 }
 /* ============================================== */
