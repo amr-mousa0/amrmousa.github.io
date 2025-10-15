@@ -307,6 +307,12 @@ section#who {
 /* === تصميم سكشن التعليم (Education) - الحل النهائي بـ Flexbox === */
 /* ============================================== */
 
+    section#education {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
 /* تعديل بسيط على العنوان عشان يبقى على الشمال */
 .section-title.left-aligned {
   text-align: left;
@@ -317,30 +323,28 @@ section#who {
 
 .education-container {
   width: 100%;
-  max-width: 1900px; /* يمكن إضافة عرض أقصى للتحكم في الشاشات الكبيرة جداً */
-  padding: 0 clamp(30px, 6vw, 80px); /* هوامش ذكية من على الأجناب */
-  margin: 60px auto 0 auto; /* توسيط الحاوية مع إضافة مسافة علوية */
-  box-sizing: border-box; /* لضمان أن الـ padding لا يضاف للعرض الإجمالي */
+  max-width: 1900px; 
+  padding: 0 clamp(30px, 6vw, 80px); 
+  margin: 60px auto 0 auto; 
+  box-sizing: border-box; 
 }
 
-/* --- التعديل الجذري هنا ---
-  استبدلنا Grid بـ Flexbox لأنه أكثر قوة في التحكم بالمحاذاة العمودية في هذه الحالة.
-*/
+
 .education-grid {
-  display: flex; /* غيرنا النوع إلى flex */
+  display: flex !important; /* <<<--- هذا هو التعديل الثاني ---<<< */
   width: 100%;
   gap: clamp(50px, 6vw, 100px);
-  align-items: flex-start; /* هذه هي أهم خاصية تضمن أن كل العناصر تبدأ من الأعلى */
+  align-items: flex-start;
 }
 
-/* بما أننا نستخدم Flexbox، نحتاج لتحديد حجم كل عمود */
+
 .education-content {
-    flex: 1.5; /* هذا العمود سيأخذ 1.5 جزء من المساحة */
-    min-width: 0; /* لمنع أي مشاكل في تجاوز المحتوى لعرض العمود */
+    flex: 1.5; 
+    min-width: 0; 
 }
 
 .education-illustration {
-    flex: 1; /* هذا العمود سيأخذ جزءاً واحداً من المساحة */
+    flex: 1; 
     min-width: 0;
 }
 
@@ -365,13 +369,11 @@ section#who {
               background 0.3s var(--ease);
 }
 
-/* عند المرور على حاوية المحتوى، كل الكروت تصبح باهتة قليلاً */
 .education-content:hover .education-card {
     opacity: 0.5;
     transform: scale(0.98);  
 }
 
-/* التحسين الرئيسي للوصولية: التأثير يعمل مع الماوس ولوحة المفاتيح */
 .education-content .education-card:hover,
 .education-content .education-card:focus {
     opacity: 1;
@@ -380,7 +382,6 @@ section#who {
     border-color: var(--accent-a);
 }
 
-/* تأثير خاص بالوضع الليلي عند المرور أو التركيز */
 body:not(.light) .education-content .education-card:hover,
 body:not(.light) .education-content .education-card:focus {
     background: #353535;  
