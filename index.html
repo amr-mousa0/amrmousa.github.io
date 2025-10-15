@@ -317,11 +317,11 @@ section#who {
 
 .education-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1.5fr 1fr; 
   width: 100%;
-  max-width: 1500px; /* <<<--- التحكم 1: عرض السكشن كله (المسافة من الأجناب) */
+  max-width: 1900px; 
   margin: 0 auto;
-  gap: 150px; /* <<<--- التحكم 2: المسافة بين الكروت والرسمة */
+  gap: 120px; 
   align-items: center;
   margin-top: 60px;
 }
@@ -407,7 +407,7 @@ body:not(.light) .education-content .education-card:hover {
 }
 .education-illustration .illustration-svg {
   width: 100%;
-  max-width: 900px; /* دي قيمة كويسة هتخلي الرسمة متجاوبة */
+  max-width: 700px; /* دي قيمة كويسة هتخلي الرسمة متجاوبة */
   height: auto;
 }
 
@@ -779,7 +779,8 @@ body.drawer-open .top-left {
  <div class="education-content">
          <h2 id="education-title" class="section-title left-aligned anim-child" style="transition-delay: 0.1s;">Education</h2>
         
-        <div class="education-card anim-child" style="transition-delay: 0.2s;" tabindex="0">
+        <div class="anim-child" style="transition-delay: 0.2s;">
+      <div class="education-card" tabindex="0">
           <div class="edu-icon">
             <i class="fa-solid fa-school"></i>
          </div>
@@ -790,7 +791,8 @@ body.drawer-open .top-left {
           </div>
         </div>
 
-         <div class="education-card anim-child" style="transition-delay: 0.3s;" tabindex="0">
+        <div class="anim-child" style="transition-delay: 0.3s;">
+      <div class="education-card" tabindex="0">
           <div class="edu-icon">
             <i class="fa-solid fa-flask-vial"></i>
           </div>
