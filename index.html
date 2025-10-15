@@ -412,7 +412,8 @@ body:not(.light) .education-content .education-card:focus {
 .education-illustration {
   display: flex;
   justify-content: center;
-  align-items: start; /* --- الإصلاح هنا: إرجاع المحاذاة للأعلى --- */
+  align-items: start;
+  align-self: start; /* <<<--- هذا هو التعديل الجديد والفعال */
 }
 
 .education-illustration .illustration-svg {
