@@ -304,7 +304,7 @@ section#who {
 
 
 /* ============================================== */
-/* === تصميم سكشن التعليم (Education) - النسخة المصححة === */
+/* === تصميم سكشن التعليم (Education) - الحل النهائي بـ Flexbox === */
 /* ============================================== */
 
 /* تعديل بسيط على العنوان عشان يبقى على الشمال */
@@ -315,10 +315,6 @@ section#who {
   color: var(--accent-a);
 }
 
-/* --- الإصلاح هنا ---
-  استخدام width: 100% مع padding و margin: auto هو الأسلوب الأكثر أمانًا
-  لإنشاء حاوية متجاوبة وموسّطة بدون مشاكل الـ overflow.
-*/
 .education-container {
   width: 100%;
   max-width: 1900px; /* يمكن إضافة عرض أقصى للتحكم في الشاشات الكبيرة جداً */
@@ -327,13 +323,27 @@ section#who {
   box-sizing: border-box; /* لضمان أن الـ padding لا يضاف للعرض الإجمالي */
 }
 
+/* --- التعديل الجذري هنا ---
+  استبدلنا Grid بـ Flexbox لأنه أكثر قوة في التحكم بالمحاذاة العمودية في هذه الحالة.
+*/
 .education-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  display: flex; /* غيرنا النوع إلى flex */
   width: 100%;
   gap: clamp(50px, 6vw, 100px);
-  align-items: start; /* --- الإصلاح هنا: إرجاع المحاذاة للأعلى --- */
+  align-items: flex-start; /* هذه هي أهم خاصية تضمن أن كل العناصر تبدأ من الأعلى */
 }
+
+/* بما أننا نستخدم Flexbox، نحتاج لتحديد حجم كل عمود */
+.education-content {
+    flex: 1.5; /* هذا العمود سيأخذ 1.5 جزء من المساحة */
+    min-width: 0; /* لمنع أي مشاكل في تجاوز المحتوى لعرض العمود */
+}
+
+.education-illustration {
+    flex: 1; /* هذا العمود سيأخذ جزءاً واحداً من المساحة */
+    min-width: 0;
+}
+
 
 /* --- تصميم كروت التعليم --- */
 .education-card {
@@ -413,7 +423,6 @@ body:not(.light) .education-content .education-card:focus {
   display: flex;
   justify-content: center;
   align-items: start;
-  align-self: start; /* <<<--- هذا هو التعديل الجديد والفعال */
 }
 
 .education-illustration .illustration-svg {
@@ -428,14 +437,14 @@ body:not(.light) .education-content .education-card:focus {
     text-align: center;
   }
   .education-grid {
-    grid-template-columns: 1fr;
+    /* في الشاشات الصغيرة، نعود إلى التخطيط العمودي */
+    flex-direction: column;
     gap: 60px;
   }
   .education-illustration {
     display: none; /* بنخفي الرسمة في الموبايل عشان نوفر مساحة */
   }
 }
-
 /* ============================================== */
 /* === تصميم الانترو (النسخة النهائية والمحسنة) === */
 /* ============================================== */
