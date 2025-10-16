@@ -501,10 +501,10 @@ section#skills {
 }
 
 @keyframes cinematic-scroll {
-  0%   { transform: translateX(300%); opacity: 0; }
-  1%   { transform: translateX(300%); opacity: 1; } 
-  99%  { transform: translateX(-100%); opacity: 1; }
-  100% { opacity: 0; transform: translateX(-100%); }
+  0%   { transform: translateX(200%); opacity: 0; }
+  1%   { transform: translateX(200%); opacity: 1; }
+  99%  { transform: translateX(-200%); opacity: 1; }
+  100% { opacity: 0; transform: translateX(-200%); }
 }
 
 /* --- تصميم الأيقونات (مع تحسينات الثيم الفاتح) --- */
@@ -694,6 +694,17 @@ body.light .scroller .scroller__inner li:hover {
   max-width: 500px;
   margin: -40px auto 60px auto; /* مسافات محسوبة */
   line-height: 1.6;
+}
+    .anim-child {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* 2. الحالة النهائية: عند إضافة كلاس .fade-up، تظهر العناصر وتبقى ظاهرة */
+.section-anim-container.fade-up .anim-child {
+  opacity: 1;
+  transform: translateY(0);
 }
     
 /* ============================================== */
