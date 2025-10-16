@@ -463,74 +463,68 @@ body:not(.light) #education .education-content .education-card:focus {
 }
 
 /* ============================================== */
-/* === سكشن المهارات والكفاءات (النسخة النهائية والمُعززة) === */
+/* === سكشن المهارات (النسخة النهائية الاحترافية) === */
 /* ============================================== */
 
 section#skills {
   position: relative;
-  overflow: hidden; 
-  padding: 80px 0 !important;
+  overflow: hidden;
+  padding: 0 !important; /* نلغي كل الحشو العام من هذا السكشن */
   min-height: 100vh;
+  display: flex; /* نستخدم flex لتوسيط المحتوى الداخلي عمودياً */
+  align-items: center;
 }
 
-/* --- الشريط المتحرك مع تأثير التوهج الصحيح --- */
-
+/* --- الشريط العائم (Scroller) --- */
 .scroller {
   position: absolute;
-  top: 15%;
+  /* تم تحديد الموضع بدقة باستخدام rem لثبات أكبر */
+  top: 12rem; 
   left: -50%;
   right: -50%;
   z-index: 10;
   pointer-events: none;
 }
- .scroller__inner {
+
+.scroller__inner {
   display: flex;
-  justify-content: center; /* يضع الأيقونات في منتصف الشريط العريض */
+  justify-content: center;
   gap: 2rem;
   list-style: none;
   margin: 0;
   width: max-content; 
-  
-  /* الخطوة 1: تطبيق الأنيميشن السينمائي الجديد */
   animation: cinematic-scroll 45s linear infinite;
 }
 
+/* الخطوة 1: إعادة تفعيل إيقاف الحركة عند المرور بالماوس */
 .scroller:hover .scroller__inner {
   animation-play-state: paused;
 }
 
 @keyframes cinematic-scroll {
-  /* المرحلة الأولى: الانتظار قبل الظهور (2 ثانية) */
-  0% {
-    transform: translateX(150%);
-    opacity: 0; /* يكون مختفياً تماماً */
-  }
-  5% {
-    transform: translateX(150%);
-    opacity: 1; /* يظهر فجأة استعداداً للحركة */
-  }
-
-  /* المرحلة الثانية: الحركة عبر الشاشة (الأبطأ والأكثر سلاسة) */
-  85% {
-    /* يتحرك إلى أقصى اليسار خارج الشاشة */
-    transform: translateX(-150%);
-  }
-
-  /* المرحلة الثالثة: الاختفاء والانتظار (حتى نهاية الأنيميشن) */
-  85.01% {
-    opacity: 0; /* يختفي فجأة بعد خروجه بالكامل */
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-150%); /* يظل مختفياً في مكانه لنهاية المدة */
-  }
+  0%   { transform: translateX(150%); opacity: 0; }
+  5%   { transform: translateX(150%); opacity: 1; }
+  85%  { transform: translateX(-150%); }
+  85.01% { opacity: 0; }
+  100% { opacity: 0; transform: translateX(-150%); }
 }
-/* --- تصميم الأيقونات (بدون توهج خاص بها) --- */
 
-/* تصميم الثيم الداكن (زجاجي مع نور) */
+/* --- تصميم الأيقونات بالتوهج المحسن --- */
+
+.scroller__inner li {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+/* تصميم الثيم الداكن */
 .scroller__inner li {
   background: rgba(var(--dark-surface-rgb, 41, 41, 41), 0.5);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px); /* زيادة طفيفة للتأثير الزجاجي */
   padding: 1rem 1.5rem;
   border-radius: var(--radius, 12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -541,66 +535,105 @@ section#skills {
   position: absolute;
   inset: -2px;
   border-radius: inherit;
-  background: conic-gradient(from 180deg at 50% 50%, rgba(var(--accent-a-rgb), 0.6) 0%, rgba(var(--accent-b-rgb), 0.5) 50%, rgba(var(--accent-a-rgb), 0.6) 100%);
-  filter: blur(12px);
+  background: conic-gradient(from 180deg at 50% 50%, rgba(var(--accent-a-rgb), 0.5) 0%, rgba(var(--accent-b-rgb), 0.4) 50%, rgba(var(--accent-a-rgb), 0.5) 100%);
+  filter: blur(15px); /* <<<--- زيادة نعومة التوهج */
   z-index: -1;
-  opacity: 0.9;
+  opacity: 0.8;
   transition: opacity 0.3s ease, background var(--trans);
 }
 
-/* تصميم الثيم الفاتح (صلب وواضح) */
+/* تصميم الثيم الفاتح */
 body.light .scroller__inner li {
   background: var(--surface);
   backdrop-filter: none;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eaf0f6; /* لون بوردر أنعم */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
 }
 body.light .scroller__inner li::before {
   opacity: 0;
 }
 
-
 .scroller__inner li:hover {
   transform: scale(1.1) translateY(-5px);
 }
-    .scroller__inner li svg { width: 50px; height: 50px; object-fit: contain; z-index: 1; }
-.scroller__inner li span { color: var(--text); font-weight: 500; font-size: 0.9rem; z-index: 1; }
-    
 
-/* --- قسم الكفاءات الأساسية --- */
+.scroller__inner li svg { width: 50px; height: 50px; object-fit: contain; z-index: 1; }
+.scroller__inner li span { color: var(--text); font-weight: 500; font-size: 0.9rem; z-index: 1; }
+
+/* --- قسم الكفاءات الأساسية (بمسافات احترافية) --- */
 
 .competencies-container {
-  max-width: 1100px; /* <<<--- تقليل العرض الأقصى قليلاً */
+  width: 100%; /* يأخذ عرض الشاشة بالكامل */
+  max-width: 1100px;
   margin: 0 auto;
-  /* الخطوة 4.1: رفع القسم بالكامل لأعلى */
-  padding: 30vh 40px 80px 40px; /* <<<--- تقليل المسافة من الأعلى من 35vh إلى 30vh */
+  /* الخطوة 2: مسافات إيقاعية ومدروسة */
+  padding: 0 40px; /* الحشو الأفقي القياسي */
+  /* تم إزالة الحشو العلوي من هنا والتحكم فيه من السكشن الرئيسي */
+  margin-top: calc(12rem + 150px); /* <<<--- هام جداً: يضمن وجود مسافة كافية بعد الشريط العائم */
 }
+
 #skills .section-title {
-  text-align: center;
-  font-size: 48px; /* <<<--- تصغير حجم العنوان */
-  margin-bottom: 50px;
-  color: var(--text);
+  position: relative; /* ليكون مرجعاً للخط الزخرفي */
+  display: inline-block; /* ليأخذ عرض المحتوى فقط */
+  left: 50%; /* لتحريكه لمنتصف الشاشة */
+  transform: translateX(-50%); /* للتوسيط الدقيق */
+  font-size: 48px;
+  margin-bottom: 70px;
 }
+
+/* الخطوة 3: إضافة الخط الزخرفي تحت العنوان */
+#skills .section-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -20px;
+  height: 4px;
+  width: 60px;
+  background: var(--accent-a);
+  border-radius: 2px;
+  transition: background var(--trans);
+}
+
 .competencies-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 25px; /* <<<--- تقليل المسافة بين الكروت */
+  gap: 30px;
 }
+
 .competency-card {
   background-color: var(--surface);
-  padding: 30px 25px; /* <<<--- تقليل الحشو الداخلي */
+  padding: 35px 30px;
   border-radius: var(--radius, 12px);
   text-align: center;
   border: 1px solid transparent;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  /* الخطوة 4: إضافة ظل احترافي */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.3s ease; /* transition شامل لكل الخصائص */
 }
-    .competency-card:hover { transform: translateY(-8px); border-color: var(--accent-a); }
-..card-icon { font-size: 36px; color: var(--accent-a); margin-bottom: 15px; }
+/* تعديل الثيم الداكن لتقليل قوة الظل */
+body:not(.light) .competency-card {
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+.competency-card:hover { 
+  transform: translateY(-12px); 
+  border-color: var(--accent-a);
+  /* زيادة قوة الظل عند المرور */
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+body:not(.light) .competency-card:hover {
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+}
+
+.card-icon { font-size: 36px; color: var(--accent-a); margin-bottom: 15px; }
 .card-title { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
 .card-description { font-size: 15px; color: var(--muted); line-height: 1.6; }
 
-@media (max-width: 980px) {
-  .competencies-grid { grid-template-columns: 1fr; }
+@media (max-width: 980px) { 
+  .competencies-grid { grid-template-columns: 1fr; } 
+  .scroller { top: 8rem; }
+  .competencies-container { margin-top: calc(8rem + 140px); }
 }
     
 /* ============================================== */
