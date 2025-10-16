@@ -474,21 +474,23 @@ section#skills {
   display: flex;
   align-items: center;
 }
-    body.light section#skills::before {
+   body.light section#skills::before {
   background: radial-gradient(
     circle at 50% 80%,
-    rgba(120, 180, 255, 0.18),  /* لون أزرق فاتح متوهج */
-    rgba(255, 200, 240, 0.15),
+    rgba(120, 180, 255, 0.12),  /* خففنا التوهج الأزرق */
+    rgba(255, 200, 240, 0.08),  /* خففنا اللون الزهري */
     transparent 75%
   );
-  filter: blur(70px);
-  opacity: 0.9;
+  filter: blur(60px); /* قللنا شوية من التمويه */
+  opacity: 0.8;       /* خففنا الشفافية قليلاً */
 }
-    body.light .competency-card {
+
+body.light .competency-card {
   box-shadow:
-    0 6px 25px rgba(71, 85, 105, 0.08),
-    0 0 15px rgba(var(--accent-a-rgb), 0.1);
+    0 6px 20px rgba(71, 85, 105, 0.06), /* ظل أخف للكارت */
+    0 0 10px rgba(var(--accent-a-rgb), 0.08); /* توهج أقل للون الأساسي */
 }
+
     body.light .scroller__inner li::before {
   background: linear-gradient(135deg,
     rgba(var(--accent-a-rgb), 0.25),
@@ -874,17 +876,20 @@ section#skills::before {
 /* الحركة عند مرور الماوس */
 #skills .section-title:hover::after {
   width: 180px;
-  opacity: 1;
+  opacity: 0.8; /* خفف الشفافية */
   animation: glow-move 1.6s linear infinite;
-  box-shadow: 0 0 20px rgba(var(--accent-a-rgb), 0.9),
-              0 0 40px rgba(var(--accent-b-rgb), 0.6);
+  box-shadow: 
+    0 0 10px rgba(var(--accent-a-rgb), 0.5),  /* خفف نصف القوة */
+    0 0 20px rgba(var(--accent-b-rgb), 0.3);  /* خفف نصف القوة */
 }
-    #skills .section-title:hover {
-  color: var(--accent-a); /* يلمع أكتر بلون الثيم */
+
+#skills .section-title:hover {
+  color: var(--accent-a); /* اللون الأساسي يلمع */
   text-shadow:
-    0 0 8px rgba(var(--accent-a-rgb), 0.8),
-    0 0 15px rgba(var(--accent-b-rgb), 0.6);
+    0 0 4px rgba(var(--accent-a-rgb), 0.5),   /* خفف الظل للنصف */
+    0 0 8px rgba(var(--accent-b-rgb), 0.3);   /* خفف الظل للنصف */
 }
+
 
 
 /* في الثيم الفاتح نزيد الإضاءة شوية */
