@@ -459,18 +459,18 @@ body:not(.light) #education .education-content .education-card:focus {
 }
 
 /* ============================================== */
-/* === سكشن المهارات والكفاءات (النسخة النهائية) === */
+/* === سكشن المهارات والكفاءات (النسخة النهائية والمُعززة) === */
 /* ============================================== */
 
-/* الخطوة 1: إلغاء الحشو الأفقي لجعل الشريط يملأ الشاشة */
+/* الخطوة 1: إلغاء الحشو العام بالقوة باستخدام !important */
 section#skills {
   padding-left: 0 !important;
   padding-right: 0 !important;
-  padding-top: 80px;
-  padding-bottom: 0;
+  padding-top: 80px !important;
+  padding-bottom: 0 !important;
 }
 
-/* --- الشريط المتحرك مع تأثير التوهج على الأطراف --- */
+/* --- الشريط المتحرك مع تأثير التوهج الصحيح --- */
 
 .scroller {
   position: relative; 
@@ -478,7 +478,7 @@ section#skills {
   mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
 }
 
-/* طبقات التوهج على اليمين واليسار */
+/* طبقات التوهج على الأطراف (ستظهر الآن بشكل صحيح) */
 .scroller::before,
 .scroller::after {
   content: '';
@@ -488,17 +488,17 @@ section#skills {
   width: 200px;
   z-index: 2;
   pointer-events: none;
-  transition: background var(--trans); /* لجعل لون التوهج يتغير بسلاسة مع الثيم */
+  transition: background var(--trans);
 }
 
 .scroller::before {
   left: 0;
-  background: radial-gradient(circle at left center, rgba(var(--accent-a-rgb), 0.2) 0%, transparent 60%);
+  background: radial-gradient(circle at left center, rgba(var(--accent-a-rgb), 0.2) 0%, transparent 70%);
 }
 
 .scroller::after {
   right: 0;
-  background: radial-gradient(circle at right center, rgba(var(--accent-a-rgb), 0.2) 0%, transparent 60%);
+  background: radial-gradient(circle at right center, rgba(var(--accent-a-rgb), 0.2) 0%, transparent 70%);
 }
 
 .scroller__inner {
@@ -540,6 +540,7 @@ section#skills {
   transform: scale(1.1);
 }
 
+/* تأكد من أن القاعدة تشمل SVG أيضاً */
 .scroller__inner li svg {
   width: 70px;
   height: 70px;
@@ -555,9 +556,10 @@ section#skills {
 /* --- قسم الكفاءات الأساسية --- */
 
 .competencies-container {
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 100px 40px 80px 40px; /* استخدمنا 40px هنا ليتوافق مع الحشو العام */
+  /* استعادة الحشو الأفقي لهذا الجزء فقط */
+  padding: 100px 40px 80px 40px; 
 }
 
 #skills .section-title {
@@ -594,18 +596,8 @@ section#skills {
   transition: color var(--trans);
 }
 
-.card-title {
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 10px;
-}
-
-.card-description {
-  font-size: 16px;
-  color: var(--muted);
-  line-height: 1.6;
-}
+.card-title { font-size: 22px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+.card-description { font-size: 16px; color: var(--muted); line-height: 1.6; }
 
 @media (max-width: 980px) {
   .competencies-grid {
