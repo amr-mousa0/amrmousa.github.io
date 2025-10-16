@@ -462,12 +462,41 @@ body:not(.light) #education .education-content .education-card:focus {
 /* === سكشن المهارات والكفاءات (النسخة النهائية) === */
 /* ============================================== */
 
-/* --- 1. الشريط المتحرك (Scroller) --- */
+/* استثناء لإلغاء الحشو الأفقي العام وجعل الشريط يملأ الشاشة */
+section#skills {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 80px;
+  padding-bottom: 0;
+}
+
+/* --- 1. الشريط المتحرك مع تأثير التوهج على الأطراف --- */
 
 .scroller {
-  /* يملأ الشاشة من الحافة إلى الحافة */
-  -webkit-mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
-  mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
+  position: relative; 
+  -webkit-mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+  mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+}
+
+.scroller::before,
+.scroller::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.scroller::before {
+  left: 0;
+  background: radial-gradient(circle at left center, rgba(var(--accent-a-rgb), 0.2) 0%, transparent 60%);
+}
+
+.scroller::after {
+  right: 0;
+  background: radial-gradient(circle at right center, rgba(var(--accent-a-rgb), 0.2) 0%, transparent 60%);
 }
 
 .scroller__inner {
@@ -478,7 +507,7 @@ body:not(.light) #education .education-content .education-card:focus {
   margin: 0;
   padding-inline: 2rem;
   width: max-content; 
-  animation: scroll 20s linear infinite; /* <<<--- تم تعديل السرعة لتناسب 3 أيقونات */
+  animation: scroll 20s linear infinite;
 }
 
 .scroller:hover .scroller__inner {
@@ -491,31 +520,24 @@ body:not(.light) #education .education-content .education-card:focus {
   }
 }
 
-/* --- 2. أيقونات المهارات (مع التوهج التفاعلي) --- */
+/* --- 2. تصميم الأيقونات (بدون توهج خاص بها) --- */
 
 .scroller__inner li {
-  background: var(--surface); /* <<<--- يستدعي لون السطح من الثيم */
+  background: var(--surface);
   padding: 1.5rem 2.5rem;
   border-radius: 0.75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.05); /* إطار خفيف جداً */
-  
-  /* تأثير التوهج الأساسي (يستخدم اللون المميز من الثيم الحالي) */
-  box-shadow: 0 0 20px -5px rgba(var(--accent-a-rgb), 0.25);
-
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease;
 }
 
 .scroller__inner li:hover {
   transform: scale(1.1);
-  /* توهج أقوى عند المرور (يستخدم نفس اللون المميز من الثيم) */
-  box-shadow: 0 0 35px -5px rgba(var(--accent-a-rgb), 0.6);
 }
 
-/* حجم الأيقونات (SVG) */
 .scroller__inner li svg {
   width: 70px;
   height: 70px;
@@ -523,38 +545,34 @@ body:not(.light) #education .education-content .education-card:focus {
 }
 
 .scroller__inner li span {
-  color: var(--muted); /* <<<--- يستدعي لون النص الباهت */
+  color: var(--muted);
   font-weight: 600;
   font-size: 1.1rem;
 }
 
-
 /* --- 3. قسم الكفاءات الأساسية --- */
-
+/* (الكود هنا لم يتغير) */
 .competencies-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 100px 20px 80px 20px;
 }
 
-/* عنوان القسم (سيتم تطبيق التنسيق العام لـ section-title) */
 #skills .section-title {
   text-align: center;
   font-size: 56px;
   margin-bottom: 60px;
-  color: var(--text); /* <<<--- يستدعي لون النص من الثيم */
+  color: var(--text);
 }
 
-/* شبكة الكفاءات */
 .competencies-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
 
-/* كارت الكفاءة */
 .competency-card {
-  background-color: var(--surface); /* <<<--- يستدعي لون السطح */
+  background-color: var(--surface);
   padding: 35px 30px;
   border-radius: var(--radius, 12px);
   text-align: center;
@@ -564,30 +582,26 @@ body:not(.light) #education .education-content .education-card:focus {
 
 .competency-card:hover {
   transform: translateY(-10px);
-  border-color: var(--accent-a); /* <<<--- يستدعي اللون المميز */
+  border-color: var(--accent-a);
 }
 
 .card-icon {
   font-size: 40px;
-  color: var(--accent-a); /* <<<--- يستدعي اللون المميز */
+  color: var(--accent-a);
   margin-bottom: 20px;
 }
-
 .card-title {
   font-size: 22px;
   font-weight: 600;
-  color: var(--text); /* <<<--- يستدعي لون النص */
+  color: var(--text);
   margin-bottom: 10px;
 }
-
 .card-description {
   font-size: 16px;
-  color: var(--muted); /* <<<--- يستدعي لون النص الباهت */
+  color: var(--muted);
   line-height: 1.6;
 }
 
-
-/* --- تعديلات الموبايل --- */
 @media (max-width: 980px) {
   .competencies-grid {
     grid-template-columns: 1fr;
