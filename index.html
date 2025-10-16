@@ -474,6 +474,12 @@ section#skills {
   display: flex;
   align-items: center;
 }
+    #skills .section-anim-container {
+  width: 100%;
+  max-width: 1100px; /* نفس الـ competencies-container */
+  margin: 0 auto;
+  text-align: center;
+}
 
 /* --- الشريط العائم (Scroller) --- */
 /* --- الحاوية الرئيسية للشريط --- */
@@ -712,12 +718,7 @@ body.light .scroller .scroller__inner li:hover {
   transform: translateY(25px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
-    .section-anim-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
+   
 
 /* 2. الحالة النهائية: عند إضافة كلاس .fade-up، تظهر العناصر وتبقى ظاهرة */
 .section-anim-container.fade-up .anim-child {
