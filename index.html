@@ -554,18 +554,11 @@ body.light .competency-card {
   backdrop-filter: blur(10px);
   border-radius: var(--radius, 12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.35s ease;
   overflow: hidden;
   position: relative;
   z-index: 1;
-
-  /* fadeUp */
-  opacity: 0;
-  transform: translateY(40px);
-  animation: fadeUp 0.9s ease-out forwards;
-  animation-delay: 0.1s;
-  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, opacity 0.25s ease-out;
 }
-
 
 /* توهج دائم خفيف */
 .scroller__inner li::before {
@@ -587,15 +580,16 @@ body.light .competency-card {
 }
 
 .scroller__inner li:hover {
+  opacity: 1;
   transform: scale(1.1) translateY(-6px);
   z-index: 2;
-  opacity: 1;
 }
 
 .scroller__inner li:hover::before {
   opacity: 0.85;
   filter: blur(20px);
 }
+
 /* ---------------------- الثيم الفاتح ---------------------- */
 body.light .scroller__inner li {
   background: var(--surface);
@@ -604,11 +598,14 @@ body.light .scroller__inner li {
   box-shadow: 0 8px 25px rgba(71, 85, 105, 0.08);
   border-color: transparent;
 }
-
+body.light .scroller__inner li:hover {
+  border-color: var(--accent-a);
+  box-shadow: 0 15px 35px rgba(71, 85, 105, 0.15);
+}
 body.light .scroller__inner li::before {
   opacity: 0;
 }
-{
+body.light .scroller:hover .scroller__inner li {
   opacity: 0.4;
   transform: scale(0.95);
 }
@@ -666,17 +663,9 @@ body.light .scroller__inner li::before {
   padding: 35px 30px;
   border-radius: var(--radius, 12px);
   text-align: center;
-  overflow: hidden;
   z-index: 1;
-
-  /* تطبيق انيميشن fadeUp */
-  opacity: 0;
-  transform: translateY(40px);
-  animation: fadeUp 0.9s ease-out forwards;
-  animation-delay: 0.2s; /* يمكنك تعديل التاخير لكل كارت */
-  
-  /* transition مخصص فقط للتحركات والظل */
-  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+  overflow: hidden;
+  transition: all 0.35s var(--ease);
 }
 
 /* الإطار المتدرج */
@@ -686,7 +675,7 @@ body.light .scroller__inner li::before {
   inset: 0;
   background: linear-gradient(45deg, var(--accent-a), var(--accent-b));
   z-index: -2;
-  opacity: 0.3; 
+  opacity: 0.3; /* توهج خفيف دائم */
   filter: blur(8px);
   transition: opacity 0.3s ease, filter 0.3s ease;
 }
@@ -700,14 +689,6 @@ body.light .scroller__inner li::before {
   border-radius: calc(var(--radius, 12px) - 2px);
   z-index: -1;
   transition: background-color var(--trans);
-}
-    .competency-card:hover {
-  transform: translateY(-10px) scale(1.08);
-  z-index: 2;
-}
-    .competency-card:hover::before {
-  opacity: 0.9;
-  filter: blur(18px);
 }
 
 /* عند مرور الماوس */
@@ -750,11 +731,16 @@ body.light .scroller__inner li::before {
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+    @keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
 
 /* ============================================== */
 /* === تحسينات بصرية مدمجة إضافية بدون حذف القديم === */
@@ -797,7 +783,6 @@ body.light .competency-card:hover {
   box-shadow: 0 10px 35px rgba(var(--accent-a-rgb), 0.25);
   transform: scale(1.05);
 }
-    
 
 /* ==== تحسين الشريط العائم ==== */
 .scroller__inner li {
@@ -821,11 +806,9 @@ body.light .competency-card:hover {
 
 /* ==== توهج متدرج حول الشريط في الثيم الفاتح ==== */
 body.light .scroller__inner li {
-  background: var(--surface);
   border: 1px solid rgba(var(--accent-a-rgb), 0.25);
   box-shadow: 0 0 18px rgba(var(--accent-a-rgb), 0.12);
 }
-
 
 body.light .scroller__inner li:hover {
   box-shadow: 0 0 35px rgba(var(--accent-a-rgb), 0.25),
@@ -920,9 +903,6 @@ body.light #skills .section-title::after {
   .scroller { top: 8rem; }
   .competencies-container { margin-top: calc(8rem + 140px); }
 }
-    section#skills::before { z-index: 0 !important; }
-.competency-card, .scroller__inner li { z-index: 3 !important; position: relative !important; }
-
 
     
 /* ============================================== */
