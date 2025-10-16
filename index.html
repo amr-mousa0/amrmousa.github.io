@@ -731,6 +731,52 @@ body.light .scroller .scroller__inner li:hover {
   opacity: 1;
   transform: translateY(0);
 }
+    .scroller__inner:hover li {
+  opacity: 0.5;
+  transform: scale(0.95);
+  transition: all 0.35s ease;
+}
+
+/* الكارت اللي الماوس فوقه */
+.scroller__inner li:hover {
+  opacity: 1;
+  transform: scale(1.1) translateY(-6px);
+  z-index: 3;
+}
+
+/* طبقة التوهج المتدرج (gradient glow) */
+.scroller__inner li::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(45deg, var(--accent-a), var(--accent-b));
+  opacity: 0; /* افتراضيًا مش ظاهر */
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: scale(0.95);
+  z-index: -1;
+}
+
+/* عند مرور الماوس على الكارت يظهر التوهج */
+.scroller__inner li:hover::before {
+  opacity: 0.9;
+  transform: scale(1);
+}
+
+/* لمسة جمالية إضافية (ضوء داخلي خفيف عند الهوفر) */
+.scroller__inner li {
+  position: relative;
+  background: rgba(var(--dark-surface-rgb, 41, 41, 41), 0.6);
+  border-radius: var(--radius, 14px);
+  overflow: hidden;
+  transition: all 0.35s ease;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+body.light .scroller__inner li {
+  background: var(--surface);
+  box-shadow: 0 8px 25px rgba(71, 85, 105, 0.08);
+}
     
 /* ============================================== */
 /* === تصميم الانترو (النسخة النهائية والمحسنة) === */
