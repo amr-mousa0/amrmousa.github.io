@@ -658,6 +658,10 @@ body.light .scroller:hover .scroller__inner li {
 }
 
 .competency-card {
+   opacity: 0; /* البداية */
+  transform: translateY(40px);
+  animation: fadeUp 0.9s ease-out forwards;
+  transition: transform 0.35s ease, opacity 0.35s ease; /* لا تشمل all */
   position: relative;
   background-color: var(--surface);
   padding: 35px 30px;
@@ -665,7 +669,6 @@ body.light .scroller:hover .scroller__inner li {
   text-align: center;
   z-index: 1;
   overflow: hidden;
-  transition: all 0.35s var(--ease);
 }
 
 /* الإطار المتدرج */
