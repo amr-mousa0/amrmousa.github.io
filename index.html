@@ -11,42 +11,52 @@
   <style>
 /* ---------------- Variables & Themes ---------------- */
 :root {
+  /* -- الثوابت العامة -- */
   --radius: 14px;
   --ease: cubic-bezier(.2, .9, .3, 1);
   --trans: 360ms var(--ease);
 
-  /* === الثيم الفاتح (الأزرق الاحترافي بتاعك) === */
+  /* -- ألوان الثيم الفاتح -- */
   --light-bg: #f6f8fb;
   --light-surface: #ffffff;
   --light-text: #071026;
   --light-muted: #475569;
   --light-accent-a: #0b84ff;
+  --light-accent-a-rgb: 11, 132, 255; /* <<<--- تمت إضافة نسخة RGB */
   --light-accent-b: #0b3b66;
+  --light-accent-b-rgb: 11, 59, 102;  /* <<<--- تمت إضافة نسخة RGB */
 
-  /* === الثيم الداكن الجديد (بالألوان اللي اخترتها) === */
-  --dark-bg: #1A1A1A;         /* Background */
-  --dark-surface: #292929;    /* سطح أغمق قليلاً للكروت عشان تظهر */
-  --dark-text: #F0F0F0;       /* Primary Text */
-  --dark-muted: #999999;      /* نص باهت متناسق */
-  --dark-accent-a: #004D61;    /* Accent 1: Dark Teal */
-  --dark-accent-b: #822659;    /* Accent 2: Deep Ruby */
+  /* -- ألوان الثيم الداكن -- */
+  --dark-bg: #1A1A1A;
+  --dark-surface: #292929;
+  --dark-text: #F0F0F0;
+  --dark-muted: #999999;
+  --dark-accent-a: #004D61;
+  --dark-accent-a-rgb: 0, 77, 97;     /* <<<--- تمت إضافة نسخة RGB */
+  --dark-accent-b: #822659;
+  --dark-accent-b-rgb: 130, 38, 89;  /* <<<--- تمت إضافة نسخة RGB */
   
-  /* runtime tokens (default dark) */
+  /* -- المتغيرات التشغيلية (الافتراضي هو الداكن) -- */
   --bg: var(--dark-bg);
   --surface: var(--dark-surface);
   --text: var(--dark-text);
   --muted: var(--dark-muted);
   --accent-a: var(--dark-accent-a);
+  --accent-a-rgb: var(--dark-accent-a-rgb);
   --accent-b: var(--dark-accent-b);
+  --accent-b-rgb: var(--dark-accent-b-rgb);
 }
 
+/* عند تطبيق الثيم الفاتح */
 body.light {
   --bg: var(--light-bg);
   --surface: var(--light-surface);
   --text: var(--light-text);
   --muted: var(--light-muted);
   --accent-a: var(--light-accent-a);
+  --accent-a-rgb: var(--light-accent-a-rgb);
   --accent-b: var(--light-accent-b);
+  --accent-b-rgb: var(--light-accent-b-rgb);
 }
     /* ---------------- Reset / Base ---------------- */
     *{box-sizing:border-box}
@@ -448,136 +458,103 @@ body:not(.light) #education .education-content .education-card:focus {
   }
 }
 
-    /* ============================================== */
-/* ============= سكشن المهارات (Skills) ============= */
+/* ============================================== */
+/* === سكشن المهارات والكفاءات (النسخة النهائية) === */
 /* ============================================== */
 
-/* تنسيق العنوان (يمكنك تعديله ليتناسب مع موقعك) */
-#skills .section-title {
-  text-align: center;
-  font-size: 56px;
-  margin-bottom: 40px;
-  color: var(--accent-a); /* استخدم نفس لونك المميز */
-}
+/* --- 1. الشريط المتحرك (Scroller) --- */
 
-/* الحاوية الرئيسية للشريط */
 .scroller {
-  max-width: 900px; /* حدد العرض المناسب لك */
-  margin: 0 auto;
-  position: relative; /* ضروري لتأثير التوهج */
-  
-  /* هذا هو سر تأثير التوهج (Fade) على الجانبين */
-  -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
-  mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  /* يملأ الشاشة من الحافة إلى الحافة */
+  -webkit-mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
+  mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
 }
 
-/* الحاوية الداخلية التي تحتوي على الأيقونات وتتحرك */
 .scroller__inner {
   display: flex;
-  gap: 2rem; /* المسافة بين الأيقونات */
-  padding-block: 1rem;
-  list-style: none; /* لإزالة نقاط القائمة */
+  gap: 2rem;
+  padding-block: 2rem;
+  list-style: none;
   margin: 0;
-  padding: 0;
-  
-  /* نجعل العرض مناسباً للمحتوى (القائمتين معاً) */
+  padding-inline: 2rem;
   width: max-content; 
-
-  /* تطبيق الأنيميشن */
-  animation: scroll 20s linear infinite;
+  animation: scroll 20s linear infinite; /* <<<--- تم تعديل السرعة لتناسب 3 أيقونات */
 }
 
-/* --- التفاعل مع الماوس --- */
-
-/* 1. إيقاف الحركة عند مرور الماوس فوق الشريط */
 .scroller:hover .scroller__inner {
   animation-play-state: paused;
 }
 
-/* 2. تكبير الأيقونة عند الوقوف عليها */
-.scroller__inner li:hover {
-  transform: scale(1.15); /* تكبير العنصر */
-  filter: brightness(1.2); /* زيادة السطوع قليلاً */
-}
-
-
-/* --- تعريف حركة السكرول --- */
 @keyframes scroll {
   to {
-    /* حرك الشريط لليسار بمقدار عرض القائمة الأولى بالكامل */
-    transform: translateX(calc(-50% - 1rem)); /* 1rem هي نصف المسافة بين آخر عنصر وأول عنصر مكرر */
+    transform: translateX(calc(-50% - 1rem));
   }
 }
 
+/* --- 2. أيقونات المهارات (مع التوهج التفاعلي) --- */
 
-/* --- تصميم أيقونة المهارة --- */
 .scroller__inner li {
-  background: #252525; /* لون خلفية الكارت */
-  padding: 1rem 2rem;
-  border-radius: 0.5rem; /* لجعل الحواف دائرية */
+  background: var(--surface); /* <<<--- يستدعي لون السطح من الثيم */
+  padding: 1.5rem 2.5rem;
+  border-radius: 0.75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  border: 1px solid #333;
-  box-shadow: 0 5px 15px rgba(255, 107, 59, 0.05); /* توهج خفيف جداً */
+  gap: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.05); /* إطار خفيف جداً */
+  
+  /* تأثير التوهج الأساسي (يستخدم اللون المميز من الثيم الحالي) */
+  box-shadow: 0 0 20px -5px rgba(var(--accent-a-rgb), 0.25);
 
-  /* لجعل التكبير سلساً */
-  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.scroller__inner li img,
+.scroller__inner li:hover {
+  transform: scale(1.1);
+  /* توهج أقوى عند المرور (يستخدم نفس اللون المميز من الثيم) */
+  box-shadow: 0 0 35px -5px rgba(var(--accent-a-rgb), 0.6);
+}
+
+/* حجم الأيقونات (SVG) */
 .scroller__inner li svg {
-  width: 50px; /* حجم الأيقونة */
-  height: 50px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
 }
 
 .scroller__inner li span {
-  color: var(--muted, #888);
-  font-weight: 500;
-}
-
-/* --- (اختياري) لمستخدمي الذين يفضلون حركة أقل --- */
-@media (prefers-reduced-motion: reduce) {
-  .scroller__inner {
-    animation: none;
-  }
+  color: var(--muted); /* <<<--- يستدعي لون النص الباهت */
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 
-    /* ============================================== */
-/* ====== قسم الكفاءات الأساسية (Competencies) ====== */
-/* ============================================== */
-#competencies {
-  padding: 80px 20px;
-  background-color: var(--background); /* استخدم نفس لون خلفية موقعك */
-}
+/* --- 3. قسم الكفاءات الأساسية --- */
 
-/* استخدمنا .container هنا لتوسيط المحتوى بنفس طريقة بقية الأقسام */
-#competencies .container {
+.competencies-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 100px 20px 80px 20px;
 }
 
-/* عنوان القسم (يمكنك استخدام نفس تنسيق .section-title العام) */
-#competencies .section-title {
+/* عنوان القسم (سيتم تطبيق التنسيق العام لـ section-title) */
+#skills .section-title {
   text-align: center;
   font-size: 56px;
-  margin-bottom: 60px; /* مسافة أكبر قليلاً قبل الكروت */
-  color: var(--text); /* لون النص العادي */
+  margin-bottom: 60px;
+  color: var(--text); /* <<<--- يستدعي لون النص من الثيم */
 }
 
-/* حاوية الكروت */
+/* شبكة الكفاءات */
 .competencies-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 أعمدة متساوية */
-  gap: 30px; /* المسافة بين الكروت */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
 }
 
-/* تصميم الكارت الواحد */
+/* كارت الكفاءة */
 .competency-card {
-  background-color: var(--surface); /* لون السطح (أغمق قليلاً من الخلفية) */
+  background-color: var(--surface); /* <<<--- يستدعي لون السطح */
   padding: 35px 30px;
   border-radius: var(--radius, 12px);
   text-align: center;
@@ -586,36 +563,34 @@ body:not(.light) #education .education-content .education-card:focus {
 }
 
 .competency-card:hover {
-  transform: translateY(-10px); /* تأثير رفع بسيط عند المرور */
-  border-color: var(--accent-a); /* تغيير لون الحدود للون المميز */
+  transform: translateY(-10px);
+  border-color: var(--accent-a); /* <<<--- يستدعي اللون المميز */
 }
 
-/* أيقونة الكارت */
 .card-icon {
   font-size: 40px;
-  color: var(--accent-a); /* اللون المميز */
+  color: var(--accent-a); /* <<<--- يستدعي اللون المميز */
   margin-bottom: 20px;
 }
 
-/* عنوان الكارت */
 .card-title {
   font-size: 22px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--text); /* <<<--- يستدعي لون النص */
   margin-bottom: 10px;
 }
 
-/* وصف الكارت */
 .card-description {
   font-size: 16px;
-  color: var(--muted);
+  color: var(--muted); /* <<<--- يستدعي لون النص الباهت */
   line-height: 1.6;
 }
 
-/* --- تعديل الموبايل --- */
+
+/* --- تعديلات الموبايل --- */
 @media (max-width: 980px) {
   .competencies-grid {
-    grid-template-columns: 1fr; /* عمود واحد في الشاشات الصغيرة */
+    grid-template-columns: 1fr;
   }
 }
     
@@ -1043,7 +1018,6 @@ body.drawer-open .top-left {
 </section>
 
    <section id="skills" aria-labelledby="skills-title">
-  <h2 id="skills-title" class="section-title">Technical Skills</h2>
 
   <div class="scroller">
     <ul class="scroller__inner">
@@ -1095,37 +1069,25 @@ body.drawer-open .top-left {
         <span>Power BI</span>
       </li>
     </ul>
-  </div>
-</section>
-    <section id="competencies" aria-labelledby="competencies-title">
-  <div class="container">
+    </div>
+  <div class="container competencies-container">
     <h2 id="competencies-title" class="section-title">Core Competencies</h2>
     <div class="competencies-grid">
-
       <div class="competency-card">
-        <div class="card-icon">
-          <i class="fa-solid fa-magnifying-glass-chart"></i>
-        </div>
+        <div class="card-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
         <h3 class="card-title">Analytical Thinking</h3>
         <p class="card-description">Deconstructing complex problems to make logical, data-driven decisions.</p>
       </div>
-
       <div class="competency-card">
-        <div class="card-icon">
-          <i class="fa-solid fa-chart-line"></i>
-        </div>
+        <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
         <h3 class="card-title">Statistical Analysis</h3>
         <p class="card-description">Applying statistical principles to uncover patterns and trends hidden within data.</p>
       </div>
-
       <div class="competency-card">
-        <div class="card-icon">
-          <i class="fa-solid fa-bullseye"></i>
-        </div>
+        <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
         <h3 class="card-title">Problem Solving</h3>
         <p class="card-description">Transforming complex data and analysis into a clear, compelling visual story.</p>
       </div>
-
     </div>
   </div>
 </section>
