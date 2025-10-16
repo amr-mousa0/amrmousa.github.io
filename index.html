@@ -463,7 +463,7 @@ body:not(.light) #education .education-content .education-card:focus {
 }
 
 /* ============================================== */
-/* === سكشن المهارات (النسخة النهائية الاحترافية v2) === */
+/* === سكشن المهارات (النسخة النهائية المدمجة) === */
 /* ============================================== */
 
 section#skills {
@@ -474,15 +474,16 @@ section#skills {
   display: flex;
   align-items: center;
 }
-    #skills .section-anim-container {
+
+/* ---------------------- الحاوية العامة ---------------------- */
+#skills .section-anim-container {
   width: 100%;
-  max-width: 1100px; /* نفس الـ competencies-container */
+  max-width: 1100px;
   margin: 0 auto;
   text-align: center;
 }
 
-/* --- الشريط العائم (Scroller) --- */
-/* --- الحاوية الرئيسية للشريط --- */
+/* ---------------------- الشريط العائم ---------------------- */
 .scroller-container {
   position: absolute;
   top: 12rem;
@@ -490,12 +491,9 @@ section#skills {
   width: 100%;
   -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
   mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
-  
-  /* الخطوة الأهم: نجعل القائمتين بجانب بعضهما */
-  display: flex; 
+  display: flex;
 }
 
-/* --- تصميم القوائم المتحركة --- */
 .scroller__inner {
   display: flex;
   width: max-content;
@@ -504,98 +502,91 @@ section#skills {
   list-style: none;
   margin: 0;
   padding: 1rem 0;
-  
-  /* تطبيق الأنيميشن الجديد */
-   animation: snake-scroll 65s linear infinite;
+  animation: snake-scroll 65s linear infinite;
   will-change: transform;
-
+  transition: all 0.35s ease;
 }
 
-/* إيقاف حركة كل شيء عند مرور الماوس على الحاوية الرئيسية */
 .scroller-container:hover .scroller__inner {
   animation-play-state: paused;
 }
 
 @keyframes snake-scroll {
-  from {
-    transform: translateX(-30%);
-  }
-  to {
-    transform: translateX(-80%);
-  }
+  from { transform: translateX(-30%); }
+  to { transform: translateX(-80%); }
 }
-/* --- تصميم الأيقونات (مع تحسينات الثيم الفاتح) --- */
 
+/* ---------------------- تصميم عناصر الشريط ---------------------- */
 .scroller__inner li {
-   min-width: 130px;
+  min-width: 130px;
   height: 130px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
-  pointer-events: auto;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 0.75rem;
-  transition: all 0.3s ease;
-}
-
-/* تصميم الثيم الداكن (زجاجي مع نور) */
-.scroller__inner li {
+  padding: 1rem 1.5rem;
   background: rgba(var(--dark-surface-rgb, 41, 41, 41), 0.5);
   backdrop-filter: blur(10px);
-  padding: 1rem 1.5rem;
   border-radius: var(--radius, 12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.35s ease;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
+
+/* توهج دائم خفيف */
 .scroller__inner li::before {
   content: '';
   position: absolute;
-  inset: -2px;
+  inset: 0;
   border-radius: inherit;
-  background: conic-gradient(from 180deg at 50% 50%, rgba(var(--accent-a-rgb), 0.5) 0%, rgba(var(--accent-b-rgb), 0.4) 50%, rgba(var(--accent-a-rgb), 0.5) 100%);
-  filter: blur(15px);
+  background: linear-gradient(45deg, var(--accent-a), var(--accent-b));
+  opacity: 0.35;
+  filter: blur(10px);
   z-index: -1;
-  opacity: 0.8;
-  transition: opacity 0.3s ease, background var(--trans);
+  transition: opacity 0.3s ease, filter 0.3s ease;
 }
 
-/* الخطوة 2: تحسين تصميم الثيم الفاتح للشريط */
+/* التفاعل عند مرور الماوس */
+.scroller__inner:hover li {
+  opacity: 0.5;
+  transform: scale(0.95);
+}
+
+.scroller__inner li:hover {
+  opacity: 1;
+  transform: scale(1.1) translateY(-6px);
+  z-index: 2;
+}
+
+.scroller__inner li:hover::before {
+  opacity: 0.85;
+  filter: blur(20px);
+}
+
+/* ---------------------- الثيم الفاتح ---------------------- */
 body.light .scroller__inner li {
   background: var(--surface);
   backdrop-filter: none;
   border: 1px solid #eaf0f6;
-  box-shadow: 0 8px 25px rgba(71, 85, 105, 0.08); /* ظل أكثر وضوحاً */
-  border-color: transparent; /* بوردر شفاف في الحالة العادية */
+  box-shadow: 0 8px 25px rgba(71, 85, 105, 0.08);
+  border-color: transparent;
 }
 body.light .scroller__inner li:hover {
-  border-color: var(--accent-a); /* يظهر البوردر الملون عند المرور */
+  border-color: var(--accent-a);
+  box-shadow: 0 15px 35px rgba(71, 85, 105, 0.15);
 }
 body.light .scroller__inner li::before {
-  opacity: 0; /* لا يوجد نور في الثيم الفاتح */
+  opacity: 0;
 }
-    body.light .scroller:hover .scroller__inner li {
+body.light .scroller:hover .scroller__inner li {
   opacity: 0.4;
   transform: scale(0.95);
 }
 
-/* ثم نستثني الأيقونة التي يتم المرور عليها، ونجعلها تبرز */
-body.light .scroller .scroller__inner li:hover {
-  opacity: 1;
-  transform: scale(1.1) translateY(-5px);
-  border-color: var(--accent-a); /* نظهر البوردر الملون الذي أضفناه سابقاً */
-  box-shadow: 0 15px 35px rgba(71, 85, 105, 0.15); /* نزيد قوة الظل */
-}
-
-.scroller__inner li:hover { transform: scale(1.1) translateY(-5px); }
-.scroller__inner li svg { width: 50px; height: 50px; object-fit: contain; z-index: 1; }
-.scroller__inner li span { color: var(--text); font-weight: 500; font-size: 0.9rem; z-index: 1; }
-
-/* --- قسم الكفاءات الأساسية (بلمسة احترافية) --- */
-
+/* ---------------------- قسم الكفاءات ---------------------- */
 .competencies-container {
   width: 100%;
   max-width: 1100px;
@@ -612,8 +603,7 @@ body.light .scroller .scroller__inner li:hover {
   position: relative;
 }
 
-
-/* الخطوة 3: تحسين الخط الزخرفي ليصبح متوهجاً */
+/* الخط الزخرفي المتوهج */
 #skills .section-title::after {
   content: '';
   position: absolute;
@@ -621,39 +611,25 @@ body.light .scroller .scroller__inner li:hover {
   transform: translateX(-50%);
   bottom: -25px;
   width: 120px;
-  height: 8px; /* <<<--- تم زيادة الارتفاع ليناسب حجم النقاط */
-
-  /* الخطوة 1: استخدام background-image لرسم الشكل فقط */
-  background-image: 
-    /* النقطة اليمنى */
+  height: 8px;
+  background-image:
     radial-gradient(circle at center, var(--accent-a) 3px, transparent 3px),
-    /* النقطة اليسرى */
     radial-gradient(circle at center, var(--accent-a) 3px, transparent 3px),
-    /* الخط الذي يربط بينهما (بتدرج لوني) */
     linear-gradient(90deg, var(--accent-a), var(--accent-b));
-
-  /* تحديد حجم كل طبقة من الطبقات الثلاث */
   background-size: 16px 16px, 16px 16px, calc(100% - 20px) 4px;
-
-  /* تحديد مكان كل طبقة */
   background-position: right center, left center, center center;
-
-  /* التأكد من عدم تكرار الخلفيات */
   background-repeat: no-repeat;
-
-  /* الخطوة 2: استخدام filter لعمل توهج يتبع الشكل المرسوم */
-  filter: drop-shadow(0 0 5px var(--accent-a)); /* <<<--- هذا هو سر التوهج الصحيح */
-
-  /* تم إزالة الخصائص المتعارضة (box-shadow و background المنفرد) */
+  filter: drop-shadow(0 0 5px var(--accent-a));
   transition: all var(--trans);
 }
 
-.competencies-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-    .competencies-grid .competency-card {
-  transition: all 0.35s var(--ease);
+/* ---------------------- كروت الكفاءات ---------------------- */
+.competencies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
 }
 
-/* الخطوة 4: إضافة التوهج لكروت الكفاءات وتحسين الظل */
 .competency-card {
   position: relative;
   background-color: var(--surface);
@@ -662,143 +638,78 @@ body.light .scroller .scroller__inner li:hover {
   text-align: center;
   z-index: 1;
   overflow: hidden;
+  transition: all 0.35s var(--ease);
 }
 
-/* الخطوة 1: إنشاء طبقة الإطار المتدرج باستخدام ::before */
+/* الإطار المتدرج */
 .competency-card::before {
   content: '';
   position: absolute;
-  inset: 0; /* يملأ العنصر بالكامل */
+  inset: 0;
   background: linear-gradient(45deg, var(--accent-a), var(--accent-b));
   z-index: -2;
-  opacity: 0.9; /* <<<--- تم تعديل الشفافية لتكون ظاهرة دائماً */
-  transition: opacity 0.3s ease;
+  opacity: 0.3; /* توهج خفيف دائم */
+  filter: blur(8px);
+  transition: opacity 0.3s ease, filter 0.3s ease;
 }
 
-/* الخطوة 2: إنشاء طبقة داخلية تغطي الإطار لتبدو كبوردر */
+/* الطبقة الداخلية */
 .competency-card::after {
   content: '';
   position: absolute;
-  inset: 2px; 
+  inset: 2px;
   background-color: var(--surface);
   border-radius: calc(var(--radius, 12px) - 2px);
   z-index: -1;
   transition: background-color var(--trans);
 }
 
-/* الخطوة 3: إضافة تأثيرات التفاعل عند المرور بالماوس */
+/* عند مرور الماوس */
 .competencies-grid:hover .competency-card {
   opacity: 0.5;
-  transform: scale(0.98); /* تصغير طفيف لإعطاء إحساس بالعمق */
-}
-
-/* (اختياري) تأثير جميل: جعل الإطار يظهر عند المرور بالماوس فقط */
-/* إذا أردت الإطار ظاهراً بشكل دائم، احذف هذه القاعدة */
-.competencies-grid .competency-card:hover {
-  opacity: 1; /* يعود لشفافيته الكاملة */
-  transform: translateY(-10px) scale(1.05); /* يكبر ويُرفع لأعلى */
-}
-.competencies-grid .competency-card:hover::before {
-  opacity: 1;
-}
-    
-.card-icon { font-size: 36px; color: var(--accent-a); margin-bottom: 15px; }
-.card-title { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
-.card-description { font-size: 15px; color: var(--muted); line-height: 1.6; }
-
-@media (max-width: 980px) { 
-  .competencies-grid { grid-template-columns: 1fr; } 
-  .scroller { top: 8rem; }
-  .competencies-container { margin-top: calc(8rem + 140px); }
-}
-    .section-subtitle {
-  text-align: center;
-  font-size: 18px; /* حجم مناسب */
-  color: var(--muted); /* لون باهت ليعطي تركيزاً للعنوان الرئيسي */
-  max-width: 500px;
-  margin: -40px auto 60px auto; /* مسافات محسوبة */
-  line-height: 1.6;
-}
-    .anim-child {
-  opacity: 0;
-  transform: translateY(25px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-   
-
-.scroller__inner li {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  background: rgba(var(--dark-surface-rgb, 41, 41, 41), 0.5);
-  backdrop-filter: blur(10px);
-  padding: 1rem 1.5rem;
-  border-radius: var(--radius, 12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.35s ease;
-  overflow: hidden;
-  z-index: 1;
-}
-
-/* التوهج الأساسي الدائم */
-.scroller__inner li::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(45deg, var(--accent-a), var(--accent-b));
-  opacity: 0.35; /* <<< التوهج خفيف دائم */
-  filter: blur(10px);
-  z-index: -1;
-  transition: opacity 0.3s ease, filter 0.3s ease;
-}
-
-/* عند مرور الماوس على الحاوية */
-.scroller__inner:hover li {
-  opacity: 0.5;
-  transform: scale(0.95);
-}
-
-/* الكارت المفعّل */
-.scroller__inner li:hover {
-  opacity: 1;
-  transform: scale(1.1) translateY(-6px);
-  z-index: 2;
-}
-
-/* زيادة التوهج عند الهوفر */
-.scroller__inner li:hover::before {
-  opacity: 0.85;
-  filter: blur(20px);
-}
-
-    .competencies-grid:hover .competency-card {
-  opacity: 0.5;
   transform: scale(0.95);
   transition: all 0.35s ease;
 }
 
-/* الكارت اللي عليه الماوس */
+/* الكارت الفعال */
 .competencies-grid .competency-card:hover {
   opacity: 1;
   transform: scale(1.08) translateY(-10px);
   z-index: 2;
 }
 
-/* توهج خفيف دايم */
-.competency-card::before {
-  opacity: 0.3;
-  filter: blur(8px);
-  transition: opacity 0.3s ease, filter 0.3s ease;
-}
-
-/* التوهج يزيد لما نعمل hover */
+/* تقوية التوهج عند الهوفر */
 .competencies-grid .competency-card:hover::before {
   opacity: 0.9;
   filter: blur(18px);
 }
+
+/* ---------------------- باقي التنسيقات ---------------------- */
+.card-icon { font-size: 36px; color: var(--accent-a); margin-bottom: 15px; }
+.card-title { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.card-description { font-size: 15px; color: var(--muted); line-height: 1.6; }
+
+.section-subtitle {
+  text-align: center;
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 500px;
+  margin: -40px auto 60px auto;
+  line-height: 1.6;
+}
+
+.anim-child {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+@media (max-width: 980px) {
+  .competencies-grid { grid-template-columns: 1fr; }
+  .scroller { top: 8rem; }
+  .competencies-container { margin-top: calc(8rem + 140px); }
+}
+
     
 /* ============================================== */
 /* === تصميم الانترو (النسخة النهائية والمحسنة) === */
