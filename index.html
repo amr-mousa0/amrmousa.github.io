@@ -463,22 +463,21 @@ body:not(.light) #education .education-content .education-card:focus {
 }
 
 /* ============================================== */
-/* === سكشن المهارات (النسخة النهائية الاحترافية) === */
+/* === سكشن المهارات (النسخة النهائية الاحترافية v2) === */
 /* ============================================== */
 
 section#skills {
   position: relative;
   overflow: hidden;
-  padding: 0 !important; /* نلغي كل الحشو العام من هذا السكشن */
+  padding: 0 !important;
   min-height: 100vh;
-  display: flex; /* نستخدم flex لتوسيط المحتوى الداخلي عمودياً */
+  display: flex;
   align-items: center;
 }
 
 /* --- الشريط العائم (Scroller) --- */
 .scroller {
   position: absolute;
-  /* تم تحديد الموضع بدقة باستخدام rem لثبات أكبر */
   top: 12rem; 
   left: -50%;
   right: -50%;
@@ -509,7 +508,7 @@ section#skills {
   100% { opacity: 0; transform: translateX(-150%); }
 }
 
-/* --- تصميم الأيقونات بالتوهج المحسن --- */
+/* --- تصميم الأيقونات (مع تحسينات الثيم الفاتح) --- */
 
 .scroller__inner li {
   pointer-events: auto;
@@ -518,70 +517,68 @@ section#skills {
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-/* تصميم الثيم الداكن */
+/* تصميم الثيم الداكن (زجاجي مع نور) */
 .scroller__inner li {
   background: rgba(var(--dark-surface-rgb, 41, 41, 41), 0.5);
-  backdrop-filter: blur(10px); /* زيادة طفيفة للتأثير الزجاجي */
+  backdrop-filter: blur(10px);
   padding: 1rem 1.5rem;
   border-radius: var(--radius, 12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .scroller__inner li::before {
   content: '';
   position: absolute;
   inset: -2px;
   border-radius: inherit;
   background: conic-gradient(from 180deg at 50% 50%, rgba(var(--accent-a-rgb), 0.5) 0%, rgba(var(--accent-b-rgb), 0.4) 50%, rgba(var(--accent-a-rgb), 0.5) 100%);
-  filter: blur(15px); /* <<<--- زيادة نعومة التوهج */
+  filter: blur(15px);
   z-index: -1;
   opacity: 0.8;
   transition: opacity 0.3s ease, background var(--trans);
 }
 
-/* تصميم الثيم الفاتح */
+/* الخطوة 2: تحسين تصميم الثيم الفاتح للشريط */
 body.light .scroller__inner li {
   background: var(--surface);
   backdrop-filter: none;
-  border: 1px solid #eaf0f6; /* لون بوردر أنعم */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eaf0f6;
+  box-shadow: 0 8px 25px rgba(71, 85, 105, 0.08); /* ظل أكثر وضوحاً */
+  border-color: transparent; /* بوردر شفاف في الحالة العادية */
+}
+body.light .scroller__inner li:hover {
+  border-color: var(--accent-a); /* يظهر البوردر الملون عند المرور */
 }
 body.light .scroller__inner li::before {
-  opacity: 0;
+  opacity: 0; /* لا يوجد نور في الثيم الفاتح */
 }
 
-.scroller__inner li:hover {
-  transform: scale(1.1) translateY(-5px);
-}
-
+.scroller__inner li:hover { transform: scale(1.1) translateY(-5px); }
 .scroller__inner li svg { width: 50px; height: 50px; object-fit: contain; z-index: 1; }
 .scroller__inner li span { color: var(--text); font-weight: 500; font-size: 0.9rem; z-index: 1; }
 
-/* --- قسم الكفاءات الأساسية (بمسافات احترافية) --- */
+/* --- قسم الكفاءات الأساسية (بلمسة احترافية) --- */
 
 .competencies-container {
-  width: 100%; /* يأخذ عرض الشاشة بالكامل */
+  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  /* الخطوة 2: مسافات إيقاعية ومدروسة */
-  padding: 0 40px; /* الحشو الأفقي القياسي */
-  /* تم إزالة الحشو العلوي من هنا والتحكم فيه من السكشن الرئيسي */
-  margin-top: calc(12rem + 150px); /* <<<--- هام جداً: يضمن وجود مسافة كافية بعد الشريط العائم */
+  padding: 0 40px;
+  margin-top: calc(12rem + 150px);
 }
 
 #skills .section-title {
-  position: relative; /* ليكون مرجعاً للخط الزخرفي */
-  display: inline-block; /* ليأخذ عرض المحتوى فقط */
-  left: 50%; /* لتحريكه لمنتصف الشاشة */
-  transform: translateX(-50%); /* للتوسيط الدقيق */
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 48px;
   margin-bottom: 70px;
 }
 
-/* الخطوة 3: إضافة الخط الزخرفي تحت العنوان */
+/* الخطوة 3: تحسين الخط الزخرفي ليصبح متوهجاً */
 #skills .section-title::after {
   content: '';
   position: absolute;
@@ -590,40 +587,44 @@ body.light .scroller__inner li::before {
   bottom: -20px;
   height: 4px;
   width: 60px;
-  background: var(--accent-a);
+  background: linear-gradient(90deg, var(--accent-a), var(--accent-b)); /* تدرج لوني */
+  box-shadow: 0 0 15px var(--accent-a); /* توهج باللون الأول */
   border-radius: 2px;
-  transition: background var(--trans);
+  transition: all var(--trans);
 }
 
-.competencies-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-}
+.competencies-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 
+/* الخطوة 4: إضافة التوهج لكروت الكفاءات وتحسين الظل */
 .competency-card {
+  position: relative; /* ليكون مرجعاً للتوهج */
   background-color: var(--surface);
   padding: 35px 30px;
   border-radius: var(--radius, 12px);
   text-align: center;
   border: 1px solid transparent;
-  /* الخطوة 4: إضافة ظل احترافي */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  transition: all 0.3s ease; /* transition شامل لكل الخصائص */
+  transition: all 0.3s ease;
+  z-index: 1; /* للتأكد من أنه فوق طبقة التوهج */
 }
-/* تعديل الثيم الداكن لتقليل قوة الظل */
+/* توهج دائم خفيف (للثيم الداكن فقط) */
 body:not(.light) .competency-card {
-  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2), 0 0 20px rgba(var(--accent-a-rgb), 0.15);
+}
+/* ظل للثيم الفاتح */
+body.light .competency-card {
+  box-shadow: 0 15px 40px rgba(71, 85, 105, 0.1);
 }
 
 .competency-card:hover { 
   transform: translateY(-12px); 
   border-color: var(--accent-a);
-  /* زيادة قوة الظل عند المرور */
-  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
 }
+/* زيادة قوة التوهج/الظل عند المرور */
 body:not(.light) .competency-card:hover {
-  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3), 0 0 35px rgba(var(--accent-a-rgb), 0.3);
+}
+body.light .competency-card:hover {
+  box-shadow: 0 25px 50px rgba(71, 85, 105, 0.15);
 }
 
 .card-icon { font-size: 36px; color: var(--accent-a); margin-bottom: 15px; }
