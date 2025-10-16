@@ -462,15 +462,15 @@ body:not(.light) #education .education-content .education-card:focus {
 /* === سكشن المهارات والكفاءات (النسخة النهائية) === */
 /* ============================================== */
 
-/* استثناء لإلغاء الحشو الأفقي العام وجعل الشريط يملأ الشاشة */
+/* الخطوة 1: إلغاء الحشو الأفقي لجعل الشريط يملأ الشاشة */
 section#skills {
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
   padding-top: 80px;
   padding-bottom: 0;
 }
 
-/* --- 1. الشريط المتحرك مع تأثير التوهج على الأطراف --- */
+/* --- الشريط المتحرك مع تأثير التوهج على الأطراف --- */
 
 .scroller {
   position: relative; 
@@ -478,6 +478,7 @@ section#skills {
   mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
 }
 
+/* طبقات التوهج على اليمين واليسار */
 .scroller::before,
 .scroller::after {
   content: '';
@@ -487,6 +488,7 @@ section#skills {
   width: 200px;
   z-index: 2;
   pointer-events: none;
+  transition: background var(--trans); /* لجعل لون التوهج يتغير بسلاسة مع الثيم */
 }
 
 .scroller::before {
@@ -520,7 +522,7 @@ section#skills {
   }
 }
 
-/* --- 2. تصميم الأيقونات (بدون توهج خاص بها) --- */
+/* --- تصميم الأيقونات (بدون توهج خاص بها) --- */
 
 .scroller__inner li {
   background: var(--surface);
@@ -550,12 +552,12 @@ section#skills {
   font-size: 1.1rem;
 }
 
-/* --- 3. قسم الكفاءات الأساسية --- */
-/* (الكود هنا لم يتغير) */
+/* --- قسم الكفاءات الأساسية --- */
+
 .competencies-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 100px 20px 80px 20px;
+  padding: 100px 40px 80px 40px; /* استخدمنا 40px هنا ليتوافق مع الحشو العام */
 }
 
 #skills .section-title {
@@ -577,7 +579,7 @@ section#skills {
   border-radius: var(--radius, 12px);
   text-align: center;
   border: 1px solid transparent;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color var(--trans);
 }
 
 .competency-card:hover {
@@ -589,13 +591,16 @@ section#skills {
   font-size: 40px;
   color: var(--accent-a);
   margin-bottom: 20px;
+  transition: color var(--trans);
 }
+
 .card-title {
   font-size: 22px;
   font-weight: 600;
   color: var(--text);
   margin-bottom: 10px;
 }
+
 .card-description {
   font-size: 16px;
   color: var(--muted);
