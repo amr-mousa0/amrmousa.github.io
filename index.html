@@ -463,68 +463,73 @@ body:not(.light) #education .education-content .education-card:focus {
 }
 
 /* ============================================== */
-/* === سكشن المهارات (تصميم مزدوج وحركة الثعبان) === */
+/* === سكشن المهارات والكفاءات (النسخة النهائية والمُعززة) === */
 /* ============================================== */
 
 section#skills {
   position: relative;
-  overflow: hidden; /* ضروري جداً لإخفاء الشريط وهو خارج الشاشة */
+  overflow: hidden; 
   padding: 80px 0 !important;
-  min-height: 100vh; /* للتأكد من أنه يملأ الشاشة عمودياً */
+  min-height: 100vh;
 }
 
-/* --- الشريط العائم (Scroller) --- */
+/* --- الشريط المتحرك مع تأثير التوهج الصحيح --- */
+
 .scroller {
   position: absolute;
   top: 15%;
-  left: 0;
-  right: 0;
+  left: -50%;
+  right: -50%;
   z-index: 10;
-  /* لا نريد أن يعترض الماوس على المساحة الفارغة من الشريط */
-  pointer-events: none; 
+  pointer-events: none;
 }
-
-.scroller__inner {
+ .scroller__inner {
   display: flex;
+  justify-content: center; /* يضع الأيقونات في منتصف الشريط العريض */
   gap: 2rem;
   list-style: none;
   margin: 0;
   width: max-content; 
-  animation: float-scroll 40s linear infinite;
   
-  /* الخطوة 1: إصلاح بداية الحركة "تأثير الثعبان" */
-  /* هذا السطر هو سر سلاسة البداية. يخبر المتصفح أن يبدأ الأنيميشن من منتصف دورته */
-  animation-delay: -20s; 
+  /* الخطوة 1: تطبيق الأنيميشن السينمائي الجديد */
+  animation: cinematic-scroll 45s linear infinite;
 }
 
-/* لا نوقف الحركة عند المرور بالماوس، بل نتركها مستمرة */
-/* .scroller:hover .scroller__inner { animation-play-state: paused; } */
+.scroller:hover .scroller__inner {
+  animation-play-state: paused;
+}
 
-@keyframes float-scroll {
-  from {
-    transform: translateX(0);
+@keyframes cinematic-scroll {
+  /* المرحلة الأولى: الانتظار قبل الظهور (2 ثانية) */
+  0% {
+    transform: translateX(150%);
+    opacity: 0; /* يكون مختفياً تماماً */
   }
-  to {
-    transform: translateX(-33.333%); 
+  5% {
+    transform: translateX(150%);
+    opacity: 1; /* يظهر فجأة استعداداً للحركة */
+  }
+
+  /* المرحلة الثانية: الحركة عبر الشاشة (الأبطأ والأكثر سلاسة) */
+  85% {
+    /* يتحرك إلى أقصى اليسار خارج الشاشة */
+    transform: translateX(-150%);
+  }
+
+  /* المرحلة الثالثة: الاختفاء والانتظار (حتى نهاية الأنيميشن) */
+  85.01% {
+    opacity: 0; /* يختفي فجأة بعد خروجه بالكامل */
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-150%); /* يظل مختفياً في مكانه لنهاية المدة */
   }
 }
+/* --- تصميم الأيقونات (بدون توهج خاص بها) --- */
 
-/* --- تصميم الأيقونات (تصميم مزدوج للثيمات) --- */
-
+/* تصميم الثيم الداكن (زجاجي مع نور) */
 .scroller__inner li {
-  /* تفعيل استقبال الماوس للأيقونات نفسها */
-  pointer-events: auto; 
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem; /* تقليل المسافة الداخلية */
-  transition: transform 0.3s ease;
-}
-
-/* الخطوة 2: تصميم الأيقونات للثيم الداكن (زجاجي مع نور) */
-.scroller__inner li {
-  background: rgba(var(--dark-surface-rgb, 41, 41, 41), 0.5); /* استخدمنا اللون الداكن كافتراضي */
+  background: rgba(var(--dark-surface-rgb, 41, 41, 41), 0.5);
   backdrop-filter: blur(8px);
   padding: 1rem 1.5rem;
   border-radius: var(--radius, 12px);
@@ -539,18 +544,17 @@ section#skills {
   background: conic-gradient(from 180deg at 50% 50%, rgba(var(--accent-a-rgb), 0.6) 0%, rgba(var(--accent-b-rgb), 0.5) 50%, rgba(var(--accent-a-rgb), 0.6) 100%);
   filter: blur(12px);
   z-index: -1;
-  opacity: 0.9; /* زيادة قوة التوهج */
+  opacity: 0.9;
   transition: opacity 0.3s ease, background var(--trans);
 }
 
-/* تصميم الأيقونات للثيم الفاتح (صلب وواضح) */
+/* تصميم الثيم الفاتح (صلب وواضح) */
 body.light .scroller__inner li {
-  background: var(--surface); /* خلفية بيضاء صلبة */
-  backdrop-filter: none; /* إلغاء التأثير الزجاجي */
-  border: 1px solid #e0e0e0; /* بوردر خفيف وواضح */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* ظل ناعم */
+  background: var(--surface);
+  backdrop-filter: none;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
-/* إلغاء النور في الثيم الفاتح لأنه لا يبدو جيداً على خلفية فاتحة */
 body.light .scroller__inner li::before {
   opacity: 0;
 }
@@ -559,55 +563,46 @@ body.light .scroller__inner li::before {
 .scroller__inner li:hover {
   transform: scale(1.1) translateY(-5px);
 }
+    .scroller__inner li svg { width: 50px; height: 50px; object-fit: contain; z-index: 1; }
+.scroller__inner li span { color: var(--text); font-weight: 500; font-size: 0.9rem; z-index: 1; }
+    
 
-/* الخطوة 3: تصغير حجم الأيقونات */
-.scroller__inner li svg {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  z-index: 1;
-}
-
-.scroller__inner li span {
-  color: var(--text);
-  font-weight: 500; /* أخف قليلاً */
-  font-size: 0.9rem; /* تصغير الخط */
-  z-index: 1;
-}
-
-/* --- قسم الكفاءات الأساسية (تم تصغيره ورفعه) --- */
+/* --- قسم الكفاءات الأساسية --- */
 
 .competencies-container {
-  max-width: 1100px;
+  max-width: 1100px; /* <<<--- تقليل العرض الأقصى قليلاً */
   margin: 0 auto;
-  /* الخطوة 4: رفع القسم وتعديل الحشو */
-  padding: 32vh 40px 60px 40px; 
+  /* الخطوة 4.1: رفع القسم بالكامل لأعلى */
+  padding: 30vh 40px 80px 40px; /* <<<--- تقليل المسافة من الأعلى من 35vh إلى 30vh */
 }
-
 #skills .section-title {
-  font-size: 48px;
+  text-align: center;
+  font-size: 48px; /* <<<--- تصغير حجم العنوان */
   margin-bottom: 50px;
+  color: var(--text);
 }
-
 .competencies-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+  gap: 25px; /* <<<--- تقليل المسافة بين الكروت */
 }
-
 .competency-card {
-  padding: 30px 25px;
+  background-color: var(--surface);
+  padding: 30px 25px; /* <<<--- تقليل الحشو الداخلي */
+  border-radius: var(--radius, 12px);
+  text-align: center;
+  border: 1px solid transparent;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
-
-.card-icon { font-size: 32px; margin-bottom: 15px; }
-.card-title { font-size: 20px; margin-bottom: 8px; }
-.card-description { font-size: 15px; }
+    .competency-card:hover { transform: translateY(-8px); border-color: var(--accent-a); }
+..card-icon { font-size: 36px; color: var(--accent-a); margin-bottom: 15px; }
+.card-title { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.card-description { font-size: 15px; color: var(--muted); line-height: 1.6; }
 
 @media (max-width: 980px) {
   .competencies-grid { grid-template-columns: 1fr; }
-  .scroller { top: 10%; } /* نرفعه قليلاً في الموبايل */
-  .competencies-container { padding-top: 28vh; }
 }
+    
 /* ============================================== */
 /* === تصميم الانترو (النسخة النهائية والمحسنة) === */
 /* ============================================== */
