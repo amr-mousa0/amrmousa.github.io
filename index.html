@@ -829,6 +829,60 @@ section#skills::before {
   0% { transform: translateY(0) scale(1); opacity: 0.8; }
   100% { transform: translateY(-10px) scale(1.05); opacity: 1; }
 }
+    /* أنيميشن التوهج المتحرك */
+@keyframes glow-move {
+  0% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 5px var(--accent-a));
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 12px var(--accent-b));
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 5px var(--accent-a));
+  }
+}
+
+
+    #skills .section-title {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* التوهج الأساسي */
+#skills .section-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -25px;
+  width: 120px;
+  height: 6px;
+  background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(var(--accent-a-rgb), 0.7);
+  transition: all 0.4s ease;
+  opacity: 0.8;
+}
+
+/* الحركة عند مرور الماوس */
+#skills .section-title:hover::after {
+  width: 180px;
+  opacity: 1;
+  animation: glow-move 1.6s linear infinite;
+  box-shadow: 0 0 20px rgba(var(--accent-a-rgb), 0.9),
+              0 0 40px rgba(var(--accent-b-rgb), 0.6);
+}
+
+
+/* في الثيم الفاتح نزيد الإضاءة شوية */
+body.light #skills .section-title::after {
+  box-shadow: 0 0 15px rgba(var(--accent-a-rgb), 0.4);
+  opacity: 0.9;
+}
 
 @media (max-width: 980px) {
   .competencies-grid { grid-template-columns: 1fr; }
