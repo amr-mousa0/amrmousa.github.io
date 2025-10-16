@@ -726,56 +726,78 @@ body.light .scroller .scroller__inner li:hover {
 }
    
 
-/* 2. الحالة النهائية: عند إضافة كلاس .fade-up، تظهر العناصر وتبقى ظاهرة */
-.section-anim-container.fade-up .anim-child {
-  opacity: 1;
-  transform: translateY(0);
-}
-    .scroller__inner:hover li {
-  opacity: 0.5;
-  transform: scale(0.95);
+.scroller__inner li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(var(--dark-surface-rgb, 41, 41, 41), 0.5);
+  backdrop-filter: blur(10px);
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius, 12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.35s ease;
+  overflow: hidden;
+  z-index: 1;
 }
 
-/* الكارت اللي الماوس فوقه */
-.scroller__inner li:hover {
-  opacity: 1;
-  transform: scale(1.1) translateY(-6px);
-  z-index: 3;
-}
-
-/* طبقة التوهج المتدرج (gradient glow) */
+/* التوهج الأساسي الدائم */
 .scroller__inner li::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
   background: linear-gradient(45deg, var(--accent-a), var(--accent-b));
-  opacity: 0; /* افتراضيًا مش ظاهر */
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  transform: scale(0.95);
+  opacity: 0.35; /* <<< التوهج خفيف دائم */
+  filter: blur(10px);
   z-index: -1;
+  transition: opacity 0.3s ease, filter 0.3s ease;
 }
 
-/* عند مرور الماوس على الكارت يظهر التوهج */
+/* عند مرور الماوس على الحاوية */
+.scroller__inner:hover li {
+  opacity: 0.5;
+  transform: scale(0.95);
+}
+
+/* الكارت المفعّل */
+.scroller__inner li:hover {
+  opacity: 1;
+  transform: scale(1.1) translateY(-6px);
+  z-index: 2;
+}
+
+/* زيادة التوهج عند الهوفر */
 .scroller__inner li:hover::before {
-  opacity: 0.9;
-  transform: scale(1);
+  opacity: 0.85;
+  filter: blur(20px);
 }
 
-/* لمسة جمالية إضافية (ضوء داخلي خفيف عند الهوفر) */
-.scroller__inner li {
-  position: relative;
-  background: rgba(var(--dark-surface-rgb, 41, 41, 41), 0.6);
-  border-radius: var(--radius, 14px);
-  overflow: hidden;
+    .competencies-grid:hover .competency-card {
+  opacity: 0.5;
+  transform: scale(0.95);
   transition: all 0.35s ease;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
 }
 
-body.light .scroller__inner li {
-  background: var(--surface);
-  box-shadow: 0 8px 25px rgba(71, 85, 105, 0.08);
+/* الكارت اللي عليه الماوس */
+.competencies-grid .competency-card:hover {
+  opacity: 1;
+  transform: scale(1.08) translateY(-10px);
+  z-index: 2;
+}
+
+/* توهج خفيف دايم */
+.competency-card::before {
+  opacity: 0.3;
+  filter: blur(8px);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+/* التوهج يزيد لما نعمل hover */
+.competencies-grid .competency-card:hover::before {
+  opacity: 0.9;
+  filter: blur(18px);
 }
     
 /* ============================================== */
