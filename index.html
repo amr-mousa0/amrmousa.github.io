@@ -704,6 +704,124 @@ body.light .scroller:hover .scroller__inner li {
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
+    @keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================== */
+/* === تحسينات بصرية مدمجة إضافية بدون حذف القديم === */
+/* ============================================== */
+
+/* ==== تحسين ظهور الألوان في الثيم الداكن ==== */
+body:not(.light) .competency-card {
+  background: linear-gradient(135deg,
+    rgba(var(--accent-a-rgb), 0.12),
+    rgba(var(--accent-b-rgb), 0.12));
+  box-shadow: 0 0 30px rgba(var(--accent-a-rgb), 0.18);
+}
+
+body:not(.light) .competency-card::before {
+  opacity: 0.55;
+  filter: blur(16px);
+}
+
+body:not(.light) .competencies-grid .competency-card:hover {
+  transform: translateY(-10px) scale(1.07);
+  box-shadow: 0 0 35px rgba(var(--accent-a-rgb), 0.4);
+}
+
+/* ==== تحسين سلاسة الهوفر ==== */
+.competency-card,
+.scroller__inner li {
+  transition: all 0.22s ease-out !important;
+}
+
+/* ==== تحسين الثيم الفاتح ==== */
+body.light .competency-card {
+  background: linear-gradient(145deg, #ffffff, #f3f6fb);
+  box-shadow: 0 6px 25px rgba(var(--accent-a-rgb), 0.12);
+}
+
+body.light .competency-card:hover {
+  background: linear-gradient(145deg,
+    rgba(var(--accent-a-rgb), 0.15),
+    rgba(var(--accent-b-rgb), 0.08));
+  box-shadow: 0 10px 35px rgba(var(--accent-a-rgb), 0.25);
+  transform: scale(1.05);
+}
+
+/* ==== تحسين الشريط العائم ==== */
+.scroller__inner li {
+  box-shadow: 0 0 10px rgba(var(--accent-a-rgb), 0.15),
+              inset 0 0 8px rgba(var(--accent-b-rgb), 0.1);
+}
+
+.scroller__inner li::before {
+  opacity: 0.4;
+  filter: blur(14px);
+}
+
+/* عند الهوفر يظهر توهج أقوى */
+.scroller__inner li:hover {
+  box-shadow: 0 0 30px rgba(var(--accent-a-rgb), 0.4),
+              inset 0 0 12px rgba(var(--accent-b-rgb), 0.25);
+  background: linear-gradient(135deg,
+    rgba(var(--accent-a-rgb), 0.18),
+    rgba(var(--accent-b-rgb), 0.15));
+}
+
+/* ==== توهج متدرج حول الشريط في الثيم الفاتح ==== */
+body.light .scroller__inner li {
+  border: 1px solid rgba(var(--accent-a-rgb), 0.25);
+  box-shadow: 0 0 18px rgba(var(--accent-a-rgb), 0.12);
+}
+
+body.light .scroller__inner li:hover {
+  box-shadow: 0 0 35px rgba(var(--accent-a-rgb), 0.25),
+              inset 0 0 10px rgba(var(--accent-b-rgb), 0.15);
+}
+
+/* ==== توهج ناعم دائم حول سكشن المهارات ==== */
+section#skills::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 80%,
+    rgba(var(--accent-a-rgb), 0.08),
+    transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(60px);
+  animation: glow-move 12s ease-in-out infinite alternate;
+}
+
+@keyframes glow-move {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  100% { transform: translateY(-10px) scale(1.05); opacity: 1; }
+}
+
+/* تأخير بسيط بين العناصر عشان الحركة تكون متدرجة */
+.competency-card:nth-child(1),
+.scroller__inner li:nth-child(1) { animation-delay: 0.1s; }
+.competency-card:nth-child(2),
+.scroller__inner li:nth-child(2) { animation-delay: 0.2s; }
+.competency-card:nth-child(3),
+.scroller__inner li:nth-child(3) { animation-delay: 0.3s; }
+.competency-card:nth-child(4),
+.scroller__inner li:nth-child(4) { animation-delay: 0.4s; }
+.competency-card:nth-child(5),
+.scroller__inner li:nth-child(5) { animation-delay: 0.5s; }
+.competency-card:nth-child(6),
+.scroller__inner li:nth-child(6) { animation-delay: 0.6s; }
+
 @media (max-width: 980px) {
   .competencies-grid { grid-template-columns: 1fr; }
   .scroller { top: 8rem; }
