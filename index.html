@@ -500,12 +500,11 @@ section#skills {
   animation-play-state: paused;
 }
 
-@keyframes cinematic-scroll {
-  0%   { transform: translateX(150%); opacity: 0; }
-  5%   { transform: translateX(150%); opacity: 1; }
-  85%  { transform: translateX(-120%); }
-  85.01% { opacity: 0; }
-  100% { opacity: 0; transform: translateX(-250%); }
+@keyframes cinematic-scroll-enhanced {
+  0%   { transform: translateX(300%); opacity: 0; }
+  1%   { transform: translateX(300%); opacity: 1; } 
+  99%  { transform: translateX(-150%); opacity: 1; }
+  100% { opacity: 0; transform: translateX(-150%); }
 }
 
 /* --- تصميم الأيقونات (مع تحسينات الثيم الفاتح) --- */
