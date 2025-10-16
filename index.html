@@ -19,6 +19,7 @@
   /* -- ألوان الثيم الفاتح -- */
   --light-bg: #f6f8fb;
   --light-surface: #ffffff;
+  --light-surface-rgb: 255, 255, 255; 
   --light-text: #071026;
   --light-muted: #475569;
   --light-accent-a: #0b84ff;
@@ -29,6 +30,7 @@
   /* -- ألوان الثيم الداكن -- */
   --dark-bg: #1A1A1A;
   --dark-surface: #292929;
+  --dark-surface-rgb: 41, 41, 41; /* <<<--- أضف هذا السطر */
   --dark-text: #F0F0F0;
   --dark-muted: #999999;
   --dark-accent-a: #004D61;
@@ -39,6 +41,7 @@
   /* -- المتغيرات التشغيلية (الافتراضي هو الداكن) -- */
   --bg: var(--dark-bg);
   --surface: var(--dark-surface);
+  --surface-rgb: var(--dark-surface-rgb); /* <<<--- أضف هذا السطر */
   --text: var(--dark-text);
   --muted: var(--dark-muted);
   --accent-a: var(--dark-accent-a);
@@ -51,6 +54,7 @@
 body.light {
   --bg: var(--light-bg);
   --surface: var(--light-surface);
+  --surface-rgb: var(--light-surface-rgb); 
   --text: var(--light-text);
   --muted: var(--light-muted);
   --accent-a: var(--light-accent-a);
@@ -462,108 +466,97 @@ body:not(.light) #education .education-content .education-card:focus {
 /* === سكشن المهارات والكفاءات (النسخة النهائية والمُعززة) === */
 /* ============================================== */
 
-/* الخطوة 1: إلغاء الحشو العام بالقوة باستخدام !important */
 section#skills {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  padding-top: 80px !important;
-  padding-bottom: 0 !important;
+  position: relative; /* ضروري جداً ليعمل position: absolute بشكل صحيح */
+  overflow: hidden; /* لإخفاء الشريط وهو خارج حدود السكشن */
+  /* نترك الحشو العام ليؤثر على الكفاءات فقط */
 }
 
 /* --- الشريط المتحرك مع تأثير التوهج الصحيح --- */
 
 .scroller {
- 
-}
-
-/* طبقات التوهج على الأطراف (ستظهر الآن بشكل صحيح) */
-.scroller::before,
-.scroller::after {
-  content: '';
+  /* الخطوة 2: تحرير الشريط من تخطيط الصفحة */
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 200px;
-  z-index: 2;
-  pointer-events: none;
-  transition: background var(--trans);
-}
-
-.scroller::before {
+  top: 15%; /* <<<--- يمكنك تعديل هذه القيمة لرفع أو خفض الشريط */
   left: 0;
-  background: radial-gradient(circle at left center, rgba(var(--accent-a-rgb), 0.2) 0%, transparent 70%);
+  right: 0;
+  z-index: 10; /* للتأكد من أنه يطفو فوق المحتوى الآخر */
+  
+  /* لا نحتاج لـ mask أو توهج على الحاوية نفسها */
 }
 
-.scroller::after {
-  right: 0;
-  background: radial-gradient(circle at right center, rgba(var(--accent-a-rgb), 0.2) 0%, transparent 70%);
-}
+
 
 .scroller__inner {
   display: flex;
-  gap: 1.5rem; /* <<<--- قللنا المسافة قليلاً لتناسب التصميم الجديد */
-  padding-block: 1rem;
+  gap: 2rem;
   list-style: none;
   margin: 0;
   width: max-content; 
-  animation: scroll 25s linear infinite; /* <<<--- يمكن تعديل السرعة حسب الرغبة */
+  
+  /* الخطوة 3: تعريف الأنيميشن الجديد (من خارج الشاشة لخارجها) */
+  animation: float-scroll 30s linear infinite;
 }
+    /* إيقاف الحركة عند المرور بالماوس */
 .scroller:hover .scroller__inner {
   animation-play-state: paused;
 }
 
-@keyframes scroll {
+/* تعريف حركة الشريط العائم الجديدة */
+@keyframes float-scroll {
+  from {
+    /* يبدأ من اليمين خارج الشاشة تماماً */
+    transform: translateX(120%); 
+  }
   to {
-    transform: translateX(calc(-50% - 0.75rem)); /* نصف المسافة الجديدة */
+    /* ينتهي عند اليسار خارج الشاشة تماماً */
+    transform: translateX(-120%);
   }
 }
-
 /* --- تصميم الأيقونات (بدون توهج خاص بها) --- */
 
 .scroller__inner li {
-  background: var(--surface);
-  padding: 1.25rem 2rem; /* <<<--- قللنا الحشو ليتناسب مع التصميم */
+  background: rgba(var(--surface-rgb), 0.5); /* <<<--- خلفية شبه شفافة (زجاجية) */
+  backdrop-filter: blur(8px); /* <<<--- التأثير الزجاجي */
+  padding: 1.5rem 2.5rem;
   border-radius: var(--radius, 12px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* بوردر خفيف للتحديد */
   
-  /* الخطوة 2: إضافة البوردر الشفاف كأساس */
-  border: 2px solid transparent; 
-
-  /* تأثير التوهج الخفيف الدائم (باستخدام box-shadow) */
-  box-shadow: 0 0 15px rgba(var(--accent-a-rgb), 0.15);
+  /* الخطوة 4: التوهج الدائم والثابت */
+  box-shadow: 0 0 25px rgba(var(--accent-a-rgb), 0.3);
   
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* تأثير بسيط جداً عند المرور لزيادة التفاعل */
 .scroller__inner li:hover {
-  transform: scale(1.08);
-  /* عند المرور: يظهر لون البوردر ويزداد التوهج قوة */
-  border-color: rgba(var(--accent-a-rgb), 0.5); 
-  box-shadow: 0 0 25px rgba(var(--accent-a-rgb), 0.4);
+  transform: scale(1.05) translateY(-5px); /* حركة رفع بسيطة */
+  box-shadow: 0 0 35px rgba(var(--accent-a-rgb), 0.5); /* زيادة طفيفة في التوهج */
 }
 
 .scroller__inner li svg {
-  width: 60px; /* <<<--- حجم معقول للأيقونات */
-  height: 60px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
 }
 
 .scroller__inner li span {
-  color: var(--muted);
+  color: var(--text); /* لون النص العادي ليكون أوضح على الخلفية الشفافة */
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 /* --- قسم الكفاءات الأساسية --- */
 
 .competencies-container {
-  max-width: 1500px;
+  max-width: 1200px;
   margin: 0 auto;
-  /* استعادة الحشو الأفقي لهذا الجزء فقط */
-  padding: 100px 40px 80px 40px; 
+  padding-top: 35vh; /* <<<--- مسافة كبيرة جداً من الأعلى لإعطاء مساحة للشريط العائم */
+  padding-bottom: 80px;
 }
 
 #skills .section-title {
