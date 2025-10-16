@@ -908,62 +908,78 @@ body.light #skills .section-title::after {
 
 
 
-    /* ============================================== */
-/* ============= سكشن الخبرة (Experience) ============= */
+ /* ============================================== */
+/* === سكشن الخبرات (Experience) - معكوس لتصميم التعليم === */
 /* ============================================== */
 
-section#experience {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* عنوان القسم */
+#experience .section-title.right-aligned {
+  text-align: right;
+  font-size: 56px;
+  margin-bottom: 40px;
+  color: var(--accent-a);
 }
 
-/* الشبكة الرئيسية التي تقسم الشاشة لجزئين */
-.experience-grid {
+/* الشبكة العامة */
+#experience .experience-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr; /* الجزء الأيسر (الرسمة) أكبر قليلاً */
-  gap: 80px;
-  align-items: center;
+  grid-template-columns: 1.2fr 1.8fr;  /* عكس النسب */
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
+  gap: 120px;
+  align-items: start;
+  margin-top: 55px;
 }
 
-/* حاوية الرسمة */
-.experience-illustration {
+/* المحتوى (الكروت) */
+#experience .experience-content {
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* عنوان القسم */
-#experience .section-title {
-  text-align: right;
-  font-size: 56px;
-  color: var(--accent-a);
-  margin-bottom: 40px;
+  flex-direction: column;
+  order: 2; /* يتأكد أن النص على اليمين */
 }
 
 /* --- تصميم كروت الخبرة --- */
-.experience-card {
+#experience .experience-card {
   display: flex;
   align-items: center;
   gap: 20px;
   background: var(--surface);
   padding: 25px;
   border-radius: var(--radius);
-  margin-bottom: 20px; /* مسافة بين الكروت لو أضفت المزيد */
+  margin-bottom: 20px;
   border: 1px solid transparent;
-  transition: all 0.3s ease;
+  outline: none;
+  transition: 
+    transform 0.3s var(--ease),
+    opacity 0.3s var(--ease),
+    box-shadow 0.35s var(--ease),
+    border-color 0.3s var(--ease),
+    background 0.3s var(--ease);
 }
 
-.experience-card:hover {
-  transform: translateY(-8px);
+/* تأثير hover */
+#experience .experience-content:hover .experience-card {
+  opacity: 0.5;
+  transform: scale(0.98);
+}
+
+#experience .experience-content .experience-card:hover,
+#experience .experience-content .experience-card:focus {
+  opacity: 1;
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
   border-color: var(--accent-a);
 }
 
-/* أيقونة الكارت */
-.exp-icon {
+/* للأوضاع الداكنة */
+body:not(.light) #experience .experience-content .experience-card:hover,
+body:not(.light) #experience .experience-content .experience-card:focus {
+  background: #353535;
+}
+
+/* أيقونة كل بطاقة */
+#experience .exp-icon {
   flex-shrink: 0;
   width: 60px;
   height: 60px;
@@ -976,43 +992,69 @@ section#experience {
   font-size: 24px;
 }
 
-/* النصوص داخل الكارت */
-.exp-date {
+/* النصوص داخل البطاقة */
+#experience .exp-date {
   font-size: 14px;
   color: var(--accent-a);
   font-weight: 600;
 }
 
-.exp-title {
-  font-size: 22px;
+#experience .exp-title {
+  font-size: 20px;
   font-weight: 600;
   color: var(--text);
   margin: 4px 0;
 }
 
-.exp-company {
+#experience .exp-location {
   font-size: 16px;
   color: var(--muted);
   margin: 0;
 }
 
+/* الصورة (الجانب الأيسر) */
+#experience .experience-illustration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  order: 1; /* عشان تبقى على الشمال */
+}
 
-/* --- تعديلات الموبايل --- */
+#experience .experience-illustration .illustration-svg {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+}
+
+/* --- تعديل الموبايل --- */
 @media (max-width: 980px) {
-  .experience-grid {
-    grid-template-columns: 1fr; /* عمود واحد فقط */
-    gap: 60px;
+  section#experience {
+    padding-top: 100px !important;
+    padding-bottom: 100px !important;
   }
-  
-  /* إخفاء الرسمة في الشاشات الصغيرة لتوفير المساحة */
-  .experience-illustration {
-    display: none;
-  }
-  
-  #experience .section-title {
+
+  #experience .section-title.right-aligned {
     text-align: center;
   }
+
+  #experience .experience-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+  }
+
+  #experience .experience-content {
+    width: 100%;
+    max-width: 600px;
+    order: 2;
+  }
+
+  #experience .experience-illustration {
+    display: none;
+  }
 }
+
     
 
     
@@ -1644,68 +1686,85 @@ body.drawer-open .top-left {
        </div>
 </section>
 
-    <section id="experience" aria-labelledby="experience-title">
-  <div class="experience-grid">
+   <section id="experience" aria-labelledby="experience-title">
+  <div class="section-anim-container">
+    <div class="experience-grid">
 
-    <div class="experience-illustration">
-      <svg class="experience-svg" width="572" height="572" viewBox="0 0 572 572" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M235.816 62.1661...Z" fill="var(--accent-a)"/>
-    <path d="M227.73 62.1653...Z" fill="var(--surface)"/>
-    <path d="M186.281 62.1665...Z" fill="var(--text)"/>
-    <path d="M181.587 24.6162...Z" fill="var(--text)"/>
-    <path d="M181.509 106.575...Z" fill="var(--text)"/>
-    <path d="M217.176 63.633...Z" fill="var(--text)"/>
-    <path d="M135.221 63.5405...Z" fill="var(--text)"/>
-    <path d="M163.304 28.4638...Z" fill="var(--accent-a)" fill-opacity="0.3"/>
-    <path d="M203.068 100.309...Z" fill="var(--accent-a)" fill-opacity="0.3"/>
-    <path d="M141.998 85.7199...Z" fill="var(--accent-a)" fill-opacity="0.3"/>
-    <path d="M149.266 40.7385...Z" fill="var(--accent-a)" fill-opacity="0.3"/>
-    <path d="M451.602 235.08...Z" fill="var(--muted)"/>
-    <path d="M448.064 230.182...Z" fill="var(--muted)"/>
-    <path d="M454.617 234.482...Z" fill="var(--accent-a)"/>
-    <path d="M451.007 244.704...Z" fill="#192DE5"/> <path d="M451.891 235.102...Z" fill="var(--muted)"/>
-    <path d="M426.404 281.475...Z" fill="var(--accent-a)"/>
-    <path d="M448.064 230.182...Z" fill="var(--muted)"/> <path d="M454.617 234.482...Z" fill="#192DE5"/> <path d="M310.197 286.715...Z" fill="var(--text)"/>
-    <path d="M282.522 286.407...Z" fill="var(--text)"/>
-    <path d="M64.6836 211.436...Z" stroke="var(--accent-b)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M120.776 235.117...Z" fill="var(--muted)"/>
-    <path d="M120.776 235.117...Z" stroke="var(--accent-a)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M116.224 238.779...Z" fill="var(--muted)"/>
-    <path d="M116.224 238.779...Z" stroke="var(--accent-a)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M114.152 243.394...Z" fill="var(--muted)"/>
-    <path d="M114.152 243.394...Z" stroke="var(--accent-a)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M106.796 237.477...Z" fill="var(--muted)"/>
-    <path d="M106.796 237.477...Z" stroke="var(--accent-a)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M103.696 241.139...Z" fill="var(--muted)"/>
-    <path d="M103.696 241.139...Z" stroke="var(--accent-a)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M101.663 245.756...Z" fill="var(--muted)"/>
-    <path d="M101.663 245.756...Z" stroke="var(--accent-a)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M132.325 248.354...Z" stroke="var(--accent-b)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M125.784 238.696...Z" fill="var(--accent-b)"/>
-    <path d="M71.5371 208.59...Z" stroke="var(--accent-a)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M125.505 238.671...Z" fill="var(--accent-a)"/>
-    <rect x="23" y="537" width="520" height="8" rx="4" fill="var(--accent-a)"/>
-</svg>
+      <div class="experience-illustration anim-child" style="transition-delay: 0.1s;">
+        <svg class="experience-svg" viewBox="0 0 572 572" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M235.816 62.1661C235.816 62.3295 ... Z" fill="var(--accent-a)"/>
+          <path d="M227.73 62.1653C227.73 62.3287 ... Z" fill="var(--surface)"/>
+          <path d="M186.281 62.1665C186.281 61.9859 ... Z" fill="var(--text)"/>
+          <path d="M181.587 24.6162C181.428 24.7864 ... Z" fill="var(--text)"/>
+          <path d="M181.509 106.575C181.35 106.746 ... Z" fill="var(--text)"/>
+          <path d="M217.176 63.633C217.005 63.474 ... Z" fill="var(--text)"/>
+          <path d="M135.221 63.5405C135.051 63.3815 ... Z" fill="var(--text)"/>
+          <path d="M163.304 28.4638C163.248 28.6876 ... Z" fill="var(--accent-a)" fill-opacity="0.3"/>
+          <path d="M203.068 100.309C203.013 100.532 ... Z" fill="var(--accent-a)" fill-opacity="0.3"/>
+          <path d="M141.998 85.7199C141.774 85.6684 ... Z" fill="var(--accent-a)" fill-opacity="0.3"/>
+          <path d="M149.266 40.7385C149.327 40.9623 ... Z" fill="var(--accent-a)" fill-opacity="0.3"/>
+          <path d="M451.602 235.08C451.545 235.881 ... Z" fill="var(--muted)"/>
+          <path d="M426.404 281.475C426.321 281.475 ... Z" fill="var(--accent-a)"/>
+          <path d="M454.617 234.482C454.038 235.019 ... Z" fill="var(--accent-b)"/>
+          <path d="M451.007 244.704C451.556 245.29 ... Z" fill="#192DE5"/>
+          <path d="M451.891 235.102C451.834 235.902 ... Z" fill="var(--muted)"/>
+          <path d="M310.197 286.715C309.795 286.715 ... Z" fill="var(--text)"/>
+          <path d="M282.522 286.407C282.235 286.691 ... Z" fill="var(--text)"/>
+          <path d="M64.6836 211.436C65.0995 212.783 ... Z" stroke="var(--accent-b)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
+          <path d="M120.776 235.117C120.776 236.048 ... Z" fill="var(--muted)"/>
+          <path d="M120.776 235.117C120.776 236.048 ... Z" stroke="var(--accent-a)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
+          <path d="M116.224 238.779C116.224 239.711 ... Z" fill="var(--muted)"/>
+          <path d="M116.224 238.779C116.224 239.711 ... Z" stroke="var(--accent-a)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
+          <path d="M114.152 243.394C114.152 244.401 ... Z" fill="var(--muted)"/>
+          <path d="M114.152 243.394C114.152 244.401 ... Z" stroke="var(--accent-a)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
+          <path d="M106.796 237.477C106.796 238.408 ... Z" fill="var(--muted)"/>
+          <path d="M106.796 237.477C106.796 238.408 ... Z" stroke="var(--accent-a)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
+          <path d="M103.696 241.139C103.696 242.071 ... Z" fill="var(--muted)"/>
+          <path d="M103.696 241.139C103.696 242.071 ... Z" stroke="var(--accent-a)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
+          <path d="M101.663 245.756C101.663 246.762 ... Z" fill="var(--muted)"/>
+          <path d="M101.663 245.756C101.663 246.762 ... Z" stroke="var(--accent-a)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
+          <path d="M132.325 248.354C131.316 247.157 ... Z" stroke="var(--accent-b)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
+          <path d="M125.784 238.696C125.633 240.32 ... Z" fill="var(--accent-b)"/>
+          <path d="M71.5371 208.59C71.7888 209.959 ... Z" stroke="var(--accent-a)" stroke-width="5.99495" stroke-miterlimit="10" stroke-linecap="round"/>
+          <path d="M125.505 238.671C125.391 239.957 ... Z" fill="var(--accent-a)"/>
+          <rect x="23" y="537" width="520" height="8" rx="4" fill="var(--accent-a)"/>
+        </svg>
       </div>
 
-    <div class="experience-content">
-      <h2 id="experience-title" class="section-title">Experience</h2>
-      
-      <div class="experience-cards">
-        <div class="experience-card">
-          <div class="exp-icon">
-            <i class="fa-solid fa-briefcase"></i>
+      <div class="experience-content">
+        <h2 id="experience-title" class="section-title anim-child" style="transition-delay: 0.2s;">Experience</h2>
+        
+        <div class="experience-cards">
+          <div class="experience-card anim-child" style="transition-delay: 0.5s;">
+            <div class="exp-icon"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="exp-info">
+              <span class="exp-date">Jul 2025 – Present</span>
+              <h4 class="exp-title">Data Analyst – CRM & Operations (Freelance)</h4>
+              <p class="exp-company">Root Line</p>
+            </div>
           </div>
-          <div class="exp-info">
-            <span class="exp-date">2024 - 2025</span>
-            <h4 class="exp-title">Data Analyst</h4>
-            <p class="exp-company">[Company or Project Name]</p>
-          </div>
-        </div>
 
+          <div class="experience-card anim-child" style="transition-delay: 0.4s;">
+            <div class="exp-icon"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="exp-info">
+              <span class="exp-date">Jan 2025 – May 2025</span>
+              <h4 class="exp-title">Data Analyst – Financial & Administrative Data (Freelance)</h4>
+              <p class="exp-company">Oxygen Gym</p>
+            </div>
+          </div>
+
+          <div class="experience-card anim-child" style="transition-delay: 0.3s;">
+            <div class="exp-icon"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="exp-info">
+              <span class="exp-date">Aug 2024 – Nov 2024</span>
+              <h4 class="exp-title">Data Analyst – Competitor Analysis</h4>
+              <p class="exp-company">Iris Communications</p>
+            </div>
+          </div>
         </div>
+      </div>
+
     </div>
-
   </div>
 </section>
     
