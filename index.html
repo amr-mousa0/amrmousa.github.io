@@ -623,6 +623,9 @@ body.light .scroller:hover .scroller__inner li {
   font-size: 48px;
   margin: 0 auto 70px auto;
   position: relative;
+   color: var(--text); /* اللون الأساسي */
+  text-shadow: 0 0 5px rgba(var(--accent-a-rgb), 0.3);
+  transition: text-shadow 0.4s ease, color 0.4s ease;
 }
 
 /* الخط الزخرفي المتوهج */
@@ -875,6 +878,12 @@ section#skills::before {
   animation: glow-move 1.6s linear infinite;
   box-shadow: 0 0 20px rgba(var(--accent-a-rgb), 0.9),
               0 0 40px rgba(var(--accent-b-rgb), 0.6);
+}
+    #skills .section-title:hover {
+  color: var(--accent-a); /* يلمع أكتر بلون الثيم */
+  text-shadow:
+    0 0 8px rgba(var(--accent-a-rgb), 0.8),
+    0 0 15px rgba(var(--accent-b-rgb), 0.6);
 }
 
 
