@@ -474,15 +474,17 @@ section#skills {
   display: flex;
   align-items: center;
 }
-   body.light section#skills::before {
+  /* === هذا هو الكود الجديد والمُخفف === */
+
+body.light section#skills::before {
   background: radial-gradient(
     circle at 50% 80%,
-    rgba(120, 180, 255, 0.12),  /* خففنا التوهج الأزرق */
-    rgba(255, 200, 240, 0.08),  /* خففنا اللون الزهري */
+    rgba(120, 180, 255, 0.04),  /* <<<--- تقليل الشفافية بشكل كبير جدًا */
+    rgba(255, 200, 240, 0.03),  /* <<<--- تقليل الشفافية بشكل كبير جدًا */
     transparent 75%
   );
-  filter: blur(60px); /* قللنا شوية من التمويه */
-  opacity: 0.8;       /* خففنا الشفافية قليلاً */
+  filter: blur(60px);
+  opacity: 0.6; /* <<<--- تقليل الشفافية العامة للطبقة كلها */
 }
 
 body.light .competency-card {
