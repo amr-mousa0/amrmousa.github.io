@@ -1077,7 +1077,7 @@ section#projects {
   background-color: var(--background); /* ✨ تم تصحيح لون الخلفية ليتبع النظام */
   text-align: center;
   position: relative;
-  overflow-x: hidden; /* لمنع أي مشاكل في العرض الأفقي */
+  overflow-x: hidden;
 }
 
 #projects .section-title {
@@ -1095,20 +1095,26 @@ section#projects {
 }
 
 .project-card {
-  background-color: #FF7A59;
-  color: #1E1E1E;
+  background-color: var(--surface); /* ✨ تم تصحيح لون الخلفية */
+  color: var(--text); /* ✨ تم تصحيح لون النص */
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-medium);
+  border: 1px solid var(--border-color);
   transition: all 0.4s var(--ease);
-  display: flex; /* ✨ لجعل المحتوى مرنًا */
+  display: flex;
   flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-large); /* يمكنك إضافة متغير ظل أكبر إذا أردت */
 }
 
 .project-content {
   padding: 25px;
   text-align: left;
-  flex-grow: 1; /* ✨ يسمح للمحتوى بأخذ المساحة المتاحة */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
@@ -1117,15 +1123,17 @@ section#projects {
   font-size: 24px;
   font-weight: 700;
   margin: 0 0 15px 0;
+  color: var(--text);
 }
 
-/* ✨ حاوية جديدة للـ SVG والتفاصيل لتسهيل الأنيميشن ✨ */
+/* حاوية جديدة للـ SVG والتفاصيل لتسهيل الأنيميشن */
 .project-media-wrapper {
   position: relative;
   flex-grow: 1;
-  min-height: 240px; /* ارتفاع ثابت لمنع تغير حجم الكارت */
+  min-height: 240px;
   border-radius: 8px;
   overflow: hidden;
+  background-color: var(--background); /* خلفية بسيطة للحاوية */
 }
 
 .project-image,
@@ -1135,12 +1143,11 @@ section#projects {
   left: 0;
   width: 100%;
   height: 100%;
-  transition: all 0.5s var(--ease);
-  backface-visibility: hidden; /* لتحسين الأداء */
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  backface-visibility: hidden; /* لتحسين أداء الأنيميشن */
 }
 
 .project-image {
-  background-color: var(--surface); /* لون خلفية الصورة */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1156,7 +1163,7 @@ section#projects {
 
 .project-details {
   opacity: 0; /* ✨ يبدأ مخفيًا */
-  transform: translateY(30px); /* ✨ يبدأ من الأسفل قليلاً */
+  transform: translateX(30px); /* ✨ يبدأ من اليمين قليلاً */
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -1170,75 +1177,80 @@ section#projects {
 
 .project-card:hover .project-image {
   opacity: 0;
-  transform: scale(0.95); /* ✨ الصورة تختفي وتصغر قليلاً */
+  transform: translateX(-30px) scale(0.98); /* ✨ الصورة تختفي وتخرج لليسار بسلاسة */
 }
 
 .project-card:hover .project-details {
   opacity: 1;
-  transform: translateY(0); /* ✨ التفاصيل تظهر وتصعد لمكانها */
+  transform: translateX(0); /* ✨ التفاصيل تظهر وتدخل من اليمين لمكانها */
 }
 
 .project-description {
   font-size: 16px;
   line-height: 1.6;
+  color: var(--muted);
 }
 
 .project-tech-list {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  margin-top: auto; /* يدفع التقنيات لأسفل الحاوية */
+  margin-top: auto;
   padding-top: 15px;
 }
 
 .project-tech-list span {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(var(--accent-a-rgb), 0.1); /* ✨ لون متوافق مع الثيم */
+  color: var(--accent-a); /* ✨ لون متوافق مع الثيم */
   padding: 5px 12px;
   border-radius: 20px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .project-links {
   display: flex;
   justify-content: space-between;
-  padding: 20px 25px 0px; /* إزالة الـ padding السفلي */
-  margin-top: auto; /* ✨ يدفع الأزرار لأسفل الكارت دائمًا ✨ */
+  padding: 20px 25px 0px;
+  margin-top: auto;
 }
 
 .project-link-btn {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(var(--accent-a-rgb), 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #FFFFFF;
+  color: var(--accent-a);
   font-size: 20px;
   transition: all 0.3s ease;
 }
 
 .project-link-btn:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: var(--accent-a);
+  color: var(--text-on-accent);
   transform: scale(1.1);
 }
 
 /* === Footer Buttons === */
 .projects-footer {
   margin-top: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end; /* ✨ تم وضع الزر على اليمين */
 }
 
 .view-all-btn {
-  background-color: #FF7A59;
-  color: #1E1E1E;
+  background-color: var(--surface);
+  color: var(--accent-a);
+  border: 1px solid var(--border-color);
   padding: 12px 24px;
   border-radius: 50px;
   text-decoration: none;
@@ -1250,8 +1262,10 @@ section#projects {
 }
 
 .view-all-btn:hover {
+  background-color: var(--accent-a);
+  color: var(--text-on-accent);
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(255, 122, 89, 0.4);
+  box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
 }
 
 /* ✨ إصلاح زر الصعود للأعلى ✨ */
@@ -1264,15 +1278,16 @@ section#projects {
   border-radius: 50%;
   background-color: var(--surface);
   color: var(--text);
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 20px;
   box-shadow: var(--shadow-medium);
   z-index: 1000;
-  opacity: 0; /* يبدأ شفافًا */
-  transform: translateY(20px); /* يبدأ من أسفل قليلاً */
-  visibility: hidden; /* مخفي تمامًا */
+  opacity: 0;
+  transform: translateY(20px);
+  visibility: hidden;
   transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
 }
 
@@ -1293,6 +1308,9 @@ section#projects {
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+  .projects-footer {
+    justify-content: center; /* توسيط الزر في الموبايل */
   }
 }
     
@@ -3397,16 +3415,16 @@ body.drawer-open .top-left {
 
     </div>
 
-    <div class="projects-footer">
-      <a href="#" class="view-all-btn anim-child" style="transition-delay: 0.5s;">
+<div class="projects-footer anim-child" style="transition-delay: 0.5s;">
+      <a href="#" class="view-all-btn">
         View All <i class="fa-solid fa-arrow-right"></i>
       </a>
-      <a href="#" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top">
-        <i class="fa-solid fa-arrow-up"></i>
-      </a>
     </div>
-
   </div>
+  
+  <a href="#" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </a>
 </section>
     <!-- CONTACT -->
     <section id="contact" aria-labelledby="contact-title">
