@@ -929,33 +929,45 @@ section#experience {
 }
 
 .experience-illustration {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer; /* خلي كل الرسمه clickable */
+  cursor: pointer;
   transition: transform 0.2s ease;
+  will-change: transform;
+}
+
+/* Pseudo-element for glow to avoid heavy filter on SVG */
+.experience-illustration::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: 0 0 0px var(--accent-a);
+  transition: box-shadow 0.2s ease;
 }
 
 .experience-illustration:hover {
   transform: scale(0.97);
 }
 
-/* للتحكم في حجم الرسمة */
+.experience-illustration:hover::after {
+  box-shadow: 0 0 8px var(--accent-a);
+}
+
+/* SVG sizing */
 .experience-svg {
   width: 100%;
   max-width: 550px;
   height: auto;
 }
 
-/* تأثير glow داخلي للعناصر داخل SVG */
 .experience-svg * {
-  transition: fill 0.2s ease, stroke 0.2s ease, filter 0.2s ease;
+  transition: fill 0.2s ease, stroke 0.2s ease;
   fill: var(--text);
   stroke: var(--accent-a);
-}
-
-.experience-illustration:hover .experience-svg * {
-  filter: drop-shadow(0 0 6px var(--accent-a));
+  will-change: filter, fill, stroke;
 }
 
 #experience .section-title {
@@ -974,7 +986,7 @@ section#experience {
   border-radius: var(--radius);
   margin-bottom: 20px;
   border: 1px solid transparent;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .experience-card:hover {
