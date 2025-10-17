@@ -468,7 +468,7 @@ body:not(.light) #education .education-content .education-card:focus {
 
 section#skills {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   padding: 0 !important;
   min-height: 100vh;
   display: flex;
@@ -638,25 +638,21 @@ body.light .scroller:hover .scroller__inner li {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: -25px;
-  width: 120px;
-  height: 8px; /* دمج الارتفاعين */
+  bottom: 10px; /* داخل السكشن */
+  width: 140px;
+  height: 6px;
   border-radius: 6px;
-  opacity: 0.8;
-
-  /* دمج الخلفيات */
   background-image:
     radial-gradient(circle at center, var(--accent-a) 3px, transparent 3px),
     radial-gradient(circle at center, var(--accent-a) 3px, transparent 3px),
     linear-gradient(90deg, var(--accent-a), var(--accent-b));
-  background-size: 16px 16px, 16px 16px, calc(100% - 20px) 4px;
+  background-size: 16px 16px, 16px 16px, calc(100% - 20px) 6px;
   background-position: right center, left center, center center;
   background-repeat: no-repeat;
-
-  /* دمج الظل */
   box-shadow: 0 0 10px rgba(var(--accent-a-rgb), 0.7), 0 0 5px rgba(var(--accent-a-rgb), 0.5);
-
-  transition: all 0.4s ease;
+  opacity: 0.85;
+  z-index: 2;
+  transition: all 0.35s ease;
 }
 
 
@@ -902,9 +898,29 @@ body.light #skills .section-title::after {
 
 
 /* ============================================== */
-/* === سكشن الخبرة (Experience) - نسخة نهائية مطابقة للتعليم === */
+/* === سكشن الخبرة (Experience) - نسخة نهائية ومصححة === */
 /* ============================================== */
 
+section#experience {
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* عنوان القسم (تم تصحيح المحاذاة) */
+#experience .section-title {
+  text-align: center; /* ✨ تم إرجاعه للمنتصف */
+  font-size: 56px;
+  margin-bottom: 60px; /* زيادة المسافة للخط الجديد */
+  color: var(--accent-a);
+  position: relative; /* ضروري لتمركز الخط */
+  display: inline-block; /* ضروري لتمركز الخط */
+}
+
+/* الخط المزخرف تحت العنوان (تم التأكد من تمركزه) */
 #experience .section-title::after {
   content: '';
   position: absolute;
@@ -924,11 +940,10 @@ body.light #skills .section-title::after {
   transition: all var(--trans);
 }
 
-
 /* الشبكة العامة (مطابقة للتعليم) */
 .experience-grid {
   display: grid;
-  grid-template-columns: 1.8fr 1.2fr; /* الكلام أولاً ثم الرسمة */
+  grid-template-columns: 1.2fr 1.8fr; /* الرسمة أولاً (1.2) ثم الكلام (1.8) */
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
@@ -937,18 +952,10 @@ body.light #skills .section-title::after {
   margin-top: 55px;
 }
 
-/* حاوية المحتوى على اليسار */
+/* حاوية المحتوى على اليمين */
 .experience-content {
   display: flex;
   flex-direction: column;
-}
-
-/* عنوان القسم (محاذاة لليسار مثل التعليم) */
-#experience .section-title {
-  text-align: left; 
-  font-size: 56px;
-  margin-bottom: 40px;
-  color: var(--accent-a);
 }
 
 /* --- تصميم كروت الخبرة (مطابق لتأثير التعليم) --- */
@@ -962,10 +969,7 @@ body.light #skills .section-title::after {
   margin-bottom: 20px;
   border: 1px solid transparent;
   outline: none;
-  
-  /* يفضل الإبقاء عليه لتحسين الأداء حتى مع فصل العناصر */
   will-change: transform, opacity;
-
   transition: 
     transform 0.3s var(--ease),
     opacity 0.3s var(--ease),
@@ -994,7 +998,7 @@ body:not(.light) .experience-card:focus {
   background: #353535;
 }
 
-/* أيقونة كل بطاقة */
+/* أيقونة كل بطاقة (مطابقة للتعليم) */
 .exp-icon {
   flex-shrink: 0;
   width: 60px;
@@ -1008,7 +1012,7 @@ body:not(.light) .experience-card:focus {
   font-size: 24px;
 }
 
-/* النصوص داخل البطاقة */
+/* النصوص داخل البطاقة (تم إرجاع الأحجام الأصلية) */
 .exp-date {
   font-size: 14px;
   color: var(--accent-a);
@@ -1028,7 +1032,7 @@ body:not(.light) .experience-card:focus {
   margin: 0;
 }
 
-/* الرسمة (الجانب الأيمن) */
+/* الرسمة (الجانب الأيسر) */
 .experience-illustration {
   display: flex;
   justify-content: center;
@@ -1068,6 +1072,7 @@ body:not(.light) .experience-card:focus {
     display: none;
   }
 }
+
 
 
 
