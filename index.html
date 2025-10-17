@@ -932,12 +932,30 @@ section#experience {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer; /* خلي كل الرسمه clickable */
+  transition: transform 0.2s ease;
 }
+
+.experience-illustration:hover {
+  transform: scale(0.97);
+}
+
 /* للتحكم في حجم الرسمة */
 .experience-svg {
   width: 100%;
   max-width: 550px;
   height: auto;
+}
+
+/* تأثير glow داخلي للعناصر داخل SVG */
+.experience-svg * {
+  transition: fill 0.2s ease, stroke 0.2s ease, filter 0.2s ease;
+  fill: var(--text);
+  stroke: var(--accent-a);
+}
+
+.experience-illustration:hover .experience-svg * {
+  filter: drop-shadow(0 0 6px var(--accent-a));
 }
 
 #experience .section-title {
@@ -973,7 +991,7 @@ section#experience {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--text-on-accent);
   font-size: 24px;
   transition: background-color var(--trans);
 }
@@ -1010,6 +1028,7 @@ section#experience {
     text-align: center;
   }
 }
+
     
 
     
