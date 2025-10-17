@@ -640,7 +640,11 @@ body.light .scroller:hover .scroller__inner li {
   transform: translateX(-50%);
   bottom: -25px;
   width: 120px;
-  height: 8px;
+  height: 8px; /* دمج الارتفاعين */
+  border-radius: 6px;
+  opacity: 0.8;
+
+  /* دمج الخلفيات */
   background-image:
     radial-gradient(circle at center, var(--accent-a) 3px, transparent 3px),
     radial-gradient(circle at center, var(--accent-a) 3px, transparent 3px),
@@ -648,9 +652,13 @@ body.light .scroller:hover .scroller__inner li {
   background-size: 16px 16px, 16px 16px, calc(100% - 20px) 4px;
   background-position: right center, left center, center center;
   background-repeat: no-repeat;
-  filter: drop-shadow(0 0 5px var(--accent-a));
-  transition: all var(--trans);
+
+  /* دمج الظل */
+  box-shadow: 0 0 10px rgba(var(--accent-a-rgb), 0.7), 0 0 5px rgba(var(--accent-a-rgb), 0.5);
+
+  transition: all 0.4s ease;
 }
+
 
 /* ---------------------- كروت الكفاءات ---------------------- */
 .competencies-grid {
@@ -859,21 +867,6 @@ section#skills::before {
   overflow: hidden;
 }
 
-/* التوهج الأساسي */
-#skills .section-title::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -25px;
-  width: 120px;
-  height: 6px;
-  background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
-  border-radius: 6px;
-  box-shadow: 0 0 10px rgba(var(--accent-a-rgb), 0.7);
-  transition: all 0.4s ease;
-  opacity: 0.8;
-}
 
 /* الحركة عند مرور الماوس */
 #skills .section-title:hover::after {
@@ -912,18 +905,30 @@ body.light #skills .section-title::after {
 /* === سكشن الخبرة (Experience) - نسخة نهائية مطابقة للتعليم === */
 /* ============================================== */
 
-section#experience {
-  padding: 80px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+#experience .section-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -25px;
+  width: 120px;
+  height: 8px;
+  background-image:
+    radial-gradient(circle at center, var(--accent-a) 3px, transparent 3px),
+    radial-gradient(circle at center, var(--accent-a) 3px, transparent 3px),
+    linear-gradient(90deg, var(--accent-a), var(--accent-b));
+  background-size: 16px 16px, 16px 16px, calc(100% - 20px) 4px;
+  background-position: right center, left center, center center;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 0 5px var(--accent-a));
+  transition: all var(--trans);
 }
+
 
 /* الشبكة العامة (مطابقة للتعليم) */
 .experience-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1.8fr; 
+  grid-template-columns: 1.8fr 1.2fr; /* الكلام أولاً ثم الرسمة */
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
@@ -932,13 +937,13 @@ section#experience {
   margin-top: 55px;
 }
 
-/* حاوية المحتوى على اليمين */
-.experience-content-wrapper {
+/* حاوية المحتوى على اليسار */
+.experience-content {
   display: flex;
   flex-direction: column;
 }
 
-/* عنوان القسم (تم جعله محاذاة لليسار مثل التعليم) */
+/* عنوان القسم (محاذاة لليسار مثل التعليم) */
 #experience .section-title {
   text-align: left; 
   font-size: 56px;
@@ -946,13 +951,7 @@ section#experience {
   color: var(--accent-a);
 }
 
-/* حاوية الكروت التي سيتم تطبيق الهوفر عليها */
-.experience-cards {
-  display: flex;
-  flex-direction: column;
-}
-
-/* --- تصميم كروت الخبرة (مطابق للتعليم مع تحسين الأداء) --- */
+/* --- تصميم كروت الخبرة (مطابق لتأثير التعليم) --- */
 .experience-card {
   display: flex;
   align-items: center;
@@ -964,7 +963,7 @@ section#experience {
   border: 1px solid transparent;
   outline: none;
   
-  /* ✨ هذا السطر يحسن أداء الأنيميشن بشكل كبير ✨ */
+  /* يفضل الإبقاء عليه لتحسين الأداء حتى مع فصل العناصر */
   will-change: transform, opacity;
 
   transition: 
@@ -975,16 +974,14 @@ section#experience {
     background 0.3s var(--ease);
 }
 
-/* === ✨ تأثير hover مطابق للتعليم ويعمل بشكل صحيح الآن ✨ === */
-/* عند المرور على حاوية الكروت، كل الكروت تصبح شفافة */
-.experience-cards:hover .experience-card {
+/* تأثير hover مطابق للتعليم */
+.experience-content:hover .experience-card {
   opacity: 0.5;
   transform: scale(0.98);
 }
 
-/* الكرت المحدد يتم إبرازه */
-.experience-cards .experience-card:hover,
-.experience-cards .experience-card:focus {
+.experience-content .experience-card:hover,
+.experience-content .experience-card:focus {
   opacity: 1;
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 25px 50px rgba(0,0,0,0.3);
@@ -992,11 +989,10 @@ section#experience {
 }
 
 /* للأوضاع الداكنة (منسوخ من التعليم) */
-body:not(.light) #experience .experience-card:hover,
-body:not(.light) #experience .experience-card:focus {
+body:not(.light) .experience-card:hover,
+body:not(.light) .experience-card:focus {
   background: #353535;
 }
-/* ======================================================= */
 
 /* أيقونة كل بطاقة */
 .exp-icon {
@@ -1032,7 +1028,7 @@ body:not(.light) #experience .experience-card:focus {
   margin: 0;
 }
 
-/* الرسمة (الجانب الأيسر) */
+/* الرسمة (الجانب الأيمن) */
 .experience-illustration {
   display: flex;
   justify-content: center;
@@ -1063,7 +1059,7 @@ body:not(.light) #experience .experience-card:focus {
     gap: 60px;
   }
   
-  .experience-content-wrapper {
+  .experience-content {
     width: 100%;
     max-width: 600px;
   }
@@ -1072,6 +1068,9 @@ body:not(.light) #experience .experience-card:focus {
     display: none;
   }
 }
+
+
+
 
 
 
