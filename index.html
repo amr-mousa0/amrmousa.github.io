@@ -1066,6 +1066,211 @@ body:not(.light) #experience .experience-card:focus {
 }
 
 
+
+
+    /* ============================================== */
+/* ============ Projects Section ============ */
+/* ============================================== */
+
+section#projects {
+  padding: 100px 20px;
+  background-color: var(--background); /* سيستخدم اللون الداكن في الـ Dark Mode */
+  text-align: center;
+  position: relative;
+}
+
+#projects .section-title {
+  color: var(--accent-a);
+  margin-bottom: 60px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background-color: #FF7A59; /* اللون البرتقالي المطلوب */
+  color: #1E1E1E; /* لون نص داكن ليتناسب مع الخلفية البرتقالية */
+  border-radius: var(--radius);
+  overflow: hidden; /* أهم خاصية لإخفاء المحتوى الزائد */
+  position: relative;
+  box-shadow: var(--shadow-medium);
+  transition: all 0.4s var(--ease);
+}
+
+.project-content {
+  padding: 25px;
+  text-align: left;
+}
+
+.project-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+}
+
+.project-image {
+  width: 100%;
+  padding: 0 25px; /* لإعطاء مساحة للصورة من الجوانب */
+  box-sizing: border-box;
+  transition: transform 0.4s var(--ease);
+  z-index: 5; /* للتأكد أنها فوق المحتوى المخفي */
+  position: relative;
+}
+
+.project-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.project-details {
+  position: absolute;
+  top: 90px; /* يبدأ من تحت العنوان */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px 25px;
+  background-color: #FF7A59;
+  opacity: 0; /* مخفي في الوضع العادي */
+  transition: opacity 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.project-description {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.project-tech-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.project-tech-list span {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.project-links {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 25px 25px;
+  transition: opacity 0.3s ease;
+  position: relative;
+  z-index: 5;
+}
+
+.project-link-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.project-link-btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+/* === The Magic Hover Effect === */
+.project-card:hover .project-image {
+  transform: translateY(-45%) scale(1.03);
+}
+
+.project-card:hover .project-details {
+  opacity: 1;
+}
+
+.project-card:hover .project-links {
+  opacity: 0;
+}
+
+
+/* Footer Buttons */
+.projects-footer {
+  margin-top: 60px;
+  display: flex;
+  justify-content: flex-end; /* يضع العناصر في أقصى اليمين */
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+}
+
+.view-all-btn {
+  background-color: #FF7A59;
+  color: #1E1E1E;
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(255, 122, 89, 0.4);
+}
+
+.scroll-top-btn {
+  position: fixed; /* يثبت الزر في الشاشة */
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--surface);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: var(--shadow-medium);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.scroll-top-btn:hover {
+  background-color: var(--accent-a);
+  color: var(--text-on-accent);
+  transform: translateY(-5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .projects-footer {
+    justify-content: center; /* يضع زر "View All" في المنتصف */
+  }
+}
+
+    
     
 /* ============================================== */
 /* === تصميم الانترو (النسخة النهائية والمحسنة) === */
@@ -1819,45 +2024,114 @@ body.drawer-open .top-left {
     
     
     <!-- PROJECTS -->
-    <section id="projects" aria-labelledby="projects-title">
-    <div class="section-anim-container">
-        <div class="container">
-        <div style="max-width:1100px;margin:0 auto">
-          <h2 id="projects-title">Projects</h2>
-          <p style="margin:6px 0 12px;color:var(--muted)">A selection of data-cleaning, dashboards and Python projects.</p>
-          <div class="projects-grid">
-            <article class="project-card card ">
-              <img src="images/data-cleaning.png" alt="data cleaning">
-              <h4 style="margin:10px 0 6px">Data Cleaning & Analysis</h4>
-              <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Cleaned 10k rows, built star schema and visualized insights in Power BI.</p>
-              <div style="display:flex;gap:10px">
-                <a href="#" onclick="openWithSound(event)">View on GitHub</a>
-                <a href="#" onclick="openWithSound(event)">Live Dashboard</a>
-              </div>
-            </article>
+   <section id="projects" aria-labelledby="projects-title">
+  <div class="section-anim-container">
+    <h2 id="projects-title" class="section-title anim-child" style="transition-delay: 0.1s;">Projects</h2>
 
-            <article class="project-card card ">
-              <img src="images/coffee-sales.png" alt="coffee sales">
-              <h4 style="margin:10px 0 6px">Coffee Shop Sales Dashboard</h4>
-              <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Sales KPIs & offers performance.</p>
-              <div style="display:flex;gap:10px">
-                <a href="#" onclick="openWithSound(event)">View on GitHub</a>
-                <a href="#" onclick="openWithSound(event)">Live Dashboard</a>
-              </div>
-            </article>
+    <div class="projects-grid">
+      
+      <div class="project-card anim-child" style="transition-delay: 0.2s;">
+        <div class="project-content">
+          <h3 class="project-title">Employee Management</h3>
+          
+          <div class="project-image">
+            <img src="https://via.placeholder.com/400x300/FF7A59/FFFFFF?text=Project+Image" alt="Employee Management System Illustration">
+          </div>
 
-            <article class="project-card card ">
-              <img src="images/python-project.png" alt="python">
-              <h4 style="margin:10px 0 6px">Sales Forecast (Python)</h4>
-              <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Time-series model using Pandas & scikit-learn.</p>
-              <div style="display:flex;gap:10px">
-                <a href="#" onclick="openWithSound(event)">View on GitHub</a>
-              </div>
-            </article>
+          <div class="project-details">
+            <p class="project-description">
+              A comprehensive system to manage employee data, track attendance, and handle payroll efficiently.
+            </p>
+            <div class="project-tech-list">
+              <span>Django</span>
+              <span>PostgreSQL</span>
+              <span>REST API</span>
+            </div>
+          </div>
+
+          <div class="project-links">
+            <a href="#" class="project-link-btn" aria-label="View Live Demo">
+              <i class="fa-solid fa-play"></i>
+            </a>
+            <a href="#" class="project-link-btn" aria-label="View Source Code">
+              <i class="fa-solid fa-code"></i>
+            </a>
           </div>
         </div>
       </div>
-    </section>
+
+      <div class="project-card anim-child" style="transition-delay: 0.3s;">
+        <div class="project-content">
+          <h3 class="project-title">Railway Tracking</h3>
+          
+          <div class="project-image">
+            <img src="https://via.placeholder.com/400x300/FF7A59/FFFFFF?text=Project+Image" alt="Railway Tracking System Illustration">
+          </div>
+
+          <div class="project-details">
+            <p class="project-description">
+              This project is a railway tracking system that allows users to obtain relevant information about train timing.
+            </p>
+            <div class="project-tech-list">
+              <span>Django</span>
+              <span>Tailwind CSS</span>
+            </div>
+          </div>
+
+          <div class="project-links">
+            <a href="#" class="project-link-btn" aria-label="View Live Demo">
+              <i class="fa-solid fa-play"></i>
+            </a>
+            <a href="#" class="project-link-btn" aria-label="View Source Code">
+              <i class="fa-solid fa-code"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card anim-child" style="transition-delay: 0.4s;">
+        <div class="project-content">
+          <h3 class="project-title">Weather App</h3>
+          
+          <div class="project-image">
+            <img src="https://via.placeholder.com/400x300/FF7A59/FFFFFF?text=Project+Image" alt="Weather App Illustration">
+          </div>
+
+          <div class="project-details">
+            <p class="project-description">
+              A simple and elegant weather application that provides real-time weather data based on user location.
+            </p>
+            <div class="project-tech-list">
+              <span>JavaScript</span>
+              <span>CSS</span>
+              <span>API</span>
+            </div>
+          </div>
+
+          <div class="project-links">
+            <a href="#" class="project-link-btn" aria-label="View Live Demo">
+              <i class="fa-solid fa-play"></i>
+            </a>
+            <a href="#" class="project-link-btn" aria-label="View Source Code">
+              <i class="fa-solid fa-code"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="projects-footer">
+      <a href="#" class="view-all-btn anim-child" style="transition-delay: 0.5s;">
+        View All <i class="fa-solid fa-arrow-right"></i>
+      </a>
+      <a href="#" class="scroll-top-btn" aria-label="Scroll to top">
+        <i class="fa-solid fa-arrow-up"></i>
+      </a>
+    </div>
+
+  </div>
+</section>
 
     <!-- CONTACT -->
     <section id="contact" aria-labelledby="contact-title">
