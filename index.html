@@ -909,51 +909,49 @@ body.light #skills .section-title::after {
 
 
 /* ============================================== */
-/* ============= سكشن الخبرة (Experience) ============= */
+/* ======== سكشن الخبرة (Experience) - نسخة معدلة ======== */
 /* ============================================== */
 
 section#experience {
-  /* تباعد داخلي للسكشن كله عشان ميكنش لازق في الأطراف */
-  padding: 80px 20px; /* تباعد أعلى وأسفل ويسار ويمين */
+  padding: 80px 20px;
   display: flex;
-  flex-direction: column; /* لتجميع العنوان والجريد بشكل عمودي */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* عشان يملأ الشاشة بالكامل لو المحتوى قليل */
+  min-height: 100vh;
 }
 
-/* العنوان الرئيسي للسكشن */
 #experience .section-title {
-  text-align: center; /* خلي العنوان في المنتصف دائمًا */
-  font-size: clamp(36px, 5vw, 56px); /* حجم خط متجاوب */
+  text-align: center;
+  font-size: clamp(36px, 5vw, 56px);
   color: var(--accent-a);
-  margin-bottom: 60px; /* زيادة التباعد أسفل العنوان */
+  margin-bottom: 60px;
   position: relative;
-  display: inline-block; /* عشان الخلفية المخططة */
+  display: inline-block;
 }
 
-/* إضافة خط تحت العنوان كتأثير جمالي */
 #experience .section-title::after {
   content: '';
   position: absolute;
-  left: 50%; /* في منتصف العنوان */
-  bottom: -15px; /* مسافة تحت العنوان */
-  transform: translateX(-50%); /* محاذاة في المنتصف تمامًا */
-  width: 80px; /* عرض الخط */
-  height: 4px; /* سمك الخط */
+  left: 50%;
+  bottom: -15px;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
   background: var(--accent-a);
   border-radius: 2px;
 }
 
-
-/* الشبكة اللي بتحتوي الرسمة والكروت */
+/* الشبكة الرئيسية للسكشن */
 .experience-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr; /* نفس التوزيع ولكن هنعدل عليه للريسفونسف */
-  gap: 80px; /* زيادة التباعد بين الأعمدة */
-  align-items: flex-start; /* عشان الكروت تبتدي من فوق */
+  /* === ✨ التعديلات هنا ✨ === */
+  grid-template-columns: 1fr 1.8fr; /* الرسمة 1fr والكلام 1.8fr */
+  max-width: 1500px;                 /* تعديل العرض الأقصى إلى 1500px */
+  /* ========================= */
+  gap: 80px;
+  align-items: flex-start;
   width: 100%;
-  max-width: 1200px; /* تصغير الـ max-width شوية عشان يكون مريح للعين */
   margin: 0 auto;
 }
 
@@ -962,37 +960,34 @@ section#experience {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* cursor: default; */ /* الرسمة ليست قابلة للنقر، لذا نزيل المؤشر */
-  /* transition: none; */ /* لا توجد تأثيرات hover على الرسمة نفسها */
 }
 
-/* للتحكم في حجم الرسمة (كما هي) */
+/* للتحكم في حجم الرسمة */
 .experience-svg {
   width: 100%;
   max-width: 550px;
   height: auto;
-  /* لا يوجد transition هنا */
 }
 
 /* الكارت الواحد للخبرة */
 .experience-card {
   display: flex;
-  align-items: flex-start; /* الأيقونة والتفاصيل تبدأ من الأعلى */
+  align-items: flex-start;
   gap: 20px;
   background: var(--surface);
   padding: 25px;
   border-radius: var(--radius);
-  margin-bottom: 25px; /* زيادة التباعد بين الكروت */
-  border: 1px solid var(--border-color); /* border شفاف في البداية */
-  box-shadow: var(--shadow-small); /* إضافة ظل خفيف للكارت */
-  transition: all 0.3s ease-in-out; /* تحسين الـ transition */
+  margin-bottom: 25px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-small);
+  transition: all 0.3s ease-in-out;
 }
 
 /* تحسين تأثير الهوفر على الكروت */
 .experience-card:hover {
-  transform: translateY(-10px); /* زيادة حركة الرفع */
-  border-color: var(--accent-a); /* لون البوردر عند الهوفر */
-  box-shadow: var(--shadow-medium); /* ظل أكبر عند الهوفر */
+  transform: translateY(-10px);
+  border-color: var(--accent-a);
+  box-shadow: var(--shadow-medium);
 }
 
 /* أيقونة الكارت */
@@ -1006,60 +1001,55 @@ section#experience {
   align-items: center;
   justify-content: center;
   color: var(--text-on-accent);
-  font-size: 26px; /* تكبير حجم الأيقونة شوية */
-  box-shadow: var(--shadow-small); /* ظل للأيقونة */
+  font-size: 26px;
+  box-shadow: var(--shadow-small);
   transition: background-color var(--trans), box-shadow var(--trans);
 }
 
-/* المحتوى النصي داخل الكارت */
 .exp-content {
   display: flex;
   flex-direction: column;
 }
 
 .exp-date {
-  font-size: 15px; /* تكبير حجم التاريخ */
-  color: var(--accent-b); /* استخدام لون accent-b للتاريخ */
+  font-size: 15px;
+  color: var(--accent-b);
   font-weight: 500;
   transition: color var(--trans);
 }
 
 .exp-title {
-  font-size: 24px; /* تكبير عنوان الوظيفة */
-  font-weight: 700; /* جعل العنوان أثقل */
+  font-size: 24px;
+  font-weight: 700;
   color: var(--text);
-  margin: 6px 0 4px; /* تعديل المسافات */
-  line-height: 1.2; /* تقليل المسافة بين السطور */
+  margin: 6px 0 4px;
+  line-height: 1.2;
 }
 
 .exp-company {
-  font-size: 17px; /* تكبير اسم الشركة */
+  font-size: 17px;
   color: var(--muted);
   margin: 0;
 }
 
-
-/* Media Queries - للتعامل مع الشاشات الصغيرة */
+/* Media Queries */
 @media (max-width: 980px) {
   .experience-grid {
-    grid-template-columns: 1fr; /* عمود واحد فقط في الشاشات الصغيرة */
-    gap: 40px; /* تقليل المسافة */
-    padding: 0 15px; /* إضافة padding أفقي للجريد */
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 15px;
   }
   .experience-illustration {
-    display: none; /* إخفاء الرسمة في الشاشات الصغيرة */
-  }
-  #experience .section-title {
-    margin-bottom: 40px; /* تقليل المسافة أسفل العنوان في الموبايل */
+    display: none;
   }
 }
 
 @media (max-width: 600px) {
   section#experience {
-    padding: 60px 15px; /* تقليل الـ padding الكلي للسكشن */
+    padding: 60px 15px;
   }
   .experience-card {
-    padding: 20px; /* تقليل padding الكارت */
+    padding: 20px;
     margin-bottom: 20px;
   }
   .exp-icon {
