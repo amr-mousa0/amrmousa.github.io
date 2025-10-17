@@ -638,7 +638,7 @@ body.light .scroller:hover .scroller__inner li {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: -8px; /* داخل السكشن */
+  bottom: 4px; /* داخل السكشن */
   width: 140px;
   height: 6px;
   border-radius: 6px;
@@ -898,52 +898,21 @@ body.light #skills .section-title::after {
 
 
 /* ============================================== */
-/* === سكشن الخبرة (Experience) - نسخة نهائية ومصححة === */
+/* === سكشن الخبرة (Experience) - نسخة نهائية مطابقة للتعليم === */
 /* ============================================== */
 
 section#experience {
   padding: 80px 20px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
 }
 
-/* عنوان القسم */
-#experience .section-title {
-  text-align: center;
-  font-size: 56px;
-  margin-bottom: 60px;
-  color: var(--accent-a);
-  position: relative;
-  display: inline-block;
-}
-
-/* الخط المزخرف تحت العنوان */
-#experience .section-title::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -25px;
-  width: 120px;
-  height: 8px;
-  background-image:
-    radial-gradient(circle at center, var(--accent-a) 3px, transparent 3px),
-    radial-gradient(circle at center, var(--accent-a) 3px, transparent 3px),
-    linear-gradient(90deg, var(--accent-a), var(--accent-b));
-  background-size: 16px 16px, 16px 16px, calc(100% - 20px) 4px;
-  background-position: right center, left center, center center;
-  background-repeat: no-repeat;
-  filter: drop-shadow(0 0 5px var(--accent-a));
-  transition: all var(--trans);
-}
-
 /* الشبكة العامة (مطابقة للتعليم) */
 .experience-grid {
   display: grid;
-  grid-template-columns: 1.8fr 1.2fr; /* الكلام أولاً ثم الرسمة */
+  grid-template-columns: 1.2fr 1.8fr; 
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
@@ -952,14 +921,27 @@ section#experience {
   margin-top: 55px;
 }
 
-/* حاوية المحتوى على اليسار */
-.experience-content {
+/* حاوية المحتوى على اليمين */
+.experience-content-wrapper {
   display: flex;
   flex-direction: column;
 }
 
+/* عنوان القسم (تم جعله محاذاة لليسار مثل التعليم) */
+#experience .section-title {
+  text-align: left; 
+  font-size: 56px;
+  margin-bottom: 40px;
+  color: var(--accent-a);
+}
 
-/* --- تصميم كروت الخبرة (مطابق لتأثير التعليم) --- */
+/* حاوية الكروت التي سيتم تطبيق الهوفر عليها */
+.experience-cards {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- تصميم كروت الخبرة (مطابق للتعليم مع تحسين الأداء) --- */
 .experience-card {
   display: flex;
   align-items: center;
@@ -970,8 +952,10 @@ section#experience {
   margin-bottom: 20px;
   border: 1px solid transparent;
   outline: none;
-  /* خاصية لتحسين أداء الأنيميشن */
+  
+  /* ✨ هذا السطر يحسن أداء الأنيميشن بشكل كبير ✨ */
   will-change: transform, opacity;
+
   transition: 
     transform 0.3s var(--ease),
     opacity 0.3s var(--ease),
@@ -980,25 +964,28 @@ section#experience {
     background 0.3s var(--ease);
 }
 
-/* تأثير hover مطابق للتعليم */
-.experience-content:hover .experience-card {
+/* === ✨ تأثير hover مطابق للتعليم ويعمل بشكل صحيح الآن ✨ === */
+/* عند المرور على حاوية الكروت، كل الكروت تصبح شفافة */
+.experience-cards:hover .experience-card {
   opacity: 0.5;
   transform: scale(0.98);
 }
 
-.experience-content .experience-card:hover,
-.experience-content .experience-card:focus {
+/* الكرت المحدد يتم إبرازه */
+.experience-cards .experience-card:hover,
+.experience-cards .experience-card:focus {
   opacity: 1;
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 25px 50px rgba(0,0,0,0.3);
   border-color: var(--accent-a);
 }
 
-/* للأوضاع الداكنة (تم تصحيح الخطأ هنا) */
-body:not(.light) .experience-content .experience-card:hover,
-body:not(.light) .experience-content .experience-card:focus {
+/* للأوضاع الداكنة (منسوخ من التعليم) */
+body:not(.light) #experience .experience-card:hover,
+body:not(.light) #experience .experience-card:focus {
   background: #353535;
 }
+/* ======================================================= */
 
 /* أيقونة كل بطاقة */
 .exp-icon {
@@ -1034,7 +1021,7 @@ body:not(.light) .experience-content .experience-card:focus {
   margin: 0;
 }
 
-/* الرسمة (الجانب الأيمن) */
+/* الرسمة (الجانب الأيسر) */
 .experience-illustration {
   display: flex;
   justify-content: center;
@@ -1043,7 +1030,7 @@ body:not(.light) .experience-content .experience-card:focus {
 
 .experience-svg {
   width: 100%;
-  max-width: 900px; /* مطابق للتعليم */
+  max-width: 550px;
   height: auto;
 }
 
@@ -1065,7 +1052,7 @@ body:not(.light) .experience-content .experience-card:focus {
     gap: 60px;
   }
   
-  .experience-content {
+  .experience-content-wrapper {
     width: 100%;
     max-width: 600px;
   }
@@ -1075,14 +1062,6 @@ body:not(.light) .experience-content .experience-card:focus {
   }
 }
 
-
-
-
-
-
-
-
-    
 
     
 /* ============================================== */
