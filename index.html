@@ -638,7 +638,7 @@ body.light .scroller:hover .scroller__inner li {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 10px; /* داخل السكشن */
+  bottom: -8px; /* داخل السكشن */
   width: 140px;
   height: 6px;
   border-radius: 6px;
@@ -910,17 +910,17 @@ section#experience {
   min-height: 100vh;
 }
 
-/* عنوان القسم (تم تصحيح المحاذاة) */
+/* عنوان القسم */
 #experience .section-title {
-  text-align: center; /* ✨ تم إرجاعه للمنتصف */
+  text-align: center;
   font-size: 56px;
-  margin-bottom: 60px; /* زيادة المسافة للخط الجديد */
+  margin-bottom: 60px;
   color: var(--accent-a);
-  position: relative; /* ضروري لتمركز الخط */
-  display: inline-block; /* ضروري لتمركز الخط */
+  position: relative;
+  display: inline-block;
 }
 
-/* الخط المزخرف تحت العنوان (تم التأكد من تمركزه) */
+/* الخط المزخرف تحت العنوان */
 #experience .section-title::after {
   content: '';
   position: absolute;
@@ -943,7 +943,7 @@ section#experience {
 /* الشبكة العامة (مطابقة للتعليم) */
 .experience-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1.8fr; /* الرسمة أولاً (1.2) ثم الكلام (1.8) */
+  grid-template-columns: 1.8fr 1.2fr; /* الكلام أولاً ثم الرسمة */
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
@@ -952,11 +952,12 @@ section#experience {
   margin-top: 55px;
 }
 
-/* حاوية المحتوى على اليمين */
+/* حاوية المحتوى على اليسار */
 .experience-content {
   display: flex;
   flex-direction: column;
 }
+
 
 /* --- تصميم كروت الخبرة (مطابق لتأثير التعليم) --- */
 .experience-card {
@@ -969,6 +970,7 @@ section#experience {
   margin-bottom: 20px;
   border: 1px solid transparent;
   outline: none;
+  /* خاصية لتحسين أداء الأنيميشن */
   will-change: transform, opacity;
   transition: 
     transform 0.3s var(--ease),
@@ -992,13 +994,13 @@ section#experience {
   border-color: var(--accent-a);
 }
 
-/* للأوضاع الداكنة (منسوخ من التعليم) */
-body:not(.light) .experience-card:hover,
-body:not(.light) .experience-card:focus {
+/* للأوضاع الداكنة (تم تصحيح الخطأ هنا) */
+body:not(.light) .experience-content .experience-card:hover,
+body:not(.light) .experience-content .experience-card:focus {
   background: #353535;
 }
 
-/* أيقونة كل بطاقة (مطابقة للتعليم) */
+/* أيقونة كل بطاقة */
 .exp-icon {
   flex-shrink: 0;
   width: 60px;
@@ -1012,7 +1014,7 @@ body:not(.light) .experience-card:focus {
   font-size: 24px;
 }
 
-/* النصوص داخل البطاقة (تم إرجاع الأحجام الأصلية) */
+/* النصوص داخل البطاقة */
 .exp-date {
   font-size: 14px;
   color: var(--accent-a);
@@ -1032,7 +1034,7 @@ body:not(.light) .experience-card:focus {
   margin: 0;
 }
 
-/* الرسمة (الجانب الأيسر) */
+/* الرسمة (الجانب الأيمن) */
 .experience-illustration {
   display: flex;
   justify-content: center;
@@ -1041,7 +1043,7 @@ body:not(.light) .experience-card:focus {
 
 .experience-svg {
   width: 100%;
-  max-width: 550px;
+  max-width: 900px; /* مطابق للتعليم */
   height: auto;
 }
 
@@ -1072,6 +1074,7 @@ body:not(.light) .experience-card:focus {
     display: none;
   }
 }
+
 
 
 
