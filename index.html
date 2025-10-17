@@ -1074,7 +1074,7 @@ body:not(.light) #experience .experience-card:focus {
 
 section#projects {
   padding: 100px 20px;
-  background-color: var(--background); /* ✨ تم تصحيح لون الخلفية ليتبع النظام */
+  background-color: var(--background); /* ✨ تم تصحيح لون الخلفية */
   text-align: center;
   position: relative;
   overflow-x: hidden;
@@ -1095,64 +1095,46 @@ section#projects {
 }
 
 .project-card {
-  background-color: var(--surface); /* ✨ تم تصحيح لون الخلفية */
-  color: var(--text); /* ✨ تم تصحيح لون النص */
+  background-color: var(--surface);
   border-radius: var(--radius);
-  overflow: hidden;
   box-shadow: var(--shadow-medium);
   border: 1px solid var(--border-color);
+  overflow: hidden; /* أهم خاصية للأنيميشن */
   transition: all 0.4s var(--ease);
-  display: flex;
-  flex-direction: column;
 }
 
 .project-card:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-large); /* يمكنك إضافة متغير ظل أكبر إذا أردت */
+  box-shadow: var(--shadow-large);
 }
 
-.project-content {
+/* حاوية المحتوى الداخلي للكارت */
+.project-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
   padding: 25px;
-  text-align: left;
-  flex-grow: 1;
+  box-sizing: border-box;
+  min-height: 380px; /* ارتفاع ثابت للكروت */
   display: flex;
   flex-direction: column;
 }
 
-.project-title {
-  font-size: 24px;
-  font-weight: 700;
-  margin: 0 0 15px 0;
-  color: var(--text);
-}
-
-/* حاوية جديدة للـ SVG والتفاصيل لتسهيل الأنيميشن */
-.project-media-wrapper {
-  position: relative;
-  flex-grow: 1;
-  min-height: 240px;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: var(--background); /* خلفية بسيطة للحاوية */
-}
-
 .project-image,
-.project-details {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  backface-visibility: hidden; /* لتحسين أداء الأنيميشن */
+.project-info,
+.project-links {
+  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  backface-visibility: hidden;
 }
 
 .project-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  box-sizing: border-box;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  right: 25px;
+  height: 220px;
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .project-image svg {
@@ -1161,28 +1143,21 @@ section#projects {
   object-fit: contain;
 }
 
-.project-details {
-  opacity: 0; /* ✨ يبدأ مخفيًا */
-  transform: translateX(30px); /* ✨ يبدأ من اليمين قليلاً */
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.project-info {
+  opacity: 0;
+  transform: translateX(100%);
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  right: 25px;
   text-align: left;
 }
 
-/* ================================== */
-/* === ✨ تأثير الهوفر الجديد والمُصحّح ✨ === */
-/* ================================== */
-
-.project-card:hover .project-image {
-  opacity: 0;
-  transform: translateX(-30px) scale(0.98); /* ✨ الصورة تختفي وتخرج لليسار بسلاسة */
-}
-
-.project-card:hover .project-details {
-  opacity: 1;
-  transform: translateX(0); /* ✨ التفاصيل تظهر وتدخل من اليمين لمكانها */
+.project-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  color: var(--text);
 }
 
 .project-description {
@@ -1193,15 +1168,19 @@ section#projects {
 
 .project-tech-list {
   display: flex;
+  justify-content: flex-end; /* ✨ لجعلها تبدأ من اليمين */
   gap: 10px;
   flex-wrap: wrap;
-  margin-top: auto;
-  padding-top: 15px;
+  margin-top: 20px;
+  transform: translateY(20px); /* ✨ تبدأ من الأسفل قليلاً */
+  opacity: 0;
+  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0.1s; /* ✨ تأخير بسيط للظهور */
 }
 
 .project-tech-list span {
-  background-color: rgba(var(--accent-a-rgb), 0.1); /* ✨ لون متوافق مع الثيم */
-  color: var(--accent-a); /* ✨ لون متوافق مع الثيم */
+  background-color: rgba(var(--accent-a-rgb), 0.1);
+  color: var(--accent-a);
   padding: 5px 12px;
   border-radius: 20px;
   font-size: 14px;
@@ -1211,15 +1190,16 @@ section#projects {
 .project-links {
   display: flex;
   justify-content: space-between;
-  padding: 20px 25px 0px;
-  margin-top: auto;
+  margin-top: auto; /* ✨ يثبت الأزرار في الأسفل */
+  padding-top: 20px;
 }
 
 .project-link-btn {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: rgba(var(--accent-a-rgb), 0.15);
+  background-color: var(--surface-light); /* لون أفتح قليلاً */
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1234,6 +1214,29 @@ section#projects {
   transform: scale(1.1);
 }
 
+/* ================================== */
+/* === ✨ تأثير الهوفر النهائي والمُصحّح ✨ === */
+/* ================================== */
+
+.project-card:hover .project-image {
+  opacity: 0;
+  transform: translateX(-100%); /* ✨ الصورة تخرج لليسار */
+}
+
+.project-card:hover .project-info {
+  opacity: 1;
+  transform: translateX(0); /* ✨ النص يدخل من اليمين */
+}
+
+.project-card:hover .project-tech-list {
+  opacity: 1;
+  transform: translateY(0); /* ✨ التقنيات تظهر وتصعد لمكانها */
+}
+
+.project-card:hover .project-links {
+  transform: translateX(105%); /* ✨ الأزرار تتحرك لليمين (خارج الكارت) */
+}
+
 /* === Footer Buttons === */
 .projects-footer {
   margin-top: 60px;
@@ -1244,13 +1247,12 @@ section#projects {
   padding: 0 20px;
   box-sizing: border-box;
   display: flex;
-  justify-content: flex-end; /* ✨ تم وضع الزر على اليمين */
+  justify-content: flex-end;
 }
 
 .view-all-btn {
-  background-color: var(--surface);
-  color: var(--accent-a);
-  border: 1px solid var(--border-color);
+  background-color: #FF7A59;
+  color: #1E1E1E;
   padding: 12px 24px;
   border-radius: 50px;
   text-decoration: none;
@@ -1262,10 +1264,8 @@ section#projects {
 }
 
 .view-all-btn:hover {
-  background-color: var(--accent-a);
-  color: var(--text-on-accent);
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
+  box-shadow: 0 5px 15px rgba(255, 122, 89, 0.4);
 }
 
 /* ✨ إصلاح زر الصعود للأعلى ✨ */
@@ -1310,7 +1310,7 @@ section#projects {
     gap: 40px;
   }
   .projects-footer {
-    justify-content: center; /* توسيط الزر في الموبايل */
+    justify-content: center;
   }
 }
     
@@ -3602,10 +3602,10 @@ animatedElements.forEach(el => {
 
 // ===== نهاية كود تشغيل الأنيميشن عند السكرول =====
 
-  // ============================================== //
+
+// ============================================== //
 // ============ Scroll to Top Button ============ //
 // ============================================== //
-
 const scrollTopBtn = document.getElementById('scroll-top-btn');
 
 window.addEventListener('scroll', () => {
