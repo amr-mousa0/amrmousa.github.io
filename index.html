@@ -1068,16 +1068,16 @@ body:not(.light) #experience .experience-card:focus {
 
 
 
- /* ============================================== */
-/* ============ Projects Section ============ */
+/* ============================================== */
+/* ============ Projects Section (Final) ============ */
 /* ============================================== */
 
 section#projects {
   padding: 100px 20px;
-  background-color: var(--background);
+  background-color: var(--background); /* ✨ تم تصحيح لون الخلفية ليتبع النظام */
   text-align: center;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden; /* لمنع أي مشاكل في العرض الأفقي */
 }
 
 #projects .section-title {
@@ -1095,18 +1095,22 @@ section#projects {
 }
 
 .project-card {
-  background-color: #FF7A59; /* اللون البرتقالي المطلوب */
-  color: #1E1E1E; /* لون نص داكن ليتناسب مع الخلفية البرتقالية */
+  background-color: #FF7A59;
+  color: #1E1E1E;
   border-radius: var(--radius);
-  overflow: hidden; /* أهم خاصية لإخفاء المحتوى الزائد */
-  position: relative;
+  overflow: hidden;
   box-shadow: var(--shadow-medium);
   transition: all 0.4s var(--ease);
+  display: flex; /* ✨ لجعل المحتوى مرنًا */
+  flex-direction: column;
 }
 
 .project-content {
   padding: 25px;
   text-align: left;
+  flex-grow: 1; /* ✨ يسمح للمحتوى بأخذ المساحة المتاحة */
+  display: flex;
+  flex-direction: column;
 }
 
 .project-title {
@@ -1115,38 +1119,63 @@ section#projects {
   margin: 0 0 15px 0;
 }
 
-.project-image {
-  width: 100%;
-  /* padding: 0 25px; */ /* تم إزالة الـ padding لملء المساحة بالـ SVG */
-  box-sizing: border-box;
-  transition: transform 0.4s var(--ease);
-  z-index: 5;
+/* ✨ حاوية جديدة للـ SVG والتفاصيل لتسهيل الأنيميشن ✨ */
+.project-media-wrapper {
   position: relative;
+  flex-grow: 1;
+  min-height: 240px; /* ارتفاع ثابت لمنع تغير حجم الكارت */
   border-radius: 8px;
-  overflow: hidden; /* لإخفاء أي جزء من الـ SVG يتجاوز الحدود */
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.project-image,
+.project-details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s var(--ease);
+  backface-visibility: hidden; /* لتحسين الأداء */
+}
+
+.project-image {
+  background-color: var(--surface); /* لون خلفية الصورة */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .project-image svg {
-  display: block; /* يزيل أي مسافات إضافية تحت الـ SVG */
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
 }
 
 .project-details {
-  position: absolute;
-  top: 90px; /* يبدأ من تحت العنوان */
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 20px 25px;
-  background-color: #FF7A59;
-  opacity: 0; /* مخفي في الوضع العادي */
-  transition: opacity 0.4s ease-in-out;
+  opacity: 0; /* ✨ يبدأ مخفيًا */
+  transform: translateY(30px); /* ✨ يبدأ من الأسفل قليلاً */
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: left;
+}
+
+/* ================================== */
+/* === ✨ تأثير الهوفر الجديد والمُصحّح ✨ === */
+/* ================================== */
+
+.project-card:hover .project-image {
+  opacity: 0;
+  transform: scale(0.95); /* ✨ الصورة تختفي وتصغر قليلاً */
+}
+
+.project-card:hover .project-details {
+  opacity: 1;
+  transform: translateY(0); /* ✨ التفاصيل تظهر وتصعد لمكانها */
 }
 
 .project-description {
@@ -1158,6 +1187,8 @@ section#projects {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  margin-top: auto; /* يدفع التقنيات لأسفل الحاوية */
+  padding-top: 15px;
 }
 
 .project-tech-list span {
@@ -1171,10 +1202,8 @@ section#projects {
 .project-links {
   display: flex;
   justify-content: space-between;
-  padding: 20px 25px 25px;
-  transition: opacity 0.3s ease;
-  position: relative;
-  z-index: 5;
+  padding: 20px 25px 0px; /* إزالة الـ padding السفلي */
+  margin-top: auto; /* ✨ يدفع الأزرار لأسفل الكارت دائمًا ✨ */
 }
 
 .project-link-btn {
@@ -1195,31 +1224,16 @@ section#projects {
   transform: scale(1.1);
 }
 
-/* === The Magic Hover Effect === */
-.project-card:hover .project-image {
-  transform: translateY(-45%) scale(1.03);
-}
-
-.project-card:hover .project-details {
-  opacity: 1;
-}
-
-.project-card:hover .project-links {
-  opacity: 0;
-}
-
-/* Footer Buttons */
+/* === Footer Buttons === */
 .projects-footer {
   margin-top: 60px;
   display: flex;
-  justify-content: center; /* توسيط الزر في الحاوية */
+  justify-content: center;
   align-items: center;
   width: 100%;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 20px; /* لضمان عدم التصاق الزر بالحافة */
-  box-sizing: border-box;
 }
 
 .view-all-btn {
@@ -1229,7 +1243,7 @@ section#projects {
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   transition: all 0.3s ease;
@@ -1240,6 +1254,7 @@ section#projects {
   box-shadow: 0 5px 15px rgba(255, 122, 89, 0.4);
 }
 
+/* ✨ إصلاح زر الصعود للأعلى ✨ */
 .scroll-top-btn {
   position: fixed;
   bottom: 30px;
@@ -1249,21 +1264,22 @@ section#projects {
   border-radius: 50%;
   background-color: var(--surface);
   color: var(--text);
-  display: none; /* مخفي افتراضيًا */
+  display: flex;
   align-items: center;
   justify-content: center;
   font-size: 20px;
   box-shadow: var(--shadow-medium);
   z-index: 1000;
-  transition: all 0.3s ease;
   opacity: 0; /* يبدأ شفافًا */
   transform: translateY(20px); /* يبدأ من أسفل قليلاً */
+  visibility: hidden; /* مخفي تمامًا */
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
 }
 
 .scroll-top-btn.visible {
-  display: flex;
   opacity: 1;
   transform: translateY(0);
+  visibility: visible;
 }
 
 .scroll-top-btn:hover {
@@ -2037,12 +2053,13 @@ body.drawer-open .top-left {
   <div class="section-anim-container">
     <h2 id="projects-title" class="section-title anim-child" style="transition-delay: 0.1s;">Projects</h2>
 
-    <div class="projects-grid">
+   <div class="projects-grid">
       
       <div class="project-card anim-child" style="transition-delay: 0.2s;">
         <div class="project-content">
           <h3 class="project-title">Employee Management</h3>
-          
+
+          <div class="project-media-wrapper">
           <div class="project-image">
             <svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M433.927 165.171C415.178 165.171 400.178 180.16 400.178 198.896C400.178 300.073 400.178 600.926 400.178 702.103C400.178 720.839 415.178 735.828 433.927 735.828C558.742 735.828 994.258 735.828 1119.07 735.828C1137.82 735.828 1152.82 720.839 1152.82 702.103C1152.82 600.926 1152.82 300.073 1152.82 198.896C1152.82 180.16 1137.82 165.171 1119.07 165.171C994.258 165.171 558.742 165.171 433.927 165.171Z" fill="var(--text)"/>
@@ -2154,6 +2171,7 @@ body.drawer-open .top-left {
               <span>Django</span>
               <span>PostgreSQL</span>
               <span>REST API</span>
+           </div>
             </div>
           </div>
 
@@ -2171,7 +2189,7 @@ body.drawer-open .top-left {
       <div class="project-card anim-child" style="transition-delay: 0.3s;">
         <div class="project-content">
           <h3 class="project-title">Railway Tracking</h3>
-          
+          <div class="project-media-wrapper">
           <div class="project-image">
            <svg width="1459" height="1459" viewBox="0 0 1459 1459" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0)">
@@ -3032,6 +3050,7 @@ body.drawer-open .top-left {
             <div class="project-tech-list">
               <span>Django</span>
               <span>Tailwind CSS</span>
+           </div>
             </div>
           </div>
 
@@ -3049,6 +3068,7 @@ body.drawer-open .top-left {
       <div class="project-card anim-child" style="transition-delay: 0.4s;">
         <div class="project-content">
           <h3 class="project-title">Weather App</h3>
+          <div class="project-media-wrapper">
           
           <div class="project-image">
             <svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3360,6 +3380,7 @@ body.drawer-open .top-left {
               <span>JavaScript</span>
               <span>CSS</span>
               <span>API</span>
+           </div>
             </div>
           </div>
 
@@ -3563,7 +3584,7 @@ animatedElements.forEach(el => {
 
 // ===== نهاية كود تشغيل الأنيميشن عند السكرول =====
 
-    // ============================================== //
+  // ============================================== //
 // ============ Scroll to Top Button ============ //
 // ============================================== //
 
