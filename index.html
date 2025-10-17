@@ -944,7 +944,7 @@ section#experience {
     #experience .section-title::after {
   content: '';
   position: absolute;
-  left: 50%;
+  left: 0%;
   transform: translateX(-50%);
   bottom: 2px; /* المسافة من أسفل العنوان */
   width: 140px;
@@ -962,6 +962,59 @@ section#experience {
   z-index: 2;
   transition: all 0.35s ease;
 }
+    @keyframes glow-move {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  100% { transform: translateY(-10px) scale(1.05); opacity: 1; }
+}
+    /* أنيميشن التوهج المتحرك */
+@keyframes glow-move {
+  0% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 5px var(--accent-a));
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 12px var(--accent-b));
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 5px var(--accent-a));
+  }
+}
+
+
+    #experience .section-title {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+
+/* الحركة عند مرور الماوس */
+#experience .section-title:hover::after {
+  width: 180px;
+  opacity: 0.8; /* خفف الشفافية */
+  animation: glow-move 1.6s linear infinite;
+  box-shadow: 
+    0 0 10px rgba(var(--accent-a-rgb), 0.5),  /* خفف نصف القوة */
+    0 0 20px rgba(var(--accent-b-rgb), 0.3);  /* خفف نصف القوة */
+}
+
+#experience .section-title:hover {
+  color: var(--accent-a); /* اللون الأساسي يلمع */
+  text-shadow:
+    0 0 4px rgba(var(--accent-a-rgb), 0.5),   /* خفف الظل للنصف */
+    0 0 8px rgba(var(--accent-b-rgb), 0.3);   /* خفف الظل للنصف */
+}
+
+
+
+/* في الثيم الفاتح نزيد الإضاءة شوية */
+body.light #experience .section-title::after {
+  box-shadow: 0 0 15px rgba(var(--accent-a-rgb), 0.4);
+  opacity: 0.9;
+}
+
 
 
 /* حاوية الكروت التي سيتم تطبيق الهوفر عليها */
