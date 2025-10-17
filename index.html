@@ -909,7 +909,7 @@ body.light #skills .section-title::after {
 
 
 /* ============================================== */
-/* === سكشن الخبرة (Experience) - مطابق للتعليم === */
+/* === سكشن الخبرة (Experience) - مطابق للتعليم ومُحسّن الأداء === */
 /* ============================================== */
 
 section#experience {
@@ -921,9 +921,7 @@ section#experience {
   min-height: 100vh;
 }
 
-/* عنوان القسم */
 #experience .section-title {
-  /* تم تعديل المحاذاة للمنتصف بناءً على طلبك السابق */
   text-align: center; 
   font-size: 56px;
   margin-bottom: 40px;
@@ -932,7 +930,6 @@ section#experience {
   display: inline-block;
 }
 
-/* خط تزييني تحت العنوان (اختياري لكن يضيف لمسة جمالية) */
 #experience .section-title::after {
   content: '';
   position: absolute;
@@ -945,12 +942,10 @@ section#experience {
   border-radius: 2px;
 }
 
-/* الشبكة العامة */
+/* الشبكة العامة (مطابقة للتعليم) */
 .experience-grid {
   display: grid;
-  /* ✨ تم تعديل التوزيع ليطابق التعليم مع مراعاة ترتيب الـ HTML ✨ */
-  /* الرسمة (الأول في الـ HTML) تأخذ 1fr والكلام (الثاني) يأخذ 1.8fr */
-  grid-template-columns: 1fr 1.8fr;
+  grid-template-columns: 1.2fr 1.8fr; 
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
@@ -965,7 +960,7 @@ section#experience {
   flex-direction: column;
 }
 
-/* --- تصميم كروت الخبرة (مطابق للتعليم) --- */
+/* --- تصميم كروت الخبرة (مطابق للتعليم مع تحسين الأداء) --- */
 .experience-card {
   display: flex;
   align-items: center;
@@ -976,6 +971,10 @@ section#experience {
   margin-bottom: 20px;
   border: 1px solid transparent;
   outline: none;
+  
+  /* ✨ هذا هو السطر الذي سيحل مشكلة البطء ✨ */
+  will-change: transform, opacity;
+
   transition: 
     transform 0.3s var(--ease),
     opacity 0.3s var(--ease),
@@ -984,14 +983,12 @@ section#experience {
     background 0.3s var(--ease);
 }
 
-/* === ✨ تأثير hover المعقد (منسوخ من التعليم) ✨ === */
-/* عند المرور على حاوية الكروت، كل الكروت تصبح شفافة قليلاً */
+/* === تأثير hover مطابق للتعليم === */
 .experience-content:hover .experience-card {
   opacity: 0.5;
   transform: scale(0.98);
 }
 
-/* عند المرور على كارت معين، يبرز هو فقط */
 .experience-content .experience-card:hover,
 .experience-content .experience-card:focus {
   opacity: 1;
@@ -1017,7 +1014,7 @@ body:not(.light) #experience .experience-card:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-on-accent); /* استخدام متغير النص على اللون الأساسي */
+  color: white;
   font-size: 24px;
 }
 
@@ -1050,16 +1047,19 @@ body:not(.light) #experience .experience-card:focus {
 
 .experience-svg {
   width: 100%;
-  max-width: 550px; /* يمكنك تعديل هذا ليطابق حجم رسمة التعليم إذا أردت */
+  max-width: 550px;
   height: auto;
 }
 
-/* --- تعديل الموبايل (منسوخ من التعليم) --- */
+/* --- تعديل الموبايل (مطابق للتعليم) --- */
 @media (max-width: 980px) {
   section#experience {
-    /* ملاحظة: !important ليست أفضل ممارسة، لكن تم نسخها للمطابقة */
     padding-top: 100px !important;
     padding-bottom: 100px !important;
+  }
+
+  #experience .section-title {
+    text-align: center;
   }
 
   .experience-grid {
@@ -1078,6 +1078,7 @@ body:not(.light) #experience .experience-card:focus {
     display: none;
   }
 }
+
 
     
 
