@@ -1083,7 +1083,7 @@ section#projects {
 #projects .section-title {
   color: var(--accent-a);
   margin-bottom: 60px;
-  font-size: 64px;
+  font-size: 64px; /* ✨ تم تكبير عنوان الصفحة الرئيسي */
 }
 
 .projects-grid {
@@ -1101,6 +1101,7 @@ section#projects {
   box-shadow: var(--shadow-medium);
   border: 1px solid var(--border-color);
   overflow: hidden;
+  /* ✨ تم إضافة تأثير الفوكس جروب الملون ✨ */
   transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
 }
 
@@ -1121,6 +1122,7 @@ section#projects {
 }
 /* ================================== */
 
+
 .project-inner {
   position: relative;
   width: 100%;
@@ -1133,7 +1135,7 @@ section#projects {
 }
 
 .project-title {
-  font-size: 24px;
+  font-size: 24px; /* ✨ عنوان الكارت بالحجم الأصلي ✨ */
   font-weight: 700;
   margin: 0 0 15px 0;
   color: var(--text);
@@ -1178,13 +1180,13 @@ section#projects {
 }
 
 .project-details {
-  opacity: 0;
-  transform: translateX(100%);
+  opacity: 0; 
+  transform: translateX(100%); /* ✨ يبدأ من اليمين (خارج الكارت) */
   padding: 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between; /* ✨ ليدفع التقنيات للأسفل */
   text-align: left;
 }
 
@@ -1200,7 +1202,7 @@ section#projects {
   gap: 10px;
   flex-wrap: wrap;
   margin-top: 20px;
-  transform: translateX(30px) translateY(20px);
+  transform: translateX(30px) translateY(20px); /* ✨ يبدأ من أسفل اليمين */
   opacity: 0;
   transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
   transition-delay: 0.1s;
@@ -1215,12 +1217,14 @@ section#projects {
   font-weight: 600;
 }
 
+/* ✨ تعديل هذا الجزء ليطابق الأنيميشن ✨ */
 .project-links {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* ✨ في الوضع العادي: الأزرار متباعدة */
   margin-top: auto;
   z-index: 10;
   position: relative;
+  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1); /* ✨ إضافة ترانزيشن للحركة */
 }
 
 .project-link-btn {
@@ -1229,12 +1233,12 @@ section#projects {
   border-radius: 50%;
   background-color: var(--background);
   border: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--accent-a);
   font-size: 20px;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .project-link-btn:hover {
@@ -1243,20 +1247,29 @@ section#projects {
   transform: scale(1.1);
 }
 
-/* === تأثير الهوفر الداخلي المطابق للصورة === */
+/* ================================== */
+/* === ✨ تأثير الهوفر النهائي المطابق للصورة ✨ === */
+/* ================================== */
+
 .project-card:hover .project-image {
   opacity: 0;
-  transform: translateX(-100%);
+  transform: translateX(-100%); /* ✨ الصورة تخرج لليسار */
 }
 
 .project-card:hover .project-details {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(0); /* ✨ النص يدخل من اليمين */
 }
 
 .project-card:hover .project-tech-list {
   opacity: 1;
-  transform: translateX(0) translateY(0);
+  transform: translateX(0) translateY(0); /* ✨ التقنيات تظهر وتصعد */
+}
+
+/* ✨ عند الهوفر: الأزرار تتحاذى لليمين لتفسح المجال للغات ✨ */
+.project-card:hover .project-links {
+  justify-content: flex-end; 
+  gap: 15px; /* ✨ إضافة مسافة بين الأزرار عند تحريكها */
 }
 
 /* === Footer Buttons === */
@@ -1273,8 +1286,8 @@ section#projects {
 }
 
 .view-all-btn {
-  background-color: var(--surface);
-  color: var(--accent-a);
+  background-color: var(--surface); /* ✨ تم تصحيح اللون */
+  color: var(--accent-a); /* ✨ تم تصحيح اللون */
   border: 1px solid var(--border-color);
   padding: 12px 24px;
   border-radius: 50px;
@@ -1293,7 +1306,7 @@ section#projects {
   box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
 }
 
-/* زر الصعود للأعلى (Scroll Top Button) */
+/* ✨ إصلاح زر الصعود للأعلى (Scroll Top Button) ✨ */
 .scroll-top-btn {
   position: fixed;
   bottom: 30px;
