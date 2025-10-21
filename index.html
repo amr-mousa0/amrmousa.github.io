@@ -1114,8 +1114,6 @@ section#projects {
 }
 
 .project-inner {
-  /* <<< تعديل: حذف 'position: relative' */
-  /* ده هيخلي التفاصيل تتموضع بالنسبة للكارت الأساسي */
   display: flex;
   flex-direction: column;
 }
@@ -1143,68 +1141,82 @@ section#projects {
 /* ----------------- DETAILS (منطقة ظهور الوصف) ----------------- */
 .project-details {
   position: absolute;
-  /* <<< تعديل: هيخليها تبدأ من تحت padding الكارت */
-  top: 1.75rem; 
-  /* <<< تعديل: هيخليها تبدأ من حافة الكارت بالظبط */
-  left: 0; 
-  height: 220px;  
+  top: 1.75rem;
+  left: 0; /* <<< تعديل: نضمن أنها تبدأ من حافة الكارت الأساسي */
+  height: 220px;
   width: 100%;
   display: flex;
   align-items: center;
-  /* <<< تعديل: المحاذاة هتبدأ من اليسار */
   justify-content: flex-start;
-  /* <<< تعديل: حذف الـ padding عشان تلزق في الحافة */
-  padding: 0; 
+  padding-left: 1.75rem; /* <<< تعديل: عشان الوصف ما يلزقش في الشمال أوي */
   
-  overflow: hidden;  
-  opacity: 0;  
+  overflow: hidden;
+  opacity: 0;
   transition: opacity 0.8s ease;
+
+  /* <<< إضافة: الخلفية البرتقالي (بناءً على الصورة) */
+  background-color: var(--accent-a); 
+  /* <<< إضافة: حدود الـ curve على الشمال */
+  border-radius: 0 12px 12px 0; 
+  /* <<< تعديل: تحديد عرض أصغر للمنطقة نفسها */
+  width: calc(100% - 3.5rem); /* عرض الكارد - padding الشمال واليمين بتاع الكارد الأصلي */
+  /* <<< تعديل: تزويد الـ padding-right عشان يبقى فيه مسافة بين الكارت وحافة التفاصيل */
+  padding-right: 1.75rem;
+  /* <<< تعديل: لتغطية الجزء اليمين اللي مش عايزه يوصل للآخر */
+  box-sizing: border-box; 
 }
 
+
 .project-card:hover .project-details {
-  opacity: 1;  
+  opacity: 1;
+  /* <<< تعديل: هنا مش عايزينها تتحرك، هي اللي بتظهر بس */
+  /* transform: translateX(0); */ 
 }
+
 
 /* الوصف (النص) */
 .project-description {
-  /* <<< تعديل: الخلفية بقت بلون الخط */
- background: var(--bg); /* <<< تعديل: استخدمنا خلفية السكشن */
-  color: var(--text);    /* <<< تعديل: استخدمنا لون الخط العادي */
+  /* <<< تعديل: دي اللي هتبقى الخلفية السودا اللي ورا الكلام */
+  background: var(--surface); 
+  /* <<< تعديل: الكلام اللي جواها */
+  color: var(--text); 
   
   /* backdrop-filter ملوش لازمة على لون صلب فتم حذفه */
   box-shadow: inset 0 0 10px rgba(var(--accent-a-rgb), 0.1);
   
   padding: 1rem 1.5rem;
-  /* <<< تعديل: حذف البوردر من ناحية الشمال عشان يلزق في الحافة */
-  border-radius: 0 12px 12px 0;
+  /* <<< تعديل: حدود الـ Curve على اليمين فقط */
+  border-radius: 0 12px 12px 0; 
   font-size: 0.95rem;
   line-height: 1.6;
-  color: var(--text);  
   text-align: left;
   
-  /* الأنيميشن زي ما هو (هينزلق من الشمال) */
-  transform: translateX(-100%);  
-  opacity: 0;  
+  /* <<< تعديل: ده أنيميشن "دخول المسرح" */
+  transform: translateX(-100%); 
+  opacity: 0; 
   transition: opacity 0.7s ease, transform 0.7s ease;
   transition-delay: 0.1s;
-  
-  /* <<< تعديل: لون الخط بقى بلون السطح (عشان يظهر) */
-  color: var(--surface); 
+
+  /* <<< إضافة: تحديد عرض الوصف عشان يدي مسافة من اليمين */
+  width: calc(100% - 1.75rem); /* اترك مسافة من اليمين */
+  /* <<< إضافة: تظبيط الـ margin-left عشان يبدأ من أقصى الشمال */
+  margin-left: -1.75rem; /* يلغي الـ padding-left بتاع .project-details */
 }
 
 .project-card:hover .project-description {
-  opacity: 1; 
-  transform: translateX(0); 
+  opacity: 1;
+  transform: translateX(0);
 }
 
 
 /* ----------------- BOTTOM ----------------- */
-/* (تم تنظيف الكود وحذف الأجزاء المتكررة) */
 .project-bottom-wrapper {
   margin-top: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* <<< إضافة: عشان يبقى فيه مسافة من أطراف الكارت */
+  padding: 0 1.75rem; 
 }
 
 /* Buttons */
@@ -1254,17 +1266,27 @@ section#projects {
   opacity: 0;
   transform: translateX(25px);
   transition: all 0.7s ease;
+  
+  /* <<< إضافة: للتحكم في مكان الظهور */
+  position: relative;
+  z-index: 2; /* عشان تبقى فوق الخلفية البرتقالي */
 }
 
 .project-tech-list span {
-background: var(--bg); /* <<< تعديل: استخدمنا خلفية السكشن */
-  color: var(--text);    /* <<< تعديل: استخدمنا لون الخط العادي */
+  /* <<< تعديل: الخلفية السودا */
+  background: var(--surface); 
+  /* <<< تعديل: الكلام الأبيض */
+  color: var(--text); 
   font-size: 0.8rem;
   padding: 0.4rem 0.8rem;
-  border-radius: 10px;
+  /* <<< تعديل: الحدود المستديرة على اليمين فقط */
+  border-radius: 0 10px 10px 0; 
   opacity: 0;
   transform: translateX(25px);
   transition: opacity 0.7s ease, transform 0.7s ease;
+
+  /* <<< إضافة: هام جداً لعمل المسافة من اليمين */
+  margin-right: 1.75rem; 
 }
 
 .project-card:hover .project-tech-list span {
@@ -1277,13 +1299,14 @@ background: var(--bg); /* <<< تعديل: استخدمنا خلفية السكش
   color: var(--accent-a);
   margin-bottom: 1rem;
   text-align: left;
+  /* <<< تعديل: عشان يبقى في مسافة من الشمال */
+  padding-left: 1.75rem; 
 }
   
 /* ----------------- Hover Animations (الأساسيات) ----------------- */
-.project-card:hover .project-tech-list {
-  opacity: 1;
-  transform: translateX(0);
-}
+/* <<< تعديل: تم حذفها لأنها دمجت في الأجزاء الفوق */
+/* .project-card:hover .project-details { opacity: 1; transform: translateX(0); } */
+/* .project-card:hover .project-tech-list { opacity: 1; transform: translateX(0); } */
 
 .project-card:hover .project-image {
   opacity: 0.9;
@@ -1305,7 +1328,7 @@ background: var(--bg); /* <<< تعديل: استخدمنا خلفية السكش
 .view-all-btn {
   background-color: var(--surface);
   color: var(--accent-a);
-  border: 1px solid var(--border-color); /* تأكد إن عندك المتغير ده */
+  border: 1px solid var(--border-color);
   padding: 12px 24px;
   border-radius: 50px;
   font-weight: 600;
@@ -1315,7 +1338,7 @@ background: var(--bg); /* <<< تعديل: استخدمنا خلفية السكش
 
 .view-all-btn:hover {
   background-color: var(--accent-a);
-  color: var(--text-on-accent); /* تأكد إن عندك المتغير ده */
+  color: var(--text-on-accent);
   transform: scale(1.05);
   box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
 }
@@ -1330,12 +1353,12 @@ background: var(--bg); /* <<< تعديل: استخدمنا خلفية السكش
   border-radius: 50%;
   background-color: var(--surface);
   color: var(--text);
-  border: 1px solid var(--border-color); /* تأكد إن عندك المتغير ده */
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 22px;
-  box-shadow: var(--shadow-medium); /* تأكد إن عندك المتغير ده */
+  box-shadow: var(--shadow-medium);
   z-index: 1000;
   opacity: 0;
   transform: translateY(20px);
@@ -1352,7 +1375,7 @@ background: var(--bg); /* <<< تعديل: استخدمنا خلفية السكش
 
 .scroll-top-btn:hover {
   background-color: var(--accent-a);
-  color: var(--text-on-accent); /* تأكد إن عندك المتغير ده */
+  color: var(--text-on-accent);
   transform: translateY(-5px);
 }
 
