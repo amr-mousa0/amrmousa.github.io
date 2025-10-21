@@ -1096,13 +1096,15 @@ section#projects {
 /* الكارت الأساسي */
 .project-card {
   position: relative;
-  background: var(--card-bg, #111);
+  background: var(--surface); /* خلي الخلفية أوضح في الداكن */
   border-radius: 18px;
-  padding: 2rem;
+  padding: 1.5rem; /* قللنا البادينج شوية */
   overflow: hidden;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* اضبطنا الشادو */
   transition: transform 0.4s ease, box-shadow 0.4s ease;
-  min-height: 420px;
+  min-height: 380px; /* قللنا الارتفاع */
+  max-width: 350px; /* قللنا العرض */
+  margin: 0 auto; /* عشان يبقى متوسط لو grid يسمح */
 }
 
 .project-card:hover {
@@ -1179,6 +1181,7 @@ section#projects {
 .project-links {
   display: flex;
   gap: 1rem;
+  justify-content: flex-end; /* خلي كل الزرار في أقصى اليمين */
 }
 
 .project-link-btn {
@@ -1193,9 +1196,10 @@ section#projects {
   font-size: 1rem;
   transition: transform 0.4s ease, background 0.4s ease;
 }
-    .project-card:hover .project-link-btn-right {
+.project-card:hover .project-link-btn {
   transform: translateX(-8px);
 }
+
     
 .project-link-btn:hover {
   background: #fff;
