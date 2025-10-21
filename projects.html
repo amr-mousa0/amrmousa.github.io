@@ -1852,7 +1852,7 @@ html[dir="rtl"] .theme-toggle-btn {
 
       </div>
   </div>
-  <script>
+ <script>
      // --- الجزء الأول: كود الثيم ---
      const themeToggle = document.getElementById('theme-toggle');
      const body = document.body;
@@ -1876,15 +1876,16 @@ html[dir="rtl"] .theme-toggle-btn {
      });
 
      /* ===============================================
-        == كود تشغيل شريط البحث
+        == كود تشغيل شريط البحث (بالتعديل الصح)
         =============================================== */
      
      // 1. بنمسك شريط البحث والكروت
      const searchInput = document.getElementById('project-search-input');
      const allProjects = document.querySelectorAll('.project-card');
 
-     // 2. بنستنى أي ضغطة زرار في شريط البحث
-     searchInput.addEventListener('keyup', (e) => {
+     // 2. بنستنى أي تغيير يحصل في شريط البحث
+     // <<< تعديل: غيرنا 'keyup' لـ 'input'
+     searchInput.addEventListener('input', (e) => {
        
        // 3. بنجيب الكلمة اللي اتكتبت ونحولها حروف صغيرة
        const searchTerm = e.target.value.toLowerCase();
@@ -1897,8 +1898,8 @@ html[dir="rtl"] .theme-toggle-btn {
 
          // 6. بنقارن: هل عنوان الكارت فيه الكلمة اللي اتكتبت؟
          if (cardTitle.includes(searchTerm)) {
-           // لو آه: اظهر الكارت
-           card.style.display = 'block';d
+           // لو آه (أو لو السيرش فاضي): اظهر الكارت
+           card.style.display = 'block'; 
          } else {
            // لو لأ: اخفي الكارت
            card.style.display = 'none'; 
