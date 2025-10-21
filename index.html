@@ -1117,6 +1117,7 @@ section#projects {
   opacity: 1;
   transform: translateY(-8px) scale(1.02);
   border-color: var(--accent-a);
+  /* ✨ الظل المتدرج الملون المطلوب ✨ */
   box-shadow: 0 8px 30px rgba(var(--accent-a-rgb), 0.3), 0 0 15px rgba(var(--accent-b-rgb), 0.2);
 }
 
@@ -1169,7 +1170,7 @@ body.light .projects-grid .project-card:focus {
   width: 100%;
   height: 100%;
   /* ✨ تم إبطاء الأنيميشن ✨ */
-  transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   backface-visibility: hidden;
 }
 
@@ -1242,7 +1243,8 @@ body.light .projects-grid .project-card:focus {
 }
 
 .project-link-btn-right {
-  transition: all 0.45s var(--ease); /* ✨ الزرار اليمين هيتحرك */
+  /* ✨ الزرار اليمين هيتحرك بسلاسة ✨ */
+  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .project-link-btn:hover {
@@ -1261,7 +1263,7 @@ body.light .projects-grid .project-card:focus {
   flex-direction: column; /* ✨ تحت بعض ✨ */
   align-items: flex-end; /* ✨ محاذاة لليمين ✨ */
   justify-content: center; /* ✨ توسيط رأسي ✨ */
-  gap: 8px;
+  gap: 5px; /* ✨ تقليل المسافة بينهم ✨ */
   transform: translateX(120%); /* ✨ مخفي تمامًا ناحية اليمين */
   opacity: 0;
   transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
@@ -1272,11 +1274,11 @@ body.light .projects-grid .project-card:focus {
 .project-tech-list span {
   background-color: var(--text);
   color: var(--surface);
-  padding: 5px 12px;
+  padding: 3px 10px; /* ✨ تم تصغير الـ padding ✨ */
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 12px; /* ✨ تم تصغير الخط ✨ */
   font-weight: 600;
-  white-space: nowrap; /* ✨ لمنع الكلمة من الانقسام */
+  white-space: nowrap;
 }
 
 /* ================================== */
@@ -1286,17 +1288,18 @@ body.light .projects-grid .project-card:focus {
 .project-card:hover .project-image {
   opacity: 0;
   transform: translateX(-100%);
-  transition-duration: 0.7s; /* ✨ بطيء */
+  transition-duration: 0.6s; /* ✨ بطيء */
 }
 
 .project-card:hover .project-details {
   opacity: 1;
   transform: translateX(0);
-  transition-duration: 0.7s; /* ✨ بطيء */
+  transition-duration: 0.6s; /* ✨ بطيء */
 }
 
 .project-card:hover .project-link-btn-right {
-  transform: translateX(-60px); /* ✨ تحريك الزرار اليمين 60 بكسل شمال */
+  /* ✨ هيتحرك 60 بكسل (عرض الزرار 50 + المسافة 10) ✨ */
+  transform: translateX(-60px); 
 }
 
 .project-card:hover .project-tech-list {
