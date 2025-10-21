@@ -1069,7 +1069,7 @@ body:not(.light) #experience .experience-card:focus {
 
 
 /* ============================================== */
-/* === Projects Section (Final Polished Version) === */
+/* === Projects Section (Final Fixed Version) === */
 /* ============================================== */
 
 section#projects {
@@ -1114,6 +1114,7 @@ section#projects {
 }
 
 .project-inner {
+  position: relative; /* <<< رجعناها عشان .project-details */
   display: flex;
   flex-direction: column;
 }
@@ -1138,85 +1139,69 @@ section#projects {
   transform: translateX(-20px);
 }
 
-/* ----------------- DETAILS (منطقة ظهور الوصف) ----------------- */
+/* ----------------- DETAILS (الحاوية الشفافة) ----------------- */
 .project-details {
   position: absolute;
-  top: 1.75rem;
-  left: 0; /* <<< تعديل: نضمن أنها تبدأ من حافة الكارت الأساسي */
-  height: 220px;
+  top: 0;
+  left: 0;
+  height: 220px;  /* <<< هتغطي الصورة بس */
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding-left: 1.75rem; /* <<< تعديل: عشان الوصف ما يلزقش في الشمال أوي */
+  justify-content: flex-start; /* <<< هيبدأ من الشمال */
+  padding: 0 1rem; /* <<< بادينج بسيط عشان ميبدأش لازق أوي */
   
-  overflow: hidden;
-  opacity: 0;
+  /* <<< تعديل: تم حذف الخلفية الزرقا/البرتقالي */
+  /* background-color: var(--accent-a); (ملغي) */
+  
+  overflow: hidden;  
+  opacity: 0;  
   transition: opacity 0.8s ease;
-
-  /* <<< إضافة: الخلفية البرتقالي (بناءً على الصورة) */
-  background-color: var(--accent-a); 
-  /* <<< إضافة: حدود الـ curve على الشمال */
-  border-radius: 0 12px 12px 0; 
-  /* <<< تعديل: تحديد عرض أصغر للمنطقة نفسها */
-  width: calc(100% - 3.5rem); /* عرض الكارد - padding الشمال واليمين بتاع الكارد الأصلي */
-  /* <<< تعديل: تزويد الـ padding-right عشان يبقى فيه مسافة بين الكارت وحافة التفاصيل */
-  padding-right: 1.75rem;
-  /* <<< تعديل: لتغطية الجزء اليمين اللي مش عايزه يوصل للآخر */
-  box-sizing: border-box; 
+  z-index: 1; /* عشان تبقى فوق الصورة */
 }
-
 
 .project-card:hover .project-details {
-  opacity: 1;
-  /* <<< تعديل: هنا مش عايزينها تتحرك، هي اللي بتظهر بس */
-  /* transform: translateX(0); */ 
+  opacity: 1;  
 }
 
-
-/* الوصف (النص) */
+/* الوصف (الصندوق الأسود) */
 .project-description {
-  /* <<< تعديل: دي اللي هتبقى الخلفية السودا اللي ورا الكلام */
-  background: var(--surface); 
-  /* <<< تعديل: الكلام اللي جواها */
-  color: var(--text); 
+  /* <<< تعديل: الخلفية بلون السكشن زي ما اتفقنا */
+  background: var(--bg);
+  /* <<< تعديل: الخط بلون التكست العادي */
+  color: var(--text);
   
-  /* backdrop-filter ملوش لازمة على لون صلب فتم حذفه */
   box-shadow: inset 0 0 10px rgba(var(--accent-a-rgb), 0.1);
-  
   padding: 1rem 1.5rem;
-  /* <<< تعديل: حدود الـ Curve على اليمين فقط */
-  border-radius: 0 12px 12px 0; 
+  
+  /* <<< تعديل: الكيرف اللي على اليمين */
+  border-radius: 0 12px 12px 0;
   font-size: 0.95rem;
   line-height: 1.6;
   text-align: left;
   
-  /* <<< تعديل: ده أنيميشن "دخول المسرح" */
-  transform: translateX(-100%); 
-  opacity: 0; 
+  /* <<< تعديل: أنيميشن الدخول من الشمال */
+  transform: translateX(-100%);  
+  opacity: 0;  
   transition: opacity 0.7s ease, transform 0.7s ease;
   transition-delay: 0.1s;
-
-  /* <<< إضافة: تحديد عرض الوصف عشان يدي مسافة من اليمين */
-  width: calc(100% - 1.75rem); /* اترك مسافة من اليمين */
-  /* <<< إضافة: تظبيط الـ margin-left عشان يبدأ من أقصى الشمال */
-  margin-left: -1.75rem; /* يلغي الـ padding-left بتاع .project-details */
 }
 
 .project-card:hover .project-description {
-  opacity: 1;
-  transform: translateX(0);
+  opacity: 1; 
+  transform: translateX(0); 
 }
 
 
-/* ----------------- BOTTOM ----------------- */
+/* ----------------- BOTTOM (الأزرار والمهارات) ----------------- */
+/* <<< تعديل: رجع زي ما كان بالظبط */
 .project-bottom-wrapper {
   margin-top: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* <<< إضافة: عشان يبقى فيه مسافة من أطراف الكارت */
-  padding: 0 1.75rem; 
+  position: relative; /* عشان تضمن إنه فوق أي حاجة */
+  z-index: 2; /* فوق الـ details */
 }
 
 /* Buttons */
@@ -1236,7 +1221,7 @@ section#projects {
   color: #fff;
   font-size: 1rem;
   opacity: 0;
-  transform: translateX(20px);
+  transform: translateX(20px); /* <<< ده الأنيميشن الأصلي بتاعهم */
   transition: all 0.5s ease;
 }
   
@@ -1248,65 +1233,64 @@ section#projects {
 
 .project-card:hover .project-link-btn {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(0); /* <<< رجع لمكانه */
 }
+/* ... (تأخير الأزرار) ... */
+.project-card:hover .project-link-btn:nth-child(1) { transition-delay: 0.1s; }
+.project-card:hover .project-link-btn:nth-child(2) { transition-delay: 0.2s; }
 
-.project-card:hover .project-link-btn:nth-child(1) {
-  transition-delay: 0.1s;
-}
-.project-card:hover .project-link-btn:nth-child(2) {
-  transition-delay: 0.2s;
-}
 
-/* Tech List */
+/* Tech List (المهارات) */
+/* <<< تعديل: رجعت زي ما كانت */
 .project-tech-list {
   display: flex;
   gap: 0.6rem;
   align-items: center;
-  opacity: 0;
-  transform: translateX(25px);
-  transition: all 0.7s ease;
-  
-  /* <<< إضافة: للتحكم في مكان الظهور */
-  position: relative;
-  z-index: 2; /* عشان تبقى فوق الخلفية البرتقالي */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  /* (شيلنا الأنيميشن من الحاوية نفسها) */
 }
 
 .project-tech-list span {
-  /* <<< تعديل: الخلفية السودا */
-  background: var(--surface); 
-  /* <<< تعديل: الكلام الأبيض */
-  color: var(--text); 
+  /* <<< تعديل: نفس ستايل الوصف */
+  background: var(--bg);
+  color: var(--text);
+  
   font-size: 0.8rem;
   padding: 0.4rem 0.8rem;
-  /* <<< تعديل: الحدود المستديرة على اليمين فقط */
-  border-radius: 0 10px 10px 0; 
+  
+  /* <<< تعديل: الكيرف اللي على اليمين */
+  border-radius: 0 10px 10px 0;
+  
+  /* <<< تعديل: أنيميشن الدخول من الشمال (زي الوصف) */
   opacity: 0;
-  transform: translateX(25px);
+  transform: translateX(-100%);
   transition: opacity 0.7s ease, transform 0.7s ease;
-
-  /* <<< إضافة: هام جداً لعمل المسافة من اليمين */
-  margin-right: 1.75rem; 
 }
 
 .project-card:hover .project-tech-list span {
   opacity: 1;
   transform: translateX(0);
 }
+/* أنيميشن متتابع للمهارات */
+.project-card:hover .project-tech-list span:nth-child(1) { transition-delay: 0.2s; }
+.project-card:hover .project-tech-list span:nth-child(2) { transition-delay: 0.3s; }
+/* (زود لو فيه أكتر) */
+
 
 .project-title {
   font-size: 1.3rem;
   color: var(--accent-a);
   margin-bottom: 1rem;
   text-align: left;
-  /* <<< تعديل: عشان يبقى في مسافة من الشمال */
-  padding-left: 1.75rem; 
 }
   
+  
 /* ----------------- Hover Animations (الأساسيات) ----------------- */
-/* <<< تعديل: تم حذفها لأنها دمجت في الأجزاء الفوق */
-/* .project-card:hover .project-details { opacity: 1; transform: translateX(0); } */
-/* .project-card:hover .project-tech-list { opacity: 1; transform: translateX(0); } */
+
+ .project-card:hover .project-details { opacity: 1; transform: translateX(0); } 
+.project-card:hover .project-tech-list { opacity: 1; transform: translateX(0); } 
 
 .project-card:hover .project-image {
   opacity: 0.9;
