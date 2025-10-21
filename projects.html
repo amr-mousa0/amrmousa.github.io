@@ -490,7 +490,7 @@ html[dir="rtl"] .theme-toggle-btn {
     <div class="header-content-wrapper">
       <h1 class="all-projects-title">Projects</h1>
       <div class="search-bar">
-        <input type="text" placeholder="Search project...">
+       <input type="text" id="project-search-input" placeholder="Search project...">
       </div>
     </div>
   </div>
@@ -1873,6 +1873,48 @@ html[dir="rtl"] .theme-toggle-btn {
         localStorage.removeItem('theme'); // (الافتراضي هو الداكن)
       }
     });
+
+    <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // (الكود بتاع الثيم سيبه زي ما هو)
+    // ...
+    themeToggle.addEventListener('click', () => {
+      // ...
+    });
+
+    /* ===============================================
+       == (<<< جديد) كود تشغيل شريط البحث
+       =============================================== */
+    
+    // 1. بنمسك شريط البحث والكروت
+    const searchInput = document.getElementById('project-search-input');
+    const allProjects = document.querySelectorAll('.project-card');
+
+    // 2. بنستنى أي ضغطة زرار في شريط البحث
+    searchInput.addEventListener('keyup', (e) => {
+      
+      // 3. بنجيب الكلمة اللي اتكتبت ونحولها حروف صغيرة
+      const searchTerm = e.target.value.toLowerCase();
+
+      // 4. بنلف على كل كارت من كروت المشاريع
+      allProjects.forEach(card => {
+        
+        // 5. بنجيب عنوان الكارت (من جواه) ونحوله حروف صغيرة
+        const cardTitle = card.querySelector('.project-title').textContent.toLowerCase();
+
+        // 6. بنقارن: هل عنوان الكارت فيه الكلمة اللي اتكتبت؟
+        if (cardTitle.includes(searchTerm)) {
+          // لو آه: اظهر الكارت
+          card.style.display = 'block'; 
+        } else {
+          // لو لأ: اخفي الكارت
+          card.style.display = 'none'; 
+        }
+      });
+    });
+    
   </script>
 
 </body>
