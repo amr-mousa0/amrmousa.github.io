@@ -1083,7 +1083,7 @@ section#projects {
 #projects .section-title {
   color: var(--accent-a);
   margin-bottom: 60px;
-  font-size: 64px;
+  font-size: 64px; /* ✨ تم تكبير عنوان الصفحة الرئيسي كما طلبت ✨ */
 }
 
 .projects-grid {
@@ -1096,386 +1096,184 @@ section#projects {
 }
 
 .project-card {
-  position: relative;
-  background: var(--card-bg, #141414);
-  border-radius: 18px;
+  background-color: var(--accent-a); /* ✨ لون الخلفية البرتقالي المطلوب للصورة */
+  color: #FFFFFF;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-medium);
   overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-/* الخلفية البيضاء بتظهر من الشمال */
-.project-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #fff;
-  opacity: 0;
-  transform: translateX(-40%);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  z-index: 0;
-  border-radius: inherit;
-}
-
-    .project-details,
-.project-bottom-wrapper {
+  transition: all 0.4s var(--ease);
   position: relative;
-  z-index: 2;
-  transition: transform 0.5s ease, opacity 0.5s ease;
+  min-height: 420px;
 }
-
-/* الحالة المبدئية */
-.project-details {
-  transform: translateX(-25px);
-  opacity: 0.8;
-}
-
-.project-bottom-wrapper {
-  transform: translateX(15px);
-  opacity: 0.9;
-}
-
-/* الجلو يفضل زي ما هو */
-.project-card.glow {
-  box-shadow: 0 0 30px var(--accent-a, #00bcd4);
-}
-
-/* ================= Hover State ================= */
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 35px var(--accent-a, #00bcd4);
-}
-
-/* الخلفية البيضا تظهر من الشمال */
-.project-card:hover::before {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* المحتوى يتحرك للداخل */
-.project-card:hover .project-details {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.project-card:hover .project-bottom-wrapper {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* الزرارين جوه project-links */
-.project-card .project-link-btn {
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  opacity: 0.9;
-}
-
-/* زرار اليمين يتحرك حركة صغيرة بس */
-.project-card:hover .project-link-btn-right {
-  transform: translateX(-6px);
-  opacity: 1;
-}
-
-/* زرار الشمال يتحرك حركة بسيطة */
-.project-card:hover .project-link-btn-left {
-  transform: translateX(6px);
-  opacity: 1;
-}
-
-/* tech list */
-.project-card .project-tech-list span {
-  background: var(--accent-a, #00bcd4);
-  color: #fff;
-  border-radius: 8px;
-  padding: 0.3rem 0.8rem;
-  font-size: 0.85rem;
-  opacity: 0.9;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
-
-.project-card:hover .project-tech-list span {
-  transform: translateY(-2px);
-  opacity: 1;
-}
-
-    .project-card.glow {
-  box-shadow: 0 0 30px var(--accent-a, #00bcd4);
-}
-    .project-card-content {
-  position: relative;
-  z-index: 2;
-  transition: transform 0.6s ease, opacity 0.6s ease;
-}
-    .project-card h3,
-.project-card p {
-  opacity: 0.8;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-    .project-card .tags {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  justify-content: flex-start;
-}
-
-.project-card .tag {
-  background: var(--accent-a, #00bcd4);
-  color: #fff;
-  border-radius: 10px;
-  padding: 0.4rem 0.9rem;
-  font-size: 0.85rem;
-  opacity: 0.9;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-    .project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 35px var(--accent-a, #00bcd4);
-}
-
-/* الخلفية البيضا بتظهر من الشمال */
-.project-card:hover::before {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* النصوص بتظهر من الشمال */
-.project-card:hover h3,
-.project-card:hover p {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* المهارات (الزرارين) من اليمين لكن بحركه صغيره شويه */
-.project-card:hover .tag {
-  opacity: 1;
-  transform: translateX(-8px);
-}
-
-/* التحريك المبدئي */
-.project-card h3,
-.project-card p {
-  transform: translateX(-20px);
-}
-.project-card .tag {
-  transform: translateX(12px);
-}
-
-/* ================================== */
-/* === ✨ تأثير الفوكس جروب الملون (جديد) ✨ === */
-/* ================================== */
-.projects-grid:hover .project-card {
-  opacity: 0.5;
-  transform: scale(0.98);
-}
-
-.projects-grid .project-card:hover,
-.projects-grid .project-card:focus {
-  opacity: 1;
-  transform: translateY(-8px) scale(1.02);
-  border-color: var(--accent-a);
-  /* ✨ الظل المتدرج الملون المطلوب ✨ */
-  box-shadow: 0 8px 30px rgba(var(--accent-a-rgb), 0.3), 0 0 15px rgba(var(--accent-b-rgb), 0.2);
-}
-
-body:not(.light) .projects-grid .project-card:hover,
-body:not(.light) .projects-grid .project-card:focus {
-  box-shadow: 0 8px 35px rgba(var(--accent-a-rgb), 0.4), 0 0 20px rgba(var(--accent-b-rgb), 0.3);
-}
-
-body.light .projects-grid .project-card:hover,
-body.light .projects-grid .project-card:focus {
-  background: linear-gradient(145deg, #ffffff, #f3f6fb);
-  box-shadow: 0 10px 35px rgba(var(--accent-a-rgb), 0.2);
-}
-/* ================================== */
 
 .project-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
   padding: 25px;
   box-sizing: border-box;
-  min-height: 420px;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.project-title {
-  font-size: 24px;
-  font-weight: 700;
-  margin: 0 0 15px 0;
-  color: var(--text);
-  z-index: 10;
-  position: relative;
-}
-
-.project-media-wrapper {
-  flex-grow: 1;
-  width: 100%;
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative;
-  background-color: transparent; /* نشيل اللون الزائد */
-}
-
-.project-image,
-.project-details {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+/* === محتوى الهوفر (مخفي افتراضيًا) === */
+.project-hover-content {
+  opacity: 0;
+  transition: opacity 0.5s ease;
   height: 100%;
-  /* ✨ تم إبطاء الأنيميشن ✨ */
-  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
+.project-card:hover .project-hover-content {
+  opacity: 1;
+}
+
+.project-card:hover .project-image {
+  opacity: 0;
+}
+
+
+/* === الصورة (تظهر افتراضيًا) === */
 .project-image {
+  position: absolute;
+  top: 25px; left: 25px; right: 25px; bottom: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: opacity 0.5s ease;
+}
+.project-image svg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+/* === تصميم الهوفر المطابق للصورة === */
+.project-title {
+  font-size: 24px; /* ✨ تم إرجاع العنوان لحجمه الأصلي ✨ */
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/* ✨ الحاوية السوداء للنص ✨ */
+.project-details {
+  background: var(--text);
+  color: var(--surface);
   padding: 20px;
-  box-sizing: border-box;
+  border-radius: 20px 0 20px 20px;
+  text-align: left;
+  position: relative; /* ✨ لإضافة الخلفية المتحركة ✨ */
+  overflow: hidden;
+  flex-grow: 1; /* ✨ تأخذ باقي المساحة المتاحة ✨ */
+  display: flex;
+  align-items: center;
+}
+.project-details::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--text);
+  z-index: 1;
+  transform-origin: left;
+  transform: scaleX(0); /* ✨ تبدأ مخفية ✨ */
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.project-card:hover .project-details::before {
+  transform: scaleX(1); /* ✨ الخلفية تظهر من الشمال ✨ */
+}
+.project-details p {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+}
+.project-card:hover .project-details p {
   opacity: 1;
   transform: translateX(0);
 }
-
-.project-image svg {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.project-details {
-  background-color: var(--text);
-  color: var(--surface);
-  border-radius: inherit; /* نفس شكل الكارت */
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* توزع الكلام والأزرار */
-  align-items: flex-start;
-  text-align: left;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%; /* نفس عرض الكارت بالضبط */
-}
-
 .project-description {
-  background: none; /* نشيل أي لون إضافي */
-  padding: 0;
-  margin: 0 0 20px 0;
-  color: var(--surface);
+  font-size: 16px;
   line-height: 1.6;
 }
 
-/* ================================== */
-/* === ✨ تعديل الجزء السفلي (جديد) ✨ === */
-/* ================================== */
 
+/* ✨ الجزء السفلي (أزرار + لغات) ✨ */
 .project-bottom-wrapper {
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-top: auto;
-  padding-top: 10px;
-  position: relative;
+  align-items: flex-end; /* ✨ محاذاة لأسفل ✨ */
+  height: 50px;
 }
 
 .project-links {
   display: flex;
-  gap: 12px;
-  align-items: center;
-  position: relative;
-  z-index: 2;
+  gap: 10px;
 }
-    .project-card:hover .project-link-btn-right {
-  transform: translateX(-70px) translateY(0);
-  z-index: 1;
-}
-
 
 .project-link-btn {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: var(--background);
-  border: 1px solid var(--border-color);
+  background-color: transparent;
+  border: 2px solid #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent-a);
+  color: #FFFFFF;
   font-size: 20px;
   transition: all 0.3s ease;
 }
 
-.project-link-btn-right {
-  /* ✨ الزرار اليمين هيتحرك بسلاسة ✨ */
-  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
 .project-link-btn:hover {
-  background-color: var(--accent-a);
-  color: var(--text-on-accent);
+  background-color: #FFFFFF;
+  color: var(--accent-a);
   transform: scale(1.1);
 }
 
-/* ✨ تصميم اللغات (جديد) ✨ */
 .project-tech-list {
-  position: absolute;
-  right: 0;
-  top: 20px;
-  height: 100%;
+  background: var(--text);
+  color: var(--surface);
+  padding: 10px 15px;
+  border-radius: 8px;
   display: flex;
-  flex-direction: column; /* ✨ تحت بعض ✨ */
-  align-items: flex-end; /* ✨ محاذاة لليمين ✨ */
-  justify-content: center; /* ✨ توسيط رأسي ✨ */
-  gap: 5px; /* ✨ تقليل المسافة بينهم ✨ */
-  transform: translateX(120%); /* ✨ مخفي تمامًا ناحية اليمين */
-  opacity: 0;
-  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
-  transition-delay: 0.1s;
-  z-index: 1;
-  /* ✨ إضافة الخلفية المطلوبة ✨ */
-  background-color: var(--text);
-  padding: 5px 10px;
-  border-radius: 6px;
+  gap: 15px;
+  align-items: center;
+  position: relative; /* ✨ لإضافة الخلفية المتحركة ✨ */
+  overflow: hidden;
 }
-
-.project-tech-list span {
-  background-color: var(--surface);
-  color: var(--text);
-  padding: 3px 10px;
-  border-radius: 4px;
-  font-size: 12px; /* ✨ تم تصغير الخط ✨ */
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-/* ================================== */
-/* === ✨ تأثير الهوفر النهائي المدمج ✨ === */
-/* ================================== */
-
-.project-card:hover .project-image {
-  opacity: 0;
-  transform: scale(1.05);
+.project-tech-list::before {
+  content: '';
   position: absolute;
-  inset: 0;
+  top: 0; right: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--text);
+  z-index: 1;
+  transform-origin: right;
+  transform: scaleX(0); /* ✨ تبدأ مخفية ✨ */
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.1s;
 }
-
-.project-card:hover .project-details {
+.project-card:hover .project-tech-list::before {
+  transform: scaleX(1); /* ✨ الخلفية تظهر من اليمين ✨ */
+}
+.project-tech-list span {
+  font-size: 14px;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease 0.4s, transform 0.4s ease 0.4s;
+}
+.project-card:hover .project-tech-list span {
   opacity: 1;
-  transform: none;
-  transition: opacity 0.5s ease-in-out;
+  transform: translateY(0);
 }
 
-
-
-.project-card:hover .project-tech-list {
-  opacity: 1;
-  transform: translateX(0); /* ✨ إظهار اللغات من اليمين */
-}
 
 /* === Footer Buttons === */
 .projects-footer {
@@ -1490,11 +1288,9 @@ body.light .projects-grid .project-card:focus {
   justify-content: flex-end;
 }
 
-/* ✨ تم تصحيح لون الزرار ✨ */
 .view-all-btn {
-  background-color: var(--surface);
-  color: var(--accent-a);
-  border: 1px solid var(--border-color);
+  background-color: #FF7A59; /* ✨ لون الزرار البرتقالي المطلوب ✨ */
+  color: #1E1E1E;
   padding: 12px 24px;
   border-radius: 50px;
   text-decoration: none;
@@ -1506,10 +1302,8 @@ body.light .projects-grid .project-card:focus {
 }
 
 .view-all-btn:hover {
-  background-color: var(--accent-a);
-  color: var(--text-on-accent);
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
+  box-shadow: 0 5px 15px rgba(255, 122, 89, 0.4);
 }
 
 /* ✨ زر الصعود للأعلى (Scroll Top Button) ✨ */
@@ -1558,57 +1352,8 @@ body.light .projects-grid .project-card:focus {
     justify-content: center;
   }
 }
-    /* ================================== */
-/* === ✨ تأثير الـ Fade للهوفر الجديد ✨ === */
-/* ================================== */
 
-/* نخلي الوضع الافتراضي */
-.project-image,
-.project-details {
-  opacity: 1;
-  transform: none;
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-}
 
-/* نخفي التفاصيل افتراضيًا */
-.project-details {
-  opacity: 0;
-  position: absolute;
-  inset: 0;
-  padding: 20px;
-  background-color: var(--text);
-  color: var(--surface);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-  border-radius: 8px;
-}
-
-/* عند الهوفر — تأثير Fade ناعم */
-.project-card:hover .project-image {
-  opacity: 0;
-  transform: scale(1.05);
-}
-
-.project-card:hover .project-details {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* ✨ تحسين ظهور اللغات مع التأثير ✨ */
-.project-card:hover .project-tech-list {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
-}
-
-/* ✨ تأكيد إن الجلو الأصلي يفضل ✨ */
-.projects-grid .project-card:hover {
-  box-shadow: 0 8px 30px rgba(var(--accent-a-rgb), 0.3),
-              0 0 15px rgba(var(--accent-b-rgb), 0.2);
-  border-color: var(--accent-a);
-}
 
     
     
@@ -2372,9 +2117,6 @@ body.drawer-open .top-left {
       
       <div class="project-card anim-child" tabindex="0" style="transition-delay: 0.2s;">
   <div class="project-inner">
-  <h3 class="project-title">Employee Management</h3>
-
-          <div class="project-media-wrapper">
           <div class="project-image">
             <svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M433.927 165.171C415.178 165.171 400.178 180.16 400.178 198.896C400.178 300.073 400.178 600.926 400.178 702.103C400.178 720.839 415.178 735.828 433.927 735.828C558.742 735.828 994.258 735.828 1119.07 735.828C1137.82 735.828 1152.82 720.839 1152.82 702.103C1152.82 600.926 1152.82 300.073 1152.82 198.896C1152.82 180.16 1137.82 165.171 1119.07 165.171C994.258 165.171 558.742 165.171 433.927 165.171Z" fill="var(--text)"/>
@@ -2478,12 +2220,15 @@ body.drawer-open .top-left {
 
           </div>
 
+     <div class="project-hover-content">
+          <h3 class="project-title">Employee Management</h3>
+
           <div class="project-details">
               <p class="project-description">
                 A comprehensive system to manage employee data, track attendance, and handle payroll efficiently.
               </p>
             </div>
-          </div>
+          
 
           <div class="project-bottom-wrapper">
             <div class="project-links">
@@ -2498,14 +2243,13 @@ body.drawer-open .top-left {
               <span>Django</span>
               <span>PostgreSQL</span>
             </div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="project-card anim-child"   tabindex="0" style="transition-delay: 0.3s;">
         <div class="project-inner">
-          <h3 class="project-title">Railway Tracking</h3>
-          <div class="project-media-wrapper">
           <div class="project-image">
            <svg width="1459" height="1459" viewBox="0 0 1459 1459" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0)">
@@ -3359,12 +3103,13 @@ body.drawer-open .top-left {
 
           </div>
 
+          <div class="project-hover-content">
+            <h3 class="project-title">Railway Tracking</h3>
           <div class="project-details">
               <p class="project-description">
                 This project is a railway tracking system that allows users to obtain relevant information about train timing.
               </p>
             </div>
-          </div>
 
          <div class="project-bottom-wrapper">
             <div class="project-links">
@@ -3378,16 +3123,14 @@ body.drawer-open .top-left {
             <div class="project-tech-list">
               <span>Django</span>
               <span>Tailwind CSS</span>
+           </div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="project-card anim-child" tabindex="0" style="transition-delay: 0.4s;">
-        <div class="project-inner">
-          <h3 class="project-title">Weather App</h3>
-          <div class="project-media-wrapper">
-          
+        <div class="project-inner">   
           <div class="project-image">
             <svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0)">
@@ -3689,14 +3432,13 @@ body.drawer-open .top-left {
 </svg>
 
           </div>
-
+           <div class="project-hover-content">
+            <h3 class="project-title">Weather App</h3>
           <div class="project-details">
               <p class="project-description">
                 A simple and elegant weather application that provides real-time weather data based on user location.
               </p>
             </div>
-          </div>
-
           <div class="project-bottom-wrapper">
             <div class="project-links">
               <a href="#" class="project-link-btn project-link-btn-left" aria-label="View Live Demo">
@@ -3710,19 +3452,22 @@ body.drawer-open .top-left {
               <span>JavaScript</span>
               <span>API</span>
             </div>
+            </div>
           </div>
         </div>
       </div>
 
     </div>
 
-<div class="projects-footer anim-child" style="transition-delay: 0.5s;">
+ <!-- === View All Button === -->
+    <div class="projects-footer anim-child" style="transition-delay: 0.5s;">
       <a href="#" class="view-all-btn">
         View All <i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>
   </div>
   
+  <!-- ✨ زر الصعود للأعلى - تأكد من وجوده هنا ✨ -->
   <a href="#" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top">
     <i class="fa-solid fa-arrow-up"></i>
   </a>
