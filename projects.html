@@ -10,86 +10,409 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
-    /* ===============================================
-      == CSS خاص بصفحة "كل المشاريع"
-      ===============================================
+   :root {
+  /* -- ألوان الثيم الفاتح -- */
+  --light-bg: #f6f8fb;
+  --light-surface: #ffffff;
+  --light-surface-rgb: 255, 255, 255;
+  --light-text: #071026;
+  --light-muted: #475569;
+  --light-accent-a: #0b84ff;
+  --light-accent-a-rgb: 11, 132, 255;
+  --light-accent-b: #0b3b66;
+  --light-accent-b-rgb: 11, 59, 102;
+
+  /* -- ألوان الثيم الداكن -- */
+  --dark-bg: #1A1A1A;
+  --dark-surface: #292929;
+  --dark-surface-rgb: 41, 41, 41;
+  --dark-text: #F0F0F0;
+  --dark-muted: #999999;
+  --dark-accent-a: #004D61;
+  --dark-accent-a-rgb: 0, 77, 97;
+  --dark-accent-b: #822659;
+  --dark-accent-b-rgb: 130, 38, 89;
+
+  /* -- المتغيرات التشغيلية (الافتراضي هو الداكن) -- */
+  --bg: var(--dark-bg);
+  --surface: var(--dark-surface);
+  --surface-rgb: var(--dark-surface-rgb);
+  --text: var(--dark-text);
+  --muted: var(--dark-muted);
+  --accent-a: var(--dark-accent-a);
+  --accent-a-rgb: var(--dark-accent-a-rgb);
+  --accent-b: var(--dark-accent-b);
+  --accent-b-rgb: var(--dark-accent-b-rgb);
+  
+  /* (ضيف أي متغيرات تانية عندك زي البوردر والشادو هنا) */
+  --border-color: rgba(255, 255, 255, 0.1); 
+  --text-on-accent: #ffffff;
+  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* عند تطبيق الثيم الفاتح */
+body.light {
+  --bg: var(--light-bg);
+  --surface: var(--light-surface);
+  --surface-rgb: var(--light-surface-rgb);
+  --text: var(--light-text);
+  --muted: var(--light-muted);
+  --accent-a: var(--light-accent-a);
+  --accent-a-rgb: var(--light-accent-a-rgb);
+  --accent-b: var(--light-accent-b);
+  --accent-b-rgb: var(--light-accent-b-rgb);
+  
+  --border-color: rgba(0, 0, 0, 0.1);
+  --text-on-accent: #ffffff;
+  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
     */
     body {
       background-color: var(--bg);
       color: var(--text);
     }
-    
-    /* زرار الرجوع للرئيسية */
-    .home-btn {
-      position: fixed;
-      top: 30px;
-      /* (هيظهر على الشمال فوق، لو الصفحة عربي هيبقى على اليمين) */
-      left: 30px; 
-      width: 50px;
-      height: 50px;
-      background-color: var(--surface);
-      color: var(--accent-a);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      text-decoration: none;
-      border: 1px solid rgba(var(--accent-a-rgb), 0.2);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      z-index: 100;
-    }
-    .home-btn:hover {
-      background-color: var(--accent-a);
-      color: var(--surface);
-      transform: scale(1.1);
-    }
-    
-    /* (لو الصفحة عربي، خلي الزرار على اليمين) */
-    html[dir="rtl"] .home-btn {
-      left: auto;
-      right: 30px;
-    }
-    
-    /* حاوية الصفحة كلها */
-    .all-projects-container {
-      max-width: 1500px; /* <<< نفس الـ max-width بتاعك */
-      margin: 0 auto;
-      padding: 100px 40px 60px 40px;
-      text-align: center;
-    }
-    
-    /* عنوان "Projects" */
-    .all-projects-title {
-      font-size: 64px;
-      color: var(--accent-a);
-      margin-bottom: 40px;
-    }
-    
-    /* شريط البحث (زي الصورة) */
-    .search-bar {
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto 60px auto;
-    }
-    .search-bar input {
-      width: 100%;
-      padding: 15px 25px;
-      border-radius: 50px;
-      border: 1px solid rgba(var(--accent-a-rgb), 0.1);
-      background-color: var(--surface);
-      color: var(--text);
-      font-size: 16px;
-      outline: none;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-    }
-    .search-bar input:focus {
-      border-color: var(--accent-a);
-      box-shadow: 0 0 25px rgba(var(--accent-a-rgb), 0.3);
-    }
+  /* ===============================================
+   == 2. تنسيقات سكشن المشاريع (هتشتغل في الصفحتين)
+   =============================================== */
 
+/* (التنسيقات دي هتشتغل على السكشن في index.html) */
+section#projects {
+  padding: 100px 20px;
+  background-color: var(--bg);
+  text-align: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+#projects .section-title {
+  color: var(--accent-a);
+  margin-bottom: 60px;
+  font-size: 64px;
+}
+
+/* (التنسيقات دي هتشتغل في الصفحتين) */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 450px);
+  gap: 2rem;
+  padding-top: 2rem;
+  justify-content: center;
+}
+
+.project-card {
+  position: relative;
+  background: var(--surface);
+  border-radius: 18px;
+  padding: 1.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(var(--accent-a-rgb), 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  min-height: 400px;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px var(--accent-a);
+  border-color: rgba(var(--accent-a-rgb), 0.4);
+}
+
+.project-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-image {
+  width: 100%;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.project-image svg {
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-card:hover .project-image svg {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.project-details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 220px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0; /* <<< الحل بتاع "أقصى الشمال" */
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 1;
+}
+
+.project-card:hover .project-details {
+  opacity: 1;
+}
+
+.project-description {
+  background: var(--bg);
+  color: var(--text);
+  box-shadow: inset 0 0 10px rgba(var(--accent-a-rgb), 0.1);
+  padding: 1rem 1.5rem;
+  border-radius: 0 12px 12px 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: left;
+  
+  /* <<< الحل بتاع "أقصى الشمال" */
+  transform: translateX(calc(-100% - 1.75rem)); 
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: 0.1s;
+}
+
+.project-card:hover .project-description {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.project-title {
+  font-size: 1.3rem;
+  color: var(--accent-a);
+  margin-bottom: 1rem;
+  text-align: left;
+  margin-top: -20px; /* <<< رفع العنوان لفوق */
+}
+
+.project-bottom-wrapper {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.project-link-btn {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent-a);
+  color: #fff;
+  font-size: 1rem;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.5s ease;
+}
+
+.project-link-btn:hover {
+  background: #fff;
+  color: var(--accent-a);
+  transform: scale(1.1);
+}
+
+.project-card:hover .project-link-btn {
+  opacity: 1;
+  transform: translateX(0);
+}
+.project-card:hover .project-link-btn:nth-child(1) { transition-delay: 0.1s; }
+.project-card:hover .project-link-btn:nth-child(2) { transition-delay: 0.2s; }
+
+.project-tech-list {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden; /* <<< عشان أنيميشن اليمين */
+}
+
+.project-tech-list span {
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px 0 0 12px; /* <<< الكيرف على الشمال */
+  
+  opacity: 0;
+  transform: translateX(calc(100% + 1.75rem)); /* <<< أنيميشن اليمين */
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.project-card:hover .project-tech-list span {
+  opacity: 1;
+  transform: translateX(0);
+}
+.project-card:hover .project-tech-list span:nth-child(1) { transition-delay: 0.2s; }
+.project-card:hover .project-tech-list span:nth-child(2) { transition-delay: 0.3s; }
+
+
+/* ===============================================
+   == 3. تنسيقات أزرار الصفحة الرئيسية
+   =============================================== */
+.projects-footer {
+  margin-top: 60px;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.view-all-btn {
+  background-color: var(--surface);
+  color: var(--accent-a);
+  border: 1px solid var(--border-color);
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+  background-color: var(--accent-a);
+  color: var(--text-on-accent);
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
+}
+
+.scroll-top-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: var(--shadow-medium);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(20px);
+  visibility: hidden;
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s 0.4s;
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.scroll-top-btn:hover {
+  background-color: var(--accent-a);
+  color: var(--text-on-accent);
+  transform: translateY(-5px);
+}
+
+/* ===============================================
+   == 4. تنسيقات صفحة كل المشاريع (projects.html)
+   =============================================== */
+   
+.home-btn {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--surface);
+  color: var(--accent-a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  text-decoration: none;
+  border: 1px solid rgba(var(--accent-a-rgb), 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+.home-btn:hover {
+  background-color: var(--accent-a);
+  color: var(--surface);
+  transform: scale(1.1);
+}
+
+html[dir="rtl"] .home-btn {
+  left: auto;
+  right: 30px;
+}
+
+.all-projects-container {
+  max-width: 1500px; 
+  margin: 0 auto;
+  padding: 100px 40px 60px 40px;
+  text-align: center;
+}
+
+.all-projects-title {
+  font-size: 64px;
+  color: var(--accent-a);
+  margin-bottom: 40px;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 60px auto;
+}
+.search-bar input {
+  width: 100%;
+  padding: 15px 25px;
+  border-radius: 50px;
+  border: 1px solid rgba(var(--accent-a-rgb), 0.1);
+  background-color: var(--surface);
+  color: var(--text);
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+.search-bar input:focus {
+  border-color: var(--accent-a);
+  box-shadow: 0 0 25px rgba(var(--accent-a-rgb), 0.3);
+}
+
+/* ===============================================
+   == 5. الريسبونسيف
+   =============================================== */
+@media (max-width: 768px) {
+  .projects-grid {
+    /* (بنخلي الكروت تاخد عرض الشاشة بالكامل في الموبايل) */
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .projects-footer {
+    justify-content: center;
+  }
+}
   </style>
 </head>
 <body>
