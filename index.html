@@ -1074,7 +1074,7 @@ body:not(.light) #experience .experience-card:focus {
 
 section#projects {
   padding: 100px 20px;
-  background-color: var(--background); /* ✨ تم تصحيح لون الخلفية */
+  background-color: var(--background);
   text-align: center;
   position: relative;
   overflow-x: hidden;
@@ -1083,6 +1083,7 @@ section#projects {
 #projects .section-title {
   color: var(--accent-a);
   margin-bottom: 60px;
+  font-size: 64px; /* ✨ تم تكبير عنوان الصفحة الرئيسي كما طلبت ✨ */
 }
 
 .projects-grid {
@@ -1095,11 +1096,11 @@ section#projects {
 }
 
 .project-card {
-  background-color: var(--surface); /* ✨ تم تصحيح لون الخلفية */
+  background-color: var(--surface);
   border-radius: var(--radius);
   box-shadow: var(--shadow-medium);
   border: 1px solid var(--border-color);
-  overflow: hidden; /* ✨ أهم خاصية للأنيميشن */
+  overflow: hidden;
   transition: all 0.4s var(--ease);
 }
 
@@ -1108,35 +1109,33 @@ section#projects {
   box-shadow: var(--shadow-large);
 }
 
-/* حاوية المحتوى الداخلي للكارت */
 .project-inner {
   position: relative;
   width: 100%;
   height: 100%;
   padding: 25px;
   box-sizing: border-box;
-  min-height: 420px; /* ✨ تم زيادة الارتفاع ليناسب كل العناصر */
+  min-height: 420px;
   display: flex;
   flex-direction: column;
 }
 
 .project-title {
-  font-size: 28px; /* ✨ تم تكبير العنوان */
+  font-size: 24px; /* ✨ تم إرجاع العنوان لحجمه الأصلي ✨ */
   font-weight: 700;
   margin: 0 0 15px 0;
   color: var(--text);
-  z-index: 10; /* للتأكد أنه فوق كل شيء */
+  z-index: 10;
   position: relative;
 }
 
-/* حاوية جديدة للـ SVG والتفاصيل لتسهيل الأنيميشن */
 .project-media-wrapper {
   position: relative;
-  flex-grow: 1; /* ✨ يأخذ باقي المساحة المتاحة */
+  flex-grow: 1;
   border-radius: 8px;
   overflow: hidden;
   background-color: var(--background);
-  margin-bottom: 20px; /* ✨ مسافة قبل الأزرار */
+  margin-bottom: 20px;
 }
 
 .project-image,
@@ -1167,13 +1166,13 @@ section#projects {
 }
 
 .project-details {
-  opacity: 0; /* ✨ يبدأ مخفيًا */
+  opacity: 0;
   transform: translateX(100%); /* ✨ يبدأ من اليمين (خارج الكارت) */
   padding: 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* ✨ يبدأ من الأعلى */
+  justify-content: flex-start;
   text-align: left;
 }
 
@@ -1185,31 +1184,29 @@ section#projects {
 
 .project-tech-list {
   display: flex;
-  justify-content: flex-end; /* ✨ لجعلها تبدأ من اليمين */
+  justify-content: flex-end;
   gap: 10px;
   flex-wrap: wrap;
   margin-top: 20px;
-  transform: translateX(30px) translateY(20px); /* ✨ تبدأ من أسفل اليمين */
+  transform: translateX(30px) translateY(20px); /* ✨ يبدأ من أسفل اليمين */
   opacity: 0;
   transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
-  transition-delay: 0.1s; /* ✨ تأخير بسيط للظهور */
+  transition-delay: 0.1s;
 }
 
-/* ✨ تصميم التقنيات ليطابق الصورة ✨ */
 .project-tech-list span {
   background-color: var(--text);
   color: var(--surface);
   padding: 5px 12px;
-  border-radius: 4px; /* ✨ مطابق للصورة (مربع بحواف دائرية) */
+  border-radius: 4px;
   font-size: 14px;
   font-weight: 600;
 }
 
-/* الأزرار ثابتة في الأسفل ولا تتحرك */
 .project-links {
   display: flex;
   justify-content: space-between;
-  margin-top: auto; /* ✨ يثبت الأزرار في الأسفل */
+  margin-top: auto;
   z-index: 10;
   position: relative;
 }
@@ -1267,8 +1264,9 @@ section#projects {
 }
 
 .view-all-btn {
-  background-color: #FF7A59;
-  color: #1E1E1E;
+  background-color: var(--surface); /* ✨ تم تصحيح اللون */
+  color: var(--accent-a); /* ✨ تم تصحيح اللون */
+  border: 1px solid var(--border-color);
   padding: 12px 24px;
   border-radius: 50px;
   text-decoration: none;
@@ -1280,8 +1278,10 @@ section#projects {
 }
 
 .view-all-btn:hover {
+  background-color: var(--accent-a);
+  color: var(--text-on-accent);
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(255, 122, 89, 0.4);
+  box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
 }
 
 /* ✨ إصلاح زر الصعود للأعلى (Scroll Top Button) ✨ */
