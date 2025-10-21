@@ -1083,7 +1083,7 @@ section#projects {
 #projects .section-title {
   color: var(--accent-a);
   margin-bottom: 60px;
-  font-size: 64px; /* ✨ تم تكبير عنوان الصفحة الرئيسي */
+  font-size: 64px;
 }
 
 .projects-grid {
@@ -1101,24 +1101,40 @@ section#projects {
   box-shadow: var(--shadow-medium);
   border: 1px solid var(--border-color);
   overflow: hidden;
-  /* ✨ تم إضافة تأثير الفوكس جروب الملون ✨ */
+  /* ✨ تم تعديل الـ transition ليشمل الـ opacity والـ transform والـ shadow ✨ */
   transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
 }
 
 /* ================================== */
-/* === ✨ تأثير الفوكس جروب الملون (جديد) ✨ === */
+/* === ✨ تأثير الفوكس جروب الملون (زي المهارات) ✨ === */
 /* ================================== */
+
+/* عند المرور على الشبكة، كل الكروت تخفت */
 .projects-grid:hover .project-card {
   opacity: 0.5;
   transform: scale(0.98);
 }
 
+/* الكرت المحدد يتم إبرازه ورفعه مع التوهج */
 .projects-grid .project-card:hover,
 .projects-grid .project-card:focus {
   opacity: 1;
   transform: translateY(-8px) scale(1.02);
   border-color: var(--accent-a);
-  box-shadow: 0 10px 30px -5px rgba(var(--accent-a-rgb), 0.3); /* ✨ الظل الملون المطلوب ✨ */
+  /* ✨ الظل المتدرج الملون المطلوب ✨ */
+  box-shadow: 0 8px 30px rgba(var(--accent-a-rgb), 0.3), 0 0 15px rgba(var(--accent-b-rgb), 0.2);
+}
+
+/* ✨ تحسين الهوفر في الوضع الداكن والفاتح ✨ */
+body:not(.light) .projects-grid .project-card:hover,
+body:not(.light) .projects-grid .project-card:focus {
+  box-shadow: 0 8px 35px rgba(var(--accent-a-rgb), 0.4), 0 0 20px rgba(var(--accent-b-rgb), 0.3);
+}
+
+body.light .projects-grid .project-card:hover,
+body.light .projects-grid .project-card:focus {
+  background: linear-gradient(145deg, #ffffff, #f3f6fb);
+  box-shadow: 0 10px 35px rgba(var(--accent-a-rgb), 0.2);
 }
 /* ================================== */
 
@@ -1129,13 +1145,13 @@ section#projects {
   height: 100%;
   padding: 25px;
   box-sizing: border-box;
-  min-height: 420px;
+  min-height: 420px; /* ارتفاع ثابت للكروت */
   display: flex;
   flex-direction: column;
 }
 
 .project-title {
-  font-size: 24px; /* ✨ عنوان الكارت بالحجم الأصلي ✨ */
+  font-size: 24px;
   font-weight: 700;
   margin: 0 0 15px 0;
   color: var(--text);
@@ -1152,25 +1168,18 @@ section#projects {
   margin-bottom: 20px;
 }
 
-.project-image,
-.project-details {
+/* ✨ إلغاء أنيميشن إخفاء الصورة والنص ✨ */
+.project-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
-  backface-visibility: hidden;
-}
-
-.project-image {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   box-sizing: border-box;
-  opacity: 1;
-  transform: translateX(0);
 }
 
 .project-image svg {
@@ -1179,52 +1188,18 @@ section#projects {
   object-fit: contain;
 }
 
+/* ✨ إخفاء التفاصيل لأننا بنعرض الصورة بس ✨ */
 .project-details {
-  opacity: 0; 
-  transform: translateX(100%); /* ✨ يبدأ من اليمين (خارج الكارت) */
-  padding: 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* ✨ ليدفع التقنيات للأسفل */
-  text-align: left;
+  display: none;
 }
 
-.project-description {
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--muted);
-}
-
-.project-tech-list {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  transform: translateX(30px) translateY(20px); /* ✨ يبدأ من أسفل اليمين */
-  opacity: 0;
-  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
-  transition-delay: 0.1s;
-}
-
-.project-tech-list span {
-  background-color: var(--text);
-  color: var(--surface);
-  padding: 5px 12px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-/* ✨ تعديل هذا الجزء ليطابق الأنيميشن ✨ */
+/* الأزرار ثابتة في الأسفل */
 .project-links {
   display: flex;
-  justify-content: space-between; /* ✨ في الوضع العادي: الأزرار متباعدة */
+  justify-content: space-between;
   margin-top: auto;
   z-index: 10;
   position: relative;
-  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1); /* ✨ إضافة ترانزيشن للحركة */
 }
 
 .project-link-btn {
@@ -1233,43 +1208,18 @@ section#projects {
   border-radius: 50%;
   background-color: var(--background);
   border: 1px solid var(--border-color);
-  color: var(--accent-a);
-  font-size: 20px;
-  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--accent-a);
+  font-size: 20px;
+  transition: all 0.3s ease;
 }
 
 .project-link-btn:hover {
   background-color: var(--accent-a);
   color: var(--text-on-accent);
   transform: scale(1.1);
-}
-
-/* ================================== */
-/* === ✨ تأثير الهوفر النهائي المطابق للصورة ✨ === */
-/* ================================== */
-
-.project-card:hover .project-image {
-  opacity: 0;
-  transform: translateX(-100%); /* ✨ الصورة تخرج لليسار */
-}
-
-.project-card:hover .project-details {
-  opacity: 1;
-  transform: translateX(0); /* ✨ النص يدخل من اليمين */
-}
-
-.project-card:hover .project-tech-list {
-  opacity: 1;
-  transform: translateX(0) translateY(0); /* ✨ التقنيات تظهر وتصعد */
-}
-
-/* ✨ عند الهوفر: الأزرار تتحاذى لليمين لتفسح المجال للغات ✨ */
-.project-card:hover .project-links {
-  justify-content: flex-end; 
-  gap: 15px; /* ✨ إضافة مسافة بين الأزرار عند تحريكها */
 }
 
 /* === Footer Buttons === */
@@ -1285,9 +1235,10 @@ section#projects {
   justify-content: flex-end;
 }
 
+/* ✨ تم تصحيح لون الزرار ✨ */
 .view-all-btn {
-  background-color: var(--surface); /* ✨ تم تصحيح اللون */
-  color: var(--accent-a); /* ✨ تم تصحيح اللون */
+  background-color: var(--surface);
+  color: var(--accent-a);
   border: 1px solid var(--border-color);
   padding: 12px 24px;
   border-radius: 50px;
@@ -1306,7 +1257,7 @@ section#projects {
   box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
 }
 
-/* ✨ إصلاح زر الصعود للأعلى (Scroll Top Button) ✨ */
+/* ✨ كود زرار السهم (Scroll Top Button) - سليم ✨ */
 .scroll-top-btn {
   position: fixed;
   bottom: 30px;
@@ -1352,7 +1303,6 @@ section#projects {
     justify-content: center;
   }
 }
-
 
     
     
