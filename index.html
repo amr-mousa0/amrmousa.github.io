@@ -1074,7 +1074,7 @@ body:not(.light) #experience .experience-card:focus {
 
 section#projects {
   padding: 100px 20px;
-  background-color: var(--bg); /* <<< تعديل: لضمان استخدام متغير الخلفية الصحيح */
+  background-color: var(--bg);
   text-align: center;
   position: relative;
   overflow-x: hidden;
@@ -1088,8 +1088,8 @@ section#projects {
 
 .projects-grid {
   display: grid;
-  /* <<< تعديل: تقليل العرض الأدنى للكارت */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* <<< تعديل: تقليل العرض الأدنى للكارت مجدداً */
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   gap: 2rem;
   padding-top: 2rem;
 }
@@ -1097,22 +1097,20 @@ section#projects {
 /* الكارت الأساسي */
 .project-card {
   position: relative;
-  /* <<< تعديل: استخدام متغير السطح لجعله أوضح من الخلفية */
   background: var(--surface);
   border-radius: 18px;
-  padding: 1.75rem; /* <<< تعديل: تقليل الـ padding قليلاً */
+  padding: 1.75rem;
   overflow: hidden;
-  /* <<< تعديل: إضافة بوردر خفيف لتمييز الكارت أكثر في الثيم الداكن */
   border: 1px solid rgba(var(--accent-a-rgb), 0.1);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-  min-height: 400px; /* <<< تعديل: تقليل الارتفاع الأدنى للكارت */
+  min-height: 400px;
 }
 
 .project-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 0 30px var(--accent-a);
-  border-color: rgba(var(--accent-a-rgb), 0.4); /* <<< تعديل: إضافة تفاعل للبوردر */
+  border-color: rgba(var(--accent-a-rgb), 0.4);
 }
 
 .project-inner {
@@ -1141,38 +1139,62 @@ section#projects {
   transform: translateX(-20px);
 }
 
-/* ----------------- DETAILS ----------------- */
+/* ----------------- DETAILS (منطقة ظهور الوصف) ----------------- */
 .project-details {
   position: absolute;
   top: 0;
   left: 0;
-  height: 220px;
+  height: 220px; /* نفس ارتفاع الصورة */
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 1rem;
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  
+  /* <<< تعديل: هذا هو مفتاح "الاختباء" */
+  /* الحاوية نفسها ستخفي أي شيء يخرج عن حدودها */
+  overflow: hidden; 
+  
+  /* <<< تعديل: الحاوية نفسها شفافة بالكامل في البداية */
+  opacity: 0; 
+  /* نجعلها تظهر عند الهوفر */
+  transition: opacity 0.8s ease;
 }
 
 .project-card:hover .project-details {
-  opacity: 1;
-  transform: translateX(0);
+  opacity: 1; /* <<< تعديل: إظهار الحاوية عند الهوفر */
+  /* تم نقل التحريك إلى الوصف بالأسفل */
 }
 
+/* الوصف (النص) */
 .project-description {
-  /* <<< تعديل: استخدام متغير السطح مع شفافية لضمان التوافق */
-  background: rgba(var(--surface-rgb), 0.85);
-  backdrop-filter: blur(5px); /* إضافة بلور خفيف للخلفية */
+  /* <<< تعديل: إزالة الخلفية والظل والبلور */
+  /* background: rgba(var(--surface-rgb), 0.85); */
+  /* backdrop-filter: blur(5px); */
+  /* box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05); */
+  
   padding: 1rem 1.5rem;
   border-radius: 12px;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: var(--text); /* <<< تعديل: استخدام متغير اللون الأساسي */
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+  color: var(--text); 
+  text-align: left; /* <<< إضافة: لضمان محاذاة النص لليسار */
+  
+  /* <<< تعديل: هذا هو أنيميشن "دخول المسرح" */
+  /* يبدأ الكلام مزاحاً بالكامل إلى اليسار (خارج الحاوية) */
+  transform: translateX(-100%); 
+  /* سنضيف تأثيراً خفيفاً للشفافية أيضاً */
+  opacity: 0; 
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: 0.1s; /* تأخير بسيط ليعمل بعد حركة الصورة */
 }
+
+/* <<< تعديل: عند الهوفر على الكارت... */
+.project-card:hover .project-description {
+  opacity: 1; /* يظهر الكلام */
+  transform: translateX(0); /* يتحرك إلى مكانه الأصلي (داخل الحاوية) */
+}
+
 
 /* ----------------- BOTTOM ----------------- */
 .project-bottom-wrapper {
@@ -1199,28 +1221,22 @@ section#projects {
   background: var(--accent-a);
   color: #fff;
   font-size: 1rem;
-  /* <<< تعديل: تحضير الزر للأنيميشن (يبدأ مخفي ومزاح لليمين) */
   opacity: 0;
   transform: translateX(20px);
-  /* <<< تعديل: تغيير الـ transition ليشمل كل الخصائص */
   transition: all 0.5s ease;
 }
   
 .project-link-btn:hover {
   background: #fff;
   color: var(--accent-a);
-  transform: scale(1.1); /* إضافة تكبير بسيط عند الهوفر */
+  transform: scale(1.1); 
 }
-  
-/* <<< تعديل: حذف القواعد القديمة (.project-link-btn-right / .project-link-btn-left) */
 
-/* <<< إضافة: حركة الأزرار عند الهوفر على الكارت */
 .project-card:hover .project-link-btn {
   opacity: 1;
   transform: translateX(0);
 }
 
-/* <<< إضافة: تأخير بسيط متسلسل للأزرار لظهور أجمل */
 .project-card:hover .project-link-btn:nth-child(1) {
   transition-delay: 0.1s;
 }
@@ -1261,7 +1277,6 @@ section#projects {
   margin-bottom: 1rem;
   text-align: left;
 }
-
 /* ----------------- Hover Animations ----------------- */
 .project-card:hover .project-details {
   opacity: 1;
