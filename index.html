@@ -1144,22 +1144,21 @@ section#projects {
   position: absolute;
   top: 0;
   left: 0;
-  height: 220px;  /* <<< هتغطي الصورة بس */
+  height: 220px;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* <<< هيبدأ من الشمال */
-  padding: 0 1rem; /* <<< بادينج بسيط عشان ميبدأش لازق أوي */
+  justify-content: flex-start;
   
-  /* <<< تعديل: تم حذف الخلفية الزرقا/البرتقالي */
-  /* background-color: var(--accent-a); (ملغي) */
+  padding: 0; /* <<< تعديل: شيلنا البادينج عشان يلزق في الشمال */
+  
+  /* (تم حذف الخلفية الزرقا) */
   
   overflow: hidden;  
   opacity: 0;  
   transition: opacity 0.8s ease;
-  z-index: 1; /* عشان تبقى فوق الصورة */
+  z-index: 1; 
 }
-
 .project-card:hover .project-details {
   opacity: 1;  
 }
