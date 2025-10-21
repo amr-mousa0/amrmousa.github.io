@@ -1074,7 +1074,7 @@ body:not(.light) #experience .experience-card:focus {
 
 section#projects {
   padding: 100px 20px;
-  background-color: var(--background);
+  background-color: var(--bg); /* <<< تعديل: لضمان استخدام متغير الخلفية الصحيح */
   text-align: center;
   position: relative;
   overflow-x: hidden;
@@ -1088,7 +1088,8 @@ section#projects {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  /* <<< تعديل: تقليل العرض الأدنى للكارت */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   padding-top: 2rem;
 }
@@ -1096,20 +1097,22 @@ section#projects {
 /* الكارت الأساسي */
 .project-card {
   position: relative;
-  background: var(--surface); /* خلي الخلفية أوضح في الداكن */
+  /* <<< تعديل: استخدام متغير السطح لجعله أوضح من الخلفية */
+  background: var(--surface);
   border-radius: 18px;
-  padding: 1.5rem; /* قللنا البادينج شوية */
+  padding: 1.75rem; /* <<< تعديل: تقليل الـ padding قليلاً */
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* اضبطنا الشادو */
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  min-height: 380px; /* قللنا الارتفاع */
-  max-width: 350px; /* قللنا العرض */
-  margin: 0 auto; /* عشان يبقى متوسط لو grid يسمح */
+  /* <<< تعديل: إضافة بوردر خفيف لتمييز الكارت أكثر في الثيم الداكن */
+  border: 1px solid rgba(var(--accent-a-rgb), 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  min-height: 400px; /* <<< تعديل: تقليل الارتفاع الأدنى للكارت */
 }
 
 .project-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 0 30px var(--accent-a);
+  border-color: rgba(var(--accent-a-rgb), 0.4); /* <<< تعديل: إضافة تفاعل للبوردر */
 }
 
 .project-inner {
@@ -1133,11 +1136,11 @@ section#projects {
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* الـ SVG بيعمل fade + slide بسيط */
 .project-card:hover .project-image svg {
   opacity: 0;
   transform: translateX(-20px);
 }
+
 /* ----------------- DETAILS ----------------- */
 .project-details {
   position: absolute;
@@ -1160,14 +1163,17 @@ section#projects {
 }
 
 .project-description {
-  background: rgba(17, 17, 17, 0.85);
+  /* <<< تعديل: استخدام متغير السطح مع شفافية لضمان التوافق */
+  background: rgba(var(--surface-rgb), 0.85);
+  backdrop-filter: blur(5px); /* إضافة بلور خفيف للخلفية */
   padding: 1rem 1.5rem;
   border-radius: 12px;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #eee;
+  color: var(--text); /* <<< تعديل: استخدام متغير اللون الأساسي */
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
 }
+
 /* ----------------- BOTTOM ----------------- */
 .project-bottom-wrapper {
   margin-top: 1.5rem;
@@ -1181,7 +1187,6 @@ section#projects {
 .project-links {
   display: flex;
   gap: 1rem;
-  justify-content: flex-end; /* خلي كل الزرار في أقصى اليمين */
 }
 
 .project-link-btn {
@@ -1194,20 +1199,35 @@ section#projects {
   background: var(--accent-a);
   color: #fff;
   font-size: 1rem;
-  transition: transform 0.4s ease, background 0.4s ease;
+  /* <<< تعديل: تحضير الزر للأنيميشن (يبدأ مخفي ومزاح لليمين) */
+  opacity: 0;
+  transform: translateX(20px);
+  /* <<< تعديل: تغيير الـ transition ليشمل كل الخصائص */
+  transition: all 0.5s ease;
 }
-.project-card:hover .project-link-btn {
-  transform: translateX(-8px);
-}
-
-    
+  
 .project-link-btn:hover {
   background: #fff;
   color: var(--accent-a);
+  transform: scale(1.1); /* إضافة تكبير بسيط عند الهوفر */
 }
-    .project-link-btn-left {
+  
+/* <<< تعديل: حذف القواعد القديمة (.project-link-btn-right / .project-link-btn-left) */
+
+/* <<< إضافة: حركة الأزرار عند الهوفر على الكارت */
+.project-card:hover .project-link-btn {
+  opacity: 1;
   transform: translateX(0);
 }
+
+/* <<< إضافة: تأخير بسيط متسلسل للأزرار لظهور أجمل */
+.project-card:hover .project-link-btn:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.project-card:hover .project-link-btn:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
 
 /* Tech List */
 .project-tech-list {
@@ -1229,11 +1249,13 @@ section#projects {
   transform: translateX(25px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
-    .project-card:hover .project-tech-list span {
+
+.project-card:hover .project-tech-list span {
   opacity: 1;
   transform: translateX(0);
 }
-    .project-title {
+
+.project-title {
   font-size: 1.3rem;
   color: var(--accent-a);
   margin-bottom: 1rem;
@@ -1255,6 +1277,9 @@ section#projects {
   opacity: 0.9;
   transform: scale(1.03);
 }
+
+/* ----------------- View All Button ----------------- */
+/* ... (باقي الكود كما هو) ... */
 
 /* ----------------- View All Button ----------------- */
 .projects-footer {
