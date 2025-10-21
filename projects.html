@@ -1853,69 +1853,59 @@ html[dir="rtl"] .theme-toggle-btn {
       </div>
   </div>
   <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
+     // --- الجزء الأول: كود الثيم ---
+     const themeToggle = document.getElementById('theme-toggle');
+     const body = document.body;
 
-    // 1. شوف لو فيه ثيم متخزن من زيارة قبل كده
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      body.classList.add(savedTheme);
-    }
+     // 1. شوف لو فيه ثيم متخزن من زيارة قبل كده
+     const savedTheme = localStorage.getItem('theme');
+     if (savedTheme) {
+       body.classList.add(savedTheme);
+     }
 
-    // 2. لما حد يدوس على الزرار
-    themeToggle.addEventListener('click', () => {
-      body.classList.toggle('light'); // اعكس الثيم
-      
-      // 3. خزن الثيم الجديد في الـ localStorage
-      if (body.classList.contains('light')) {
-        localStorage.setItem('theme', 'light');
-      } else {
-        localStorage.removeItem('theme'); // (الافتراضي هو الداكن)
-      }
-    });
+     // 2. لما حد يدوس على الزرار
+     themeToggle.addEventListener('click', () => {
+       body.classList.toggle('light'); // اعكس الثيم
+       
+       // 3. خزن الثيم الجديد في الـ localStorage
+       if (body.classList.contains('light')) {
+         localStorage.setItem('theme', 'light');
+       } else {
+         localStorage.removeItem('theme'); // (الافتراضي هو الداكن)
+       }
+     });
 
-    <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
+     /* ===============================================
+        == كود تشغيل شريط البحث
+        =============================================== */
+     
+     // 1. بنمسك شريط البحث والكروت
+     const searchInput = document.getElementById('project-search-input');
+     const allProjects = document.querySelectorAll('.project-card');
 
-    // (الكود بتاع الثيم سيبه زي ما هو)
-    // ...
-    themeToggle.addEventListener('click', () => {
-      // ...
-    });
+     // 2. بنستنى أي ضغطة زرار في شريط البحث
+     searchInput.addEventListener('keyup', (e) => {
+       
+       // 3. بنجيب الكلمة اللي اتكتبت ونحولها حروف صغيرة
+       const searchTerm = e.target.value.toLowerCase();
 
-    /* ===============================================
-       == (<<< جديد) كود تشغيل شريط البحث
-       =============================================== */
-    
-    // 1. بنمسك شريط البحث والكروت
-    const searchInput = document.getElementById('project-search-input');
-    const allProjects = document.querySelectorAll('.project-card');
+       // 4. بنلف على كل كارت من كروت المشاريع
+       allProjects.forEach(card => {
+         
+         // 5. بنجيب عنوان الكارت (من جواه) ونحوله حروف صغيرة
+         const cardTitle = card.querySelector('.project-title').textContent.toLowerCase();
 
-    // 2. بنستنى أي ضغطة زرار في شريط البحث
-    searchInput.addEventListener('keyup', (e) => {
-      
-      // 3. بنجيب الكلمة اللي اتكتبت ونحولها حروف صغيرة
-      const searchTerm = e.target.value.toLowerCase();
-
-      // 4. بنلف على كل كارت من كروت المشاريع
-      allProjects.forEach(card => {
-        
-        // 5. بنجيب عنوان الكارت (من جواه) ونحوله حروف صغيرة
-        const cardTitle = card.querySelector('.project-title').textContent.toLowerCase();
-
-        // 6. بنقارن: هل عنوان الكارت فيه الكلمة اللي اتكتبت؟
-        if (cardTitle.includes(searchTerm)) {
-          // لو آه: اظهر الكارت
-          card.style.display = 'block'; 
-        } else {
-          // لو لأ: اخفي الكارت
-          card.style.display = 'none'; 
-        }
-      });
-    });
-    
-  </script>
-
+         // 6. بنقارن: هل عنوان الكارت فيه الكلمة اللي اتكتبت؟
+         if (cardTitle.includes(searchTerm)) {
+           // لو آه: اظهر الكارت
+           card.style.display = 'block';d
+         } else {
+           // لو لأ: اخفي الكارت
+           card.style.display = 'none'; 
+         }
+       });
+     });
+     
+  </script>
 </body>
 </html>
