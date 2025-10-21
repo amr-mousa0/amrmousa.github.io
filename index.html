@@ -1367,111 +1367,125 @@ background: var(--bg); /* <<< تعديل: استخدمنا خلفية السكش
   }
 }
 
-    /* ===============================================
-   == Achievements Section (With Focus Style)
-   =============================================== */
-#achievements {
-  padding: 100px 20px;
-  background-color: var(--bg);
+   /* ============================================== */
+/* ============ Achievements Section ============ */
+/* ============================================== */
+
+section#achievements {
+  padding: 100px 40px;
+  background-color: var(--background);
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .achievements-grid {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 3rem;
-  max-width: 1200px; 
+  grid-template-columns: 1fr 1.5fr; /* تقسيم الشاشة بنسبة 1 إلى 1.5 */
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
-/* العمود الشمال (الوصف) */
-.achievements-intro h2 {
-  font-size: 3.5rem; 
+/* الجزء الأيسر (النص) */
+.achievements-intro {
+  text-align: left;
+}
+
+#achievements .section-title {
   color: var(--accent-a);
-  margin-bottom: 1.5rem;
+  margin-bottom: 20px;
+  font-size: 64px;
 }
 
-.achievements-intro p {
-  font-size: 1.1rem;
-  color: var(--muted); 
+.achievements-summary {
+  font-size: 18px;
   line-height: 1.7;
+  color: var(--muted);
+  max-width: 450px;
 }
 
-/* العمود اليمين (لستة الكروت) */
+/* الجزء الأيمن (الكروت) */
 .achievements-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; 
+  gap: 30px;
 }
 
 .achievement-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   background-color: var(--surface);
-  padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-medium);
   border: 1px solid var(--border-color);
-  transition: all 0.3s ease;
-  outline: 2px solid transparent; /* <<< إضافة: بنجهز مكان الفوكس */
-  outline-offset: 2px;
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
 }
 
-.achievement-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(var(--accent-a-rgb), 0.1);
-  border-color: var(--accent-a);
+/* ================================== */
+/* === ✨ تأثير الفوكس جروب الملون ✨ === */
+/* ================================== */
+
+.achievements-list:hover .achievement-card {
+  opacity: 0.5;
+  transform: scale(0.98);
 }
 
-/* <<< تعديل: ده الـ "تاب بوكس" اللي طلبته (الفوكس) */
-.achievement-card:focus-visible {
+.achievements-list .achievement-card:hover,
+.achievements-list .achievement-card:focus {
+  opacity: 1;
+  transform: scale(1.02);
   border-color: var(--accent-a);
-  outline-color: var(--accent-a); /* (هيظهر الإطار) */
-  box-shadow: 0 8px 25px rgba(var(--accent-a-rgb), 0.1);
+  box-shadow: 0 8px 30px rgba(var(--accent-a-rgb), 0.3), 0 0 15px rgba(var(--accent-b-rgb), 0.2);
 }
+
+/* ================================== */
 
 .card-content {
-  flex: 1; 
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-right: 1.5rem; 
-  min-height: 100px;
+  align-items: center;
+  gap: 25px;
+  padding: 25px;
+}
+
+.card-info {
+  flex-grow: 1;
+  text-align: left;
 }
 
 .card-title {
-  font-size: 1.25rem;
+  font-size: 20px;
+  font-weight: 600;
   color: var(--text);
-  margin-bottom: 0.75rem;
+  margin-bottom: 8px;
 }
 
-.card-content p {
-  font-size: 0.95rem;
+.card-description {
+  font-size: 15px;
   color: var(--muted);
   line-height: 1.6;
+  margin-bottom: 15px;
 }
 
-.card-footer {
+.card-meta {
   display: flex;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  gap: 20px;
+  font-size: 14px;
+  color: var(--muted);
 }
-
-.card-footer .date,
-.card-footer .tag {
-  font-size: 0.9rem;
-  color: var(--accent-a);
-  font-weight: 500;
+.card-meta span {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 6px;
 }
 
 .card-image {
+  flex-shrink: 0;
   width: 100px;
   height: 100px;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  flex-shrink: 0;
 }
 
 .card-image img {
@@ -1480,32 +1494,41 @@ background: var(--bg); /* <<< تعديل: استخدمنا خلفية السكش
   object-fit: cover;
 }
 
-/* * 4. الريسبونسيف (للموبايل)
-*/
-@media (max-width: 992px) {
+/* Responsive adjustments */
+@media (max-width: 980px) {
   .achievements-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr; /* تحت بعض في الموبايل */
+    gap: 40px;
+  }
+  .achievements-intro {
+    text-align: center;
+  }
+  #achievements .section-title {
+    font-size: 48px;
+  }
+  .achievements-summary {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
-@media (max-width: 768px) {
-  .achievements-intro h2 {
-    font-size: 2.5rem;
+@media (max-width: 600px) {
+  .card-content {
+    flex-direction: column;
+    text-align: center;
   }
-  .achievement-card {
-    flex-direction: column-reverse;
-    align-items: stretch;
+  .card-info {
+    order: 2; /* النص يجي تحت الصورة */
   }
   .card-image {
-    width: 100%;
-    height: 150px;
-    margin-bottom: 1.5rem;
+    order: 1;
+    margin-bottom: 20px;
   }
-  .card-content {
-    padding-right: 0;
+  .card-meta {
+    justify-content: center;
   }
 }
+
 
     
     
@@ -3625,88 +3648,83 @@ body.drawer-open .top-left {
   </a>
 </section>
 
-    <section id="achievements">
-  <div class="container">
+
+    
+
+<section id="achievements" aria-labelledby="achievements-title">
+  <div class="section-anim-container">
     <div class="achievements-grid">
-      
+
+      <!-- === الجزء الأيسر (العنوان والنص) === -->
       <div class="achievements-intro anim-child" style="transition-delay: 0.1s;">
-        <h2 class="section-title">Achievements</h2>
-        <p>
-          Putting quantified achievements on a resume is great, but I just don't
-          work with hard numbers. I have no data to support the quality of my
-          work. If you have lots of relevant experience, the heading statement of
-          your resume will be a summary.
+        <h2 id="achievements-title" class="section-title">Achievements</h2>
+        <p class="achievements-summary">
+          Putting quantified achievements on a resume is great, but I just don't work with hard numbers. I have no data to support the quality of my work. If you have lots of relevant experience, the heading statement of your resume will be a summary.
         </p>
       </div>
 
+      <!-- === الجزء الأيمن (الكروت) === -->
       <div class="achievements-list">
-
-        <article class="achievement-card anim-child" tabindex="0" style="transition-delay: 0.2s;">
+        
+        <!-- === Card 1 === -->
+        <div class="achievement-card anim-child" tabindex="0" style="transition-delay: 0.2s;">
           <div class="card-content">
-            <div class="card-text">
+            <div class="card-info">
               <h3 class="card-title">Google Cloud certification</h3>
-              <p>
-                Google Cloud certifications validate your expertise and showcase
-                your ability to transform businesses with Google Cloud
-                technology.
+              <p class="card-description">
+                Google Cloud Certifications validate your expertise and showcase your ability to transform businesses with Google Cloud technology.
               </p>
+              <div class="card-meta">
+                <span class="card-date"><i class="fa-regular fa-calendar"></i> Aug 20, 2019</span>
+                <span class="card-category"><i class="fa-solid fa-robot"></i> Automation</span>
+              </div>
             </div>
-            <footer class="card-footer">
-              <span class="date">Aug 20, 2019</span>
-              <span class="tag">
-                <i class="fas fa-bookmark"></i>
-                Automation
-              </span>
-            </footer>
+            <div class="card-image">
+              <!-- استبدل برابط الصورة الخاصة بالشهادة -->
+              <img src="https://placehold.co/100x100/FF7A59/FFFFFF?text=Logo" alt="Google Cloud Logo">
+            </div>
           </div>
-          <div class="card-image">
-            <img src="placeholder.jpg" alt="Google Cloud Certification">
-          </div>
-        </article>
+        </div>
 
-        <article class="achievement-card anim-child" tabindex="0" style="transition-delay: 0.3s;">
+        <!-- === Card 2 === -->
+        <div class="achievement-card anim-child" tabindex="0" style="transition-delay: 0.3s;">
           <div class="card-content">
-            <div class="card-text">
+            <div class="card-info">
               <h3 class="card-title">AWS Certification</h3>
-              <p>
-                Validate technical skills and cloud expertise to grow your
-                career and business.
+              <p class="card-description">
+                Validate technical skills and cloud expertise to grow your career and business.
               </p>
+              <div class="card-meta">
+                <span class="card-date"><i class="fa-regular fa-calendar"></i> Aug 20, 2019</span>
+                <span class="card-category"><i class="fa-solid fa-robot"></i> Automation</span>
+              </div>
             </div>
-            <footer class="card-footer">
-              <span class="date">Aug 20, 2019</span>
-              <span class="tag">
-                <i class="fas fa-bookmark"></i>
-                Automation
-              </span>
-            </footer>
+            <div class="card-image">
+              <!-- استبدل برابط الصورة الخاصة بالشهادة -->
+              <img src="https://placehold.co/100x100/FF7A59/FFFFFF?text=Logo" alt="AWS Logo">
+            </div>
           </div>
-          <div class="card-image">
-            <img src="placeholder.jpg" alt="AWS Certification">
-          </div>
-        </article>
+        </div>
 
-        <article class="achievement-card anim-child" tabindex="0" style="transition-delay: 0.4s;">
+        <!-- === Card 3 === -->
+        <div class="achievement-card anim-child" tabindex="0" style="transition-delay: 0.4s;">
           <div class="card-content">
-            <div class="card-text">
+            <div class="card-info">
               <h3 class="card-title">Professional Data Engineer Certification</h3>
-              <p>
-                Professional Data Engineers enable data-driven decision making
-                by collecting, transforming, and publishing data.
+              <p class="card-description">
+                Professional Data Engineers enable data-driven decision making by collecting, transforming, and publishing data.
               </p>
+              <div class="card-meta">
+                <span class="card-date"><i class="fa-regular fa-calendar"></i> Aug 20, 2019</span>
+                <span class="card-category"><i class="fa-solid fa-robot"></i> Automation</span>
+              </div>
             </div>
-            <footer class="card-footer">
-              <span class="date">Aug 20, 2019</span>
-              <span class="tag">
-                <i class="fas fa-bookmark"></i>
-                Automation
-              </span>
-            </footer>
+            <div class="card-image">
+              <!-- استبدل برابط الصورة الخاصة بالشهادة -->
+              <img src="https://placehold.co/100x100/FF7A59/FFFFFF?text=Logo" alt="Data Engineer Logo">
+            </div>
           </div>
-          <div class="card-image">
-            <img src="placeholder.jpg" alt="Data Engineer Certification">
-          </div>
-        </article>
+        </div>
 
       </div>
     </div>
