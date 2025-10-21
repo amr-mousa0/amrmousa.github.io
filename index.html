@@ -1069,7 +1069,7 @@ body:not(.light) #experience .experience-card:focus {
 
 
 /* ============================================== */
-/* ============ 🎨 Projects Section (Final) ============ */
+/* 🎨 Projects Section (Compatible with Your Structure) */
 /* ============================================== */
 
 section#projects {
@@ -1087,7 +1087,7 @@ section#projects {
   font-size: 64px;
 }
 
-/* ===== الشبكة العامة ===== */
+/* ===== الشبكة ===== */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -1105,18 +1105,11 @@ section#projects {
   background: var(--bg-card);
   border-radius: 14px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.4s ease;
-  padding: 1.5rem;
+  transition: transform 0.4s ease, box-shadow 0.5s ease;
+  cursor: pointer;
 }
 
-/* تأثير الجلو */
-.project-card.glow {
-  box-shadow: 0 0 30px var(--accent-a, #00bcd4);
-}
-
-/* ============================================== */
-/* ✨ الخلفية البيضاء (Fade + Slide من الشمال) */
-/* ============================================== */
+/* خلفية Fade + Slide من الشمال */
 .project-card::before {
   content: "";
   position: absolute;
@@ -1137,73 +1130,61 @@ section#projects {
 /* ============================================== */
 /* 🎬 المحتوى الداخلي */
 /* ============================================== */
-.project-details,
-.project-bottom-wrapper {
+.project-inner {
   position: relative;
-  z-index: 2;
+  z-index: 1;
+  padding: 1.5rem;
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-/* الحالة المبدئية (قبل الهوفر) */
-.project-details {
-  transform: translateX(-25px);
-  opacity: 0.8;
-}
-
-.project-bottom-wrapper {
-  transform: translateX(15px);
-  opacity: 0.9;
-}
-
-/* عند الهوفر */
-.project-card:hover .project-details {
+.project-card:hover .project-inner {
+  transform: translateY(-3px);
   opacity: 1;
-  transform: translateX(0);
-}
-
-.project-card:hover .project-bottom-wrapper {
-  opacity: 1;
-  transform: translateX(0);
 }
 
 /* ============================================== */
-/* 🧩 الصورة والتفاصيل (Fade + Slide) */
+/* 🧩 الميديا (صورة + تفاصيل) */
 /* ============================================== */
-.project-image,
-.project-details {
+.project-media-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+/* الصورة */
+.project-image {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  backface-visibility: hidden;
-}
-
-.project-image {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   opacity: 1;
   transform: translateX(0);
 }
 
 .project-card:hover .project-image {
   opacity: 0;
-  transform: translateX(20px) scale(1.05);
+  transform: translateX(25px) scale(1.05);
 }
 
+/* التفاصيل */
 .project-details {
+  position: absolute;
+  inset: 0;
   background-color: var(--text);
   color: var(--surface);
-  border-radius: inherit;
   padding: 25px;
+  border-radius: inherit;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: left;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
   transform: translateX(-20px);
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .project-card:hover .project-details {
@@ -1218,29 +1199,42 @@ section#projects {
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   transition: color 0.3s ease;
+}
+
+.project-card:hover .project-title {
+  color: #fff;
 }
 
 .project-description {
   font-size: 0.95rem;
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
-}
-
-/* عند الهوفر النصوص تبقى بيضاء */
-.project-card:hover .project-title,
-.project-card:hover .project-description {
   color: #fff;
+  text-align: left;
 }
 
 /* ============================================== */
-/* ⚙️ الزرارين (يمين وشمال) */
+/* ⚙️ الجزء السفلي (الأزرار + اللغات) */
 /* ============================================== */
+.project-bottom-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.2rem;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.project-card:hover .project-bottom-wrapper {
+  transform: translateY(-3px);
+  opacity: 1;
+}
+
+/* الأزرار */
 .project-links {
   display: flex;
   gap: 1rem;
-  margin-top: 1rem;
 }
 
 .project-link-btn {
@@ -1253,7 +1247,6 @@ section#projects {
   justify-content: center;
   color: var(--text-primary);
   transition: all 0.4s ease;
-  z-index: 3;
 }
 
 .project-card:hover .project-link-btn {
@@ -1261,7 +1254,6 @@ section#projects {
   color: #fff;
 }
 
-/* الزرارين يتحركوا بخفة */
 .project-card:hover .project-link-btn-left {
   transform: translateX(6px);
 }
@@ -1270,26 +1262,13 @@ section#projects {
   transform: translateX(-6px);
 }
 
-/* ============================================== */
-/* 💻 اللغات (Tech list) */
-/* ============================================== */
+/* اللغات */
 .project-tech-list {
-  position: absolute;
-  right: 0;
-  top: 20px;
-  height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 6px;
-  transform: translateX(120%);
+  gap: 8px;
   opacity: 0;
+  transform: translateX(30px);
   transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
-  background-color: var(--text);
-  padding: 5px 10px;
-  border-radius: 6px;
-  z-index: 1;
 }
 
 .project-card:hover .project-tech-list {
@@ -1298,45 +1277,30 @@ section#projects {
 }
 
 .project-tech-list span {
-  background-color: var(--surface);
-  color: var(--text);
-  padding: 3px 10px;
+  background-color: var(--text);
+  color: var(--surface);
+  padding: 4px 10px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 600;
-  white-space: nowrap;
 }
 
 /* ============================================== */
-/* ✨ تأثير الجلو والظل العام */
+/* ✨ الكارت Hover Glow */
 /* ============================================== */
 .project-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
   box-shadow: 0 0 35px var(--accent-a, #00bcd4);
 }
 
 /* ============================================== */
-/* 📱 Responsive adjustments */
+/* 📱 Responsive */
 /* ============================================== */
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .project-tech-list {
-    position: relative;
-    right: auto;
-    top: auto;
-    transform: none;
-    opacity: 1;
-    flex-direction: row;
-    justify-content: flex-start;
-    background: none;
-    padding: 0;
   }
 }
-
 
     
     
