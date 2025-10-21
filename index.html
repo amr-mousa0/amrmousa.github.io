@@ -1074,7 +1074,7 @@ body:not(.light) #experience .experience-card:focus {
 
 section#projects {
   padding: 100px 20px;
-  background-color: var(--background); /* ✨ تم تصحيح لون الخلفية ليتبع النظام */
+  background-color: var(--background); /* ✨ تم تصحيح لون الخلفية */
   text-align: center;
   position: relative;
   overflow-x: hidden;
@@ -1096,44 +1096,47 @@ section#projects {
 
 .project-card {
   background-color: var(--surface); /* ✨ تم تصحيح لون الخلفية */
-  color: var(--text); /* ✨ تم تصحيح لون النص */
   border-radius: var(--radius);
-  overflow: hidden;
   box-shadow: var(--shadow-medium);
   border: 1px solid var(--border-color);
+  overflow: hidden; /* ✨ أهم خاصية للأنيميشن */
   transition: all 0.4s var(--ease);
-  display: flex;
-  flex-direction: column;
 }
 
 .project-card:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-large); /* يمكنك إضافة متغير ظل أكبر إذا أردت */
+  box-shadow: var(--shadow-large);
 }
 
-.project-content {
+/* حاوية المحتوى الداخلي للكارت */
+.project-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
   padding: 25px;
-  text-align: left;
-  flex-grow: 1;
+  box-sizing: border-box;
+  min-height: 420px; /* ✨ تم زيادة الارتفاع ليناسب كل العناصر */
   display: flex;
   flex-direction: column;
 }
 
 .project-title {
-  font-size: 24px;
+  font-size: 28px; /* ✨ تم تكبير العنوان */
   font-weight: 700;
   margin: 0 0 15px 0;
   color: var(--text);
+  z-index: 10; /* للتأكد أنه فوق كل شيء */
+  position: relative;
 }
 
 /* حاوية جديدة للـ SVG والتفاصيل لتسهيل الأنيميشن */
 .project-media-wrapper {
   position: relative;
-  flex-grow: 1;
-  min-height: 240px;
+  flex-grow: 1; /* ✨ يأخذ باقي المساحة المتاحة */
   border-radius: 8px;
   overflow: hidden;
-  background-color: var(--background); /* خلفية بسيطة للحاوية */
+  background-color: var(--background);
+  margin-bottom: 20px; /* ✨ مسافة قبل الأزرار */
 }
 
 .project-image,
@@ -1143,8 +1146,8 @@ section#projects {
   left: 0;
   width: 100%;
   height: 100%;
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  backface-visibility: hidden; /* لتحسين أداء الأنيميشن */
+  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  backface-visibility: hidden;
 }
 
 .project-image {
@@ -1153,6 +1156,8 @@ section#projects {
   justify-content: center;
   padding: 20px;
   box-sizing: border-box;
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .project-image svg {
@@ -1163,26 +1168,13 @@ section#projects {
 
 .project-details {
   opacity: 0; /* ✨ يبدأ مخفيًا */
-  transform: translateX(30px); /* ✨ يبدأ من اليمين قليلاً */
+  transform: translateX(100%); /* ✨ يبدأ من اليمين (خارج الكارت) */
   padding: 20px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start; /* ✨ يبدأ من الأعلى */
   text-align: left;
-}
-
-/* ================================== */
-/* === ✨ تأثير الهوفر الجديد والمُصحّح ✨ === */
-/* ================================== */
-
-.project-card:hover .project-image {
-  opacity: 0;
-  transform: translateX(-30px) scale(0.98); /* ✨ الصورة تختفي وتخرج لليسار بسلاسة */
-}
-
-.project-card:hover .project-details {
-  opacity: 1;
-  transform: translateX(0); /* ✨ التفاصيل تظهر وتدخل من اليمين لمكانها */
 }
 
 .project-description {
@@ -1193,33 +1185,41 @@ section#projects {
 
 .project-tech-list {
   display: flex;
+  justify-content: flex-end; /* ✨ لجعلها تبدأ من اليمين */
   gap: 10px;
   flex-wrap: wrap;
-  margin-top: auto;
-  padding-top: 15px;
+  margin-top: 20px;
+  transform: translateX(30px) translateY(20px); /* ✨ تبدأ من أسفل اليمين */
+  opacity: 0;
+  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0.1s; /* ✨ تأخير بسيط للظهور */
 }
 
+/* ✨ تصميم التقنيات ليطابق الصورة ✨ */
 .project-tech-list span {
-  background-color: rgba(var(--accent-a-rgb), 0.1); /* ✨ لون متوافق مع الثيم */
-  color: var(--accent-a); /* ✨ لون متوافق مع الثيم */
+  background-color: var(--text);
+  color: var(--surface);
   padding: 5px 12px;
-  border-radius: 20px;
+  border-radius: 4px; /* ✨ مطابق للصورة (مربع بحواف دائرية) */
   font-size: 14px;
   font-weight: 600;
 }
 
+/* الأزرار ثابتة في الأسفل ولا تتحرك */
 .project-links {
   display: flex;
   justify-content: space-between;
-  padding: 20px 25px 0px;
-  margin-top: auto;
+  margin-top: auto; /* ✨ يثبت الأزرار في الأسفل */
+  z-index: 10;
+  position: relative;
 }
 
 .project-link-btn {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: rgba(var(--accent-a-rgb), 0.15);
+  background-color: var(--background);
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1234,6 +1234,25 @@ section#projects {
   transform: scale(1.1);
 }
 
+/* ================================== */
+/* === ✨ تأثير الهوفر النهائي المطابق للصورة ✨ === */
+/* ================================== */
+
+.project-card:hover .project-image {
+  opacity: 0;
+  transform: translateX(-100%); /* ✨ الصورة تخرج لليسار */
+}
+
+.project-card:hover .project-details {
+  opacity: 1;
+  transform: translateX(0); /* ✨ النص يدخل من اليمين */
+}
+
+.project-card:hover .project-tech-list {
+  opacity: 1;
+  transform: translateX(0) translateY(0); /* ✨ التقنيات تظهر وتصعد لمكانها */
+}
+
 /* === Footer Buttons === */
 .projects-footer {
   margin-top: 60px;
@@ -1244,13 +1263,12 @@ section#projects {
   padding: 0 20px;
   box-sizing: border-box;
   display: flex;
-  justify-content: flex-end; /* ✨ تم وضع الزر على اليمين */
+  justify-content: flex-end;
 }
 
 .view-all-btn {
-  background-color: var(--surface);
-  color: var(--accent-a);
-  border: 1px solid var(--border-color);
+  background-color: #FF7A59;
+  color: #1E1E1E;
   padding: 12px 24px;
   border-radius: 50px;
   text-decoration: none;
@@ -1262,13 +1280,11 @@ section#projects {
 }
 
 .view-all-btn:hover {
-  background-color: var(--accent-a);
-  color: var(--text-on-accent);
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
+  box-shadow: 0 5px 15px rgba(255, 122, 89, 0.4);
 }
 
-/* ✨ إصلاح زر الصعود للأعلى ✨ */
+/* ✨ إصلاح زر الصعود للأعلى (Scroll Top Button) ✨ */
 .scroll-top-btn {
   position: fixed;
   bottom: 30px;
@@ -1288,13 +1304,14 @@ section#projects {
   opacity: 0;
   transform: translateY(20px);
   visibility: hidden;
-  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s 0.4s;
 }
 
 .scroll-top-btn.visible {
   opacity: 1;
   transform: translateY(0);
   visibility: visible;
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s 0s;
 }
 
 .scroll-top-btn:hover {
@@ -1310,7 +1327,7 @@ section#projects {
     gap: 40px;
   }
   .projects-footer {
-    justify-content: center; /* توسيط الزر في الموبايل */
+    justify-content: center;
   }
 }
     
@@ -2074,8 +2091,8 @@ body.drawer-open .top-left {
    <div class="projects-grid">
       
       <div class="project-card anim-child" style="transition-delay: 0.2s;">
-        <div class="project-content">
-          <h3 class="project-title">Employee Management</h3>
+  <div class="project-inner">
+  <h3 class="project-title">Employee Management</h3>
 
           <div class="project-media-wrapper">
           <div class="project-image">
@@ -2205,7 +2222,7 @@ body.drawer-open .top-left {
       </div>
 
       <div class="project-card anim-child" style="transition-delay: 0.3s;">
-        <div class="project-content">
+        <div class="project-inner">
           <h3 class="project-title">Railway Tracking</h3>
           <div class="project-media-wrapper">
           <div class="project-image">
@@ -3084,7 +3101,7 @@ body.drawer-open .top-left {
       </div>
 
       <div class="project-card anim-child" style="transition-delay: 0.4s;">
-        <div class="project-content">
+        <div class="project-inner">
           <h3 class="project-title">Weather App</h3>
           <div class="project-media-wrapper">
           
@@ -3426,6 +3443,8 @@ body.drawer-open .top-left {
     <i class="fa-solid fa-arrow-up"></i>
   </a>
 </section>
+
+    
     <!-- CONTACT -->
     <section id="contact" aria-labelledby="contact-title">
     <div class="section-anim-container">
