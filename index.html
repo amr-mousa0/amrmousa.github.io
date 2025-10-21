@@ -1069,7 +1069,7 @@ body:not(.light) #experience .experience-card:focus {
 
 
 /* ============================================== */
-/* 🎨 Projects Section (Compatible with Your Structure) */
+/* === 🔥 Projects Section (Final Clean Version) === */
 /* ============================================== */
 
 section#projects {
@@ -1080,14 +1080,12 @@ section#projects {
   overflow-x: hidden;
 }
 
-/* ===== العنوان ===== */
 #projects .section-title {
   color: var(--accent-a);
   margin-bottom: 60px;
   font-size: 64px;
 }
 
-/* ===== الشبكة ===== */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -1097,104 +1095,30 @@ section#projects {
   margin: 0 auto;
 }
 
-/* ============================================== */
-/* 🎴 الكارت الأساسي */
-/* ============================================== */
+/* === الكارت الأساسي === */
 .project-card {
   position: relative;
   background: var(--bg-card);
   border-radius: 14px;
   overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.5s ease;
-  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  padding: 1.5rem;
 }
 
-/* خلفية Fade + Slide من الشمال */
-.project-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #fff;
-  opacity: 0;
-  transform: translateX(-40%);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  border-radius: inherit;
-  z-index: 0;
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(var(--accent-a-rgb), 0.4);
 }
 
-.project-card:hover::before {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* ============================================== */
-/* 🎬 المحتوى الداخلي */
-/* ============================================== */
+/* === المحتوى الداخلي === */
 .project-inner {
   position: relative;
-  z-index: 1;
-  padding: 1.5rem;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-.project-card:hover .project-inner {
-  transform: translateY(-3px);
-  opacity: 1;
-}
-
-/* ============================================== */
-/* 🧩 الميديا (صورة + تفاصيل) */
-/* ============================================== */
-.project-media-wrapper {
-  position: relative;
-  width: 100%;
-  height: 220px;
-  overflow: hidden;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-}
-
-/* الصورة */
-.project-image {
-  position: absolute;
-  inset: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  opacity: 1;
-  transform: translateX(0);
+  flex-direction: column;
+  height: 100%;
 }
 
-.project-card:hover .project-image {
-  opacity: 0;
-  transform: translateX(25px) scale(1.05);
-}
-
-/* التفاصيل */
-.project-details {
-  position: absolute;
-  inset: 0;
-  background-color: var(--text);
-  color: var(--surface);
-  padding: 25px;
-  border-radius: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.project-card:hover .project-details {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* ============================================== */
-/* 🧠 العنوان والوصف */
-/* ============================================== */
+/* العنوان */
 .project-title {
   font-size: 1.3rem;
   font-weight: 700;
@@ -1203,55 +1127,91 @@ section#projects {
   transition: color 0.3s ease;
 }
 
-.project-card:hover .project-title {
-  color: #fff;
+/* صورة المشروع */
+.project-media-wrapper {
+  position: relative;
+  flex-grow: 1;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.project-description {
-  font-size: 0.95rem;
-  color: #fff;
-  text-align: left;
-}
-
-/* ============================================== */
-/* ⚙️ الجزء السفلي (الأزرار + اللغات) */
-/* ============================================== */
-.project-bottom-wrapper {
+.project-image {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 1.2rem;
-  position: relative;
-  z-index: 1;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-.project-card:hover .project-bottom-wrapper {
-  transform: translateY(-3px);
+  justify-content: center;
+  padding: 20px;
   opacity: 1;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* الأزرار */
+.project-card:hover .project-image {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+/* === التفاصيل (الكلام) === */
+.project-details {
+  position: absolute;
+  inset: 0;
+  background-color: var(--text);
+  color: var(--surface);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-card:hover .project-details {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* === الوصف النصي === */
+.project-description {
+  font-size: 0.95rem;
+  color: var(--surface);
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* === الجزء السفلي === */
+.project-bottom-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  position: relative;
+}
+
+/* === الزرارين === */
 .project-links {
   display: flex;
-  gap: 1rem;
+  gap: 12px;
+  align-items: center;
 }
 
 .project-link-btn {
   width: 45px;
   height: 45px;
-  border: 2px solid var(--text-primary);
   border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background-color: var(--background);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-primary);
-  transition: all 0.4s ease;
+  color: var(--accent-a);
+  font-size: 18px;
+  transition: all 0.35s ease;
 }
 
-.project-card:hover .project-link-btn {
-  border-color: #fff;
-  color: #fff;
+.project-link-btn:hover {
+  background-color: var(--accent-a);
+  color: var(--text-on-accent);
+  transform: scale(1.1);
 }
 
 .project-card:hover .project-link-btn-left {
@@ -1262,13 +1222,23 @@ section#projects {
   transform: translateX(-6px);
 }
 
-/* اللغات */
+/* === المهارات (Tech List) === */
 .project-tech-list {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  height: 100%;
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+  background-color: var(--text);
+  padding: 8px 10px;
+  border-radius: 6px;
   opacity: 0;
-  transform: translateX(30px);
-  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translateX(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .project-card:hover .project-tech-list {
@@ -1277,28 +1247,95 @@ section#projects {
 }
 
 .project-tech-list span {
-  background-color: var(--text);
-  color: var(--surface);
-  padding: 4px 10px;
+  background-color: var(--surface);
+  color: var(--text);
+  padding: 3px 10px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
-/* ============================================== */
-/* ✨ الكارت Hover Glow */
-/* ============================================== */
-.project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 35px var(--accent-a, #00bcd4);
+/* === تأثير الجلو === */
+.project-card.glow {
+  box-shadow: 0 0 30px var(--accent-a);
 }
 
-/* ============================================== */
-/* 📱 Responsive */
-/* ============================================== */
+/* === الزرار View All === */
+.projects-footer {
+  margin-top: 60px;
+  display: flex;
+  justify-content: flex-end;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.view-all-btn {
+  background-color: var(--surface);
+  color: var(--accent-a);
+  border: 1px solid var(--border-color);
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+  background-color: var(--accent-a);
+  color: var(--text-on-accent);
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
+}
+
+/* === زر Scroll Top === */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: var(--shadow-medium);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(20px);
+  visibility: hidden;
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s 0.4s;
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s 0s;
+}
+
+.scroll-top-btn:hover {
+  background-color: var(--accent-a);
+  color: var(--text-on-accent);
+  transform: translateY(-5px);
+}
+
+/* === Responsive === */
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .projects-footer {
+    justify-content: center;
   }
 }
 
