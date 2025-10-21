@@ -87,26 +87,34 @@ body {
 /* ===============================================
    == 2. تنسيقات سكشن المشاريع
    =============================================== */
+/* (السكشن في الصفحة الرئيسية) */
 section#projects {
-  padding: 100px 20px;
-  /* (شيلنا الخلفية من هنا لأنها خلاص على الـ body) */
+  padding: 0 20px 100px 20px; /* <<< تعديل: شيلنا البادينج اللي فوق */
   text-align: center;
   position: relative;
   overflow-x: hidden;
 }
+    .section-header {
+  /* <<< تعديل: ده لون الخلفية الجديد للجزء العلوي */
+  background-color: var(--surface); 
+  padding: 80px 20px 60px 20px; /* بادينج فوق وتحت */
+  text-align: center;
+  /* (ممكن تضيف بوردر سفلي لو حبيت) */
+  /* border-bottom: 1px solid var(--border-color); */
+}
 
 #projects .section-title {
   color: var(--accent-a);
-  margin-bottom: 60px;
   font-size: 64px;
+  /* <<< تعديل: شيلنا الـ margin من هنا */
 }
-
+    
 .projects-grid {
   display: grid;
   /* <<< تعديل: تصغير الكروت */
-  grid-template-columns: repeat(auto-fit, 400px);
+  grid-template-columns: repeat(auto-fit, 350px); 
   gap: 2rem;
-  padding-top: 2rem;
+  padding-top: 60px; /* <<< تعديل: مسافة بين البحث/العنوان والكروت */
   justify-content: center;
 }
 
@@ -114,12 +122,14 @@ section#projects {
   position: relative;
   background: var(--surface);
   border-radius: 18px;
-  padding: 1.75rem;
+  /* <<< تعديل: تقليل البادينج الداخلي */
+  padding: 1.5rem; 
   overflow: hidden;
   border: 1px solid rgba(var(--accent-a-rgb), 0.1);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-  min-height: 400px;
+  /* <<< تعديل: تقليل الارتفاع الأدنى */
+  min-height: 390px; 
 }
 
 /* (باقي كود الكارت زي ما هو تماماً ومظبوط) */
@@ -167,6 +177,7 @@ section#projects {
 .project-card:hover .project-details {
   opacity: 1;
 }
+
 .project-description {
   background: var(--bg);
   color: var(--text);
@@ -176,10 +187,17 @@ section#projects {
   font-size: 0.95rem;
   line-height: 1.6;
   text-align: left;
-  transform: translateX(calc(-100% - 1.75rem)); 
+  
+  /* <<< تعديل: ظبطنا الـ calc عشان يطابق البادينج الجديد */
+  transform: translateX(calc(-100% - 1.5rem)); 
   opacity: 0;
   transition: opacity 0.7s ease, transform 0.7s ease;
   transition-delay: 0.1s;
+}
+
+.project-card:hover .project-description {
+  opacity: 1;
+  transform: translateX(0);
 }
 .project-card:hover .project-description {
   opacity: 1;
@@ -190,7 +208,8 @@ section#projects {
   color: var(--accent-a);
   margin-bottom: 1rem;
   text-align: left;
-  margin-top: -20px;
+  /* <<< تعديل: ظبطنا الـ margin-top عشان يطابق البادينج الجديد */
+  margin-top: -24px; 
 }
 .project-bottom-wrapper {
   margin-top: 1.5rem;
@@ -229,6 +248,7 @@ section#projects {
 }
 .project-card:hover .project-link-btn:nth-child(1) { transition-delay: 0.1s; }
 .project-card:hover .project-link-btn:nth-child(2) { transition-delay: 0.2s; }
+
 .project-tech-list {
   display: flex;
   gap: 0.6rem;
@@ -238,6 +258,7 @@ section#projects {
   margin: 0;
   overflow: hidden; 
 }
+
 .project-tech-list span {
   background: var(--bg);
   color: var(--text);
@@ -245,9 +266,11 @@ section#projects {
   padding: 0.4rem 0.8rem;
   border-radius: 12px 0 0 12px; 
   opacity: 0;
-  transform: translateX(calc(100% + 1.75rem)); 
+  /* <<< تعديل: ظبطنا الـ calc عشان يطابق البادينج الجديد */
+  transform: translateX(calc(100% + 1.5rem)); 
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
+
 .project-card:hover .project-tech-list span {
   opacity: 1;
   transform: translateX(0);
@@ -351,13 +374,14 @@ html[dir="rtl"] .home-btn {
 .all-projects-container {
   max-width: 1500px; 
   margin: 0 auto;
-  padding: 100px 40px 60px 40px;
+  /* <<< تعديل: شيلنا البادينج اللي فوق */
+  padding: 0 40px 60px 40px; 
   text-align: center;
 }
 .all-projects-title {
   font-size: 64px;
   color: var(--accent-a);
-  margin-bottom: 40px;
+  /* <<< تعديل: شيلنا الـ margin من هنا */
 }
 .search-bar {
   width: 100%;
