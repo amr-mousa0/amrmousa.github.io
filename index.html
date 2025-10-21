@@ -1083,7 +1083,7 @@ section#projects {
 #projects .section-title {
   color: var(--accent-a);
   margin-bottom: 60px;
-  font-size: 64px; /* ✨ تم تكبير عنوان الصفحة الرئيسي كما طلبت ✨ */
+  font-size: 64px; /* ✨ عنوان الصفحة الرئيسي كبير ✨ */
 }
 
 .projects-grid {
@@ -1101,13 +1101,33 @@ section#projects {
   box-shadow: var(--shadow-medium);
   border: 1px solid var(--border-color);
   overflow: hidden;
-  transition: all 0.4s var(--ease);
+  /* ✨ تم تعديل الـ transition ليشمل الـ opacity والـ transform */
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+  display: flex;
+  flex-direction: column;
 }
 
-.project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-large);
+/* ================================== */
+/* === ✨ تأثير الفوكس جروب (جديد) ✨ === */
+/* ================================== */
+
+/* عند المرور على الشبكة، كل الكروت تخفت */
+.projects-grid:hover .project-card {
+  opacity: 0.5;
+  transform: scale(0.98);
+  border-color: transparent;
 }
+
+/* الكرت المحدد يتم إبرازه ورفعه */
+.projects-grid .project-card:hover,
+.projects-grid .project-card:focus {
+  opacity: 1;
+  transform: translateY(-8px) scale(1.02); /* ✨ دمج الرفع مع التكبير */
+  box-shadow: var(--shadow-large);
+  border-color: var(--accent-a); /* ✨ إضافة بوردر ملون عند التركيز */
+}
+/* ================================== */
+
 
 .project-inner {
   position: relative;
@@ -1121,7 +1141,7 @@ section#projects {
 }
 
 .project-title {
-  font-size: 24px; /* ✨ تم إرجاع العنوان لحجمه الأصلي ✨ */
+  font-size: 24px; /* ✨ عنوان الكارت بالحجم الأصلي ✨ */
   font-weight: 700;
   margin: 0 0 15px 0;
   color: var(--text);
@@ -1167,7 +1187,7 @@ section#projects {
 
 .project-details {
   opacity: 0;
-  transform: translateX(100%); /* ✨ يبدأ من اليمين (خارج الكارت) */
+  transform: translateX(100%);
   padding: 20px;
   box-sizing: border-box;
   display: flex;
@@ -1188,7 +1208,7 @@ section#projects {
   gap: 10px;
   flex-wrap: wrap;
   margin-top: 20px;
-  transform: translateX(30px) translateY(20px); /* ✨ يبدأ من أسفل اليمين */
+  transform: translateX(30px) translateY(20px);
   opacity: 0;
   transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
   transition-delay: 0.1s;
@@ -1231,23 +1251,20 @@ section#projects {
   transform: scale(1.1);
 }
 
-/* ================================== */
-/* === ✨ تأثير الهوفر النهائي المطابق للصورة ✨ === */
-/* ================================== */
-
+/* === تأثير الهوفر الداخلي (كما هو) === */
 .project-card:hover .project-image {
   opacity: 0;
-  transform: translateX(-100%); /* ✨ الصورة تخرج لليسار */
+  transform: translateX(-100%);
 }
 
 .project-card:hover .project-details {
   opacity: 1;
-  transform: translateX(0); /* ✨ النص يدخل من اليمين */
+  transform: translateX(0);
 }
 
 .project-card:hover .project-tech-list {
   opacity: 1;
-  transform: translateX(0) translateY(0); /* ✨ التقنيات تظهر وتصعد لمكانها */
+  transform: translateX(0) translateY(0);
 }
 
 /* === Footer Buttons === */
@@ -1264,8 +1281,8 @@ section#projects {
 }
 
 .view-all-btn {
-  background-color: var(--surface); /* ✨ تم تصحيح اللون */
-  color: var(--accent-a); /* ✨ تم تصحيح اللون */
+  background-color: var(--surface);
+  color: var(--accent-a);
   border: 1px solid var(--border-color);
   padding: 12px 24px;
   border-radius: 50px;
@@ -1284,7 +1301,7 @@ section#projects {
   box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
 }
 
-/* ✨ إصلاح زر الصعود للأعلى (Scroll Top Button) ✨ */
+/* زر الصعود للأعلى (كما هو) */
 .scroll-top-btn {
   position: fixed;
   bottom: 30px;
@@ -2090,7 +2107,7 @@ body.drawer-open .top-left {
 
    <div class="projects-grid">
       
-      <div class="project-card anim-child" style="transition-delay: 0.2s;">
+      <div class="project-card anim-child" tabindex="0" style="transition-delay: 0.2s;">
   <div class="project-inner">
   <h3 class="project-title">Employee Management</h3>
 
@@ -2221,7 +2238,7 @@ body.drawer-open .top-left {
         </div>
       </div>
 
-      <div class="project-card anim-child" style="transition-delay: 0.3s;">
+      <div class="project-card anim-child"   tabindex="0" style="transition-delay: 0.3s;">
         <div class="project-inner">
           <h3 class="project-title">Railway Tracking</h3>
           <div class="project-media-wrapper">
@@ -3100,7 +3117,7 @@ body.drawer-open .top-left {
         </div>
       </div>
 
-      <div class="project-card anim-child" style="transition-delay: 0.4s;">
+      <div class="project-card anim-child" tabindex="0" style="transition-delay: 0.4s;">
         <div class="project-inner">
           <h3 class="project-title">Weather App</h3>
           <div class="project-media-wrapper">
@@ -3621,27 +3638,6 @@ animatedElements.forEach(el => {
 
 // ===== نهاية كود تشغيل الأنيميشن عند السكرول =====
 
-  // ============================================== //
-// ============ Scroll to Top Button ============ //
-// ============================================== //
-
-const scrollTopBtn = document.getElementById('scroll-top-btn');
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) { // يظهر الزر بعد النزول 300 بكسل
-    scrollTopBtn.classList.add('visible');
-  } else {
-    scrollTopBtn.classList.remove('visible');
-  }
-});
-
-scrollTopBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-});
     
   </script>
 </body>
