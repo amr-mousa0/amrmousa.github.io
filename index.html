@@ -1088,10 +1088,10 @@ section#projects {
 
 .projects-grid {
   display: grid;
-  /* <<< تعديل: العرض الأدنى للكارت */
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, 450px);
   gap: 2rem;
   padding-top: 2rem;
+  justify-content: center;
 }
 
 /* الكارت الأساسي */
@@ -1114,7 +1114,8 @@ section#projects {
 }
 
 .project-inner {
-  position: relative;
+  /* <<< تعديل: حذف 'position: relative' */
+  /* ده هيخلي التفاصيل تتموضع بالنسبة للكارت الأساسي */
   display: flex;
   flex-direction: column;
 }
@@ -1142,56 +1143,63 @@ section#projects {
 /* ----------------- DETAILS (منطقة ظهور الوصف) ----------------- */
 .project-details {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 220px; 
+  /* <<< تعديل: هيخليها تبدأ من تحت padding الكارت */
+  top: 1.75rem; 
+  /* <<< تعديل: هيخليها تبدأ من حافة الكارت بالظبط */
+  left: 0; 
+  height: 220px;  
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0 1rem;
+  /* <<< تعديل: المحاذاة هتبدأ من اليسار */
+  justify-content: flex-start;
+  /* <<< تعديل: حذف الـ padding عشان تلزق في الحافة */
+  padding: 0; 
   
-  /* <<< هذا هو مفتاح "الاختباء" */
-  overflow: hidden; 
-  
-  opacity: 0; 
+  overflow: hidden;  
+  opacity: 0;  
   transition: opacity 0.8s ease;
 }
 
 .project-card:hover .project-details {
-  opacity: 1; 
+  opacity: 1;  
 }
 
 /* الوصف (النص) */
 .project-description {
-  /* <<< تعديل: تم إعادة الخلفية كما طلبت */
-  background: rgba(var(--surface-rgb), 0.85);
-  backdrop-filter: blur(5px);
+  /* <<< تعديل: الخلفية بقت بلون الخط */
+ background: var(--bg); /* <<< تعديل: استخدمنا خلفية السكشن */
+  color: var(--text);    /* <<< تعديل: استخدمنا لون الخط العادي */
+  
+  /* backdrop-filter ملوش لازمة على لون صلب فتم حذفه */
   box-shadow: inset 0 0 10px rgba(var(--accent-a-rgb), 0.1);
   
   padding: 1rem 1.5rem;
-  border-radius: 12px;
+  /* <<< تعديل: حذف البوردر من ناحية الشمال عشان يلزق في الحافة */
+  border-radius: 0 12px 12px 0;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: var(--text); 
+  color: var(--text);  
   text-align: left;
   
-  /* <<< تعديل: أنيميشن "دخول المسرح" (كما هو) */
-  transform: translateX(-100%); 
-  opacity: 0; 
+  /* الأنيميشن زي ما هو (هينزلق من الشمال) */
+  transform: translateX(-100%);  
+  opacity: 0;  
   transition: opacity 0.7s ease, transform 0.7s ease;
   transition-delay: 0.1s;
+  
+  /* <<< تعديل: لون الخط بقى بلون السطح (عشان يظهر) */
+  color: var(--surface); 
 }
 
-/* <<< تعديل: عند الهوفر على الكارت... */
 .project-card:hover .project-description {
-  opacity: 1; /* تظهر الكتلة (الوصف بخلفيته) */
-  transform: translateX(0); /* تتحرك إلى مكانها الأصلي */
+  opacity: 1; 
+  transform: translateX(0); 
 }
 
 
 /* ----------------- BOTTOM ----------------- */
-/* ... (باقي الكود كما هو بدون تغيير) ... */
+/* (تم تنظيف الكود وحذف الأجزاء المتكررة) */
 .project-bottom-wrapper {
   margin-top: 1.5rem;
   display: flex;
@@ -1223,7 +1231,7 @@ section#projects {
 .project-link-btn:hover {
   background: #fff;
   color: var(--accent-a);
-  transform: scale(1.1); 
+  transform: scale(1.1);  
 }
 
 .project-card:hover .project-link-btn {
@@ -1249,8 +1257,8 @@ section#projects {
 }
 
 .project-tech-list span {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ccc;
+background: var(--bg); /* <<< تعديل: استخدمنا خلفية السكشن */
+  color: var(--text);    /* <<< تعديل: استخدمنا لون الخط العادي */
   font-size: 0.8rem;
   padding: 0.4rem 0.8rem;
   border-radius: 10px;
@@ -1269,95 +1277,9 @@ section#projects {
   color: var(--accent-a);
   margin-bottom: 1rem;
   text-align: left;
-}
-    
-/* ----------------- BOTTOM ----------------- */
-.project-bottom-wrapper {
-  margin-top: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-/* Buttons */
-.project-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.project-link-btn {
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: var(--accent-a);
-  color: #fff;
-  font-size: 1rem;
-  opacity: 0;
-  transform: translateX(20px);
-  transition: all 0.5s ease;
 }
   
-.project-link-btn:hover {
-  background: #fff;
-  color: var(--accent-a);
-  transform: scale(1.1); 
-}
-
-.project-card:hover .project-link-btn {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.project-card:hover .project-link-btn:nth-child(1) {
-  transition-delay: 0.1s;
-}
-.project-card:hover .project-link-btn:nth-child(2) {
-  transition-delay: 0.2s;
-}
-
-
-/* Tech List */
-.project-tech-list {
-  display: flex;
-  gap: 0.6rem;
-  align-items: center;
-  opacity: 0;
-  transform: translateX(25px);
-  transition: all 0.7s ease;
-}
-
-.project-tech-list span {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ccc;
-  font-size: 0.8rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 10px;
-  opacity: 0;
-  transform: translateX(25px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.project-card:hover .project-tech-list span {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.project-title {
-  font-size: 1.3rem;
-  color: var(--accent-a);
-  margin-bottom: 1rem;
-  text-align: left;
-}
-/* ----------------- Hover Animations ----------------- */
-.project-card:hover .project-details {
-  opacity: 1;
-  transform: translateX(0);
-}
-
+/* ----------------- Hover Animations (الأساسيات) ----------------- */
 .project-card:hover .project-tech-list {
   opacity: 1;
   transform: translateX(0);
@@ -1367,9 +1289,6 @@ section#projects {
   opacity: 0.9;
   transform: scale(1.03);
 }
-
-/* ----------------- View All Button ----------------- */
-/* ... (باقي الكود كما هو) ... */
 
 /* ----------------- View All Button ----------------- */
 .projects-footer {
@@ -1386,7 +1305,7 @@ section#projects {
 .view-all-btn {
   background-color: var(--surface);
   color: var(--accent-a);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-color); /* تأكد إن عندك المتغير ده */
   padding: 12px 24px;
   border-radius: 50px;
   font-weight: 600;
@@ -1396,7 +1315,7 @@ section#projects {
 
 .view-all-btn:hover {
   background-color: var(--accent-a);
-  color: var(--text-on-accent);
+  color: var(--text-on-accent); /* تأكد إن عندك المتغير ده */
   transform: scale(1.05);
   box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
 }
@@ -1411,12 +1330,12 @@ section#projects {
   border-radius: 50%;
   background-color: var(--surface);
   color: var(--text);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-color); /* تأكد إن عندك المتغير ده */
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 22px;
-  box-shadow: var(--shadow-medium);
+  box-shadow: var(--shadow-medium); /* تأكد إن عندك المتغير ده */
   z-index: 1000;
   opacity: 0;
   transform: translateY(20px);
@@ -1433,7 +1352,7 @@ section#projects {
 
 .scroll-top-btn:hover {
   background-color: var(--accent-a);
-  color: var(--text-on-accent);
+  color: var(--text-on-accent); /* تأكد إن عندك المتغير ده */
   transform: translateY(-5px);
 }
 
