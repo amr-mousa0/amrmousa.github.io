@@ -1199,12 +1199,15 @@ body.light .projects-grid .project-card:focus {
   flex-direction: column;
   justify-content: flex-start;
   text-align: left;
+  /* ✨ إضافة الخلفية المطلوبة ✨ */
+  background-color: var(--text);
+  color: var(--surface);
 }
 
 .project-description {
   font-size: 16px;
   line-height: 1.6;
-  color: var(--muted);
+  color: var(--surface); /* ✨ تغيير اللون ليتناسب مع الخلفية الغامقة */
 }
 
 /* ================================== */
@@ -1269,12 +1272,16 @@ body.light .projects-grid .project-card:focus {
   transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
   transition-delay: 0.1s;
   z-index: 1;
+  /* ✨ إضافة الخلفية المطلوبة ✨ */
+  background-color: var(--text);
+  padding: 5px 10px; /* ✨ padding داخلي للخلفية */
+  border-radius: 6px;
 }
 
 .project-tech-list span {
-  background-color: var(--text);
-  color: var(--surface);
-  padding: 3px 10px; /* ✨ تم تصغير الـ padding ✨ */
+  background-color: var(--surface); /* ✨ لون متوافق مع الخلفية الغامقة */
+  color: var(--text); /* ✨ لون متوافق مع الخلفية الغامقة */
+  padding: 3px 10px;
   border-radius: 4px;
   font-size: 12px; /* ✨ تم تصغير الخط ✨ */
   font-weight: 600;
@@ -1298,8 +1305,8 @@ body.light .projects-grid .project-card:focus {
 }
 
 .project-card:hover .project-link-btn-right {
-  /* ✨ هيتحرك 60 بكسل (عرض الزرار 50 + المسافة 10) ✨ */
-  transform: translateX(-60px); 
+  /* ✨ هيتحرك 70 بكسل (عرض الزرار 50 + المسافة 10 + 10 زيادة) ✨ */
+  transform: translateX(-70px); 
 }
 
 .project-card:hover .project-tech-list {
