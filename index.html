@@ -1106,7 +1106,7 @@ section#projects {
 }
 
 /* ================================== */
-/* === ✨ تأثير الفوكس جروب الملون (زي المهارات) ✨ === */
+/* === ✨ تأثير الفوكس جروب الملون (مدمج) ✨ === */
 /* ================================== */
 
 /* عند المرور على الشبكة، كل الكروت تخفت */
@@ -1125,7 +1125,6 @@ section#projects {
   box-shadow: 0 8px 30px rgba(var(--accent-a-rgb), 0.3), 0 0 15px rgba(var(--accent-b-rgb), 0.2);
 }
 
-/* ✨ تحسين الهوفر في الوضع الداكن والفاتح ✨ */
 body:not(.light) .projects-grid .project-card:hover,
 body:not(.light) .projects-grid .project-card:focus {
   box-shadow: 0 8px 35px rgba(var(--accent-a-rgb), 0.4), 0 0 20px rgba(var(--accent-b-rgb), 0.3);
@@ -1138,14 +1137,13 @@ body.light .projects-grid .project-card:focus {
 }
 /* ================================== */
 
-
 .project-inner {
   position: relative;
   width: 100%;
   height: 100%;
   padding: 25px;
   box-sizing: border-box;
-  min-height: 420px; /* ارتفاع ثابت للكروت */
+  min-height: 420px;
   display: flex;
   flex-direction: column;
 }
@@ -1168,18 +1166,25 @@ body.light .projects-grid .project-card:focus {
   margin-bottom: 20px;
 }
 
-/* ✨ إلغاء أنيميشن إخفاء الصورة والنص ✨ */
-.project-image {
+.project-image,
+.project-details {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  backface-visibility: hidden;
+}
+
+.project-image {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   box-sizing: border-box;
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .project-image svg {
@@ -1188,12 +1193,44 @@ body.light .projects-grid .project-card:focus {
   object-fit: contain;
 }
 
-/* ✨ إخفاء التفاصيل لأننا بنعرض الصورة بس ✨ */
 .project-details {
-  display: none;
+  opacity: 0;
+  transform: translateX(100%);
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
 }
 
-/* الأزرار ثابتة في الأسفل */
+.project-description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.project-tech-list {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  transform: translateX(30px) translateY(20px);
+  opacity: 0;
+  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0.1s;
+}
+
+.project-tech-list span {
+  background-color: var(--text);
+  color: var(--surface);
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .project-links {
   display: flex;
   justify-content: space-between;
@@ -1222,6 +1259,28 @@ body.light .projects-grid .project-card:focus {
   transform: scale(1.1);
 }
 
+/* ================================== */
+/* === ✨ تأثير الهوفر الداخلي (مدمج) ✨ === */
+/* ================================== */
+
+/* هذا الكود سيشتغل *بالإضافة إلى* تأثير الفوكس جروب */
+.project-card:hover .project-image {
+  opacity: 0;
+  transform: translateX(-100%); /* ✨ الصورة تخرج لليسار */
+}
+
+.project-card:hover .project-details {
+  opacity: 1;
+  transform: translateX(0); /* ✨ النص يدخل من اليمين */
+}
+
+.project-card:hover .project-tech-list {
+  opacity: 1;
+  transform: translateX(0) translateY(0); /* ✨ التقنيات تظهر وتصعد لمكانها */
+}
+/* ================================== */
+
+
 /* === Footer Buttons === */
 .projects-footer {
   margin-top: 60px;
@@ -1235,7 +1294,6 @@ body.light .projects-grid .project-card:focus {
   justify-content: flex-end;
 }
 
-/* ✨ تم تصحيح لون الزرار ✨ */
 .view-all-btn {
   background-color: var(--surface);
   color: var(--accent-a);
@@ -1257,7 +1315,7 @@ body.light .projects-grid .project-card:focus {
   box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
 }
 
-/* ✨ كود زرار السهم (Scroll Top Button) - سليم ✨ */
+/* زر الصعود للأعلى (Scroll Top Button) */
 .scroll-top-btn {
   position: fixed;
   bottom: 30px;
@@ -1303,7 +1361,6 @@ body.light .projects-grid .project-card:focus {
     justify-content: center;
   }
 }
-
     
     
 /* ============================================== */
