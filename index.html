@@ -1083,7 +1083,7 @@ section#projects {
 #projects .section-title {
   color: var(--accent-a);
   margin-bottom: 60px;
-  font-size: 64px; /* ✨ عنوان الصفحة الرئيسي كبير ✨ */
+  font-size: 64px;
 }
 
 .projects-grid {
@@ -1101,33 +1101,25 @@ section#projects {
   box-shadow: var(--shadow-medium);
   border: 1px solid var(--border-color);
   overflow: hidden;
-  /* ✨ تم تعديل الـ transition ليشمل الـ opacity والـ transform */
   transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
-  display: flex;
-  flex-direction: column;
 }
 
 /* ================================== */
-/* === ✨ تأثير الفوكس جروب (جديد) ✨ === */
+/* === ✨ تأثير الفوكس جروب الملون (جديد) ✨ === */
 /* ================================== */
-
-/* عند المرور على الشبكة، كل الكروت تخفت */
 .projects-grid:hover .project-card {
   opacity: 0.5;
   transform: scale(0.98);
-  border-color: transparent;
 }
 
-/* الكرت المحدد يتم إبرازه ورفعه */
 .projects-grid .project-card:hover,
 .projects-grid .project-card:focus {
   opacity: 1;
-  transform: translateY(-8px) scale(1.02); /* ✨ دمج الرفع مع التكبير */
-  box-shadow: var(--shadow-large);
-  border-color: var(--accent-a); /* ✨ إضافة بوردر ملون عند التركيز */
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--accent-a);
+  box-shadow: 0 10px 30px -5px rgba(var(--accent-a-rgb), 0.3); /* ✨ الظل الملون المطلوب ✨ */
 }
 /* ================================== */
-
 
 .project-inner {
   position: relative;
@@ -1141,7 +1133,7 @@ section#projects {
 }
 
 .project-title {
-  font-size: 24px; /* ✨ عنوان الكارت بالحجم الأصلي ✨ */
+  font-size: 24px;
   font-weight: 700;
   margin: 0 0 15px 0;
   color: var(--text);
@@ -1251,7 +1243,7 @@ section#projects {
   transform: scale(1.1);
 }
 
-/* === تأثير الهوفر الداخلي (كما هو) === */
+/* === تأثير الهوفر الداخلي المطابق للصورة === */
 .project-card:hover .project-image {
   opacity: 0;
   transform: translateX(-100%);
@@ -1301,7 +1293,7 @@ section#projects {
   box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
 }
 
-/* زر الصعود للأعلى (كما هو) */
+/* زر الصعود للأعلى (Scroll Top Button) */
 .scroll-top-btn {
   position: fixed;
   bottom: 30px;
@@ -1347,6 +1339,8 @@ section#projects {
     justify-content: center;
   }
 }
+
+
     
     
 /* ============================================== */
@@ -3483,160 +3477,196 @@ body.drawer-open .top-left {
   <audio id="clickAudio" src="sounds/click.wav" preload="auto"></audio>
 
   <script>
-    /* ===== Elements & state ===== */
-    const menuBtn = document.getElementById('menuBtn');
-    const closeBtn = document.getElementById('closeBtn'); 
-    const drawer = document.getElementById('drawer');
-    const menuItems = drawer.querySelectorAll('.menu-item');
-    const themeBtn = document.getElementById('themeBtn');
-    const muteBtn = document.getElementById('muteBtn');
-    const introAudio = document.getElementById('introAudio');
-    const clickAudio = document.getElementById('clickAudio');
-    const main = document.getElementById('main');
+   /* ===== Elements & state ===== */
+const menuBtn = document.getElementById('menuBtn');
+const closeBtn = document.getElementById('closeBtn');
+const drawer = document.getElementById('drawer');
+const menuItems = drawer.querySelectorAll('.menu-item');
+const themeBtn = document.getElementById('themeBtn');
+const muteBtn = document.getElementById('muteBtn');
+const introAudio = document.getElementById('introAudio');
+const clickAudio = document.getElementById('clickAudio');
+const main = document.getElementById('main'); // ✨ العنصر الرئيسي للصفحة ✨
 
-    // restore preferences
-    const savedTheme = localStorage.getItem('amr_theme') || 'dark';
-    const savedMuted = localStorage.getItem('amr_muted') === '1';
-    let isMuted = savedMuted;
-    let drawerOpen = false;
+// restore preferences
+const savedTheme = localStorage.getItem('amr_theme') || 'dark';
+const savedMuted = localStorage.getItem('amr_muted') === '1';
+let isMuted = savedMuted;
+let drawerOpen = false;
 
-    // apply theme tokens
-    function applyTheme(name){
-      if(name === 'light'){ document.body.classList.add('light'); themeBtn.textContent='🌞'; }
-      else { document.body.classList.remove('light'); themeBtn.textContent='🌙'; }
-      localStorage.setItem('amr_theme', name);
-      // adjust blob visibility
-      document.querySelectorAll('.blob').forEach(b => b.style.opacity = document.body.classList.contains('light') ? 0.08 : 0.12);
-    }
-    applyTheme(savedTheme);
+// apply theme tokens
+function applyTheme(name) {
+  if (name === 'light') {
+    document.body.classList.add('light');
+    themeBtn.textContent = '🌞';
+  } else {
+    document.body.classList.remove('light');
+    themeBtn.textContent = '🌙';
+  }
+  localStorage.setItem('amr_theme', name);
+  document.querySelectorAll('.blob').forEach(b => b.style.opacity = document.body.classList.contains('light') ? 0.08 : 0.12);
+}
+applyTheme(savedTheme);
 
-    function setMuted(v){
-      isMuted = !!v;
-      localStorage.setItem('amr_muted', isMuted ? '1' : '0');
-      muteBtn.textContent = isMuted ? '🔇' : '🔊';
-      introAudio.muted = isMuted;
-      clickAudio.muted = isMuted;
-    }
-    setMuted(isMuted);
+function setMuted(v) {
+  isMuted = !!v;
+  localStorage.setItem('amr_muted', isMuted ? '1' : '0');
+  muteBtn.textContent = isMuted ? '🔇' : '🔊';
+  if (introAudio) introAudio.muted = isMuted;
+  if (clickAudio) clickAudio.muted = isMuted;
+}
+setMuted(isMuted);
 
-    // play intro after first gesture
-    let introPlayed = false;
-    function firstGesture(){
-      if(!introPlayed && !isMuted){
-        introAudio.play().catch(()=>{});
-        introPlayed = true;
-      }
-      window.removeEventListener('pointerdown', firstGesture);
-    }
-    window.addEventListener('pointerdown', firstGesture, {passive:true});
+// play intro after first gesture
+let introPlayed = false;
+function firstGesture() {
+  if (!introPlayed && !isMuted && introAudio) {
+    introAudio.play().catch(() => {});
+    introPlayed = true;
+  }
+  window.removeEventListener('pointerdown', firstGesture);
+}
+window.addEventListener('pointerdown', firstGesture, { passive: true });
 
-    // click sound helper
-    function playClick(){
-      if(isMuted) return;
-      try { clickAudio.currentTime = 0; clickAudio.play(); } catch(e){}
-    }
+// click sound helper
+function playClick() {
+  if (isMuted || !clickAudio) return;
+  try {
+    clickAudio.currentTime = 0;
+    clickAudio.play();
+  } catch (e) {}
+}
 
-    // menu open/close
-   function setDrawer(open){
+// menu open/close
+function setDrawer(open) {
   drawerOpen = !!open;
-  if(drawerOpen){
+  if (drawerOpen) {
     drawer.classList.add('expanded');
-    document.body.classList.add('drawer-open'); // <-- ضيف كلاس للـ body
-    drawer.setAttribute('aria-hidden','false');
-    setTimeout(()=> { drawer.querySelector('.menu-item')?.focus(); }, 220);
+    document.body.classList.add('drawer-open');
+    drawer.setAttribute('aria-hidden', 'false');
+    setTimeout(() => {
+      drawer.querySelector('.menu-item')?.focus();
+    }, 220);
   } else {
     drawer.classList.remove('expanded');
-    document.body.classList.remove('drawer-open'); // <-- شيل الكلاس من الـ body
-    drawer.setAttribute('aria-hidden','true');
+    document.body.classList.remove('drawer-open');
+    drawer.setAttribute('aria-hidden', 'true');
   }
 }
-setDrawer(false);
+if(drawer) setDrawer(false);
 
-    menuBtn.addEventListener('click', ()=> { setDrawer(!drawerOpen); playClick(); });
+if(menuBtn) menuBtn.addEventListener('click', () => { setDrawer(!drawerOpen); playClick(); });
+if(closeBtn) closeBtn.addEventListener('click', () => { setDrawer(false); playClick(); });
 
-    // === ضيف الجزء ده عشان زرار الإغلاق يشتغل ===
-    closeBtn.addEventListener('click', ()=> { setDrawer(false); playClick(); }); 
-
-    // menu item clicks -> go to section, close drawer
-    menuItems.forEach(item=>{
-      item.addEventListener('click', ()=>{
-        const target = item.getAttribute('data-target');
-        setDrawer(false);
-        document.querySelector(target)?.scrollIntoView({behavior:'smooth', block:'start'});
-        playClick();
-      });
-      // keyboard
-      item.addEventListener('keydown', (e)=> { if(e.key === 'Enter' || e.key === ' ') item.click(); });
-    });
-
-    // toggle theme
-    themeBtn.addEventListener('click', ()=>{
-      const now = document.body.classList.contains('light') ? 'dark' : 'light';
-      applyTheme(now);
+// menu item clicks
+if(menuItems) {
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const target = item.getAttribute('data-target');
+      setDrawer(false);
+      document.querySelector(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       playClick();
     });
-
-    // toggle mute
-    muteBtn.addEventListener('click', ()=> { setMuted(!isMuted); });
-
-    // close drawer with Escape
-    window.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape' && drawerOpen){ setDrawer(false); }
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') item.click();
     });
+  });
+}
 
-    // attach click sound to interactive elements
-    document.querySelectorAll('button, a').forEach(el=>{
-      el.addEventListener('click', ()=> { playClick(); });
-    });
+// toggle theme
+if(themeBtn) themeBtn.addEventListener('click', () => {
+  const now = document.body.classList.contains('light') ? 'dark' : 'light';
+  applyTheme(now);
+  playClick();
+});
 
-    // subtle blob float animation
-    (function floatBlobs(){
-      const b1 = document.querySelector('.b1'), b2 = document.querySelector('.b2');
-      let t = 0;
-      function loop(){
-        t += 0.0055;
-        if(b1) b1.style.transform = `translate(${Math.cos(t)*6}px, ${Math.sin(t)*10}px)`;
-        if(b2) b2.style.transform = `translate(${Math.sin(t)*8}px, ${Math.cos(t)*9}px)`;
-        requestAnimationFrame(loop);
-      }
-      loop();
-    })();
+// toggle mute
+if(muteBtn) muteBtn.addEventListener('click', () => { setMuted(!isMuted); });
 
-    // helpers
-    function goToSection(sel){ document.querySelector(sel)?.scrollIntoView({behavior:'smooth'}); if(!isMuted) playClick(); }
-    function openWithSound(e){ if(!isMuted) playClick(); }
+// close drawer with Escape
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && drawerOpen) {
+    setDrawer(false);
+  }
+});
 
-    // ensure saved UI applied
-    setMuted(isMuted);
-    applyTheme(savedTheme);
+// attach click sound
+document.querySelectorAll('button, a').forEach(el => {
+  el.addEventListener('click', () => { playClick(); });
+});
 
-    // ===== بداية كود تشغيل الأنيميشن عند السكرول =====
+// blob animation
+(function floatBlobs() {
+  const b1 = document.querySelector('.b1'), b2 = document.querySelector('.b2');
+  let t = 0;
+  function loop() {
+    t += 0.0055;
+    if (b1) b1.style.transform = `translate(${Math.cos(t) * 6}px, ${Math.sin(t) * 10}px)`;
+    if (b2) b2.style.transform = `translate(${Math.sin(t) * 8}px, ${Math.cos(t) * 9}px)`;
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+// helpers
+function goToSection(sel) {
+  document.querySelector(sel)?.scrollIntoView({ behavior: 'smooth' });
+  playClick();
+}
+
+// ensure saved UI applied on load
+setMuted(isMuted);
+applyTheme(savedTheme);
 
 
-// استهداف الأقسام الرئيسية فقط (ما عدا قسم البداية Hero)
+// ============================================== //
+// ============ Animation on Scroll ============ //
+// ============================================== //
 const animatedElements = document.querySelectorAll('.section-anim-container');
-
-// 2. إعداد الـ Observer
 const animationObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    // 3. إذا ظهر العنصر على الشاشة
-    if (entry.isIntersecting) {
-      // أضف كلاس الأنيميشن
-      entry.target.classList.add('fade-up');
-      // 4. أوقف المراقبة عن هذا العنصر لمنع تكرار الأنيميشن
-      observer.unobserve(entry.target);
-    }
-  });
-}, {
-  threshold: 0.1 // متى يتم تشغيل الأنيميشن؟ (عند ظهور 10% من العنصر)
-});
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('fade-up');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
 
-// 5. بدء مراقبة كل عنصر من العناصر المستهدفة
 animatedElements.forEach(el => {
-  animationObserver.observe(el);
+  animationObserver.observe(el);
 });
 
-// ===== نهاية كود تشغيل الأنيميشن عند السكرول =====
+
+// ============================================== //
+// ======= Scroll to Top Button (Corrected) ======= //
+// ============================================== //
+const scrollTopBtn = document.getElementById('scroll-top-btn');
+
+// ✨ نتأكد من وجود الزرار والعنصر الرئيسي قبل تشغيل الكود ✨
+if (scrollTopBtn && main) {
+  
+  // ✨ نراقب الـ scroll على عنصر "main" بدلًا من "window" ✨
+  main.addEventListener('scroll', () => {
+    
+    // ✨ نستخدم scrollTop الخاص بالعنصر بدلًا من scrollY الخاص بالـ window ✨
+    if (main.scrollTop > 300) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  });
+
+  scrollTopBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    // ✨ نجعل عنصر "main" هو اللي يصعد للأعلى ✨
+    main.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
 
     
   </script>
