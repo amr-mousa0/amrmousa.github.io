@@ -92,16 +92,23 @@ section#projects {
   overflow-x: hidden;
 }
 
-    .section-header {
-  /* <<< تعديل: استخدمنا اللون المميز عشان يبقى واضح */
+   .section-header {
   background-color: var(--accent-a); 
-  /* <<< تعديل: خلينا لون الكلام فاتح عليه */
   color: var(--text-on-accent); 
-  padding: 80px 20px 60px 20px; 
+  padding: 80px 40px 60px 40px; /* بادينج رأسي وجانبي للموبايل */
   text-align: center;
-   border-bottom: 1px solid var(--border-color); */
-
+  /* (ده دلوقتى واخد عرض الشاشة كله) */
 }
+    .header-content-wrapper {
+  max-width: 1500px; /* <<< نفس عرض الكونتينر بتاعك */
+  margin: 0 auto;
+}
+    .all-projects-title {
+  font-size: 64px;
+  color: var(--text-on-accent);
+  /* (شيلنا أي بادينج أو مارجن كان هنا) */
+}
+  
 
     #projects .section-title,
 .all-projects-title {
@@ -114,7 +121,7 @@ section#projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, 350px);  
   gap: 2rem;
-  padding-top: 60px;
+  padding-top: 60px; /* <<< ده هيفصل بين الهيدر والكروت */
   justify-content: center;
 }
 .project-card {
@@ -375,11 +382,12 @@ html[dir="rtl"] .home-btn {
   left: auto;
   right: 30px;
 }
-.all-projects-container {
+  .all-projects-container {
   max-width: 1500px;  
   margin: 0 auto;
+  /* <<< تعديل: شيلنا البادينج اللي فوق (بقى في الجريد) */
   padding: 0 40px 60px 40px;  
-  text-align: center;
+  /* (شيلنا التوسيط من هنا) */
 }
 .all-projects-title {
   font-size: 64px;
