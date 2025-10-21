@@ -1096,12 +1096,168 @@ section#projects {
 }
 
 .project-card {
-  background-color: var(--surface);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-medium);
-  border: 1px solid var(--border-color);
+  position: relative;
+  background: var(--card-bg, #141414);
+  border-radius: 18px;
   overflow: hidden;
-  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* الخلفية البيضاء بتظهر من الشمال */
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  transform: translateX(-40%);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+    .project-details,
+.project-bottom-wrapper {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* الحالة المبدئية */
+.project-details {
+  transform: translateX(-25px);
+  opacity: 0.8;
+}
+
+.project-bottom-wrapper {
+  transform: translateX(15px);
+  opacity: 0.9;
+}
+
+/* الجلو يفضل زي ما هو */
+.project-card.glow {
+  box-shadow: 0 0 30px var(--accent-a, #00bcd4);
+}
+
+/* ================= Hover State ================= */
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 35px var(--accent-a, #00bcd4);
+}
+
+/* الخلفية البيضا تظهر من الشمال */
+.project-card:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* المحتوى يتحرك للداخل */
+.project-card:hover .project-details {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.project-card:hover .project-bottom-wrapper {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* الزرارين جوه project-links */
+.project-card .project-link-btn {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0.9;
+}
+
+/* زرار اليمين يتحرك حركة صغيرة بس */
+.project-card:hover .project-link-btn-right {
+  transform: translateX(-6px);
+  opacity: 1;
+}
+
+/* زرار الشمال يتحرك حركة بسيطة */
+.project-card:hover .project-link-btn-left {
+  transform: translateX(6px);
+  opacity: 1;
+}
+
+/* tech list */
+.project-card .project-tech-list span {
+  background: var(--accent-a, #00bcd4);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  opacity: 0.9;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.project-card:hover .project-tech-list span {
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+    .project-card.glow {
+  box-shadow: 0 0 30px var(--accent-a, #00bcd4);
+}
+    .project-card-content {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+    .project-card h3,
+.project-card p {
+  opacity: 0.8;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+    .project-card .tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  justify-content: flex-start;
+}
+
+.project-card .tag {
+  background: var(--accent-a, #00bcd4);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  opacity: 0.9;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+    .project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 35px var(--accent-a, #00bcd4);
+}
+
+/* الخلفية البيضا بتظهر من الشمال */
+.project-card:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* النصوص بتظهر من الشمال */
+.project-card:hover h3,
+.project-card:hover p {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* المهارات (الزرارين) من اليمين لكن بحركه صغيره شويه */
+.project-card:hover .tag {
+  opacity: 1;
+  transform: translateX(-8px);
+}
+
+/* التحريك المبدئي */
+.project-card h3,
+.project-card p {
+  transform: translateX(-20px);
+}
+.project-card .tag {
+  transform: translateX(12px);
 }
 
 /* ================================== */
