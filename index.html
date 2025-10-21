@@ -1101,27 +1101,22 @@ section#projects {
   box-shadow: var(--shadow-medium);
   border: 1px solid var(--border-color);
   overflow: hidden;
-  /* ✨ تم تعديل الـ transition ليشمل الـ opacity والـ transform والـ shadow ✨ */
   transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
 }
 
 /* ================================== */
-/* === ✨ تأثير الفوكس جروب الملون (مدمج) ✨ === */
+/* === ✨ تأثير الفوكس جروب الملون (جديد) ✨ === */
 /* ================================== */
-
-/* عند المرور على الشبكة، كل الكروت تخفت */
 .projects-grid:hover .project-card {
   opacity: 0.5;
   transform: scale(0.98);
 }
 
-/* الكرت المحدد يتم إبرازه ورفعه مع التوهج */
 .projects-grid .project-card:hover,
 .projects-grid .project-card:focus {
   opacity: 1;
   transform: translateY(-8px) scale(1.02);
   border-color: var(--accent-a);
-  /* ✨ الظل المتدرج الملون المطلوب ✨ */
   box-shadow: 0 8px 30px rgba(var(--accent-a-rgb), 0.3), 0 0 15px rgba(var(--accent-b-rgb), 0.2);
 }
 
@@ -1173,7 +1168,8 @@ body.light .projects-grid .project-card:focus {
   left: 0;
   width: 100%;
   height: 100%;
-  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  /* ✨ تم إبطاء الأنيميشن ✨ */
+  transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
   backface-visibility: hidden;
 }
 
@@ -1210,33 +1206,25 @@ body.light .projects-grid .project-card:focus {
   color: var(--muted);
 }
 
-.project-tech-list {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  transform: translateX(30px) translateY(20px);
-  opacity: 0;
-  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
-  transition-delay: 0.1s;
-}
+/* ================================== */
+/* === ✨ تعديل الجزء السفلي (جديد) ✨ === */
+/* ================================== */
 
-.project-tech-list span {
-  background-color: var(--text);
-  color: var(--surface);
-  padding: 5px 12px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 600;
+.project-bottom-wrapper {
+  position: relative;
+  margin-top: auto;
+  padding-top: 20px;
+  height: 50px; /* ارتفاع ثابت بحجم الأزرار */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .project-links {
   display: flex;
-  justify-content: space-between;
-  margin-top: auto;
-  z-index: 10;
+  gap: 10px;
   position: relative;
+  z-index: 2;
 }
 
 .project-link-btn {
@@ -1253,33 +1241,68 @@ body.light .projects-grid .project-card:focus {
   transition: all 0.3s ease;
 }
 
+.project-link-btn-right {
+  transition: all 0.45s var(--ease); /* ✨ الزرار اليمين هيتحرك */
+}
+
 .project-link-btn:hover {
   background-color: var(--accent-a);
   color: var(--text-on-accent);
   transform: scale(1.1);
 }
 
+/* ✨ تصميم اللغات (جديد) ✨ */
+.project-tech-list {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column; /* ✨ تحت بعض ✨ */
+  align-items: flex-end; /* ✨ محاذاة لليمين ✨ */
+  justify-content: center; /* ✨ توسيط رأسي ✨ */
+  gap: 8px;
+  transform: translateX(120%); /* ✨ مخفي تمامًا ناحية اليمين */
+  opacity: 0;
+  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0.1s;
+  z-index: 1;
+}
+
+.project-tech-list span {
+  background-color: var(--text);
+  color: var(--surface);
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap; /* ✨ لمنع الكلمة من الانقسام */
+}
+
 /* ================================== */
-/* === ✨ تأثير الهوفر الداخلي (مدمج) ✨ === */
+/* === ✨ تأثير الهوفر النهائي المدمج ✨ === */
 /* ================================== */
 
-/* هذا الكود سيشتغل *بالإضافة إلى* تأثير الفوكس جروب */
 .project-card:hover .project-image {
   opacity: 0;
-  transform: translateX(-100%); /* ✨ الصورة تخرج لليسار */
+  transform: translateX(-100%);
+  transition-duration: 0.7s; /* ✨ بطيء */
 }
 
 .project-card:hover .project-details {
   opacity: 1;
-  transform: translateX(0); /* ✨ النص يدخل من اليمين */
+  transform: translateX(0);
+  transition-duration: 0.7s; /* ✨ بطيء */
+}
+
+.project-card:hover .project-link-btn-right {
+  transform: translateX(-60px); /* ✨ تحريك الزرار اليمين 60 بكسل شمال */
 }
 
 .project-card:hover .project-tech-list {
   opacity: 1;
-  transform: translateX(0) translateY(0); /* ✨ التقنيات تظهر وتصعد لمكانها */
+  transform: translateX(0); /* ✨ إظهار اللغات من اليمين */
 }
-/* ================================== */
-
 
 /* === Footer Buttons === */
 .projects-footer {
@@ -1294,6 +1317,7 @@ body.light .projects-grid .project-card:focus {
   justify-content: flex-end;
 }
 
+/* ✨ تم تصحيح لون الزرار ✨ */
 .view-all-btn {
   background-color: var(--surface);
   color: var(--accent-a);
@@ -1315,13 +1339,13 @@ body.light .projects-grid .project-card:focus {
   box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
 }
 
-/* زر الصعود للأعلى (Scroll Top Button) */
+/* ✨ زر الصعود للأعلى (Scroll Top Button) ✨ */
 .scroll-top-btn {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  width: 50px;
-  height: 50px;
+  width: 55px; /* ✨ تم تكبيره */
+  height: 55px; /* ✨ تم تكبيره */
   border-radius: 50%;
   background-color: var(--surface);
   color: var(--text);
@@ -1329,7 +1353,7 @@ body.light .projects-grid .project-card:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 22px; /* ✨ تم تكبيره */
   box-shadow: var(--shadow-medium);
   z-index: 1000;
   opacity: 0;
@@ -2230,24 +2254,25 @@ body.drawer-open .top-left {
           </div>
 
           <div class="project-details">
-            <p class="project-description">
-              A comprehensive system to manage employee data, track attendance, and handle payroll efficiently.
-            </p>
-            <div class="project-tech-list">
-              <span>Django</span>
-              <span>PostgreSQL</span>
-              <span>REST API</span>
-           </div>
+              <p class="project-description">
+                A comprehensive system to manage employee data, track attendance, and handle payroll efficiently.
+              </p>
             </div>
           </div>
 
-          <div class="project-links">
-            <a href="#" class="project-link-btn" aria-label="View Live Demo">
-              <i class="fa-solid fa-play"></i>
-            </a>
-            <a href="#" class="project-link-btn" aria-label="View Source Code">
-              <i class="fa-solid fa-code"></i>
-            </a>
+          <div class="project-bottom-wrapper">
+            <div class="project-links">
+              <a href="#" class="project-link-btn project-link-btn-left" aria-label="View Live Demo">
+                <i class="fa-solid fa-play"></i>
+              </a>
+              <a href="#" class="project-link-btn project-link-btn-right" aria-label="View Source Code">
+                <i class="fa-solid fa-code"></i>
+              </a>
+            </div>
+            <div class="project-tech-list">
+              <span>Django</span>
+              <span>PostgreSQL</span>
+            </div>
           </div>
         </div>
       </div>
@@ -3110,23 +3135,25 @@ body.drawer-open .top-left {
           </div>
 
           <div class="project-details">
-            <p class="project-description">
-              This project is a railway tracking system that allows users to obtain relevant information about train timing.
-            </p>
-            <div class="project-tech-list">
-              <span>Django</span>
-              <span>Tailwind CSS</span>
-           </div>
+              <p class="project-description">
+                This project is a railway tracking system that allows users to obtain relevant information about train timing.
+              </p>
             </div>
           </div>
 
-          <div class="project-links">
-            <a href="#" class="project-link-btn" aria-label="View Live Demo">
-              <i class="fa-solid fa-play"></i>
-            </a>
-            <a href="#" class="project-link-btn" aria-label="View Source Code">
-              <i class="fa-solid fa-code"></i>
-            </a>
+         <div class="project-bottom-wrapper">
+            <div class="project-links">
+              <a href="#" class="project-link-btn project-link-btn-left" aria-label="View Live Demo">
+                <i class="fa-solid fa-play"></i>
+              </a>
+              <a href="#" class="project-link-btn project-link-btn-right" aria-label="View Source Code">
+                <i class="fa-solid fa-code"></i>
+              </a>
+            </div>
+            <div class="project-tech-list">
+              <span>Django</span>
+              <span>Tailwind CSS</span>
+            </div>
           </div>
         </div>
       </div>
@@ -3439,24 +3466,25 @@ body.drawer-open .top-left {
           </div>
 
           <div class="project-details">
-            <p class="project-description">
-              A simple and elegant weather application that provides real-time weather data based on user location.
-            </p>
-            <div class="project-tech-list">
-              <span>JavaScript</span>
-              <span>CSS</span>
-              <span>API</span>
-           </div>
+              <p class="project-description">
+                A simple and elegant weather application that provides real-time weather data based on user location.
+              </p>
             </div>
           </div>
 
-          <div class="project-links">
-            <a href="#" class="project-link-btn" aria-label="View Live Demo">
-              <i class="fa-solid fa-play"></i>
-            </a>
-            <a href="#" class="project-link-btn" aria-label="View Source Code">
-              <i class="fa-solid fa-code"></i>
-            </a>
+          <div class="project-bottom-wrapper">
+            <div class="project-links">
+              <a href="#" class="project-link-btn project-link-btn-left" aria-label="View Live Demo">
+                <i class="fa-solid fa-play"></i>
+              </a>
+              <a href="#" class="project-link-btn project-link-btn-right" aria-label="View Source Code">
+                <i class="fa-solid fa-code"></i>
+              </a>
+            </div>
+            <div class="project-tech-list">
+              <span>JavaScript</span>
+              <span>API</span>
+            </div>
           </div>
         </div>
       </div>
