@@ -1166,22 +1166,16 @@ section#projects {
 }
 
 /* الوصف (الصندوق الأسود) */
+/* الوصف (الصندوق الأسود) */
 .project-description {
-  /* <<< تعديل: الخلفية بلون السكشن زي ما اتفقنا */
   background: var(--bg);
-  /* <<< تعديل: الخط بلون التكست العادي */
   color: var(--text);
+  /* ... باقي الخصائص ... */
   
-  box-shadow: inset 0 0 10px rgba(var(--accent-a-rgb), 0.1);
-  padding: 1rem 1.5rem;
-  
-  /* <<< تعديل: الكيرف اللي على اليمين */
-  border-radius: 0 12px 12px 0;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  text-align: left;
-  
-  /* <<< تعديل: أنيميشن الدخول من الشمال */
+  /* <<< تعديل: ضيف السطر ده */
+  margin-left: 1.75rem; /* <<< زقه يمين عشان يبدأ مع الصورة */
+
+  /* (الأنيميشن زي ما هو) */
   transform: translateX(-100%);  
   opacity: 0;  
   transition: opacity 0.7s ease, transform 0.7s ease;
