@@ -1069,7 +1069,7 @@ body:not(.light) #experience .experience-card:focus {
 
 
 /* ============================================== */
-/* === 🔥 Projects Section (Final Clean Version) === */
+/* === Projects Section (Compact & Clean) === */
 /* ============================================== */
 
 section#projects {
@@ -1095,53 +1095,58 @@ section#projects {
   margin: 0 auto;
 }
 
-/* === الكارت الأساسي === */
+/* === الكارت === */
 .project-card {
   position: relative;
   background: var(--bg-card);
   border-radius: 14px;
   overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  padding: 1.5rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 25px rgba(var(--accent-a-rgb), 0.4);
+  box-shadow: 0 0 25px rgba(var(--accent-a-rgb), 0.35);
 }
 
 /* === المحتوى الداخلي === */
 .project-inner {
   position: relative;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  justify-content: space-between;
 }
 
 /* العنوان */
 .project-title {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 1rem;
-  transition: color 0.3s ease;
+  margin-bottom: 10px;
+  text-align: left;
 }
 
-/* صورة المشروع */
+/* === الصورة === */
 .project-media-wrapper {
   position: relative;
-  flex-grow: 1;
+  height: 220px;
   border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 12px;
 }
 
 .project-image {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
   opacity: 1;
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .project-card:hover .project-image {
@@ -1152,7 +1157,10 @@ section#projects {
 /* === التفاصيل (الكلام) === */
 .project-details {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: var(--text);
   color: var(--surface);
   padding: 25px;
@@ -1161,7 +1169,7 @@ section#projects {
   justify-content: space-between;
   text-align: left;
   opacity: 0;
-  transform: translateX(-30px);
+  transform: translateX(-25px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
@@ -1170,11 +1178,11 @@ section#projects {
   transform: translateX(0);
 }
 
-/* === الوصف النصي === */
+/* === الوصف === */
 .project-description {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--surface);
-  line-height: 1.6;
+  line-height: 1.5;
   opacity: 0.9;
 }
 
@@ -1183,20 +1191,19 @@ section#projects {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto;
-  position: relative;
+  margin-top: 15px;
 }
 
 /* === الزرارين === */
 .project-links {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
 }
 
 .project-link-btn {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 1px solid var(--border-color);
   background-color: var(--background);
@@ -1204,8 +1211,8 @@ section#projects {
   align-items: center;
   justify-content: center;
   color: var(--accent-a);
-  font-size: 18px;
-  transition: all 0.35s ease;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
 .project-link-btn:hover {
@@ -1214,30 +1221,20 @@ section#projects {
   transform: scale(1.1);
 }
 
-.project-card:hover .project-link-btn-left {
-  transform: translateX(6px);
-}
-
-.project-card:hover .project-link-btn-right {
-  transform: translateX(-6px);
-}
-
-/* === المهارات (Tech List) === */
+/* === المهارات === */
 .project-tech-list {
   position: absolute;
   right: 0;
   top: 20px;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: center;
   gap: 6px;
   background-color: var(--text);
   padding: 8px 10px;
   border-radius: 6px;
   opacity: 0;
-  transform: translateX(40px);
+  transform: translateX(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
@@ -1249,21 +1246,15 @@ section#projects {
 .project-tech-list span {
   background-color: var(--surface);
   color: var(--text);
-  padding: 3px 10px;
+  padding: 3px 8px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  white-space: nowrap;
 }
 
-/* === تأثير الجلو === */
-.project-card.glow {
-  box-shadow: 0 0 30px var(--accent-a);
-}
-
-/* === الزرار View All === */
+/* === زر View All === */
 .projects-footer {
-  margin-top: 60px;
+  margin-top: 50px;
   display: flex;
   justify-content: flex-end;
   max-width: 1200px;
@@ -1274,8 +1265,8 @@ section#projects {
   background-color: var(--surface);
   color: var(--accent-a);
   border: 1px solid var(--border-color);
-  padding: 12px 24px;
-  border-radius: 50px;
+  padding: 10px 22px;
+  border-radius: 40px;
   text-decoration: none;
   font-weight: 600;
   display: inline-flex;
@@ -1288,7 +1279,6 @@ section#projects {
   background-color: var(--accent-a);
   color: var(--text-on-accent);
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(var(--accent-a-rgb), 0.4);
 }
 
 /* === زر Scroll Top === */
@@ -1296,8 +1286,8 @@ section#projects {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  width: 55px;
-  height: 55px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: var(--surface);
   color: var(--text);
@@ -1305,11 +1295,11 @@ section#projects {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 20px;
   box-shadow: var(--shadow-medium);
   z-index: 1000;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(15px);
   visibility: hidden;
   transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s 0.4s;
 }
@@ -1324,14 +1314,14 @@ section#projects {
 .scroll-top-btn:hover {
   background-color: var(--accent-a);
   color: var(--text-on-accent);
-  transform: translateY(-5px);
+  transform: translateY(-4px);
 }
 
 /* === Responsive === */
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 35px;
   }
 
   .projects-footer {
