@@ -1140,42 +1140,47 @@ section#projects {
 }
 
 /* ----------------- DETAILS (الحاوية الشفافة) ----------------- */
-/* ----------------- DETAILS (الحاوية الشفافة) ----------------- */
 .project-details {
   position: absolute;
-  top: 0; /* <<< خليه زي ما هو (نسبة لـ .project-inner) */
-  
-  /* --- التعديل السحري هنا --- */
-  left: -1.75rem; /* <<< اشده لبره بقيمة البادينج بتاع الكارت */
-  width: calc(100% + 1.75rem); /* <<< زود عرضه عشان يغطي المساحة دي */
-  /* --- نهاية التعديل --- */
-
+  top: 0;
+  left: -1.75rem;
   height: 220px;
+  width: calc(100% + 1.75rem);
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 0; /* <<< لازم ده يكون صفر */
+  
+  padding: 0; /* <<< تعديل: شيلنا البادينج عشان يلزق في الشمال */
+  
+  /* (تم حذف الخلفية الزرقا) */
   
   overflow: hidden;  
   opacity: 0;  
   transition: opacity 0.8s ease;
-  z-index: 1;
+  z-index: 1; 
 }
 .project-card:hover .project-details {
   opacity: 1;  
 }
 
 /* الوصف (الصندوق الأسود) */
-/* الوصف (الصندوق الأسود) */
 .project-description {
+  /* <<< تعديل: الخلفية بلون السكشن زي ما اتفقنا */
   background: var(--bg);
+  /* <<< تعديل: الخط بلون التكست العادي */
   color: var(--text);
-  /* ... باقي الخصائص ... */
   
-  /* <<< تعديل: ضيف السطر ده */
-  margin-left: 1.75rem; /* <<< زقه يمين عشان يبدأ مع الصورة */
-
-  /* (الأنيميشن زي ما هو) */
+  box-shadow: inset 0 0 10px rgba(var(--accent-a-rgb), 0.1);
+  padding: 1rem 1.5rem;
+  margin-left: 1.75rem;
+  
+  /* <<< تعديل: الكيرف اللي على اليمين */
+  border-radius: 0 12px 12px 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: left;
+  
+  /* <<< تعديل: أنيميشن الدخول من الشمال */
   transform: translateX(-100%);  
   opacity: 0;  
   transition: opacity 0.7s ease, transform 0.7s ease;
@@ -1244,24 +1249,23 @@ section#projects {
   list-style: none;
   padding: 0;
   margin: 0;
-
-  /* <<< تعديل: هذا هو السطر الأهم */
-  /* هيخفي أي حاجة تطلع "بره" الحاوية دي */
-  overflow: hidden; 
+  /* (شيلنا الأنيميشن من الحاوية نفسها) */
 }
+
 .project-tech-list span {
-  /* --- نفس الستايل --- */
+  /* <<< تعديل: نفس ستايل الوصف */
   background: var(--bg);
   color: var(--text);
+  
   font-size: 0.8rem;
   padding: 0.4rem 0.8rem;
   
-  /* <<< تعديل: الكيرف بقى على الشمال (عكس الوصف) */
-  border-radius: 12px 0 0 12px; 
+  /* <<< تعديل: الكيرف اللي على اليمين */
+  border-radius: 0 10px 10px 0;
   
-  /* <<< تعديل: الأنيميشن هيبدأ من اليمين */
+  /* <<< تعديل: أنيميشن الدخول من الشمال (زي الوصف) */
   opacity: 0;
-  transform: translateX(100%); /* (كان -100% خليناه 100%) */
+  transform: translateX(-100%);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
