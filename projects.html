@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Projects - Amr Mousa</title>
+  
+  <link rel="stylesheet" href="style.css"> 
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    /* ===============================================
+      == CSS خاص بصفحة "كل المشاريع"
+      ===============================================
+    */
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+    }
+    
+    /* زرار الرجوع للرئيسية */
+    .home-btn {
+      position: fixed;
+      top: 30px;
+      /* (هيظهر على الشمال فوق، لو الصفحة عربي هيبقى على اليمين) */
+      left: 30px; 
+      width: 50px;
+      height: 50px;
+      background-color: var(--surface);
+      color: var(--accent-a);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      text-decoration: none;
+      border: 1px solid rgba(var(--accent-a-rgb), 0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    .home-btn:hover {
+      background-color: var(--accent-a);
+      color: var(--surface);
+      transform: scale(1.1);
+    }
+    
+    /* (لو الصفحة عربي، خلي الزرار على اليمين) */
+    html[dir="rtl"] .home-btn {
+      left: auto;
+      right: 30px;
+    }
+    
+    /* حاوية الصفحة كلها */
+    .all-projects-container {
+      max-width: 1500px; /* <<< نفس الـ max-width بتاعك */
+      margin: 0 auto;
+      padding: 100px 40px 60px 40px;
+      text-align: center;
+    }
+    
+    /* عنوان "Projects" */
+    .all-projects-title {
+      font-size: 64px;
+      color: var(--accent-a);
+      margin-bottom: 40px;
+    }
+    
+    /* شريط البحث (زي الصورة) */
+    .search-bar {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto 60px auto;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 15px 25px;
+      border-radius: 50px;
+      border: 1px solid rgba(var(--accent-a-rgb), 0.1);
+      background-color: var(--surface);
+      color: var(--text);
+      font-size: 16px;
+      outline: none;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+    .search-bar input:focus {
+      border-color: var(--accent-a);
+      box-shadow: 0 0 25px rgba(var(--accent-a-rgb), 0.3);
+    }
+
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="home-btn" aria-label="Return to Home">
+    <i class="fas fa-home"></i>
+  </a>
+
+  <div class="all-projects-container">
+
+    <h1 class="all-projects-title">Projects</h1>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search project...">
+    </div>
+
+    <div class="projects-grid">
+      
+      <div class="project-card">
+        <div class="project-inner">
+          <div class="project-image">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#f0f0f0"/><text x="50" y="55" font-size="10" text-anchor="middle" fill="#555">Employee SVG</text></svg>
+          </div>
+
+          <div class="project-details">
+            <div class="project-description">
+              This is a dummy description for the employee management system.
+            </div>
+          </div>
+
+          <h3 class="project-title">Employee Management</h3>
+
+          <div class="project-bottom-wrapper">
+            <div class="project-links">
+              <a href="#" class="project-link-btn" aria-label="Live Demo"><i class="fas fa-play"></i></a>
+              <a href="#" class="project-link-btn" aria-label="Source Code"><i class="fas fa-code"></i></a>
+            </div>
+            <ul class="project-tech-list">
+              <li><span>React</span></li>
+              <li><span>Node.js</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-inner">
+          <div class="project-image">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#f0f0f0"/><text x="50" y="55" font-size="10" text-anchor="middle" fill="#555">Railway SVG</text></svg>
+          </div>
+
+          <div class="project-details">
+            <div class="project-description">
+              A comprehensive railway tracking system built with modern tools.
+            </div>
+          </div>
+
+          <h3 class="project-title">Railway Tracking</h3>
+
+          <div class="project-bottom-wrapper">
+            <div class="project-links">
+              <a href="#" class="project-link-btn" aria-label="Live Demo"><i class="fas fa-play"></i></a>
+              <a href="#" class="project-link-btn" aria-label="Source Code"><i class="fas fa-code"></i></a>
+            </div>
+            <ul class="project-tech-list">
+              <li><span>Django</span></li>
+              <li><span>Tailwind</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-inner">
+          <div class="project-image">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#f0f0f0"/><text x="50" y="55" font-size="10" text-anchor="middle" fill="#555">Weather App</text></svg>
+          </div>
+
+          <div class="project-details">
+            <div class="project-description">
+              A weather app that pulls data from a live API.
+            </div>
+          </div>
+
+          <h3 class="project-title">Weather App</h3>
+
+          <div class="project-bottom-wrapper">
+            <div class="project-links">
+              <a href="#" class="project-link-btn" aria-label="Live Demo"><i class="fas fa-play"></i></a>
+              <a href="#" class="project-link-btn" aria-label="Source Code"><i class="fas fa-code"></i></a>
+            </div>
+            <ul class="project-tech-list">
+              <li><span>JavaScript</span></li>
+              <li><span>API</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-inner">
+          <div class="project-image">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#f0f0f0"/><text x="50" y="55" font-size="10" text-anchor="middle" fill="#555">Patient Tracker</text></svg>
+          </div>
+
+          <div class="project-details">
+            <div class="project-description">
+              Android app for tracking patient data securely.
+            </div>
+          </div>
+
+          <h3 class="project-title">Android Patient Tracker</h3>
+
+          <div class="project-bottom-wrapper">
+            <div class="project-links">
+              <a href="#" class="project-link-btn" aria-label="Live Demo"><i class="fas fa-play"></i></a>
+              <a href="#" class="project-link-btn" aria-label="Source Code"><i class="fas fa-code"></i></a>
+            </div>
+            <ul class="project-tech-list">
+              <li><span>Kotlin</span></li>
+              <li><span>Firebase</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-inner">
+          <div class="project-image">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#f0f0f0"/><text x="50" y="55" font-size="10" text-anchor="middle" fill="#555">E-Commerce</text></svg>
+          </div>
+
+          <div class="project-details">
+            <div class="project-description">
+              Full-stack e-commerce website with payment integration.
+            </div>
+          </div>
+
+          <h3 class="project-title">E-Commerce App</h3>
+
+          <div class="project-bottom-wrapper">
+            <div class="project-links">
+              <a href="#" class="project-link-btn" aria-label="Live Demo"><i class="fas fa-play"></i></a>
+              <a href="#" class="project-link-btn" aria-label="Source Code"><i class="fas fa-code"></i></a>
+            </div>
+            <ul class="project-tech-list">
+              <li><span>MERN</span></li>
+              <li><span>Stripe</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      </div>
+  </div>
+
+</body>
+</html>
