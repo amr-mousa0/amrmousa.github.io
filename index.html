@@ -1356,16 +1356,7 @@ background: var(--bg); /* <<< تعديل: استخدمنا خلفية السكش
   transform: translateY(-5px);
 }
 
-/* ----------------- Responsive ----------------- */
-@media (max-width: 768px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .projects-footer {
-    justify-content: center;
-  }
-}
+
 
  /* ============================================== */
 /* ============ Achievements Section ============ */
@@ -1505,43 +1496,6 @@ section#achievements {
   object-fit: contain; /* ✨ تم التعديل إلى contain لضمان ظهور اللوجو كامل */
 }
 
-/* Responsive adjustments */
-@media (max-width: 980px) {
-  .achievements-grid {
-    grid-template-columns: 1fr; /* تحت بعض في الموبايل */
-    gap: 40px;
-    align-items: center; /* إرجاعها للمنتصف في الموبايل */
-  }
-  .achievements-intro {
-    text-align: center;
-    padding-left: 0;
-    margin-top: 0;
-  }
-  #achievements .section-title {
-    font-size: 48px;
-  }
-  .achievements-summary {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media (max-width: 600px) {
-  .card-content {
-    flex-direction: column;
-    text-align: center;
-  }
-  .card-info {
-    order: 2;
-  }
-  .card-image {
-    order: 1;
-    margin-bottom: 20px;
-  }
-  .card-meta {
-    justify-content: center;
-  }
-}
 
 
 	  /* ============================================== */
@@ -1725,88 +1679,7 @@ section#contact {
   margin: 0 5px;
 }
 
-/* ============================================== */
-/* ============ Responsive Adjustments ============ */
-/* ============================================== */
 
-/* === شاشات التابلت (أقل من 1100px) === */
-@media (max-width: 1100px) {
-  /* --- Contact Section --- */
-  .contact-grid {
-    grid-template-columns: 1.5fr 1fr; /* عمودين فقط */
-    gap: 40px;
-  }
-  .contact-graphics {
-    display: none; /* إخفاء الرسومات */
-  }
-  .contact-info-wrapper {
-    padding-top: 124px; /* تعديل المسافة العلوية */
-  }
-}
-
-/* === شاشات التابلت الأصغر (أقل من 980px) === */
-@media (max-width: 980px) {
-  /* --- Achievements Section --- */
-  .achievements-grid {
-    grid-template-columns: 1fr; /* تحت بعض */
-    gap: 40px;
-    align-items: center;
-  }
-  .achievements-intro {
-    text-align: center;
-    padding-left: 0;
-    margin-top: 0;
-  }
-  #achievements .section-title {
-    font-size: 48px;
-  }
-  .achievements-summary {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-/* === شاشات الموبايل (أقل من 768px) === */
-@media (max-width: 768px) {
-  /* --- Projects Section --- */
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .projects-footer {
-    justify-content: center;
-  }
-
-  /* --- Contact Section --- */
-  .contact-grid {
-    grid-template-columns: 1fr; /* عمود واحد */
-  }
-  #contact .section-title {
-    text-align: center;
-  }
-  .contact-info-wrapper {
-    padding-top: 0; /* إلغاء المسافة في الموبايل */
-  }
-}
-
-/* === شاشات الموبايل الصغيرة (أقل من 600px) === */
-@media (max-width: 600px) {
-  /* --- Achievements Section --- */
-  .card-content {
-    flex-direction: column;
-    text-align: center;
-  }
-  .card-info {
-    order: 2; /* النص يجي تحت الصورة */
-  }
-  .card-image {
-    order: 1;
-    margin-bottom: 20px;
-  }
-  .card-meta {
-    justify-content: center;
-  }
-}
     
     
 /* ============================================== */
@@ -1916,38 +1789,112 @@ body.light .hero-image-container {
   font-size: 16px;
 }
 
-/* 6. تعديلات الموبايل (عشان تتناسب مع الأحجام الجديدة) */
+/* ============================================== */
+/* =========== ✨ Hero Responsive Fixes ✨ =========== */
+/* ============================================== */
+
+/* === للتابلت والشاشات الأصغر (أقل من 980px) === */
 @media (max-width: 980px) {
   section#hero.split-hero {
-    grid-template-columns: 1fr;
-    height: auto;
+    grid-template-columns: 1fr; /* عمود واحد */
+    height: auto; /* الارتفاع يتحدد بالمحتوى */
   }
+
   .split-left {
-    min-height: 250px;
-    justify-content: space-between;
+    padding: 30px 20px 20px 20px; /* تقليل البادينج */
+    min-height: 200px; /* تقليل الارتفاع الأدنى */
+    justify-content: space-between; /* توزيع العناصر (اللوجو تحت والاسم فوق) */
   }
-  
+
+  .split-left .logo-name {
+     margin-left: 0; /* إلغاء المسافة الزائدة */
+     align-self: center; /* توسيط الاسم */
+     margin-bottom: 20px; /* مسافة بينه وبين الصورة */
+  }
+   .split-left .social-links {
+     justify-content: center; /* توسيط أيقونات السوشيال */
+     gap: 20px; /* تقليل المسافة بين الأيقونات */
+   }
+   .split-left .social-links a {
+     font-size: 22px; /* تصغير الأيقونات قليلاً */
+   }
+
+
   .hero-image-container {
     position: relative;
     transform: translate(0, 0);
-    margin: -180px auto 0; /* <<<--- عدّلنا الـ margin عشان الصورة الأكبر تطلع */
-    width: 260px; /* <<<--- كبرنا الصورة في الموبايل */
-    height: 260px; /* <<<--- كبرنا الصورة في الموبايل */
-    border-width: 8px;
+    /* ✨ تقليل الـ margin السالب وتوسيط الصورة بشكل أفضل ✨ */
+    margin: -130px auto 30px auto; /* قيمة سالبة أقل + مسافة سفلية */
+    width: 220px; /* ✨ تصغير حجم الصورة قليلًا ✨ */
+    height: 220px; /* ✨ تصغير حجم الصورة قليلًا ✨ */
+    border-width: 6px; /* تقليل عرض الإطار */
   }
   
   .split-right {
-    padding: 180px 20px 60px; /* <<<--- بادينج أكبر من فوق عشان الصورة */
+    /* ✨ تقليل البادينج العلوي بشكل كبير ✨ */
+    padding: 40px 20px 60px 20px;
     justify-content: center;
     text-align: center;
   }
   
   .hero-main-name {
-    font-size: 52px !important;
+    font-size: 40px !important; /* تصغير الخط الرئيسي */
   }
   
   .hero-intro-text {
-    font-size: 16px !important;
+    font-size: 16px !important; /* التأكد من حجم النص التعريفي */
+    max-width: 90%; /* ياخد عرض أكبر شوية */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ✨ تصغير الأزرار قليلاً ✨ */
+  .split-right .cta .btn-primary,
+  .split-right .cta .btn-ghost {
+    padding: 14px 28px;
+    font-size: 15px;
+  }
+}
+
+
+/* === للموبايل الصغير (أقل من 600px) === */
+@media (max-width: 600px) {
+  .split-left {
+     padding: 20px 15px 15px 15px;
+     min-height: 150px;
+   }
+  .split-left .logo-name {
+      font-size: 28px; /* تصغير خط الاسم أكتر */
+  }
+  .split-left .social-links a {
+      font-size: 20px; /* تصغير الأيقونات أكتر */
+  }
+
+  .hero-image-container {
+      width: 180px; /* تصغير الصورة أكتر */
+      height: 180px;
+      margin-top: -100px; /* تقليل الرفع أكتر */
+      border-width: 5px;
+  }
+
+  .split-right {
+      padding: 30px 15px 50px 15px; /* تقليل البادينج */
+  }
+
+  .hero-main-name {
+      font-size: 36px !important; /* تصغير الخط الرئيسي أكتر */
+  }
+
+  .hero-intro-text {
+      font-size: 15px !important;
+  }
+
+  /* ✨ جعل الأزرار تحت بعضها ✨ */
+  .split-right .cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
   }
 }
     /* Hero button overrides for white background */
@@ -1995,6 +1942,212 @@ body.drawer-open .top-left {
   opacity: 1;
   pointer-events: auto;
   transform: scale(1);
+}
+
+/* ============================================== */
+/* =========== ✨ Mobile Responsive Fixes ✨ =========== */
+/* ============================================== */
+
+/* === للشاشات الكبيرة فقط (أكبر من 980px) === */
+@media (min-width: 981px) {
+  .split-right {
+    /* ✨ تطبيق البادينج الكبير للشاشات الكبيرة فقط ✨ */
+    padding: 40px 100px 40px 280px; /* القيمة القديمة كانت 500px، قللناها شوية */
+  }
+}
+
+
+/* === للتابلت والشاشات الأصغر (أقل من 980px) === */
+@media (max-width: 980px) {
+  
+  /* 1. تقليل ارتفاع السكاشن والمسافات الجانبية */
+  section {
+    min-height: auto; 
+    padding: 80px 30px; 
+  }
+
+  /* 2. تصغير كل عناوين السكاشن */
+  #hero .section-title, /* ✨ التأكد من تطبيقها على الهيرو أيضاً إذا كان يستخدم نفس الكلاس */
+  #projects .section-title,
+  #achievements .section-title,
+  #contact .section-title {
+    font-size: 48px; 
+    line-height: 1.2;
+  }
+  
+  /* --- Hero Section --- */
+   section#hero.split-hero {
+    grid-template-columns: 1fr; 
+    height: auto; 
+  }
+
+  .split-left {
+    padding: 30px 20px 20px 20px; 
+    min-height: 200px; 
+    justify-content: space-between; 
+  }
+
+  .split-left .logo-name {
+     margin-left: 0; 
+     align-self: center; 
+     margin-bottom: 20px; 
+  }
+   .split-left .social-links {
+     justify-content: center; 
+     gap: 20px; 
+   }
+   .split-left .social-links a {
+     font-size: 22px; 
+   }
+
+  .hero-image-container {
+    position: relative;
+    transform: translate(0, 0);
+    margin: -130px auto 30px auto; 
+    width: 220px; 
+    height: 220px; 
+    border-width: 6px; 
+  }
+  
+  .split-right {
+    /* ✨ إزالة البادينج الأفقي الكبير وتطبيق بادينج مناسب للموبايل ✨ */
+    padding: 40px 20px 60px 20px;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .hero-main-name {
+    font-size: 40px !important; 
+  }
+  
+  .hero-intro-text {
+    font-size: 16px !important; 
+    max-width: 90%; 
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .split-right .cta .btn-primary,
+  .split-right .cta .btn-ghost {
+    padding: 14px 28px;
+    font-size: 15px;
+  }
+  
+  /* --- Achievements Section --- */
+  .achievements-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center; 
+  }
+  .achievements-intro {
+    text-align: center;
+    padding-left: 0; 
+    margin-top: 0; 
+  }
+  .achievements-summary {
+    max-width: 90%; /* ✨ التأكد من أن النص لا يخرج عن الشاشة ✨ */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* --- Contact Section --- */
+  .contact-grid {
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px;
+  }
+  .contact-graphics {
+    display: none; 
+  }
+  .contact-info-wrapper {
+    padding-top: 0; 
+  }
+  #contact .section-title {
+    text-align: center;
+  }
+}
+
+
+/* === للموبايل (أقل من 768px) === */
+@media (max-width: 768px) {
+  
+  section {
+    padding: 60px 20px; 
+  }
+
+  /* --- Projects Section --- */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .projects-footer {
+    justify-content: center; 
+  }
+
+  /* --- Contact Section --- */
+  .contact-grid {
+    grid-template-columns: 1fr; 
+  }
+  .contact-info-wrapper {
+    padding-top: 0;
+  }
+}
+
+
+/* === للموبايل الصغير (أقل من 600px) === */
+@media (max-width: 600px) {
+
+  /* --- Hero Section --- */
+  .split-left {
+     padding: 20px 15px 15px 15px;
+     min-height: 150px;
+   }
+  .split-left .logo-name {
+      font-size: 28px; 
+  }
+  .split-left .social-links a {
+      font-size: 20px; 
+  }
+
+  .hero-image-container {
+      width: 180px; 
+      height: 180px;
+      margin-top: -100px; 
+      border-width: 5px;
+  }
+
+  .split-right {
+      padding: 30px 15px 50px 15px; 
+  }
+
+  .hero-main-name {
+      font-size: 36px !important; 
+  }
+
+  .hero-intro-text {
+      font-size: 15px !important;
+  }
+
+  .split-right .cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  /* --- Achievements Section --- */
+  .achievement-card .card-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .achievement-card .card-info {
+    order: 2; 
+  }
+  .achievement-card .card-image {
+    order: 1;
+    margin-bottom: 20px;
+  }
+  .achievement-card .card-meta {
+    justify-content: center;
+  }
 }
 
   </style>
