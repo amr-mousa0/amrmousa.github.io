@@ -1796,18 +1796,50 @@ body.drawer-open .top-left {
   }
   
   /* --- Hero Section --- */
-   section#hero.split-hero {
-    grid-template-columns: 1fr; 
-    height: auto; 
-  }
+  section#hero.split-hero {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 60px 20px !important;
+  height: auto;
+  position: relative;
+}
+	.split-left .logo-name {
+  align-self: flex-start;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+}
   .split-left { padding: 30px 20px 20px 20px; min-height: 200px; justify-content: space-between; }
-  .split-left .logo-name { margin-left: 0; align-self: center; margin-bottom: 20px; }
+
+	.hero-image-container {
+  position: relative;
+  margin: 100px auto 40px auto;
+  width: 220px;
+  height: 220px;
+  border: 6px solid var(--accent-a);
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 2;
+}
   .split-left .social-links { display: none !important; }
-  .hero-image-container { position: relative; transform: translate(0, 0); margin: -110px auto 40px auto; width: 220px; height: 220px; border: 6px solid var(--accent-a); border-radius: 50%; background-color: var(--background); display: flex; align-items: center;   justify-content: center;  z-index: 5;}
-  .split-right { padding: 40px 20px 60px 20px; justify-content: center; text-align: center; }
-  .hero-main-name { font-size: 40px !important; }
-  .hero-intro-text { font-size: 16px !important; max-width: 90%; margin-left: auto; margin-right: auto; }
-  .split-right .cta {display: none !important;}
+  .split-right { padding:20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .hero-main-name { font-size: 38px !important; margin-bottom: 10px; }
+  .hero-intro-text { font-size: 16px !important; max-width: 85%; margin: 0 auto 25px auto; line-height: 1.5; }
+  .split-right .cta {display: flex; flex-direction: column; align-items: center;  gap: 15px; }
+	.split-right .cta .btn-primary {
+  display: none !important;
+}
+	.split-right .cta .btn-ghost {
+  padding: 14px 28px;
+  font-size: 15px;
+  opacity: 0.9;
+}
 
   /* --- Who Am I Section --- */
   .who-separator-svg { display: block !important; width: 100%; margin: 15px auto 0; }
