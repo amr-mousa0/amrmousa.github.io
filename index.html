@@ -1813,10 +1813,15 @@ body.drawer-open .top-left {
 
   /* --- Who Am I Section --- */
   .who-separator-svg { display: none; }
-  .who-grid { grid-template-columns: 1fr; gap: 50px; }
+  .who-grid { 
+    grid-template-columns: 1fr; 
+    gap: 30px; /* ✨ تم تقليل المسافة ✨ */
+  }
   .who-content { order: 2; text-align: center; max-width: 100%; }
   .who-illustration { order: 1; width: 100%; text-align: center; }
-  .who-illustration .illustration-svg { max-width: 400px; }
+  .who-illustration .illustration-svg { 
+    max-width: 350px; /* ✨ تم تصغير الرسمة ✨ */
+  }
 
   /* --- Skills Section --- */
   .scroller-container { 
@@ -1874,7 +1879,7 @@ body.drawer-open .top-left {
   /* --- Who Am I Section --- */
   .who-content h2 { font-size: 40px; }
   .who-content p { font-size: 16px; }
-  .who-illustration .illustration-svg { max-width: 320px; }
+  .who-illustration .illustration-svg { max-width: 300px; } /* ✨ تم تصغير الرسمة ✨ */
   
   /* --- Education Section --- */
   #education .education-card { padding: 20px; }
