@@ -228,42 +228,38 @@ section#who {
   display: flex !important;
   align-items: center;
   justify-content: center;
-  padding: 100px 40px !important;
-	min-height: 100vh;
-  position: relative;
-  font-family: 'Poppins', sans-serif; /* ✨ تطبيق الخط الأساسي */
+  padding: 80px 40px !important;
 }
 
 /* الصندوق الرئيسي اللي جواه كل حاجة */
 .who-container {
   display: flex;
-  flex-direction: column; 
-  align-items: center;
+  flex-direction: column; /* بنرص اللي جواه (السيباراتور والمحتوى) فوق بعض */
+  align-items: center; /* بنوسطهم أفقيًا */
   width: 100%;
-  max-width: 1300px; /* ✨✨ تم توحيد العرض الأقصى مع باقي السكاشن ✨✨ */
-  margin: 0 auto;
+  max-width: 1500px; /* بنحدد عرض أقصى عشان التصميم يفرد */
 }
 
 /* الشريط الزخرفي (فوق خالص) */
 .who-separator-svg {
-  width: 100%;
+  width: 100%; /* بياخد عرض الصندوق الرئيسي */
   height: 12px;
-  margin-bottom: 80px;
+  margin-bottom: 80px; /* مسافة بينه وبين المحتوى */
 }
 
 /* حاوية المحتوى (الكلام والرسمة) */
 .who-grid {
-  display: grid; /* ✨ تغيير لـ grid */
-  grid-template-columns: 1.5fr 1fr; /* ✨ تقسيم 50/50 */
+  display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: 120px; /* ✨ تقليل المسافة */
+  gap: 100px;
 }
+
 /* الجزء الشمال (الكلام) */
 .who-content {
-  max-width: 100%; /* ✨ إلغاء العرض الثابت */
-  text-align: left;
+  flex-basis: 50%;
+  max-width: 800px;
 }
 .who-content h2 {
   font-size: 56px;
@@ -280,11 +276,9 @@ section#who {
 /* الجزء اليمين (الرسمة) */
 .who-illustration {
   flex-shrink: 0;
-  text-align: right; /* ✨ التأكد من محاذاة الرسمة يمين */
 }
 .who-illustration .illustration-svg {
-  width: 100%; /* ✨ جعل الرسمة متجاوبة */
-  max-width: 500px; /* ✨ عرض أقصى */
+  width: 500px;
   height: auto;
 }
 
@@ -1818,9 +1812,6 @@ body.drawer-open .top-left {
   .split-right .cta .btn-ghost { padding: 14px 28px; font-size: 15px; }
 
   /* --- Who Am I Section --- */
-  .who-container {
-    max-width: 100%; /* ✨✨ هذا هو السطر الجديد ✨✨ */
-  }
   .who-separator-svg { display: none; }
   .who-grid { 
     grid-template-columns: 1fr; 
@@ -1931,7 +1922,6 @@ body.drawer-open .top-left {
   .achievement-card .card-image { order: 1; margin-bottom: 20px; }
   .achievement-card .card-meta { justify-content: center; }
 }
-
 
 
   </style>
