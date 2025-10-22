@@ -1692,16 +1692,17 @@ section#contact {
 
 /* === الجزء الأيمن (الرسومات) === */
 .contact-graphics {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 100px;
+  position: absolute; /* ✨ نقطة التحول: هنجعلها مطلقة ✨ */
+  right: 40px; /* ✨ أقصى اليمين، بنفس مسافة البادينج ✨ */
+  bottom: 25px; /* ✨ تحت خالص، قبل الفوتر بشوية ✨ */
+  width: 250px; /* ✨ تحديد عرض مناسب (تقدر تعدله) ✨ */
+  z-index: 1; /* ✨ عشان تكون فوق أي حاجة تانية لو حصل تداخل ✨ */
+  pointer-events: none; /* ✨ عشان متعيقش التفاعل مع الفورم لو لمستها ✨ */
 }
-
 .contact-svg {
-  width: 100%;
-  max-width: 200px; /* تحديد عرض أقصى للرسمة */
+  width: 100%; /* ✨ عشان الرسمة تاخد عرض الأب بتاعها ✨ */
   height: auto;
+  display: block; /* ✨ إزالة أي مسافات زائدة حول الـ SVG ✨ */
 }
 .contact-svg path {
   transition: fill 0.4s ease;
