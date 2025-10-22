@@ -1814,9 +1814,15 @@ body.drawer-open .top-left {
   /* --- Who Am I Section --- */
   .who-separator-svg { display: none; }
   .who-grid { 
-    grid-template-columns: 1fr; 
-    gap: 30px; /* ✨ تم تقليل المسافة ✨ */
-  }
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 30px !important;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+
   .who-content { order: 2; text-align: center; max-width: 100%; }
   .who-illustration { order: 1; width: 100%; text-align: center; }
   .who-illustration .illustration-svg { 
@@ -1922,62 +1928,6 @@ body.drawer-open .top-left {
   .achievement-card .card-image { order: 1; margin-bottom: 20px; }
   .achievement-card .card-meta { justify-content: center; }
 }
-	  @media (max-width: 600px) {
-  /* تقليل حجم السكشن كله (Zoom out خفيف) */
-  #who {
-    transform: scale(0.9);
-    transform-origin: top center;
-    overflow-x: hidden;
-  }
-
-  /* تأكد أن الحاوية لا تتخطى عرض الشاشة */
-  .who-container {
-    max-width: 100%;
-    width: 100%;
-    padding: 0 10px;
-    overflow-x: hidden;
-  }
-
-  /* تصغير الرسمة */
-  .who-illustration {
-    display: flex;
-    justify-content: center;
-  }
-
-  .who-illustration .illustration-svg {
-    max-width: 220px !important;
-    height: auto;
-  }
-
-  /* تصغير العنوان والنص */
-  .who-content h2 {
-    font-size: 28px !important;
-    line-height: 1.2;
-  }
-
-  .who-content p {
-    font-size: 14px !important;
-    line-height: 1.6;
-  }
-
-  /* تقليل المسافات */
-  .who-grid {
-    gap: 30px;
-  }
-
-  /* إعادة إظهار الشريط الزخرفي (لو عايزه يظهر) */
-  .who-separator-svg {
-    display: block !important;
-    width: 100%;
-    margin-top: 30px;
-  }
-
-  /* تأكيد إلغاء أي Overflow أفقي */
-  html, body {
-    overflow-x: hidden;
-  }
-}
-
 
 
   </style>
