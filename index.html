@@ -1380,6 +1380,13 @@ section#achievements {
   min-height: 100vh;
   font-family: inherit;
 }
+    section#achievements .section-title,
+.achievements-summary,
+.card-title,
+.card-description,
+.card-meta {
+  font-family: 'Poppins', sans-serif;
+}
 
 .achievements-grid {
   display: grid;
@@ -1394,8 +1401,8 @@ section#achievements {
 /* الجزء الأيسر (النص) */
 .achievements-intro {
   text-align: left;
-  padding-left: 2rem;
-  margin-top: -2rem;
+  padding-left: 6rem;
+  margin-top: -6rem;
 }
 
 #achievements .section-title {
@@ -3669,62 +3676,82 @@ body.drawer-open .top-left {
       <!-- === الجزء الأيمن (الكروت) === -->
       <div class="achievements-list">
         
-        <!-- === Card 1 === -->
+        <!-- === Card 1: Google === -->
         <div class="achievement-card anim-child" tabindex="0" style="transition-delay: 0.2s;">
           <div class="card-content">
             <div class="card-info">
-              <h3 class="card-title">Google Cloud certification</h3>
+              <h3 class="card-title">Google Data Analytics Professional Certificate</h3>
               <p class="card-description">
-                Google Cloud Certifications validate your expertise and showcase your ability to transform businesses with Google Cloud technology.
+                Those who earn the Google Data Analytics Professional Certificate have completed eight courses, developed by Google, that include hands-on, practice-based assessments and are designed to prepare them for introductory-level roles in Data Analytics.
               </p>
               <div class="card-meta">
-                <span class="card-date"><i class="fa-regular fa-calendar"></i> Aug 20, 2019</span>
-                <span class="card-category"><i class="fa-solid fa-robot"></i> Automation</span>
+                <span class="card-date"><i class="fa-regular fa-calendar"></i> Dec 31, 2024</span>
+                <span class="card-category"><i class="fa-solid fa-robot"></i> Data Analytics</span>
               </div>
             </div>
             <div class="card-image">
-              <!-- استبدل برابط الصورة الخاصة بالشهادة -->
-              <img src="https://placehold.co/100x100/FF7A59/FFFFFF?text=Logo" alt="Google Cloud Logo">
+              <!-- ✨ رابط صورة شعار جوجل أو الشهادة -->
+              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo">
             </div>
           </div>
         </div>
 
-        <!-- === Card 2 === -->
+        <!-- === Card 2: IBM === -->
         <div class="achievement-card anim-child" tabindex="0" style="transition-delay: 0.3s;">
           <div class="card-content">
             <div class="card-info">
-              <h3 class="card-title">AWS Certification</h3>
+              <h3 class="card-title">IBM Data Analyst Professional Certificate</h3>
               <p class="card-description">
-                Validate technical skills and cloud expertise to grow your career and business.
+                This IBM Professional Certificate is earned after successfully completing 11 courses on various topics in Data Analytics, including Excel, SQL, Python, Jupyter Notebooks, and Cognos Analytics.
               </p>
               <div class="card-meta">
-                <span class="card-date"><i class="fa-regular fa-calendar"></i> Aug 20, 2019</span>
-                <span class="card-category"><i class="fa-solid fa-robot"></i> Automation</span>
+                <span class="card-date"><i class="fa-regular fa-calendar"></i> Jan 2, 2025</span>
+                <span class="card-category"><i class="fa-solid fa-robot"></i> Data Analytics</span>
               </div>
             </div>
             <div class="card-image">
-              <!-- استبدل برابط الصورة الخاصة بالشهادة -->
-              <img src="https://placehold.co/100x100/FF7A59/FFFFFF?text=Logo" alt="AWS Logo">
+              <!-- ✨ رابط صورة شعار IBM أو الشهادة -->
+              <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/IBM_logo_in.svg" alt="IBM Logo">
             </div>
           </div>
         </div>
 
-        <!-- === Card 3 === -->
+        <!-- === Card 3: Macquarie University === -->
         <div class="achievement-card anim-child" tabindex="0" style="transition-delay: 0.4s;">
           <div class="card-content">
             <div class="card-info">
-              <h3 class="card-title">Professional Data Engineer Certification</h3>
+              <h3 class="card-title">Excel Skills for Data Analytics and Visualization</h3>
               <p class="card-description">
-                Professional Data Engineers enable data-driven decision making by collecting, transforming, and publishing data.
+                Upon completing this specialization from Macquarie University, you will be able to bring data to life using advanced Excel functions, creative visualizations, and powerful automation features.
               </p>
               <div class="card-meta">
-                <span class="card-date"><i class="fa-regular fa-calendar"></i> Aug 20, 2019</span>
-                <span class="card-category"><i class="fa-solid fa-robot"></i> Automation</span>
+                <span class="card-date"><i class="fa-regular fa-calendar"></i> Oct 28, 2024</span>
+                <span class="card-category"><i class="fa-solid fa-robot"></i> Data Visualization</span>
               </div>
             </div>
             <div class="card-image">
-              <!-- استبدل برابط الصورة الخاصة بالشهادة -->
-              <img src="https://placehold.co/100x100/FF7A59/FFFFFF?text=Logo" alt="Data Engineer Logo">
+              <!-- ✨ رابط صورة شعار الجامعة أو الشهادة -->
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Macquarie_University_logo_wordmark.svg/1280px-Macquarie_University_logo_wordmark.svg.png" alt="Macquarie University Logo">
+            </div>
+          </div>
+        </div>
+
+          <!-- === Card 4: === -->
+        <div class="achievement-card anim-child" tabindex="0" style="transition-delay: 0.5s;">
+          <div class="card-content">
+            <div class="card-info">
+              <h3 class="card-title">IBM _ Data Analysis and Visualization Foundations</h3>
+              <p class="card-description">
+                This specialization teaches foundational data analysis, visualization, and dashboard creation using core tools like Excel and Cognos Analytics.
+              </p>
+              <div class="card-meta">
+                <span class="card-date"><i class="fa-regular fa-calendar"></i> Dec 24, 2024</span>
+                <span class="card-category"><i class="fa-solid fa-robot"></i> Data Visualization</span>
+              </div>
+            </div>
+            <div class="card-image">
+              <!-- ✨ رابط صورة شعار الجامعة أو الشهادة -->
+              <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/IBM_logo_in.svg" alt="IBM Logo">
             </div>
           </div>
         </div>
@@ -3733,6 +3760,7 @@ body.drawer-open .top-left {
     </div>
   </div>
 </section>
+
     
     
     <!-- CONTACT -->
