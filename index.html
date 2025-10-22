@@ -1802,14 +1802,12 @@ body.drawer-open .top-left {
   }
   .split-left { padding: 30px 20px 20px 20px; min-height: 200px; justify-content: space-between; }
   .split-left .logo-name { margin-left: 0; align-self: center; margin-bottom: 20px; }
-  .split-left .social-links { justify-content: center; gap: 20px; }
-  .split-left .social-links a { font-size: 22px; }
-  .hero-image-container { position: relative; transform: translate(0, 0); margin: -130px auto 30px auto; width: 220px; height: 220px; border-width: 6px; }
+  .split-left .social-links { display: none !important; }
+  .hero-image-container { position: relative; transform: translate(0, 0); margin: -110px auto 40px auto; width: 220px; height: 220px; border: 6px solid var(--accent-a); border-radius: 50%; background-color: var(--background); display: flex; align-items: center;   justify-content: center;  z-index: 5;}
   .split-right { padding: 40px 20px 60px 20px; justify-content: center; text-align: center; }
   .hero-main-name { font-size: 40px !important; }
   .hero-intro-text { font-size: 16px !important; max-width: 90%; margin-left: auto; margin-right: auto; }
-  .split-right .cta .btn-primary,
-  .split-right .cta .btn-ghost { padding: 14px 28px; font-size: 15px; }
+  .split-right .cta {display: none !important;}
 
   /* --- Who Am I Section --- */
   .who-separator-svg { display: block !important; width: 100%; margin: 15px auto 0; }
@@ -1831,8 +1829,8 @@ body.drawer-open .top-left {
 }
 
 .who-content p {
-  font-size: 13px !important;
-  line-height: 1.2;
+  font-size: 16px !important;
+  line-height: 1.6;
   color: var(--text);
 }
   .who-illustration { order: 1; width: 100%; text-align: center; }
@@ -2038,8 +2036,8 @@ body.drawer-open .top-left {
    <div class="who-grid">
    <div class="who-content anim-child" style="transition-delay: 0.2s;">
       <h2 id="who-title">Who am I</h2>
-     <p>My name's Amr. I'm a Data Analyst focused on transforming messy transactional data into actionable business insights. I specialize in Power BI, SQL, Python and Excel — cleaning data, building star schemas and creating dashboards stakeholders can use to act quickly.</p>
-     <p style="margin-top:12px;">During the day I work as a Lead Data Analyst at a local agency and in the evening I work on freelance projects and utilize the time to built my own products. I spent my leisure hours writing articles and poetry. Right now I'm also trying a hand at machine learning and AI. I love to learn and explore new arenas.</p>
+     <p>My name's Amr. I'm a Data Analyst based in new dammitta - Egypt.</p>
+     <p style="margin-top:12px;">During the day, I focus on freelance data analysis projects. In the evenings, I dedicate time to further improving my analytical skills and also expanding my knowledge in marketing. I love to learn and explore new arenas.</p>
       </div>
     <div class="who-illustration anim-child" style="transition-delay: 0.3s;" aria-hidden="true">
    <svg class="illustration-svg" viewBox="0 0 642 839" fill="none" xmlns="http://www.w3.org/2000/svg">
