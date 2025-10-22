@@ -1367,7 +1367,7 @@ background: var(--bg); /* <<< تعديل: استخدمنا خلفية السكش
   }
 }
 
-   /* ============================================== */
+ /* ============================================== */
 /* ============ Achievements Section ============ */
 /* ============================================== */
 
@@ -1377,32 +1377,33 @@ section#achievements {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 100vh;
+  /* min-height: 100vh; ✨ تم حذف هذا السطر لحل مشكلة الارتفاع ✨ */
   font-family: inherit;
 }
+    /* ✨ تم نقل كود الفونت ليكون خاص بالسكشن ده بس ✨ */
     section#achievements .section-title,
-.achievements-summary,
-.card-title,
-.card-description,
-.card-meta {
-  font-family: 'Poppins', sans-serif;
-}
+    section#achievements .achievements-summary,
+    section#achievements .card-title,
+    section#achievements .card-description,
+    section#achievements .card-meta {
+      font-family: 'Poppins', sans-serif;
+    }
 
 .achievements-grid {
   display: grid;
-    grid-template-columns: 1.5fr 2fr; /* تقسيم الشاشة بنسبة 1 إلى 1.5 */
-  gap: 100px;
+  grid-template-columns: 1fr 1.5fr; /* ✨ تعديل النسبة لدفع الكروت يمينًا */
+  gap: 60px; /* ✨ تقليل المسافة بين العمودين */
   align-items: start;
   width: 100%;
-  max-width: 1500px;
+  max-width: 1300px; /* ✨ تقليل العرض الأقصى للسكشن */
   margin: 0 auto;
 }
 
 /* الجزء الأيسر (النص) */
 .achievements-intro {
   text-align: left;
-  padding-left: 6rem;
-  margin-top: -4rem;
+  padding-left: 2rem; /* ✨ تقليل المسافة البادئة */
+  margin-top: -2rem; /* ✨ تعديل الرفع ليتناسب مع الارتفاع الجديد */
 }
 
 #achievements .section-title {
@@ -1415,14 +1416,14 @@ section#achievements {
   font-size: 18px;
   line-height: 1.7;
   color: var(--muted);
-  max-width: 600px;
+  max-width: 450px; /* ✨ تم إرجاع العرض الأصلي للنص */
 }
 
 /* الجزء الأيمن (الكروت) */
 .achievements-list {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px; /* ✨ تقليل المسافة بين الكروت */
 }
 
 .achievement-card {
@@ -1501,7 +1502,7 @@ section#achievements {
 .card-image img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: contain; /* ✨ تم التعديل إلى contain لضمان ظهور اللوجو كامل */
 }
 
 /* Responsive adjustments */
@@ -1509,9 +1510,12 @@ section#achievements {
   .achievements-grid {
     grid-template-columns: 1fr; /* تحت بعض في الموبايل */
     gap: 40px;
+    align-items: center; /* إرجاعها للمنتصف في الموبايل */
   }
   .achievements-intro {
     text-align: center;
+    padding-left: 0;
+    margin-top: 0;
   }
   #achievements .section-title {
     font-size: 48px;
@@ -1528,7 +1532,7 @@ section#achievements {
     text-align: center;
   }
   .card-info {
-    order: 2; /* النص يجي تحت الصورة */
+    order: 2;
   }
   .card-image {
     order: 1;
@@ -1538,7 +1542,6 @@ section#achievements {
     justify-content: center;
   }
 }
-
 
     
     
