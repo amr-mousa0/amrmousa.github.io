@@ -69,8 +69,8 @@ body.light {
     img{max-width:100%;display:block}
     button{font-family:inherit;cursor:pointer;border:0;background:none}
     /* smooth scroll-snap for full sections */
-    main{height:100vh;overflow-y:auto; scroll-behavior:smooth;}
-   section {min-height:100vh;padding:80px 40px; position:relative;}
+    main{height:100vh;overflow-y:auto; scroll-behavior:smooth; scroll-snap-type: y proximity;}
+   section {min-height:100vh;padding:80px 40px; position:relative; scroll-snap-align: start;}
     .container {width: 100%;max-width: 1500px; /* <<<--- ده العرض الأقصى للمحتوى اللي في النص */margin: 0 auto; /* عشان يتوسط */}
 
     /* ---------------- Top controls ---------------- */
