@@ -228,38 +228,42 @@ section#who {
   display: flex !important;
   align-items: center;
   justify-content: center;
-  padding: 80px 40px !important;
+  padding: 100px 40px !important;
+	min-height: 100vh;
+  position: relative;
+  font-family: 'Poppins', sans-serif; /* ✨ تطبيق الخط الأساسي */
 }
 
 /* الصندوق الرئيسي اللي جواه كل حاجة */
 .who-container {
   display: flex;
-  flex-direction: column; /* بنرص اللي جواه (السيباراتور والمحتوى) فوق بعض */
-  align-items: center; /* بنوسطهم أفقيًا */
+  flex-direction: column; 
+  align-items: center;
   width: 100%;
-  max-width: 1500px; /* بنحدد عرض أقصى عشان التصميم يفرد */
+  max-width: 1300px; /* ✨✨ تم توحيد العرض الأقصى مع باقي السكاشن ✨✨ */
+  margin: 0 auto;
 }
 
 /* الشريط الزخرفي (فوق خالص) */
 .who-separator-svg {
-  width: 100%; /* بياخد عرض الصندوق الرئيسي */
+  width: 100%;
   height: 12px;
-  margin-bottom: 80px; /* مسافة بينه وبين المحتوى */
+  margin-bottom: 80px;
 }
 
 /* حاوية المحتوى (الكلام والرسمة) */
 .who-grid {
-  display: flex;
+  display: grid; /* ✨ تغيير لـ grid */
+  grid-template-columns: 1fr 1fr; /* ✨ تقسيم 50/50 */
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: 100px;
+  gap: 60px; /* ✨ تقليل المسافة */
 }
-
 /* الجزء الشمال (الكلام) */
 .who-content {
-  flex-basis: 50%;
-  max-width: 800px;
+  max-width: 100%; /* ✨ إلغاء العرض الثابت */
+  text-align: left;
 }
 .who-content h2 {
   font-size: 56px;
@@ -276,9 +280,11 @@ section#who {
 /* الجزء اليمين (الرسمة) */
 .who-illustration {
   flex-shrink: 0;
+  text-align: right; /* ✨ التأكد من محاذاة الرسمة يمين */
 }
 .who-illustration .illustration-svg {
-  width: 500px;
+  width: 100%; /* ✨ جعل الرسمة متجاوبة */
+  max-width: 500px; /* ✨ عرض أقصى */
   height: auto;
 }
 
