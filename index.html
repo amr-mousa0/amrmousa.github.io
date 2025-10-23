@@ -1907,7 +1907,7 @@ body.drawer-open .top-left {
   margin-bottom: 6px !important;
 }
 	#skills .section-title::after {
-  bottom: -12px !important; /* 👈 كان -4px نزلناه لتحت */
+  bottom: -10px !important; /* 👈 كان -4px نزلناه لتحت */
   height: 8px !important;
   opacity: 0.9 !important;
 }
@@ -1991,7 +1991,7 @@ body.drawer-open .top-left {
     gap: 3px; /* تقليل المسافة بين النصوص */
   }
   #experience .exp-title {
-    font-size: 16px; /* تصغير الخط */
+    font-size: 15px; /* تصغير الخط */
   }
   #experience .exp-company {
     font-size: 14px; /* تصغير الخط */
@@ -1999,6 +1999,10 @@ body.drawer-open .top-left {
    #experience .exp-date {
      font-size: 13px; /* تصغير الخط */
    }
+
+	  #experience .exp-icon {
+
+}
 
 
 
@@ -2050,64 +2054,7 @@ body.drawer-open .top-left {
     display: none !important; /* إخفاء الصورة */
   }
 
-	/* --- Projects Section --- */
-  #projects .section-title {
-    font-size: 36px; /* تصغير العنوان */
-    margin-bottom: 30px;
-    text-align: center;
-  }
-  .projects-grid {
-    grid-template-columns: 1fr;
-    max-width: 100%; /* ياخد عرض الشاشة */
-    gap: 20px;
-    padding: 0;
-  }
-  .project-card {
-     min-height: auto; /* الارتفاع يتحدد بالمحتوى */
-  }
-  .project-inner {
-    padding: 20px; /* تصغير البادينج */
-    min-height: 350px; /* تصغير الارتفاع قليلاً */
-  }
-  .project-title {
-    font-size: 20px; /* تصغير الخط */
-  }
-  .project-details {
-    padding: 15px; /* تصغير بادينج التفاصيل */
-  }
-  .project-description {
-    font-size: 14px; /* تصغير الخط */
-  }
-  .project-bottom-wrapper {
-    height: 44px; /* تصغير ارتفاع الجزء السفلي ليناسب الأزرار */
-    padding-top: 15px; /* تقليل المسافة */
-  }
-  .project-link-btn {
-    width: 44px; /* تصغير الأزرار */
-    height: 44px;
-    font-size: 16px;
-  }
-  .project-tech-list {
-    padding: 6px 10px; /* تصغير بادينج اللغات */
-    gap: 4px;
-    top: 15px; /* تعديل مكانها ليناسب padding-top الجديد */
-  }
-  .project-tech-list span {
-    font-size: 11px; /* تصغير خط اللغات */
-    padding: 2px 8px;
-  }
-  .project-card:hover .project-link-btn-right {
-    transform: translateX(-54px); /* تعديل مسافة حركة الزرار */
-  }
-  .projects-footer {
-    justify-content: center;
-  }
-  .view-all-btn {
-    padding: 10px 20px; /* تصغير الزرار */
-    font-size: 15px;
-  }
-
-
+	
 
   /* --- Contact Section --- */
   .contact-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
