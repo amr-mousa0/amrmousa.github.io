@@ -1863,7 +1863,7 @@ body.drawer-open .top-left {
 }
 .competencies-grid {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, 2fr) !important;
     gap: 18px !important;
     width: 100% !important;
   }
@@ -1877,29 +1877,32 @@ body.drawer-open .top-left {
   width: 300px; 
 }
 .competency-card {
-	padding: 24px 18px !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
+  gap: 6px !important;
   text-align: left !important;
-  gap: 8px !important;
+  padding: 25px 20px !important;
 }
-
 /* أيقونة + عنوان جنب بعض */
 .competency-card .card-header {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+	.competency-card .card-title {
+  display: inline-block !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: var(--text) !important;
+}
 
 /* لو مفيش div.card-header في الـHTML، ندمج الأيقونة والعنوان يدوي */
 .competency-card .card-icon {
+  margin-right: 10px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  margin-right: 10px !important;
-	 font-size: 22px !important;
-	margin-bottom: 6px !important;
 }
 
 .competency-card .card-icon i {
@@ -1908,18 +1911,38 @@ body.drawer-open .top-left {
 }
 
 
+.competency-card .card-icon,
 .competency-card .card-title {
   display: inline-flex !important;
   align-items: center !important;
-  font-size: 17px !important;
-  font-weight: 600 !important;
-  color: var(--text) !important;
-  margin: 0 !important;
-}
-	.competency-card .card-icon,
-.competency-card .card-title {
   vertical-align: middle !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
+.competency-card > .card-icon,
+.competency-card > .card-title {
+  display: inline-flex !important;
+}
+	.competency-card > .card-description {
+  margin-left: 34px !important; /* يبدأ من بعد الأيقونة */
+  color: var(--muted) !important;
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+  margin-top: 4px !important;
+}
+	.competency-card {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+.competency-card > .card-icon,
+.competency-card > .card-title {
+  order: 1;
+}
+.competency-card > .card-description {
+  order: 2;
+  width: 100%;
+}
+	
 /* الوصف تحتهم مباشرة بمحاذاة العنوان */
 .competency-card .card-description {
   display: block !important;
@@ -1951,8 +1974,8 @@ body.drawer-open .top-left {
 #education .education-card .edu-illustration,
 #education .education-card svg,
 	#education .edu-icon {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   background: var(--accent-a);
   border-radius: 50%;
   color: white;              /* 👈 لون الأيقونة */
@@ -1960,6 +1983,7 @@ body.drawer-open .top-left {
   align-items: center;
   justify-content: center;
   font-size: 18px;
+		padding: 0px;
 }
 	#education .education-card .edu-text {
   display: flex;
