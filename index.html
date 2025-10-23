@@ -1965,29 +1965,34 @@ body.drawer-open .top-left {
   gap: 4px;
 }
 
-/* --- Experience Section (بدون أيقونات) --- */
+/* --- Experience Section (بدون أيقونات ورسومات) --- */
 #experience .section-title {
   text-align: center;
-  font-size: 32px; /* صغر العنوان */
-  margin-bottom: 40px;
+  font-size: 28px; /* أصغر شويه */
+  margin-bottom: 30px;
+  font-weight: 600;
+  color: var(--text);
 }
 
 /* الشبكة الأساسية */
 #experience .experience-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
+  grid-template-columns: 1fr; /* كل كارت في صف لوحده */
+  gap: 25px;
   justify-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* كارت الخبرة */
 #experience .experience-card {
   width: 100%;
   max-width: 700px;
-  padding: 15px 20px; /* تقليل البادينج */
+  padding: 20px 25px; /* بادينج مناسب */
   border-radius: 16px;
   display: flex;
-  flex-direction: column; /* لأن مفيش أيقونة */
+  flex-direction: column;
   align-items: flex-start; /* يبدأ النص من الشمال */
   gap: 6px;
   text-align: left;
@@ -2005,35 +2010,35 @@ body.drawer-open .top-left {
 }
 
 #experience .exp-title {
-  font-size: 16px !important; /* أصغر شوية */
+  font-size: 16px;
   font-weight: 600;
   color: var(--text);
 }
 
 #experience .exp-subtitle {
-  font-size: 14px !important;
+  font-size: 14px;
   color: var(--muted);
 }
 
 #experience .exp-period {
-  font-size: 13px !important;
+  font-size: 13px;
   opacity: 0.8;
 }
 
 #experience .exp-description {
-  font-size: 12px !important;
+  font-size: 12px;
   line-height: 1.4;
   color: var(--muted);
 }
 
-}
 
 
- /* --- Achievements Section --- */
+
+ /* --- Achievements Section (بدون أيقونات ورسومات) --- */
 .achievements-grid {
   display: grid;
   grid-template-columns: 1fr; /* كل كارت في صف واحد */
-  gap: 30px; /* تقليل المسافة شويه */
+  gap: 25px; /* تقليل المسافة شويه */
   align-items: start; /* محاذاة الكروت من الأعلى */
   max-width: 900px;
   margin: 0 auto;
@@ -2043,21 +2048,23 @@ body.drawer-open .top-left {
 .achievements-intro {
   text-align: center;
   padding: 0 10px;
-  margin: 20px auto 40px auto;
+  margin: 20px auto 30px auto;
   max-width: 700px;
+  font-size: 16px; /* تصغير شويه */
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.5;
 }
 
 .achievements-summary {
-  max-width: 85%; /* أقل شويه من 90% عشان يطلع مرتب */
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 15px;
+  max-width: 85%; /* أقل شويه عشان يطلع مرتب */
+  margin: 0 auto;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--muted);
   text-align: center;
 }
 
-}
 
   /* --- Contact Section --- */
   .contact-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
