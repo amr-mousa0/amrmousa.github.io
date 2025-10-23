@@ -1854,13 +1854,13 @@ body.drawer-open .top-left {
   #skills .section-title::after { width: 200px; }
   
   /* --- Education Section --- */
-  #education .section-title.left-aligned { text-align: center; }
-  #education .education-grid { grid-template-columns: 1fr; align-items: center; gap: 40px; }
-	#education .education-card {transform: scale(0.85); transform-origin: center;}
+  #education .section-title.left-aligned { text-align: left; }
+  #education .education-grid { grid-template-columns: 1fr; align-items: center; gap: 40px; justify-items: center; }
+	#education .education-card {width: 100%; max-width: 650px; padding: 25px 20px; border-radius: 16px;}
 	#education .edu-title {font-size: 18px !important; }
 	#education .edu-subtitle {font-size: 15px !important;}
 	#education .edu-period {font-size: 13px !important;opacity: 0.8;}
-	#education .edu-description {font-size: 14px !important;line-height: 1.3;}
+	#education .edu-description {font-size: 14px !important;line-height: 1.4;}
   #education .education-content { width: 100%; max-width: 700px; margin: 0 auto; }
   #education .education-illustration { display: none; }
 
@@ -1907,7 +1907,7 @@ body.drawer-open .top-left {
   
   /* --- Education Section --- */
   #education .education-card { padding: 20px; }
-  #education .edu-title { font-size: 18px; }
+  #education .edu-title { font-size: 16px; }
 
   /* --- Experience Section (✨ جديد ✨) --- */
   #experience .experience-card { padding: 20px; }
