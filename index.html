@@ -1907,7 +1907,7 @@ body.drawer-open .top-left {
   margin-bottom: 6px !important;
 }
 	#skills .section-title::after {
-  bottom: -14px !important; /* 👈 كان -4px نزلناه لتحت */
+  bottom: -12px !important; /* 👈 كان -4px نزلناه لتحت */
   height: 8px !important;
   opacity: 0.9 !important;
 }
@@ -1968,17 +1968,9 @@ body.drawer-open .top-left {
 
   /* --- Experience Section (✨ جديد ✨) --- */
   #experience .section-title { text-align: center; font-size: 40px;  margin-bottom: 50px; }
-  #experience .experience-grid { display: grid;  grid-template-columns: 1fr;  align-items: flex-start; justify-items: center;  gap: 40px; }
-  #experience .experience-content-wrapper { width: 100%; max-width: 700px; padding: 25px 20px; border-radius: 12px; background: var(--surface); box-shadow: 0 6px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; }
-	#experience .experience-content-wrapper:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.1);
-}
-
-/* الاختفاء للرسم التوضيحي */
-#experience .experience-illustration {
-  display: none;
-}
+  #experience .experience-grid {grid-template-columns: 1fr;  align-items: center;  gap: 40px; }
+  #experience .experience-content-wrapper { width: 100%; max-width: 700px; margin: 0auto; }
+#experience .experience-illustration {display: none;}
   
   /* --- Achievements Section --- */
   .achievements-grid { grid-template-columns: 1fr; gap: 40px; align-items: center; }
