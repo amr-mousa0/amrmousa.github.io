@@ -1881,50 +1881,35 @@ body.drawer-open .top-left {
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
-  padding: 25px 20px !important;
   text-align: left !important;
+  padding: 25px 20px !important;
   border-radius: 14px !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+  background: var(--card-bg, #fff) !important;
   transition: all 0.3s ease !important;
 }
-
-
-.competency-card .card-icon,
-.competency-card .card-title {
-  display: inline-flex !important;
-  align-items: center !important;
-  vertical-align: middle !important;
-}
 	.competency-card .card-icon {
-  font-size: 26px !important;
-  color: var(--accent-a) !important;
-  margin-right: 10px !important;
+  display: none !important;
 }
 
 
-.competency-card .card-icon,
-.competency-card .card-title {
-  float: left !important;
-}
 	
 .competency-card .card-title {
-  font-size: 18px !important;
+  font-size: 20px !important;
   font-weight: 600 !important;
   color: var(--text) !important;
-  line-height: 1 !important;
-  margin-top: 3px !important;
+  margin-bottom: 6px !important;
 }
+
 
 
 
 .competency-card .card-description {
-  clear: both !important;
-  margin-left: 36px !important;
-  margin-top: 6px !important;
   font-size: 15px !important;
   color: var(--muted) !important;
   line-height: 1.5 !important;
   text-align: left !important;
+  margin: 0 !important;
 }
 	.competency-card:hover {
   transform: translateY(-5px) !important;
