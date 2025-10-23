@@ -1880,12 +1880,10 @@ body.drawer-open .top-left {
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
-  text-align: left !important;
   gap: 8px !important;
+  text-align: left !important;
   padding: 25px 20px !important;
-  position: relative;
 }
-
 /* صف واحد للأيقونة والعنوان */
 .competency-card::before {
   content: '';
@@ -1897,17 +1895,21 @@ body.drawer-open .top-left {
   display: inline-flex !important;
   align-items: center !important;
   vertical-align: middle !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .competency-card .card-icon {
   margin-right: 10px !important;
-  font-size: 22px !important;
+  font-size: 24px !important;
   color: var(--accent-a) !important;
 }
-
-/* 🟢 الحل السحري هنا */
+	.competency-card .card-icon,
 .competency-card .card-title {
   display: inline-block !important;
+}
+
+.competency-card .card-title {
   font-size: 18px !important;
   font-weight: 600 !important;
   color: var(--text) !important;
@@ -1920,11 +1922,12 @@ body.drawer-open .top-left {
 }
 
 .competency-card .card-description {
-  margin-left: 32px !important;
-  color: var(--muted) !important;
+  margin-top: 4px !important;
+  margin-left: 34px !important;
   font-size: 15px !important;
+  color: var(--muted) !important;
   line-height: 1.5 !important;
-  margin-top: 6px !important;
+  text-align: left !important;
 }
 
 /* 🔒 نضمن إن السطر الأول مش بيتكسر */
@@ -1967,6 +1970,7 @@ body.drawer-open .top-left {
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
+	margin-left: 60px;
 }
 
 
