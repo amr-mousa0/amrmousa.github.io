@@ -1854,15 +1854,22 @@ body.drawer-open .top-left {
   #skills .section-title::after { width: 200px; }
   
   /* --- Education Section --- */
-  #education .section-title.left-aligned { text-align: left; }
+  #education .section-title.left-aligned { text-align: center; }
   #education .education-grid { grid-template-columns: 1fr; align-items: center; gap: 40px; justify-items: center; }
-	#education .education-card {width: 100%; max-width: 650px; padding: 25px 20px; border-radius: 16px;}
+	#education .education-card {width: 100%; max-width: 700px; padding: 25px 20px; border-radius: 16px; text-align: left;  display: flex; flex-direction: column;  align-items: flex-start; gap: 12px; 	}
 	#education .edu-title {font-size: 18px !important; }
 	#education .edu-subtitle {font-size: 15px !important;}
 	#education .edu-period {font-size: 13px !important;opacity: 0.8;}
 	#education .edu-description {font-size: 14px !important;line-height: 1.4;}
   #education .education-content { width: 100%; max-width: 700px; margin: 0 auto; }
   #education .education-illustration { display: none; }
+	#education .education-card img,
+#education .education-card .edu-illustration,
+#education .education-card svg {
+  width: 60px;     /* 👈 صغّرها حسب الحجم المناسب */
+  height: auto;
+  margin-bottom: 10px;
+}
 
   /* --- Experience Section (✨ جديد ✨) --- */
   #experience .section-title { text-align: center; }
