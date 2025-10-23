@@ -1856,8 +1856,8 @@ body.drawer-open .top-left {
   /* --- Education Section --- */
   #education .section-title.left-aligned { text-align: center; }
   #education .education-grid { grid-template-columns: 1fr; align-items: center; gap: 40px; justify-items: center; }
-	#education .education-card {width: 100%; max-width: 700px; padding: 0px 20px; border-radius: 16px;    display: flex;   align-items: center;  gap: 5px; text-align: left; 	}
-	#education .edu-title {font-size: 18px !important; }
+	#education .education-card {width: 100%; max-width: 700px; padding: 0px 0px; border-radius: 16px;    display: flex;   align-items: center;  gap: 0px; text-align: left; 	}
+	#education .edu-title {font-size: 17px !important; }
 	#education .edu-subtitle {font-size: 15px !important;}
 	#education .edu-period {font-size: 13px !important;opacity: 0.8;}
 	#education .edu-description {font-size: 12px !important;line-height: 1.4;}
@@ -1865,8 +1865,9 @@ body.drawer-open .top-left {
   #education .education-illustration { display: none; }
 	#education .education-card img,
 #education .education-card .edu-illustration,
-#education .education-card svg {
-  width: 10px;     /* 👈 صغّرها حسب الحجم المناسب */
+#education .education-card svg
+	#education .education-card .edu-icon {
+  width: 5px;     /* 👈 صغّرها حسب الحجم المناسب */
   height: auto;
   margin-bottom: 10px;
 	flex-shrink: 0;
