@@ -1967,28 +1967,70 @@ body.drawer-open .top-left {
 
 
   /* --- Experience Section (✨ جديد ✨) --- */
-  #experience .section-title { text-align: center; font-size: 40px;  margin-bottom: 50px; }
-  #experience .experience-grid {grid-template-columns: 1fr;  align-items: center;  gap: 40px; }
-  #experience .experience-content-wrapper { width: 100%; max-width: 700px; margin: 0auto; }
-#experience .experience-illustration {display: none;}
-	#experience .exp-icon {
+ /* --- Experience Section --- */
+#experience .section-title {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 50px;
+}
+
+/* الشبكة الأساسية */
+#experience .experience-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* صف واحد للكارت */
+  gap: 40px;
+  justify-items: center;
+}
+
+/* كارت الخبرة */
+#experience .experience-card {
+  width: 100%;
+  max-width: 700px;
+  padding: 20px 25px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  background: var(--surface);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+/* أيقونة الخبرة */
+#experience .experience-card img,
+#experience .experience-card .exp-illustration,
+#experience .experience-card svg,
+#experience .exp-icon {
   width: 40px;
   height: 40px;
   background: var(--accent-a);
   border-radius: 50%;
-  color: white;              /* 👈 لون الأيقونة */
-  display: flex;             /* لتوسيط الأيقونة */
+  color: white;
+  display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
 }
-	#experience .education-card .exp-text {
+
+/* النص بجانب الأيقونة */
+#experience .experience-card .exp-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
 }
-  
+
+/* خطوط النصوص */
+#experience .exp-title { font-size: 17px !important; font-weight: 600; }
+#experience .exp-subtitle { font-size: 15px !important; }
+#experience .exp-period { font-size: 13px !important; opacity: 0.8; }
+#experience .exp-description { font-size: 12px !important; line-height: 1.4; }
+
+/* اختفاء أي رسم توضيحي اضافي */
+#experience .experience-illustration { display: none; }
+
+
   /* --- Achievements Section --- */
   .achievements-grid { grid-template-columns: 1fr; gap: 40px; align-items: center; }
   .achievements-intro { text-align: center; padding-left: 0; margin-top: 0; }
