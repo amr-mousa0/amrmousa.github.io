@@ -1965,20 +1965,18 @@ body.drawer-open .top-left {
   gap: 4px;
 }
 
-
-  /* --- Experience Section (✨ جديد ✨) --- */
- /* --- Experience Section --- */
+/* --- Experience Section (بدون أيقونات) --- */
 #experience .section-title {
   text-align: center;
-  font-size: 40px;
-  margin-bottom: 50px;
+  font-size: 32px; /* صغر العنوان */
+  margin-bottom: 40px;
 }
 
 /* الشبكة الأساسية */
 #experience .experience-grid {
   display: grid;
-  grid-template-columns: 1fr; /* صف واحد للكارت */
-  gap: 40px;
+  grid-template-columns: 1fr;
+  gap: 30px;
   justify-items: center;
 }
 
@@ -1986,55 +1984,80 @@ body.drawer-open .top-left {
 #experience .experience-card {
   width: 100%;
   max-width: 700px;
-  padding: 20px 25px;
+  padding: 15px 20px; /* تقليل البادينج */
   border-radius: 16px;
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column; /* لأن مفيش أيقونة */
+  align-items: flex-start; /* يبدأ النص من الشمال */
+  gap: 6px;
   text-align: left;
   background: var(--surface);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
   transition: all 0.3s ease;
 }
 
-/* أيقونة الخبرة */
-#experience .experience-card img,
-#experience .experience-card .exp-illustration,
-#experience .experience-card svg,
-#experience .exp-icon {
-  width: 40px;
-  height: 40px;
-  background: var(--accent-a);
-  border-radius: 50%;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-}
-
-/* النص بجانب الأيقونة */
-#experience .experience-card .exp-text {
+/* النصوص */
+#experience .exp-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
 }
 
-/* خطوط النصوص */
-#experience .exp-title { font-size: 17px !important; font-weight: 600; }
-#experience .exp-subtitle { font-size: 15px !important; }
-#experience .exp-period { font-size: 13px !important; opacity: 0.8; }
-#experience .exp-description { font-size: 12px !important; line-height: 1.4; }
+#experience .exp-title {
+  font-size: 16px !important; /* أصغر شوية */
+  font-weight: 600;
+  color: var(--text);
+}
 
-/* اختفاء أي رسم توضيحي اضافي */
-#experience .experience-illustration { display: none; }
+#experience .exp-subtitle {
+  font-size: 14px !important;
+  color: var(--muted);
+}
+
+#experience .exp-period {
+  font-size: 13px !important;
+  opacity: 0.8;
+}
+
+#experience .exp-description {
+  font-size: 12px !important;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+}
 
 
-  /* --- Achievements Section --- */
-  .achievements-grid { grid-template-columns: 1fr; gap: 40px; align-items: center; }
-  .achievements-intro { text-align: center; padding-left: 0; margin-top: 0; }
-  .achievements-summary { max-width: 90%; margin-left: auto; margin-right: auto; }
+ /* --- Achievements Section --- */
+.achievements-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* كل كارت في صف واحد */
+  gap: 30px; /* تقليل المسافة شويه */
+  align-items: start; /* محاذاة الكروت من الأعلى */
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.achievements-intro {
+  text-align: center;
+  padding: 0 10px;
+  margin: 20px auto 40px auto;
+  max-width: 700px;
+}
+
+.achievements-summary {
+  max-width: 85%; /* أقل شويه من 90% عشان يطلع مرتب */
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: center;
+}
+
+}
 
   /* --- Contact Section --- */
   .contact-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
