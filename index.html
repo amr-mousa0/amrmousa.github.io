@@ -1877,46 +1877,49 @@ body.drawer-open .top-left {
 }
 	.competency-card {
   display: flex;
-  flex-direction: column; /* نبدأ عمودي */
+  flex-direction: column; /* عمودي طبيعي */
   align-items: flex-start;
-  gap: 6px;
+  text-align: left;
+  gap: 8px;
 }
-	.competency-card .card-header {
+
+/* أيقونة + عنوان جنب بعض */
+.competency-card .card-header {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-	.competency-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+
+/* لو مفيش div.card-header في الـHTML، ندمج الأيقونة والعنوان يدوي */
+.competency-card .card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
 }
 
-.competency-card .card-icon,
-.competency-card .card-title {
-  display: inline-flex !important;
-  align-items: center !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-	
-	.competency-card .text {
-  text-align: left;
+.competency-card .card-icon i {
+  font-size: 24px;
+  color: var(--accent-a);
 }
 
 .competency-card .card-title {
+  display: inline-flex;
+  align-items: center;
   font-size: 18px;
   font-weight: 600;
   color: var(--text);
+  margin: 0;
 }
-	.competency-card .card-icon i {
-  font-size: 26px;
-  color: var(--accent-a);
-}
-	.competency-card .card-description {
+
+/* الوصف تحتهم مباشرة بمحاذاة العنوان */
+.competency-card .card-description {
   font-size: 15px;
   color: var(--muted);
   line-height: 1.5;
-  margin-left: 36px; /* علشان يبدأ بعد الأيقونة والعنوان */
+  margin-top: 4px;
+  margin-left: 34px; /* يبدأ بعد الأيقونة */
+  max-width: 100%;
 }
 	.competency-card .card-icon + .card-title {
   display: inline-flex;
@@ -1938,7 +1941,7 @@ body.drawer-open .top-left {
 	#education .education-card img,
 #education .education-card .edu-illustration,
 #education .education-card svg,
-	.edu-icon {
+	#education .edu-icon {
   width: 20px;     /* 👈 صغّرها حسب الحجم المناسب */
   height: auto;
   margin-bottom: 10px;
