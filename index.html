@@ -1843,15 +1843,37 @@ body.drawer-open .top-left {
 }
 
   /* --- Skills Section --- */
-  .scroller-container { 
-    top: 8rem;
-    -webkit-mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
-    mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
-  }
-  .scroller__inner li { min-width: 110px; height: 110px; padding: 0.8rem 1rem; }
-  .competencies-container { margin-top: calc(8rem + 130px); padding: 0 20px; }
-  .competencies-grid { grid-template-columns: 1fr; } 
-  #skills .section-title::after { width: 200px; }
+ .scroller-container { 
+  top: 8rem;
+  -webkit-mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+  mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+  margin-bottom: 80px; /* 👈 مسافة فاصلة بين الاسكرولر والجزء اللي تحته */
+}
+ .scroller__inner li { 
+  min-width: 110px; 
+  height: 110px; 
+  padding: 0.8rem 1rem; 
+}
+  .competencies-container { 
+  margin-top: 0; /* 👈 شلنا المارجن الضخم القديم */
+  padding: 0 20px 60px; /* 👈 بادنجمريح */
+  max-width: 1000px; /* 👈 علشان ميتمدش على الشاشه الكبيرة */
+  margin-left: auto;
+  margin-right: auto;
+}
+  .competencies-grid { 
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 👈 ريسبونسف */
+  gap: 30px;
+}
+	
+ #skills .section-title {
+  margin-bottom: 40px;
+}
+
+#skills .section-title::after { 
+  width: 200px; 
+}
   
   /* --- Education Section --- */
   #education .section-title.left-aligned { text-align: center; }
@@ -1870,7 +1892,6 @@ body.drawer-open .top-left {
   width: 20px;     /* 👈 صغّرها حسب الحجم المناسب */
   height: auto;
   margin-bottom: 10px;
-	flex-shrink: 0;
 }
 	#education .education-card .edu-text {
   display: flex;
