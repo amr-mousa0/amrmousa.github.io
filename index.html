@@ -1878,12 +1878,16 @@ body.drawer-open .top-left {
 	.competency-card {
   display: flex; /* 👈 علشان الأيقونة تبقى جنب النص */
 		flex-direction: column;
-		justify-content: flex-start;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
   gap: 10px; /* 👈 مسافة بسيطة بين الأيقونة والنص */
   padding: 20px;
   border-radius: 16px;
   background: var(--surface);
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+	.competency-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
 	.card-header {
   display: flex;
@@ -1918,6 +1922,13 @@ body.drawer-open .top-left {
   line-height: 1.4;
 	margin: 0;
 	padding-left: 50px;
+}
+	.competency-card p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.5;
+  padding-left: 50px; /* 👈 يخلي الوصف يبدأ من نفس بداية العنوان مش الأيقونة */
 }
   
   /* --- Education Section --- */
