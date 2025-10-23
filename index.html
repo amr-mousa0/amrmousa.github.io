@@ -1871,6 +1871,7 @@ body.drawer-open .top-left {
  #skills .section-title {
   margin-bottom: 40px;
 	  margin-top: 40px;
+	 font-size: 36px !important;
 }
 
 #skills .section-title::after { 
@@ -1880,8 +1881,8 @@ body.drawer-open .top-left {
   width: 100% !important;
   display: flex !important;
   flex-direction: column !important;
-  align-items: flex-start !important;
-  text-align: left !important;
+  align-items: center !important; /* 👈 النص ف النص */
+  text-align: center !important;  /* 👈 كل الكلام ف النص */
   padding: 25px 20px !important;
   border-radius: 14px !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
@@ -1895,7 +1896,7 @@ body.drawer-open .top-left {
 
 	
 .competency-card .card-title {
-  font-size: 20px !important;
+  font-size: 17px !important;   /* 👈 صغر الخط */
   font-weight: 600 !important;
   color: var(--text) !important;
   margin-bottom: 6px !important;
@@ -1903,18 +1904,14 @@ body.drawer-open .top-left {
 
 
 
-
 .competency-card .card-description {
-  font-size: 15px !important;
+  font-size: 14px !important;
   color: var(--muted) !important;
   line-height: 1.5 !important;
-  text-align: left !important;
+  text-align: center !important;
   margin: 0 !important;
 }
-	.competency-card:hover {
-  transform: translateY(-5px) !important;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08) !important;
-}
+
 
 
   
