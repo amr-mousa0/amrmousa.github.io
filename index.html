@@ -1862,11 +1862,11 @@ body.drawer-open .top-left {
   margin-right: auto;
 }
 .competencies-grid {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 18px !important;
-    width: 100% !important;
-  }
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 25px !important;
+  width: 100% !important;
+}
 	
  #skills .section-title {
   margin-bottom: 40px;
@@ -1874,67 +1874,63 @@ body.drawer-open .top-left {
 }
 
 #skills .section-title::after { 
-  width: 300px; 
+  width: 200px; 
 }
 .competency-card {
+  width: 100% !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
-  gap: 8px !important;
-  text-align: left !important;
   padding: 25px 20px !important;
+  text-align: left !important;
+  border-radius: 14px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+  transition: all 0.3s ease !important;
 }
-/* صف واحد للأيقونة والعنوان */
-.competency-card::before {
-  content: '';
-  display: table;
-}
+
 
 .competency-card .card-icon,
 .competency-card .card-title {
   display: inline-flex !important;
   align-items: center !important;
   vertical-align: middle !important;
-  margin: 0 !important;
-  padding: 0 !important;
 }
-
-.competency-card .card-icon {
-  margin-right: 10px !important;
-  font-size: 24px !important;
+	.competency-card .card-icon {
+  font-size: 26px !important;
   color: var(--accent-a) !important;
-}
-	.competency-card .card-icon,
-.competency-card .card-title {
-  display: inline-block !important;
+  margin-right: 10px !important;
 }
 
+
+.competency-card .card-icon,
+.competency-card .card-title {
+  float: left !important;
+}
+	
 .competency-card .card-title {
   font-size: 18px !important;
   font-weight: 600 !important;
   color: var(--text) !important;
+  line-height: 1 !important;
+  margin-top: 3px !important;
 }
 
-/* نخلي الأيقونة والعنوان يتعاملوا كسطر واحد */
-.competency-card .card-icon,
-.competency-card .card-title {
-  display: inline-block !important;
-}
+
 
 .competency-card .card-description {
-  margin-top: 4px !important;
-  margin-left: 34px !important;
+  clear: both !important;
+  margin-left: 36px !important;
+  margin-top: 6px !important;
   font-size: 15px !important;
   color: var(--muted) !important;
   line-height: 1.5 !important;
   text-align: left !important;
 }
-
-/* 🔒 نضمن إن السطر الأول مش بيتكسر */
-.competency-card .card-icon i,
-.competency-card .card-title {
-  white-space: nowrap !important;
+	.competency-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08) !important;
 }
+
 
   
   /* --- Education Section --- */
@@ -1960,17 +1956,12 @@ body.drawer-open .top-left {
   align-items: center;
   justify-content: center;
   font-size: 18px;
-		position: absolute;
-  left: 25px; /* نفس قيمة الـ padding بتاع الكارت */
-  top: 50%; /* عشان ننزلها نص الكارت */
-  transform: translateY(-50%); /* عشان نرجعها لفوق نص حجمها (تتوسط رأسيًا) */
 }
 	#education .education-card .edu-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-	margin-left: 60px;
 }
 
 
