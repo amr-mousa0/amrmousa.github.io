@@ -1971,6 +1971,23 @@ body.drawer-open .top-left {
   #experience .experience-grid {grid-template-columns: 1fr;  align-items: center;  gap: 40px; }
   #experience .experience-content-wrapper { width: 100%; max-width: 700px; margin: 0auto; }
 #experience .experience-illustration {display: none;}
+	#experience .exp-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--accent-a);
+  border-radius: 50%;
+  color: white;              /* 👈 لون الأيقونة */
+  display: flex;             /* لتوسيط الأيقونة */
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+	#experience .education-card .exp-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
   
   /* --- Achievements Section --- */
   .achievements-grid { grid-template-columns: 1fr; gap: 40px; align-items: center; }
