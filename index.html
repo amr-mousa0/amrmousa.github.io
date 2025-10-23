@@ -1869,10 +1869,41 @@ body.drawer-open .top-left {
 	
  #skills .section-title {
   margin-bottom: 40px;
+	  margin-top: 180px;
 }
 
 #skills .section-title::after { 
   width: 200px; 
+}
+	.competency-card {
+  display: flex; /* 👈 علشان الأيقونة تبقى جنب النص */
+  align-items: center;
+  gap: 15px; /* 👈 مسافة بسيطة بين الأيقونة والنص */
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+	.competency-card img,
+.competency-card svg ,
+	.card-icon {
+  width: 45px; /* 👈 تصغير الرسمه */
+  height: 45px;
+  flex-shrink: 0;
+}
+	.competency-card .text {
+  text-align: left;
+}
+
+.competency-card .text h3 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.competency-card .text p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.4;
 }
   
   /* --- Education Section --- */
@@ -1889,10 +1920,10 @@ body.drawer-open .top-left {
 #education .education-card .edu-illustration,
 #education .education-card svg,
 	#education.edu-icon {
-  width: 20px;     /* 👈 صغّرها حسب الحجم المناسب */
+  width: 10px;     /* 👈 صغّرها حسب الحجم المناسب */
   height: auto;
   margin-bottom: 10px;
-		background: var(--accent-a);
+background: var(--accent-a);
 }
 	#education .education-card .edu-text {
   display: flex;
