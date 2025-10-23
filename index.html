@@ -2030,6 +2030,18 @@ body.drawer-open .top-left {
   line-height: 1.4;
   color: var(--muted);
 }
+	.experience-grid img,
+.experience-grid i,
+.experience-grid svg {
+  display: none !important;
+}
+	.experience-illustration {
+  display: none !important;
+}
+
+.experience-svg {
+display: none !important;
+}
 
 
 
@@ -2038,7 +2050,7 @@ body.drawer-open .top-left {
 .achievements-grid {
   display: grid;
   grid-template-columns: 1fr; /* كل كارت في صف واحد */
-  gap: 25px; /* تقليل المسافة شويه */
+  gap: 25px; /* المسافة بين الكروت */
   align-items: start; /* محاذاة الكروت من الأعلى */
   max-width: 900px;
   margin: 0 auto;
@@ -2050,19 +2062,33 @@ body.drawer-open .top-left {
   padding: 0 10px;
   margin: 20px auto 30px auto;
   max-width: 700px;
-  font-size: 16px; /* تصغير شويه */
+  font-size: 16px; /* حجم مناسب */
   font-weight: 500;
   color: var(--text);
   line-height: 1.5;
 }
 
 .achievements-summary {
-  max-width: 85%; /* أقل شويه عشان يطلع مرتب */
+  max-width: 85%; 
   margin: 0 auto;
   font-size: 14px;
   line-height: 1.5;
   color: var(--muted);
   text-align: center;
+}
+
+/* إزالة أي صور أو أيقونات داخل الكروت */
+.achievements-grid img,
+.achievements-grid i,
+.achievements-grid svg {
+  display: none !important;
+}
+	.card-image {
+  display: none !important;
+}
+
+.card-image img {
+ display: none !important;
 }
 
 
