@@ -1863,7 +1863,7 @@ body.drawer-open .top-left {
 }
   .competencies-grid { 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 👈 ريسبونسف */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 👈 ريسبونسف */
   gap: 25px;
 }
 	
@@ -1888,10 +1888,11 @@ body.drawer-open .top-left {
 	#education .education-card img,
 #education .education-card .edu-illustration,
 #education .education-card svg,
-	#education.education-card .edu-icon {
+	#education.edu-icon {
   width: 20px;     /* 👈 صغّرها حسب الحجم المناسب */
   height: auto;
   margin-bottom: 10px;
+		background: var(--accent-a);
 }
 	#education .education-card .edu-text {
   display: flex;
