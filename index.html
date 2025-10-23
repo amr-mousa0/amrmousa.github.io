@@ -1875,12 +1875,12 @@ body.drawer-open .top-left {
 #skills .section-title::after { 
   width: 200px; 
 }
-	.competency-card {
-  display: flex;
-  flex-direction: column; /* عمودي طبيعي */
-  align-items: flex-start;
-  text-align: left;
-  gap: 8px;
+.competency-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  gap: 8px !important;
 }
 
 /* أيقونة + عنوان جنب بعض */
@@ -1892,34 +1892,39 @@ body.drawer-open .top-left {
 
 /* لو مفيش div.card-header في الـHTML، ندمج الأيقونة والعنوان يدوي */
 .competency-card .card-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-right: 10px !important;
 }
 
 .competency-card .card-icon i {
-  font-size: 24px;
-  color: var(--accent-a);
+  font-size: 24px !important;
+  color: var(--accent-a) !important;
 }
+
 
 .competency-card .card-title {
-  display: inline-flex;
-  align-items: center;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text);
-  margin: 0;
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: var(--text) !important;
+  margin: 0 !important;
 }
-
+	.competency-card .card-icon,
+.competency-card .card-title {
+  vertical-align: middle !important;
+}
 /* الوصف تحتهم مباشرة بمحاذاة العنوان */
 .competency-card .card-description {
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.5;
-  margin-top: 4px;
-  margin-left: 34px; /* يبدأ بعد الأيقونة */
-  max-width: 100%;
+  display: block !important;
+  font-size: 15px !important;
+  color: var(--muted) !important;
+  line-height: 1.5 !important;
+  margin-top: 4px !important;
+  margin-left: 34px !important;
+  text-align: left !important;
 }
 	.competency-card .card-icon + .card-title {
   display: inline-flex;
@@ -1945,6 +1950,8 @@ body.drawer-open .top-left {
   width: 20px;     /* 👈 صغّرها حسب الحجم المناسب */
   height: auto;
   margin-bottom: 10px;
+  background: var(--accent-a);
+  border-radius: 50%;
 }
 	#education .education-card .edu-text {
   display: flex;
