@@ -291,16 +291,16 @@ section#who {
 
 /* 2. أي عنصر داخل الحاوية يحمل كلاس .anim-child سيكون مخفيًا في البداية */
 .anim-child {
-  opacity: 0;
-  transform: translateY(25px); /* يمكن تغيير المسافة حسب الذوق */
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
 
 /* 3. عندما يضيف الجافاسكربت كلاس .fade-up للحاوية، تظهر العناصر الداخلية */
-.fade-up .anim-child {
-  opacity: 1;
-  transform: translateY(0);
-}
+.anim-child.fade-up {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
 
 /* ============================================== */
@@ -4712,20 +4712,28 @@ applyTheme(savedTheme);
 // ============================================== //
 // ============ Animation on Scroll ============ //
 // ============================================== //
-const animatedElements = document.querySelectorAll('.section-anim-container');
-const animationObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('fade-up');
-      observer.unobserve(entry.target);
-    }
+// 1. استهداف العناصر الفرعية نفسها بدل الحاوية
+const animatedElements = document.querySelectorAll('.anim-child');
+
+if (animatedElements.length > 0) {
+  const animationObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      // 2. لما العنصر الفرعي يظهر
+      if (entry.isIntersecting) {
+        // 3. ضيف الكلاس للعنصر نفسه
+        entry.target.classList.add('fade-up');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { 
+    threshold: 0.1 // هيشتغل لما 10% من العنصر يظهر
   });
-}, { threshold: 0.1 });
 
-animatedElements.forEach(el => {
-  animationObserver.observe(el);
-});
-
+  // 4. راقب كل عنصر فرعي لوحده
+  animatedElements.forEach(el => {
+    animationObserver.observe(el);
+  });
+}
 
 // ============================================== //
 // ======= Scroll to Top Button (Corrected) ======= //
